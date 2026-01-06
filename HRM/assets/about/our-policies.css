@@ -1,0 +1,52 @@
+﻿
+
+
+
+
+
+.file-info, .file-download-link {
+    color: #660199;
+    font-weight: bold;
+}
+
+.file-content-container {
+    background-color: #f6f6f6;
+}
+
+
+@media (min-width:480px) {
+    .container-file {
+        margin-top: 50px;
+        padding: 80px;
+    }
+
+    .file-content-container {
+        margin-top: 50px;
+        
+    }
+
+    .file-content {
+        background-color: #fff;
+        padding: 50px;
+        margin: 50px;
+    }
+
+    .file-name {
+        margin-top: -10px;
+    }
+
+}
+
+@media (max-width:480px) {
+
+    .file-content-container {
+        padding: 20px;
+    }
+
+
+
+    .file-content {
+        background-color: #fff;
+        padding:40px 10px;
+    }
+}

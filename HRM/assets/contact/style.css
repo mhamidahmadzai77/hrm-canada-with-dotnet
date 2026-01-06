@@ -1,0 +1,114 @@
+﻿* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    height: 100%;
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+
+.container-contact {
+    margin-top: 75px;
+    display: flex;
+    height: 100%;
+}
+
+.sidebar {
+    width: 300px; /* Fixed sidebar width on larger screens */
+    background-color: #ffffff;
+    overflow-y: auto;
+    border-right: 1px solid #ddd;
+}
+
+    .sidebar ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .sidebar li {
+        padding: 15px;
+        border-bottom: 1px solid #f1f1f1;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+        .sidebar li:hover {
+            background-color: #f0f0f0;
+        }
+
+.content {
+    flex: 1; /* Take the remaining space */
+    padding: 20px;
+    background-color: #ffffff;
+    overflow-y: auto; /* Enables scrolling if needed */
+}
+
+    .content h2 {
+        margin-top: 0;
+    }
+
+.date {
+    font-size: 12px;
+    color: #888;
+}
+
+.label-danger {
+    background-color: #ff4d4d;
+    color: white;
+}
+
+.label-info {
+    background-color: #3b5998;
+    color: white;
+}
+
+
+@media (min-width: 600px) {
+
+    .content  {
+        font-size: 16px;
+        
+    }
+
+    .container {
+        width:86%;
+    }
+
+    .sidebar {
+        margin-left: -10%;
+        height: 82vh; /* Full height of the viewport */
+        overflow-y: auto;
+    }
+
+    .back-button {
+        display: none;
+    }
+
+}
+
+    @media (max-width: 600px) {
+        .container-contact {
+            margin-top: 0;
+        }
+
+        .sidebar {
+            width: 100%; /* Full width for sidebar */
+            display: block; /* Hidden by default */
+        }
+
+        .content {
+            padding:0;
+            margin:0;
+            display: none;
+        }
+
+        .back-button {
+            display:block;
+        }
+    }
