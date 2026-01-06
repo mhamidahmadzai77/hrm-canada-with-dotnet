@@ -1,0 +1,388 @@
+﻿
+@{ 
+    if (Session["user_108310113658"] != null)
+    {
+        if (Session["user_108310113658"].ToString() == "authenticated")
+        {
+            Layout = "~/Views/Shared/_AdminLayout.cshtml";
+        }
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_EndUserLayout.cshtml";
+    }
+
+    ViewBag.Title = "Technical School | Human Relief Mission UK";
+    ViewBag.Description = "Empowering students through quality technical education, providing essential skills for a sustainable and successful future.";
+    ViewBag.Keywords = "technical school, vocational training, technical education, skill development, education, career readiness, empowerment, job training, community development, nonprofit organization";
+    ViewBag.OGandTwitterTitle = "Education | Human Relief Mission UK";
+
+
+}
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RXXJLDEKC3"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); } gtag('js', new Date()); gtag('config', 'G-RXXJLDEKC3');
+    </script>
+
+    <link href="~/assets/news/css/custom.css" rel="stylesheet" />
+    <link href="~/assets/Home/custom.css" rel="stylesheet" />
+    <style type="text/css">
+        #donate-switch:hover {
+            cursor: pointer;
+        }
+
+        #inner-donate-switch:hover {
+            cursor: pointer;
+        }
+
+        #circle-bullet {
+            position: relative;
+            transition: left 0.3s;
+        }
+
+        #inner-circle-bullet {
+            position: relative;
+            transition: left 0.3s;
+        }
+
+        .btn-amount {
+            background-color: #660199;
+            color: #fff;
+            font-size: 1.3em;
+            font-weight: bold;
+            border: 2px solid #fff;
+            width: 80px;
+            height: 60px;
+        }
+
+        .inner-btn-amount {
+            background-color: #660199;
+            color: #fff;
+            font-size: 1.3em;
+            font-weight: bold;
+            border: 2px solid #fff;
+            width: 80px;
+            height: 60px;
+        }
+
+        .btn-amount:hover {
+            background-color: #fff;
+            color: #000;
+        }
+
+        .inner-btn-amount:hover {
+            background-color: #fff;
+            color: #000;
+        }
+
+        .btn-donate-red:hover > i.fa-arrow-right {
+            position: relative;
+            left: 4px;
+        }
+
+        .inner-btn-donate-red:hover > i.fa-arrow-right {
+            position: relative;
+            left: 4px;
+        }
+
+
+
+        .orphan-hope-image {
+        }
+
+        .orphan-hope-pragraph {
+            padding: 30px;
+            color: #fff;
+        }
+
+        .orphan-hope-image {
+            display: flex;
+            align-items: center; /* Vertically center the content */
+        }
+
+        .align-center {
+            display: flex;
+            justify-content: center; /* Horizontally center the content */
+            align-items: center; /* Vertically center the content */
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 50px auto;
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .faq-item {
+            border-bottom: 1px solid #e0e0e0;
+            padding: 30px 0;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: bold;
+            color: #660199;
+        }
+
+        .faq-answer {
+            display: none;
+            padding: 10px;
+            margin-top: 30px;
+            border-top: 1px solid #e0e0e0;
+            font-size: 18px;
+            font-weight: normal;
+            line-height: 1.5;
+            color: #000;
+        }
+
+        .expand-icon {
+            float: right;
+            transform: rotate(-90deg);
+            transition: transform 0.3s;
+        }
+
+            .expand-icon.open {
+                transform: rotate(90deg);
+            }
+
+        h1 {
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid image-title-container" style="padding:0;">
+        <div class="news-image col-md-8 pull-right">
+            <div>
+                <video class="autoplay-video" autoplay muted loop style="width:100%;height:570px;">
+                    <source src="~/Content/projects/videos/technical-school/technical-school.mp4" type="video/mp4" />
+                </video>
+            </div>
+        </div>
+        <div class="news-title-box col-sm-12 pull-left" style="margin-bottom: 5px;">
+            <div class="news-title" style="width:100%;color:#fff;padding:30px;">
+                <h1 style="font-size:2em;">Technical School</h1>
+                <div style="float: left; padding-top: 4px;">Monthly </div>
+                <div id="donate-switch" onclick="donateSwitch()" style="width: 60px; height: 28px; background-color: #fff; border-radius: 20px; position: absolute; float: left; margin-left: 63px;">
+                    <div id="circle-bullet" style="width:20px;height:20px;background-color:#000;border-radius:10px;position:relative;left:5px;top:4px;"></div>
+                </div>
+                <div style="margin-left:130px;padding-top:4px;">One-Off</div>
+            </div>
+            <div style="padding:0 30px 0 30px;">
+                <input type="hidden" id="amount" />
+                <button class="btn btn-amount" id="amount-1" onmouseover="changeColorWithMouseOver(1)" onmouseout="changeColorWithMouseOut(1)" onclick="amountClicked(1);">$80</button>
+                <button class="btn btn-amount" id="amount-2" onmouseover="changeColorWithMouseOver(2)" onmouseout="changeColorWithMouseOut(2)" onclick="amountClicked(2);">$160</button>
+                <button class="btn btn-amount" id="amount-3" onmouseover="changeColorWithMouseOver(3)" onmouseout="changeColorWithMouseOut(3)" onclick="amountClicked(3);">$240</button>
+                <input type="number" class="form-control no-arrows white-placeholder" id="amount-4" onclick="otherClicked();" value="" style="display:inline;border:2px solid #fff;width:100px;height:60px;background-color:#660199;color:#fff;font-size:1.3em;font-weight:bold;position:relative;top:3px;" placeholder="Other" />
+            </div>
+            <div style="padding:10px 30px 0 30px;">
+                <span id="donation-message" style="color:#fff;"></span>
+            </div>
+            <div>
+                <button class="btn btn-donate-red" onclick="donateNow()" style="width: 180px; height: 60px; background-color: red; border: none; position: relative; left: 30px; top: 10px; color: #fff; font-size: 1.3em; font-weight: bold; "> Donate now <i class="fa fa-arrow-right"></i></button>
+            </div>
+            <div class="col-md-2 header-fundraising-logos">
+                <img src="~/assets/FR-logo/FR_Fundraising-Badge_white_150ppi.png" style="width:150px; margin-right: 10px;" />
+                <img src="~/assets/FR-logo/direct-debit-logo.png" style="width:150px;" />
+                <img src="~/assets/FR-logo/visa-6850402_1280.png" style="width:100px;" />
+                <img src="~/assets/FR-logo/mastercard.png" style="width: 80px;" />
+            </div>
+        </div>
+    </div>
+
+    @* Start Section children’s education important*@
+    <div class="container-fluid">
+        <div class="col-md-3"></div>
+        <div class="col-md-6 " style="text-align:justify;font-size:18px;">
+            <h1 style="font-weight:bold;font-size:2em">
+                Technical School
+            </h1>
+            <p>Human Relief Missions technical school offers orphans a unique opportunity to receive both education and practical skills. Recognising the economic challenges faced by families in Afghanistan. The apprenticeship model employed by the technical school allows orphans to engage in traditional learning activities based on the local curriculum such as reading, writing, and expressing their ideas. However, what sets this program apart is that for a significant portion of their school day, students get the chance to observe and learn directly from skilled mechanics in our workshops.</p>
+            <p>
+                <img src="~/Content/projects/techical-school/workshop.jpg" alt="work shop pic" style="width:100%" />
+            </p>
+            <p>Our approach ensures that orphans not only gain academic knowledge but also acquire practical skills, providing them with a viable means of earning a steady living after completing their education. By integrating these real-world experiences into their schooling, the technical school offers a pathway for orphans to lead self-sufficient lives without the necessity of pursuing higher education or attending university. This holistic approach to education equips them with the tools to thrive and contribute meaningfully to their families and communities.</p>
+            @* Start Qoute Section*@
+            <div class="" style="padding-bottom:50px;margin-top:30px;">
+
+                <div class="quote-container col-md-12">
+                    <span class="" style="font-size:4em;font-weight:bold">&lsquo;&lsquo;</span>
+                    <p class="quote">
+                        The Prophet ﷺ said: “I and the one who sponsors an orphan shall be in Paradise like these two” – he raised his index finger and the one next to it, holding them together
+                    </p>
+                    <p class="">Hadith | Bukhari </p>
+                </div>
+
+            </div>
+            @* End Qoute Section*@
+            <p>&nbsp;</p>
+
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+    @* Start Section children’s education important*@
+
+
+    @* Start Section values education for children*@
+    <div class="container-fluid">
+        <div class="col-md-3"></div>
+        <div class="col-md-6 " style="text-align:justify;font-size:18px;">
+            <h1 style="font-weight:bold;font-size:2em">
+                HRM values education for children
+            </h1>
+            <p>At Human Relief Mission, we believe in the need to educate, learn, and grow – helping each child to gain a vital education, learn much-needed skills and grow into a bright and happy future insha’Allah.</p>
+            <p>We’re committed to breaking the ongoing cycle of poverty that so many children face. We want to ensure that all children receive at least primary schooling and that adults are taught to read and write too.</p>
+            <p>Human Relief Mission build and rehabilitate schools, stocking and equipping them to provide quality teaching. We train teachers so that they give the best education possible, and support schools with milk and nutritional meals, to ensure that children are healthy enough to concentrate and learn. As well as this, we work with adults, teaching them in ways that work best for their situation and culture to facilitate learning in the safest way possible to transform lives.</p>
+            <p>
+                <img src="~/Content/projects/techical-school/technical-school-2.jpg" style="width:100%" />
+            </p>
+            <p>
+                By supporting us you can provide a child or adult with a brighter future free from poverty. You can help educate others and enable them to learn and grow a stable future.
+                Your charity can transform lives by providing education for children. Donate and give charity to our education projects now.
+            </p>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+    @* END Section values education for children*@
+
+    @*BEGIN SECTION IMPACT OF DONATION*@
+    @*Case study*@
+    <div class="container-fluid height-auto">
+    @*    <img src="~/assets/custom-image/Hamsa.jpg" class="col-sm-12 col-md-6  orphan-hope-image align-center" style="margin-top:150px;" />
+
+        <div class="col-md-6 background-purple">
+            <div class="orphan-hope-pragraph col-md-11" style="text-align:justify; font-size:22px;">
+                <h1 style="font-weight:bold;">Giving hope to children like Hamsa</h1>
+                <p>Living under blockade, hope is essential to the people of Gaza. Hamsa's home floods in the winter and is too hot to stay inside during the summer. Thanks to Human Relief Mission, not only is Hamsa provided for, but she is now receiving an education in the hope that one day, she can help rebuild her country.</p>
+                <p>
+                    "I try not to miss a single day of school. I have a big hope that education can change Gaza for the better." - Hamsa
+                </p>
+                <p>Alhamdulillah, Hamsa loves her studies, especially technology which is her favourite subject. You can give hope to a child like Hamsa.</p>
+
+            </div>
+        </div>*@
+    </div>
+    @*END SECTION Your donations are saving lives*@
+
+
+    @*BEGIN SECTION Quran say about education*@
+    <div class="container-fluid">
+        <div class="col-md-3"></div>
+        <div class="col-md-6 " style="text-align:justify;font-size:18px;padding-left:0;padding-right:0;">
+            <h1 style="font-weight:bold;font-size:2em;">
+                What does the Quran say about education?
+            </h1>
+            <p>The Qur’an repeatedly encourages Muslims to seek knowledge, in order to gain success. </p>
+            <p>Numerous verses highlight the importance of education, such as:</p>
+
+            @* Start Qoute Section 1 *@
+            <div class="" style="padding-bottom:50px;margin-top:30px;">
+
+                <div class="quote-container col-md-12" style="background-color: #660199; color: #fff; box-shadow: none;">
+                    <span class="" style="font-size:4em;font-weight:bold;color:#fff;">&lsquo;&lsquo;</span>
+                    <p class="quote">Read! In the name of your Lord who created.</p>
+                    <p class="">Qur'an | 96:1</p>
+                </div>
+
+            </div>
+            <p>&nbsp;&nbsp;</p>
+            @* End Qoute Section 1 *@
+
+          
+            <p>These verses illustrate that education and seeking knowledge are not only commendable but also a means of raising one’s status. </p>
+            <p>Many scholars allude to the concept  that education is the essence of knowledge. Seeking knowledge and gaining a good Islamic education is a means of strengthening our Iman, understanding and relationship with Allah. </p>
+            <p>Seeking knowledge is a means of having our sins forgiven and attaining huge reward: </p>
+            @* Start Qoute Section*@
+            <div class="" style="padding-bottom:50px;margin-top:30px;">
+
+                <div class="quote-container col-md-12">
+                    <span class="" style="font-size:4em;font-weight:bold">&lsquo;&lsquo;</span>
+                    <p class="quote">
+                        Whoever treads on a path in search of Islamic knowledge, Allah will ease the way to Paradise for him. The angels will lower their wings, pleased with this seeker of knowledge, and everyone in the heavens and on earth will ask forgiveness for the knowledgeable person, even the fish in the deepest of waters will ask for his forgiveness.
+                    </p>
+                    <p class="">Hadith | Abu Dawud</p>
+                </div>
+
+            </div>
+            @* End Qoute Section*@
+            <p>&nbsp;</p>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+    @*BEGIN SECTION Quran say about education*@
+
+    <img src="~/assets/FR-logo/FR_Fundraising-Badge_white_150ppi.png" style="display:none;" />
+    @*BEGIN DONATE FOR EDUCATION*@
+    <div class="container-fluid" style="background-color: #660199 !important; height: auto; color: #fff;">
+        <div class="col-md-6" style="padding:30px;">
+            <h1 style="font-size:2em;">Technical School</h1>
+            <p style="font-size:16px;">Every child deserves a quality education and you can help give them a brighter future. Donate now.</p>
+            <div class="col-md-2 header-fundraising-logos">
+                <img src="~/assets/FR-logo/FR_Fundraising-Badge_white_150ppi.png" style="width:150px; margin-right: 10px;" />
+                <img src="~/assets/FR-logo/direct-debit-logo.png" style="width:150px;" />
+                <img src="~/assets/FR-logo/visa-6850402_1280.png" style="width:100px;" />
+                <img src="~/assets/FR-logo/mastercard.png" style="width: 80px;" />
+            </div>
+        </div>
+        <div class="col-md-6" style="padding-bottom:30px;">
+
+            <div class="news-title" style="width:100%;padding:30px;">
+                <div style="float: left; padding-top: 4px;">Monthly </div>
+                <div id="donate-switch" onclick="innerDonateSwitch()" style="width: 60px; height: 28px; background-color: #fff; border-radius: 20px; position: absolute; float: left; margin-left: 63px;">
+                    <div id="inner-circle-bullet" style="width:20px;height:20px;background-color:#000;border-radius:10px;position:relative;left:5px;top:4px;"></div>
+                </div>
+                <div style="margin-left:130px;padding-top:4px;">One-Off</div>
+            </div>
+            <div style="padding:0 30px 0 30px;">
+                <input type="hidden" id="inner-amount" />
+                <button class="btn inner-btn-amount" id="inner-amount-1" onmouseover="innerChangeColorWithMouseOver(1)" onmouseout="innerChangeColorWithMouseOut(1)" onclick="innerAmountClicked(1);">$80</button>
+                <button class="btn inner-btn-amount" id="inner-amount-2" onmouseover="innerChangeColorWithMouseOver(2)" onmouseout="innerChangeColorWithMouseOut(2)" onclick="innerAmountClicked(2);">$160</button>
+                <button class="btn inner-btn-amount" id="inner-amount-3" onmouseover="innerChangeColorWithMouseOver(3)" onmouseout="innerChangeColorWithMouseOut(3)" onclick="innerAmountClicked(3);">$240</button>
+                <input type="number" class="form-control no-arrows white-placeholder" id="inner-amount-4" onclick="innerOtherClicked();" value="" style="display:inline;border:2px solid #fff;width:100px;height:60px;background-color:#660199;color:#fff;font-size:1.3em;font-weight:bold;position:relative;top:3px;" placeholder="Other" />
+            </div>
+            <div style="padding:10px 30px 0 30px;">
+                <span id="inner-donation-message" style="color:#fff;"></span>
+            </div>
+            <div>
+                <button class="btn btn-donate-red" onclick="innerDonateNow()" style="width: 180px; height: 60px; background-color: red; border: none; position: relative; left: 30px; top: 10px; color: #fff; font-size: 1.3em; font-weight: bold; "> Donate now <i class="fa fa-arrow-right"></i></button>
+            </div>
+
+        </div>
+    </div>
+    <div class="" style="margin:0 auto;">
+        <div class="col-md-3" style=""></div>
+        <div class="col-md-6 text-center text-justify" style="padding:50px 10px;font-size:18px;">
+            <p style="font-size:16px;font-style:italic;">Please note: Donations made on this page will be allocated to our Technical School fund. This project is catered to the local community in Afghanistan with the aim to save and transform lives.</p>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+    @*END DONATE FOR EDUCATION*@
+
+    <script src="~/assets/Home/custom.js"></script>
+    <script src="~/assets/donation-script/technical-school/technical-school.js"></script>
+    <script src="~/assets/donation-script/technical-school/inner-technical-school.js"></script>
+
+    <script>
+        const faqItems = document.querySelectorAll('.faq-item');
+
+        faqItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const answer = item.querySelector('.faq-answer');
+                const expandIcon = item.querySelector('.expand-icon');
+
+                if (answer.style.display === 'none' || answer.style.display === '') {
+                    answer.style.display = 'block';
+                    expandIcon.classList.add('open');
+                } else {
+                    answer.style.display = 'none';
+                    expandIcon.classList.remove('open');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

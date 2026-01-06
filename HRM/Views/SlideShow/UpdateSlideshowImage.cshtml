@@ -1,0 +1,122 @@
+﻿@model HRM.Models.SlideShow
+@{
+    if (Session["user_108310113658"] != null)
+    {
+        if (Session["user_108310113658"].ToString() == "authenticated")
+        {
+            Layout = "~/Views/Shared/_AdminLayout.cshtml";
+        }
+    }
+    else
+    {
+        <script>
+            window.location.href = "/Home/Index";
+        </script>
+    }
+
+    ViewBag.Title = "Update Slideshow Image | Human Relief Mission Canada";
+    ViewBag.Description = "Admin interface for updating slideshow images.";
+    ViewBag.Keywords = "update slideshow image, admin panel, image management, human relief mission Canada";
+    ViewBag.OGandTwitterTitle = "Update Slideshow Image | Human Relief Mission Canada";
+
+
+}
+
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RXXJLDEKC3"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); } gtag('js', new Date()); gtag('config', 'G-RXXJLDEKC3');
+    </script>
+
+
+    <link href="~/assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/Home/custom.css" rel="stylesheet" />
+    <link href="~/assets/slide-show/style.css" rel="stylesheet" />
+    <style type="text/css">
+    </style>
+</head>
+<body>
+
+    <div class="container-fluid create-news-header" style="margin-top:60px;">
+        <div class="row">
+            <h1 class="bold">Edit Slideshow Record</h1>
+        </div>
+        <div class="create-news-body">
+            <form class="form" role="form">
+                <div class="form-body" style="padding:0;margin:0;">
+                    <input type="hidden" id="id" value="@Model.id" />
+                    <div class="row form-group form-group-item">
+                        <div class="col-md-7 col-sm-12">
+                            <label>Priority <span style="color:red;">*</span></label>
+                            <input type="number" class="form-control validate" id="priority" name="priority" placeholder="" value="@Model.priority">
+                        </div>
+                    </div>
+                    <div class="row form-group form-group-item">
+                        <div class="col-md-7">
+                            <label>Appeal's URL<span style="color:red;">*</span></label>
+                            <input type="text" class="form-control validate" id="appeal-url" name="appeal-url" placeholder="" value="@Model.url">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2"></div>
+                        <div class="row col-md-8 images-display" style="display: flex; justify-content: space-around;">
+                            <div>
+                                <div class="row form-group-item margin-top-30 margin-bottom-30" style="display:flex; justify-content:center;">Header Picture</div>
+                                <div class="row form-group form-group-item" style="display:flex; justify-content:center;">
+                                    <div class="fileinput fileinput-new" data-provides="fileinput">
+                                        <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
+                                            <img src="@Model.imagePath" alt="@Model.url">
+                                        </div>
+                                        <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
+                                        <div>
+                                            <span class="error-message" id="image1-error" style="color: red;">This is required</span>
+                                            <span class="btn default btn-file">
+                                                <span class="fileinput-new">Select Picture</span>
+                                                <span class="fileinput-exists"> Change </span>
+                                                <input type="file" onchange="validateImages()" name="..." id="image1">
+                                            </span>
+                                            <a href="javascript:;" class="btn default fileinput-exists" data-dismiss="fileinput"> Remove </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-7 pull-right" style="display:flex;justify-content:center;">
+                            <button type="submit" class="btn purple" style="background-color:#660199;" id="update-slideshow-image">Update</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+
+    </div>
+
+    <script src="~/assets/global/plugins/jquery.min.js" type="text/javascript"></script>
+    <script src="~/assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="~/assets/global/plugins/js.cookie.min.js" type="text/javascript"></script>
+    <script src="~/assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+    <script src="~/assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
+    <script src="~/assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
+    <!-- BEGIN PAGE LEVEL PLUGINS -->
+    <script src="~/assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js" type="text/javascript"></script>
+    <script src="~/assets/global/plugins/jquery.min.js" type="text/javascript"></script>
+    <script src="~/assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="~/assets/global/plugins/js.cookie.min.js" type="text/javascript"></script>
+    <script src="~/assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+    <script src="~/assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
+    <script src="~/assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
+    <script src="~/assets/slide-show/update-slideshow-image.js"></script>
+
+
+</body>
+</html>
+
+
+

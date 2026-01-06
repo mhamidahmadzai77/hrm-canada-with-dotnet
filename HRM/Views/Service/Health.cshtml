@@ -1,0 +1,454 @@
+﻿
+@{
+    if (Session["user_108310113658"] != null)
+    {
+        if (Session["user_108310113658"].ToString() == "authenticated")
+        {
+            Layout = "~/Views/Shared/_AdminLayout.cshtml";
+        }
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_EndUserLayout.cshtml";
+    }
+
+    ViewBag.Title = "Health, Free Medical Camps and Medical Care Donations | Human Relief Mission UK";
+    ViewBag.Description = "Providing free medical camps and healthcare services to underserved communities.";
+    ViewBag.Keywords = "health services, free medical camp, healthcare, community health, medical aid";
+    ViewBag.OGandTwitterTitle = "Health";
+
+}
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RXXJLDEKC3"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); } gtag('js', new Date()); gtag('config', 'G-RXXJLDEKC3');
+    </script>
+
+    <link href="~/assets/news/css/custom.css" rel="stylesheet" />
+    <link href="~/assets/Home/custom.css" rel="stylesheet" />
+    <style type="text/css">
+
+        #inner-donate-switch:hover {
+            cursor: pointer;
+        }
+
+        #circle-bullet {
+            position: relative;
+            transition: left 0.3s;
+        }
+
+        #inner-circle-bullet {
+            position: relative;
+            transition: left 0.3s;
+        }
+
+        .btn-amount {
+            background-color: #660199;
+            color: #fff;
+            font-size: 1.3em;
+            font-weight: bold;
+            border: 2px solid #fff;
+            width: 80px;
+            height: 60px;
+        }
+
+        .inner-btn-amount {
+            background-color: #660199;
+            color: #fff;
+            font-size: 1.3em;
+            font-weight: bold;
+            border: 2px solid #fff;
+            width: 80px;
+            height: 60px;
+        }
+
+        .btn-amount:hover {
+            background-color: #fff;
+            color: #000;
+        }
+
+        .inner-btn-amount:hover {
+            background-color: #fff;
+            color: #000;
+        }
+
+        .btn-donate-red:hover > i.fa-arrow-right {
+            position: relative;
+            left: 4px;
+        }
+
+        .inner-btn-donate-red:hover > i.fa-arrow-right {
+            position: relative;
+            left: 4px;
+        }
+
+
+        #donate-switch:hover {
+            cursor: pointer;
+        }
+
+        #circle-bullet {
+            position: relative;
+            transition: left 0.3s;
+        }
+
+        .btn-amount {
+            background-color: #660199;
+            color: #fff;
+            font-size: 1.3em;
+            font-weight: bold;
+            border: 2px solid #fff;
+            width: 80px;
+            height: 60px;
+        }
+
+            .btn-amount:hover {
+                background-color: #fff;
+                color: #000;
+            }
+
+        .btn-donate-red:hover > i.fa-arrow-right {
+            position: relative;
+            left: 4px;
+        }
+
+
+
+        .orphan-hope-image {
+        }
+
+        .orphan-hope-pragraph {
+            padding: 30px;
+            color: #fff;
+        }
+
+        .orphan-hope-image {
+            display: flex;
+            align-items: center; /* Vertically center the content */
+        }
+
+        .align-center {
+            display: flex;
+            justify-content: center; /* Horizontally center the content */
+            align-items: center; /* Vertically center the content */
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 50px auto;
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .faq-item {
+            border-bottom: 1px solid #e0e0e0;
+            padding: 30px 0;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: bold;
+            color: #660199;
+        }
+
+        .faq-answer {
+            display: none;
+            padding: 10px;
+            margin-top: 30px;
+            border-top: 1px solid #e0e0e0;
+            font-size: 18px;
+            font-weight: normal;
+            line-height: 1.5;
+            color: #000;
+        }
+
+        .expand-icon {
+            float: right;
+            transform: rotate(-90deg);
+            transition: transform 0.3s;
+        }
+
+            .expand-icon.open {
+                transform: rotate(90deg);
+            }
+
+        h1 {
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid image-title-container" style="padding:0;">
+        <div class="news-image col-md-8 pull-right">
+            <div>
+                <video class="autoplay-video" autoplay muted loop style="width:100%;height:570px;">
+                    <source src="~/Content/projects/videos/health/health.mp4" type="video/mp4" />
+                </video>
+            </div>
+        </div>
+        <div class="news-title-box col-sm-12 pull-left" style="margin-bottom: 5px;">
+            <div class="news-title" style="width:100%;color:#fff;padding:30px;">
+                <h1 style="font-size:2em;">Health Services</h1>
+                <div style="float: left; padding-top: 4px;">Monthly </div>
+                <div id="donate-switch" onclick="donateSwitch()" style="width: 60px; height: 28px; background-color: #fff; border-radius: 20px; position: absolute; float: left; margin-left: 63px;">
+                    <div id="circle-bullet" style="width:20px;height:20px;background-color:#000;border-radius:10px;position:relative;left:5px;top:4px;"></div>
+                </div>
+                <div style="margin-left:130px;padding-top:4px;">One-Off</div>
+            </div>
+            <div style="padding:0 30px 0 30px;">
+                <input type="hidden" id="amount" />
+                <button class="btn btn-amount" id="amount-1" onmouseover="changeColorWithMouseOver(1)" onmouseout="changeColorWithMouseOut(1)" onclick="amountClicked(1);">$10</button>
+                <button class="btn btn-amount" id="amount-2" onmouseover="changeColorWithMouseOver(2)" onmouseout="changeColorWithMouseOut(2)" onclick="amountClicked(2);">$20</button>
+                <button class="btn btn-amount" id="amount-3" onmouseover="changeColorWithMouseOver(3)" onmouseout="changeColorWithMouseOut(3)" onclick="amountClicked(3);">$40</button>
+                <input type="number" class="form-control no-arrows white-placeholder" id="amount-4" onclick="otherClicked();" value="" style="display:inline;border:2px solid #fff;width:100px;height:60px;background-color:#660199;color:#fff;font-size:1.3em;font-weight:bold;position:relative;top:3px;" placeholder="Other" />
+            </div>
+            <div style="padding:10px 30px 0 30px;">
+                <span id="donation-message" style="color:#fff;"></span>
+            </div>
+            <div>
+                <button class="btn btn-donate-red" onclick="donateNow()" style="width: 180px; height: 60px; background-color: red; border: none; position: relative; left: 30px; top: 10px; color: #fff; font-size: 1.3em; font-weight: bold; "> Donate now <i class="fa fa-arrow-right"></i></button>
+            </div>
+            <div class="col-md-2 header-fundraising-logos">
+                <img src="~/assets/FR-logo/FR_Fundraising-Badge_white_150ppi.png" style="width:150px; margin-right: 10px;" />
+                <img src="~/assets/FR-logo/direct-debit-logo.png" style="width:150px;" />
+                <img src="~/assets/FR-logo/visa-6850402_1280.png" style="width:100px;" />
+                <img src="~/assets/FR-logo/mastercard.png" style="width: 80px;" />
+            </div>
+        </div>
+    </div>
+
+    @* Start Section Support our livesaving work*@
+<div class="container ">
+    <div class="col-md-3"></div>
+    <div class="col-md-6" style="font-size:18px;text-align:justify">
+        <h1 style="padding-bottom: 30px; font-size: 2em; font-weight: bold;text-align:left;">Health Services</h1>
+        <p>Access to healthcare is a widespread challenge faced by many around the world. At Human Relief Mission, our focus is on supporting health and community well-being in developing countries. In these regions, vulnerable populations are disproportionately affected by infectious diseases, posing a direct threat to both individual health and economic stability, perpetuating the cycle of poverty.</p>
+        <p>Adding to the problem is that there isn't enough good healthcare for children in these areas, putting millions at risk of poor health and underdevelopment due to malnourishment. Human Relief Mission addresses these pressing concerns by deploying mobile health clinics to remote areas and promoting health and hygiene practices as well as distributing necessary health packages. Through these initiatives, we aim to combat the spread of infectious diseases, working towards a healthier and more resilient future for communities in need.</p>
+        <p>
+            <img src="~/Content/projects/health-services/health-care-2.jpg" style="width:100%" />
+        </p>
+        <h1 style="padding-bottom: 30px; font-size: 2em; font-weight: bold;text-align:left;">How your donations can help save lives</h1>
+        <p>Being healthy isn't just about medicine – it's about everything in life. That's why we teach communities about eating right and staying healthy. Especially in Afghanistan where we have partnered with local schools and have set up school meal programs to stop children from getting malnourished.</p>
+        <p>But when people get sick, they need healthcare. In poor countries, there's often not enough of it so, Human Relief Mission gives them medicine and equipment. In Afghanistan one of our most successful programs is the Emergency Ambulance Service where we send ambulances to help sick and injured people in dangerous areas and in times of emergencies.</p>
+        <p>During crises, like disasters or conflicts, Human Relief Mission provides emergency help, like healthcare and clean water, to stop more people from getting sick. Our teams stick around to do long-term projects, such as setting up temporary shelters, creating water aid programs and building new facilities to keep people healthy.</p>
+
+        <h1 style="padding-bottom: 30px; font-size: 2em; font-weight: bold;text-align:left;">Hygiene packs</h1>
+        <p>In developing countries, the necessity to distribute hygiene packs is crucial. Many individuals in these regions can afford to buy necessities, such as toothpaste, soap and other hygiene products. The lack of resources to maintain cleanliness poses a significant risk to health, making communities vulnerable to preventable illnesses. By providing hygiene packs, we aim to bridge this gap, offering essential items that contribute not only to personal well-being but also to the prevention of health complications. This initiative is a crucial step toward ensuring that individuals, particularly those in underserved communities, can uphold better hygiene practices and safeguard their overall health.</p>
+        <div class="col-md-3 col-sm-12" style="text-align:center;">
+            <div class="vertical-align-center" style="height: 150px; background-color: #eff3f6; border-radius: 4px;">
+                <img src="~/assets/custom-image/dental_oral_toothbrush_brush_paste_tooth_icon_260398.png" style="width: 100px; vertical-align: central;" />
+            </div>
+            <div style="margin-top:30px;margin-bottom:30px;font-size:13px;font-weight:bold;color:#660199;">
+                <span>Toothpaste & Brush</span>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-12" style="text-align:center;">
+            <div class="vertical-align-center" style="height: 150px; background-color: #eff3f6; border-radius: 4px;">
+                <img src="~/assets/custom-image/soap.png" style="width:100px;padding:10px;" />
+            </div>
+            <div style="margin-top:30px;margin-bottom:30px;font-size:13px;font-weight:bold;color:#660199;">
+                <span>Body Soap</span>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-12" style="text-align:center;">
+            <div class="vertical-align-center" style="height: 150px; background-color: #eff3f6; border-radius: 4px;">
+                <img src="~/assets/custom-image/hand_soap_wash_cleaning_icon_140088.png" style="width:100px;padding:10px;" />
+            </div>
+            <div style="margin-top:30px;margin-bottom:30px;font-size:13px;font-weight:bold;color:#660199;">
+                <span>Dishwashing Liquid</span>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-12" style="text-align:center;">
+            <div class="vertical-align-center" style="height: 150px; background-color: #eff3f6; border-radius: 4px;">
+                <img src="~/assets/custom-image/shop_powder_milk_store_grocery_icon_229155.png" style="width:100px;padding:10px;" />
+            </div>
+            <div style="margin-top:30px;margin-bottom:30px;font-size:13px;font-weight:bold;color:#660199;">
+                <span>Washing Powder</span>
+            </div>
+        </div>
+
+        <h1 style="padding-bottom: 30px; font-size: 2em; font-weight: bold;text-align:left;">Medical Camps</h1>
+        <p>In developing countries, pop-up medical camps are crucial, particularly in the aftermath of disasters. These camps serve as vital hubs for delivering immediate healthcare to communities facing disruptions in their regular medical services. In these situations, accessing a health centre can be a significant struggle, with some located miles away. When natural disasters, such as earthquakes or floods, occur, these temporary facilities step in quickly to bridge the gap. They play a pivotal role in ensuring that people, who might otherwise face challenges reaching a distant health centre, receive timely medical attention. These pop-up camps offer a rapid response to health challenges, acting as a lifeline for communities during difficult times.</p>
+        <img src="~/Content/projects/health-services/health-care-1.jpg" style="width:100%;" />
+    </div>
+    <div class="col-md-3"></div>
+</div>
+    @* Start Section challenges faced in health *@
+    <div class="container-fluid latest-news" style="margin-top:30px;">
+        <div class="">
+            <div class="col-md-12 ">
+                <div class="portlet light portlet-fit ">
+                    <div class="portlet-title latest-news">
+                        <div class="caption">
+
+                            <span class="caption-subject bold" style="color:black;font-size:1.4em;font-weight:bold;line-height:40px;">Challenges faced in healthcare in developing countries</span>
+                        </div>
+                    </div>
+                    <div class="portlet-body latest-news" style="margin-top:-11px;">
+                        <div class="mt-element-card mt-element-overlay">
+                            <div class="row">
+                                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                    <div class="mt-card-item">
+                                        <div style="text-align:center;padding:50px 0;">
+                                            <img src="~/assets/custom-image/people_mother_and_children_family_icon_225636.png" width="150" />
+                                        </div>
+                                        <div class="mt-card-content">
+                                            <h2 class="bold"> 1 in 10 </h2>
+
+                                            <h4 class="mt-card-name" style="font-size:1.2em;padding:8px;">
+                                                women can die in childbirth due to inadequate health care, in some of the poorest developing countries.
+                                            </h4>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                    <div class="mt-card-item">
+                                        <div style="text-align:center;padding:50px 0;">
+                                            <img src="~/assets/custom-image/cough_virus_flu_epidemic_coronavirus_disease_sick_outbreak_icon_140904.png" width="150" />
+                                        </div>
+                                        <div class="mt-card-content">
+                                            <h2 class="bold"> 100 million </h2>
+                                            <h4 class="mt-card-name" style="font-size:1.2em;padding:8px;">
+                                                people around the world are pushed into or trapped in extreme poverty due to health care expenses.
+                                            </h4>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                    <div class="mt-card-item">
+                                        <div style="text-align:center;padding:50px 0;">
+                                            <img src="~/assets/custom-image/injection_syringe_vaccine_icon_178160.png" width="150" />
+                                        </div>
+                                        <div class="mt-card-content">
+                                            <h2 class="bold"> Approximately 2.3 million </h2>
+
+                                            <h3 class="mt-card-name" style="font-size:1.2em;padding:8px;">
+                                                children continue to die each year from vaccine-preventable diseases.
+                                            </h3>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @* End Section challenges faced in health *@
+
+    @* BEGIN IMPACT OF DONATION *@
+    <div class="container">
+        <div class="col-md-3"></div>
+        <div class="col-md-6 " style="text-align:justify;font-size:18px;">
+            <h1 style="font-weight:bold;font-size:2em">
+                The impact of your donations
+            </h1>
+            <p>Your donations towards our health, nutrition and medical care projects have a huge impact on vulnerable people.</p>
+            <p>With the help of your generous donations, Human Relief Mission has worked across several countries to provide funding for dialysis support, emergency medical equipment, paediatric healthcare, fighting hepatitis, cataract surgery, maternity centres, and mobile health clinics – all of which make a critical difference to the lives of so many.</p>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+    @*case study*@
+    <div class="container-fluid container-image-discription height-auto">
+        @*<img src="~/assets/custom-image/2.jpg" class="col-sm-12 col-md-6  orphan-hope-image align-center" style="margin-top:10%;" />
+
+                <div class="col-md-6 background-purple">
+                    <div class="orphan-hope-pragraph col-md-11" style="text-align:justify; font-size:22px;">
+                        <h1 style="font-weight:bold;">Distributing medical aid to hospitals in Afghanistan</h1>
+                        <p>As civilians once more face the horror of major airstrikes, Human Relief Mission teams have been on the ground in Gaza providing various means of supporting life-saving medical aid to hospitals struggling with the overwhelming influx of casualties.</p>
+                        <p>Find out more about the how we are responding in Gaza and supporting with healthcare.</p>
+                        <p>
+                            <button class="btn" onclick="window.location='/Donation/Donate_Start';" style="width: 180px; height: 60px; background-color: #fed21c; border: none; position: relative; top: 10px; color: #000; font-size: 1em; "> Donate Now <i class="fa fa-arrow-right" style="font-size:18px;"></i></button>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        *@
+    </div>
+    @* END IMPACT OF DONATION *@
+
+    @*BEGIN DONATE FOR FOOD SECURITY*@
+    <div class="container-fluid" style="background-color: #660199 !important; height: auto; color: #fff;margin-top:30px;">
+        <div class="col-md-6" style="padding:30px;">
+            <h1 style="font-size:2em;">Health Services</h1>
+            <p style="font-size:16px;">Donations for health services play a crucial role in enhancing access to medical care for underserved communities. They provide essential funding for hospitals, clinics, and non-profit organizations, enabling them to offer critical treatments and facilities.</p>
+            <div class="col-md-2 header-fundraising-logos">
+                <img src="~/assets/FR-logo/FR_Fundraising-Badge_white_150ppi.png" style="width:150px; margin-right: 10px;" />
+                <img src="~/assets/FR-logo/direct-debit-logo.png" style="width:150px;" />
+                <img src="~/assets/FR-logo/visa-6850402_1280.png" style="width:100px;" />
+                <img src="~/assets/FR-logo/mastercard.png" style="width: 80px;" />
+            </div>
+        </div>
+        <div class="col-md-6" style="padding-bottom:30px;">
+
+            <div class="news-title" style="width:100%;padding:30px;">
+                <div style="float: left; padding-top: 4px;">Monthly </div>
+                <div id="donate-switch" onclick="innerDonateSwitch()" style="width: 60px; height: 28px; background-color: #fff; border-radius: 20px; position: absolute; float: left; margin-left: 63px;">
+                    <div id="inner-circle-bullet" style="width:20px;height:20px;background-color:#000;border-radius:10px;position:relative;left:5px;top:4px;"></div>
+                </div>
+                <div style="margin-left:130px;padding-top:4px;">One-Off</div>
+            </div>
+            <div style="padding:0 30px 0 30px;">
+                <input type="hidden" id="inner-amount" />
+                <button class="btn inner-btn-amount" id="inner-amount-1" onmouseover="innerChangeColorWithMouseOver(1)" onmouseout="innerChangeColorWithMouseOut(1)" onclick="innerAmountClicked(1);">$10</button>
+                <button class="btn inner-btn-amount" id="inner-amount-2" onmouseover="innerChangeColorWithMouseOver(2)" onmouseout="innerChangeColorWithMouseOut(2)" onclick="innerAmountClicked(2);">$20</button>
+                <button class="btn inner-btn-amount" id="inner-amount-3" onmouseover="innerChangeColorWithMouseOver(3)" onmouseout="innerChangeColorWithMouseOut(3)" onclick="innerAmountClicked(3);">$40</button>
+                <input type="number" class="form-control no-arrows white-placeholder" id="inner-amount-4" onclick="innerOtherClicked();" value="" style="display:inline;border:2px solid #fff;width:100px;height:60px;background-color:#660199;color:#fff;font-size:1.3em;font-weight:bold;position:relative;top:3px;" placeholder="Other" />
+            </div>
+            <div style="padding:10px 30px 0 30px;">
+                <span id="inner-donation-message" style="color:#fff;"></span>
+            </div>
+            <div>
+                <button class="btn btn-donate-red" onclick="innerDonateNow()" style="width: 180px; height: 60px; background-color: red; border: none; position: relative; left: 30px; top: 10px; color: #fff; font-size: 1.3em; font-weight: bold; "> Donate now <i class="fa fa-arrow-right"></i></button>
+            </div>
+
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="col-md-3"></div>
+        <div class="col-md-6 " style="text-align:justify;font-size:18px;">
+
+            <p style="font-style:italic">Please note: Donations made on this page will be allocated to our Health Services fund that is used to deliver a range of different projects such as the examples showcased above. These programmes can and will be delivered in any of the countries where Human Relief Mission has a presence, and those projects are catered to the local community with the aim to save and transform lives</p>
+
+        </div>
+        <div class="col-md-3"></div>
+
+    </div>
+
+    @*END DONATE FOR FOOD SECURITY*@
+
+
+
+
+    <script src="~/assets/Home/custom.js"></script>
+    <script src="~/assets/donation-script/health-services/health-services.js"></script>
+    <script src="~/assets/donation-script/health-services/inner-health-services.js"></script>
+
+    <script>
+        const faqItems = document.querySelectorAll('.faq-item');
+
+        faqItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const answer = item.querySelector('.faq-answer');
+                const expandIcon = item.querySelector('.expand-icon');
+
+                if (answer.style.display === 'none' || answer.style.display === '') {
+                    answer.style.display = 'block';
+                    expandIcon.classList.add('open');
+                } else {
+                    answer.style.display = 'none';
+                    expandIcon.classList.remove('open');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

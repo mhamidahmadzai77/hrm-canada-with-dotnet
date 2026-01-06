@@ -1,0 +1,374 @@
+﻿@model HRM.Models.Donation
+@using HRM.Models
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <title>@ViewBag.Title</title>
+
+    <meta name="description" content="@ViewBag.Description">
+    <meta name="keywords" content="@ViewBag.Keywords">
+    <meta name="author" content="Human Relief Mission UK">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph Meta Tags for Social Media Sharing -->
+    <meta property="og:title" content="@ViewBag.OGandTwitterTitle" />
+    <meta property="og:description" content="@ViewBag.Description" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="Human Relief Mission UK" />
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="@ViewBag.OGandTwitterTitle" />
+    <meta name="twitter:description" content="@ViewBag.Description" />
+
+    <link href="~/assets/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" type="text/css" />
+    <!-- BEGIN THEME GLOBAL STYLES -->
+    <!-- BEGIN PAGE LEVEL PLUGINS -->
+    <link href="~/assets/global/plugins/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/global/plugins/select2/css/select2-bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <!-- END PAGE LEVEL PLUGINS -->
+    <link href="~/assets/global/css/components-rounded.min.css" rel="stylesheet" id="style_components" type="text/css" />
+    <link href="~/assets/global/css/plugins.min.css" rel="stylesheet" type="text/css" />
+    <!-- END THEME GLOBAL STYLES -->
+    <!-- BEGIN THEME LAYOUT STYLES -->
+    <link href="~/assets/layouts/layout/css/themes/darkblue.min.css" rel="stylesheet" type="text/css" id="style_color" />
+
+    <link href="~/assets/toaster.css" rel="stylesheet" />
+    <link href="~/assets/payment/payment-style.css" rel="stylesheet" />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="shortcut icon" href="~/assets/layouts/layout/img/CANADA-website-tab-logo.png" />
+    <style type="text/css">
+
+
+        .basket-donate-button {
+            width: 90%;
+            display: inline-flex;
+            align-items: center;
+            background-color: red;
+            color: white;
+            text-decoration: none;
+            margin: 0;
+            padding: 10px 32px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            font-size: 16px;
+        }
+
+            .basket-donate-button:hover {
+                background-color: darkred;
+                transform: translateY(-2px);
+                color: #fff;
+                text-decoration: none;
+            }
+
+        .arrow {
+            margin-left: 8px; /* Space between text and arrow */
+            font-size: 18px; /* Adjust the size of the arrow */
+        }
+
+        .basket-icon-wrap {
+            position: relative;
+            display: inline-block;
+            margin-left: 20px; /* Adjust as necessary for spacing */
+        }
+
+            .basket-icon-wrap:hover {
+                color: #62878f;
+            }
+
+        .basket-icon {
+            font-size: 22px; /* Icon size */
+        }
+
+        .badge {
+            position: absolute;
+            left: 2px;
+            top: 3px;
+            transform: translate(-50%, -50%); /* Center badge on top left */
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <header class="payment-header text-white p-4">
+        <div class="max-w-4xl mx-auto flex" style="display:flex;justify-content:left;">
+            <div class="page-header-inner">
+                <!-- BEGIN LOGO -->
+                <div class="page-logo">
+                    <div>
+                        <a href="/Home/Index">
+
+                            <img src="~/assets/layouts/layout/img/logo.png" alt="logo" class="logo-default" style="width:75px;margin-top:8px;">
+                        </a>
+                    </div>
+                </div>
+                <!-- END LOGO -->
+
+            </div>
+            <nav class="margin-top-30" style="margin-left:20px;">
+                <ul class="flex space-x-4">
+                    <li class="dropdown dropdown-extended dropdown-tasks">
+                        <a href="javascript:;" class="dropdown-toggle basket-icon-wrap" data-toggle="dropdown" data-hover="dropdown" data-close-others="true" aria-expanded="false">
+                            @if (ViewBag.basket != null && ViewBag.basket.Count > 0)
+                            {
+                                <span class="badge badge-danger total-items">@ViewBag.basket.Count</span>
+                            }
+                            else
+                            {
+                                <span class="badge badge-danger hide total-items"></span>
+                            }
+                            <i class="fa fa-cart-plus basket-icon"></i>
+                        </a>
+                        <ul class="dropdown-menu extended tasks" style="color:#000;">
+                            <li class="external" style="padding: 10px; background-color: #eaedf2; color: #62878f;padding-top:15px;padding-bottom:15px;">
+                                <h3 style="font-size:15px;">
+                                    You have
+                                    @if (ViewBag.basket != null && ViewBag.basket.Count > 0)
+                                    {
+                                        <span class="bold total-items">@ViewBag.basket.Count </span>
+                                    }
+                                    else
+                                    {
+                                        <span class="bold total-items"> 0 </span>
+                                    }
+                                    <span class="bold"> items</span> in your basket
+                                </h3>
+                            </li>
+                            <li>
+                                <div class="slimScrollDiv" style="position: relative; overflow: visible; width: 280px; height:auto;">
+                                    <ul class="dropdown-menu-list scroller basket-list" style="height: auto; overflow: visible; width: auto; padding-left: 10px 0 10px 10px;" data-handle-color="#637283" data-initialized="1">
+                                        @{
+                                            int total = 0;
+                                            if (ViewBag.basket != null && ((List<DonationItem>)ViewBag.basket).Any())
+                                            {
+                                                foreach (DonationItem item in (List<DonationItem>)ViewBag.basket)
+                                                {
+                                                    total = total + Convert.ToInt32(item.Amount);
+                                                    string amountId = item.Name + "-amount-id";
+                                                    <li id="@item.Name">
+                                                        <span class="task">
+                                                            <span class="desc"> @item.Name</span>
+                                                            <span class="percent">$@item.Amount<i class="fa fa-close basket-item-close-button" onclick="removeBasketItem(@item.Amount , '@item.Name')"></i></span>
+                                                        </span>
+                                                    </li>
+
+                                                }
+                                            }
+                                            <li id="total-list-item">
+                                                <span class="task">
+                                                    <span class="desc bold"> Total: </span>
+                                                    <span class="percent bold">$<span id="total-amount">@total</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+                                                </span>
+                                            </li>
+                                        }
+                                        <li style="border-bottom:none;">
+                                            <div class="col-md-12" style="">
+                                                <a href="#" class="basket-donate-button">
+                                                    Donate Now
+                                                    <span class="arrow fa fa-arrow-right"></span> <!-- Right arrow -->
+                                                </a>
+                                            </div>
+                                        </li>
+                                    </ul><div class="slimScrollBar" style="background: rgb(99, 114, 131); width: 7px; position: absolute; top: 0px; opacity: 0.4; display: none; border-radius: 7px; z-index: 99; right: 1px; height: 148.576px;"></div><div class="slimScrollRail" style="width: 7px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(234, 234, 234); opacity: 0.2; z-index: 90; right: 1px;"></div>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+
+                </ul>
+            </nav>
+        </div>
+
+    </header>
+    <div class="page-content">
+        <div id="toast-container"></div>
+        @RenderBody()
+    </div>
+    <footer id="footer" class="footer">
+        <div class="footer-top">
+            <div class="col-md-12">
+                <div class="col-md-1"></div>
+                <div class="fundraising-logo-container col-md-10" style="border-bottom:2px solid #808080">
+                    <div class="header-fundraising-logos" id="donation-footer-logos">
+                        <img src="~/assets/FR-logo/direct-debit-logo.png" style="width:150px;" />
+                        <img src="~/assets/FR-logo/visa-6850402_1280.png" style="width:100px;" />
+                        <img src="~/assets/FR-logo/mastercard.png" style="width: 80px;" />
+                    </div>
+                    <div class="header-fundraising-logos" id="one-off-donation-footer-logos">
+                        <img src="~/assets/FR-logo/visa-6850402_1280.png" style="width:100px;" />
+                        <img src="~/assets/FR-logo/mastercard.png" style="width: 80px;" />
+                    </div>
+                    <div class="header-fundraising-logos" id="monthly-donation-footer-logos">
+                        <img src="~/assets/FR-logo/direct-debit-logo.png" style="width:150px;" />
+                    </div>
+                </div>
+                <div class="col-md-1"></div>
+            </div>
+            <div class="col-md-12" style="padding:10px;">
+                <div class="col-md-1"></div>
+                <div class="footer-text col-md-10">
+                    <div class="copyright">
+                        <p>
+                            &copy; Copyright @DateTime.Now.Year Human Relief Mission, Inc. All rights reserved. Registered No. 1593159-2
+                        </p>
+                    </div>
+                    <div class="policy-and-services">
+                        <p><a href="/About_Us/Our_Policies" class="hover:underline">Privacy Policy</a> | <a href="/Home/Services" class="hover:underline">Terms of Service</a></p>
+                    </div>
+
+                </div>
+                <div class="col-md-1"></div>
+            </div>
+        </div>
+
+        <div class="scroll-to-top" style="display: block;">
+            <i class="icon-arrow-up " style="font-size:1px;color: #660199;text-shadow:2px 2px 2px rgb(255,255,255);"></i>
+        </div>
+
+
+
+    </footer>
+    <!-- BEGIN CORE PLUGINS -->
+    <script src="~/assets/global/plugins/jquery.min.js" type="text/javascript"></script>
+    <script src="~/assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="~/assets/global/plugins/js.cookie.min.js" type="text/javascript"></script>
+    <script src="~/assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+    <script src="~/assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
+    <script src="~/assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
+    <!-- END CORE PLUGINS -->
+    <!-- BEGIN PAGE LEVEL PLUGINS -->
+    <script src="~/assets/global/plugins/select2/js/select2.full.min.js" type="text/javascript"></script>
+    <script src="~/assets/global/plugins/jquery-validation/js/jquery.validate.min.js" type="text/javascript"></script>
+    <script src="~/assets/global/plugins/jquery-validation/js/additional-methods.min.js" type="text/javascript"></script>
+    <script src="~/assets/global/plugins/bootstrap-wizard/jquery.bootstrap.wizard.min.js" type="text/javascript"></script>
+    <!-- END PAGE LEVEL PLUGINS -->
+    <!-- BEGIN PAGE LEVEL PLUGINS -->
+    <script src="~/assets/global/plugins/bootstrap-confirmation/bootstrap-confirmation.min.js" type="text/javascript"></script>
+    <script src="~/assets/global/scripts/datatable.js" type="text/javascript"></script>
+    <script src="~/assets/global/plugins/datatables/datatables.min.js" type="text/javascript"></script>
+    <script src="~/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js" type="text/javascript"></script>
+    <!-- END PAGE LEVEL PLUGINS -->
+    <script src="~/assets/global/plugins/icheck/icheck.min.js" type="text/javascript"></script>
+    <!-- BEGIN THEME GLOBAL SCRIPTS -->
+    <script src="~/assets/global/scripts/app.min.js" type="text/javascript"></script>
+    <!-- END THEME GLOBAL SCRIPTS -->
+    <script src="~/assets/payment/donation-form.js"></script>
+    <!-- BEGIN PAGE LEVEL SCRIPTS -->
+    <script src="~/assets/pages/scripts/table-datatables-rowreorder.min.js" type="text/javascript"></script>
+    <!-- END PAGE LEVEL SCRIPTS -->
+    <script src="~/assets/pages/scripts/ui-confirmations.min.js" type="text/javascript"></script>
+    <script src="~/assets/pages/scripts/form-icheck.min.js" type="text/javascript"></script>
+    <!-- BEGIN THEME LAYOUT SCRIPTS -->
+    <script src="~/assets/layouts/layout/scripts/layout.min.js" type="text/javascript"></script>
+    <script src="~/assets/layouts/layout/scripts/demo.min.js" type="text/javascript"></script>
+    <script src="~/assets/layouts/global/scripts/quick-sidebar.min.js" type="text/javascript"></script>
+    <!-- END THEME LAYOUT SCRIPTS -->
+    <!-- Donation form handling -->
+
+
+    <script src="~/assets/toaster.js"></script>
+    <script src="~/assets/alert.js"></script>
+    <script src="~/assets/payment/payment.js"></script>
+    <script src="~/assets/payment/basket.js"></script>
+
+    @{
+        if (Model != null)
+        {
+
+            <script>
+                selectDonationType("monthly");
+
+                document.getElementById('phase1').classList.add('done');
+                document.getElementById('phase2').classList.add('done');
+                document.getElementById('phase3').classList.add('active');
+                var phase3 = document.getElementById('phase3');
+                // Add a new attribute ('expanded' in this case)
+                phase1.setAttribute("aria-expanded", "false");
+                phase2.setAttribute("aria-expanded", "false");
+                phase3.setAttribute("aria-expanded", "true");
+
+                document.getElementById('tab3').classList.add('active');
+
+                // Select the hidden input field by its ID
+                var hiddenField = document.getElementById("project");
+
+                // Assign a value to the hidden field
+                hiddenField.value = ".";
+                let value = document.getElementById('quick-amount').value;
+                let selectedValue = parseInt(value);
+                SetGiftAidSection(selectedValue);
+                // Setting payment amount for displaying in your details section
+                document.getElementById('payment-amount-in-your-detail-page').innerHTML = selectedValue;
+                document.getElementById('total-payment-amount-in-your-detail-page').innerHTML = selectedValue;
+
+                // Setting payment amount for displaying in payment details section
+                document.getElementById('payment-amount-in-payment-detail-page').innerHTML = selectedValue;
+                document.getElementById('total-payment-amount-in-payment-detail-page').innerHTML = selectedValue;
+
+
+                // setting project name
+                var project_name = document.getElementById('quick-project-name').value;
+                document.getElementById('projec-name-in-your-detail-page').innerHTML = project_name;
+                document.getElementById('project-name-in-payment-detail-page').innerHTML = project_name;
+
+                // Wait for the document to be fully loaded
+                document.addEventListener("DOMContentLoaded", function () {
+                    // Select the link by its ID
+                    var continueButton = document.getElementById("continueButton");
+
+                    // Simulate the click
+                    continueButton.click();
+                    continueButton.click();
+                });
+            </script>
+        }
+        else if (ViewBag.basket != null && ((List<DonationItem>)ViewBag.basket).Any())
+        {
+
+            <script>
+                selectDonationType("one-off");
+
+                document.getElementById('phase1').classList.add('done');
+                document.getElementById('phase2').classList.add('done');
+                document.getElementById('phase3').classList.add('active');
+                var phase3 = document.getElementById('phase3');
+                // Add a new attribute ('expanded' in this case)
+                phase1.setAttribute("aria-expanded", "false");
+                phase2.setAttribute("aria-expanded", "false");
+                phase3.setAttribute("aria-expanded", "true");
+
+                document.getElementById('tab3').classList.add('active');
+
+                // Select the hidden input field by its ID
+                var hiddenField = document.getElementById("project");
+
+                // Assign a value to the hidden field
+                hiddenField.value = ".";
+                let value = document.getElementById('total-amount').innerHTML;
+                let selectedValue = parseInt(value);
+                SetGiftAidSection(selectedValue);
+
+                // Wait for the document to be fully loaded
+                document.addEventListener("DOMContentLoaded", function () {
+                    // Select the link by its ID
+                    var continueButton = document.getElementById("continueButton");
+
+                    // Simulate the click
+                    continueButton.click();
+                    continueButton.click();
+                });
+            </script>
+        }
+    }
+</body>
+</html>

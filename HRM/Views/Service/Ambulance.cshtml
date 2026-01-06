@@ -1,0 +1,357 @@
+﻿
+@{
+    if (Session["user_108310113658"] != null)
+    {
+        if (Session["user_108310113658"].ToString() == "authenticated")
+        {
+            Layout = "~/Views/Shared/_AdminLayout.cshtml";
+        }
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_EndUserLayout.cshtml";
+    }
+
+
+    ViewBag.Title = "Ambulance Services | Human Relief Mission UK";
+    ViewBag.Description = "Providing essential ambulance services to those in need. Our mission is to ensure timely medical assistance and support for vulnerable communities.";
+    ViewBag.Keywords = "ambulance, ambulance services, emergency medical services, medical assistance, health support, humanitarian aid, emergency response";
+    ViewBag.OGandTwitterTitle = "Ambulance Services | Human Relief Mission UK";
+
+}
+
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RXXJLDEKC3"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); } gtag('js', new Date()); gtag('config', 'G-RXXJLDEKC3');
+    </script>
+
+    <link href="~/assets/news/css/custom.css" rel="stylesheet" />
+    <link href="~/assets/Home/custom.css" rel="stylesheet" />
+    <style type="text/css">
+        #donate-switch:hover {
+            cursor: pointer;
+        }
+
+        #inner-donate-switch:hover {
+            cursor: pointer;
+        }
+
+        #circle-bullet {
+            position: relative;
+            transition: left 0.3s;
+        }
+
+        #inner-circle-bullet {
+            position: relative;
+            transition: left 0.3s;
+        }
+
+        .btn-amount {
+            background-color: #660199;
+            color: #fff;
+            font-size: 1.3em;
+            font-weight: bold;
+            border: 2px solid #fff;
+            width: 80px;
+            height: 60px;
+        }
+
+        .inner-btn-amount {
+            background-color: #660199;
+            color: #fff;
+            font-size: 1.3em;
+            font-weight: bold;
+            border: 2px solid #fff;
+            width: 80px;
+            height: 60px;
+        }
+
+        .btn-amount:hover {
+            background-color: #fff;
+            color: #000;
+        }
+
+        .inner-btn-amount:hover {
+            background-color: #fff;
+            color: #000;
+        }
+
+        .btn-donate-red:hover > i.fa-arrow-right {
+            position: relative;
+            left: 4px;
+        }
+
+        .inner-btn-donate-red:hover > i.fa-arrow-right {
+            position: relative;
+            left: 4px;
+        }
+
+
+
+        .orphan-hope-image {
+        }
+
+        .orphan-hope-pragraph {
+            background-color: #0778d4;
+            padding: 30px;
+            color: #fff;
+        }
+
+        .orphan-hope-image {
+            display: flex;
+            align-items: center; /* Vertically center the content */
+        }
+
+        .align-center {
+            display: flex;
+            justify-content: center; /* Horizontally center the content */
+            align-items: center; /* Vertically center the content */
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 50px auto;
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .faq-item {
+            border-bottom: 1px solid #e0e0e0;
+            padding: 30px 0;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: bold;
+            color: #660199;
+        }
+
+        .faq-answer {
+            display: none;
+            padding: 10px;
+            margin-top: 30px;
+            border-top: 1px solid #e0e0e0;
+            font-size: 18px;
+            font-weight: normal;
+            line-height: 1.5;
+            color: #000;
+        }
+
+        .expand-icon {
+            float: right;
+            transform: rotate(-90deg);
+            transition: transform 0.3s;
+        }
+
+            .expand-icon.open {
+                transform: rotate(90deg);
+            }
+
+        h1 {
+            text-align: left;
+        }
+
+        ul.change-bullet {
+            list-style-type: disc; /* Set the list style type */
+        }
+
+            ul.change-bullet li::marker {
+                color: #660199; /* Change the bullet color */
+                font-size: 30px;
+            }
+
+        ul.country li::marker {
+            color: #660199; /* Change the bullet color */
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid image-title-container" style="padding:0;">
+        <div class="news-image col-md-8 pull-right">
+            <div>
+                <video class="autoplay-video" autoplay muted loop style="width:100%;height:570px;">
+                    <source src="~/Content/projects/videos/ambulance/ambulance.mp4" type="video/mp4" />
+                </video>
+            </div>
+        </div>
+        <div class="news-title-box col-sm-12 pull-left" style="margin-bottom: 5px;">
+            <div class="news-title" style="width:100%;color:#fff;padding:30px;">
+                <h1 style="font-size:2em;">Emergency Ambulance Service</h1>
+                <div style="float: left; padding-top: 4px;">Monthly </div>
+                <div id="donate-switch" onclick="donateSwitch()" style="width: 60px; height: 28px; background-color: #fff; border-radius: 20px; position: absolute; float: left; margin-left: 63px;">
+                    <div id="circle-bullet" style="width:20px;height:20px;background-color:#000;border-radius:10px;position:relative;left:5px;top:4px;"></div>
+                </div>
+                <div style="margin-left:130px;padding-top:4px;">One-Off</div>
+            </div>
+            <div style="padding:0 30px 0 30px;">
+                <input type="hidden" id="amount" />
+                <button class="btn btn-amount" id="amount-1" onmouseover="changeColorWithMouseOver(1)" onmouseout="changeColorWithMouseOut(1)" onclick="amountClicked(1);">$20</button>
+                <button class="btn btn-amount" id="amount-2" onmouseover="changeColorWithMouseOver(2)" onmouseout="changeColorWithMouseOut(2)" onclick="amountClicked(2);">$40</button>
+                <button class="btn btn-amount" id="amount-3" onmouseover="changeColorWithMouseOver(3)" onmouseout="changeColorWithMouseOut(3)" onclick="amountClicked(3);">$100</button>
+                <input type="number" class="form-control no-arrows white-placeholder" id="amount-4" onclick="otherClicked();" value="" style="display:inline;border:2px solid #fff;width:100px;height:60px;background-color:#660199;color:#fff;font-size:1.3em;font-weight:bold;position:relative;top:3px;" placeholder="Other" />
+            </div>
+            <div style="padding:10px 30px 0 30px;">
+                <span id="donation-message" style="color:#fff;"></span>
+            </div>
+            <div>
+                <button class="btn btn-donate-red" onclick="donateNow()" style="width: 180px; height: 60px; background-color: red; border: none; position: relative; left: 30px; top: 10px; color: #fff; font-size: 1.3em; font-weight: bold; "> Donate now <i class="fa fa-arrow-right"></i></button>
+            </div>
+            <div class="col-md-2 header-fundraising-logos">
+                <img src="~/assets/FR-logo/FR_Fundraising-Badge_white_150ppi.png" style="width:150px; margin-right: 10px;" />
+                <img src="~/assets/FR-logo/direct-debit-logo.png" style="width:150px;" />
+                <img src="~/assets/FR-logo/visa-6850402_1280.png" style="width:100px;" />
+                <img src="~/assets/FR-logo/mastercard.png" style="width: 80px;" />
+            </div>
+        </div>
+    </div>
+
+    @* Start Section description*@
+    <div class="container-fluid">
+        <div class="col-md-3"></div>
+        <div class="col-md-6 " style="text-align:justify;font-size:18px;">
+            <h1 style="font-weight:bold;font-size:2em">Emergency Ambulance Service</h1>
+            <p>In the war-torn country of Afghanistan, where every second counts and lives hang in the balance, Human Relief Mission's emergency ambulance service stands as a beacon of hope. With unwavering dedication and a commitment to saving lives, we have been at the forefront of providing critical medical assistance to those in need. </p>
+
+            @* Start Qoute Section*@
+            <div class="" style="padding-bottom:50px;margin-top:30px;">
+
+                <div class="quote-container col-md-12">
+                    <span class="" style="font-size:4em;font-weight:bold">&lsquo;&lsquo;</span>
+                    <p class="quote">
+                        ...whoever saves a life, it will be as if they saved all of humanity
+                    </p>
+                    <p class="">Quran</p>
+                </div>
+
+            </div>
+            @* End Qoute Section*@
+            <p>&nbsp;</p>
+            <p>In a country like Afghanistan which is plagued by conflict and instability, access to immediate medical care is often limited or non-existent. That's where we step in with our fleet of ambulances and trained medical staff. They navigate through treacherous terrains and volatile areas to reach even the most remote corners of Afghanistan.</p>
+            <p>From responding to emergencies caused by conflicts and natural disasters to providing essential healthcare services in underserved communities, our ambulances are always on the frontlines of humanitarian aid in Afghanistan.</p>
+            <p>
+                <img src="~/Content/projects/ambulance-services/1717756431800.jpg" style="width:100%;" />
+            </p>
+            <p>The impact of Human Relief Mission's emergency ambulance service cannot be overstated. Countless lives have been saved through their swift response times and expert medical care. They are not just providing transportation; they are delivering hope and a chance at survival for those who would otherwise have none.</p>
+            <p>But their work goes beyond immediate crisis response. Human Relief Mission also focuses on building sustainable healthcare systems within Afghanistan. They collaborate with local authorities and communities to train healthcare professionals, establish clinics, and improve overall access to quality healthcare services.</p>
+            <p>In a world often filled with despair, it is organisations like Human Relief Mission that restore our faith in humanity. Their selfless dedication reminds us that even amidst chaos and adversity, compassion can prevail.</p>
+            <p>As we acknowledge the incredible efforts of Human Relief Mission's emergency ambulance service in Afghanistan, let us stand together in support of their mission - a mission rooted in saving lives and bringing hope to a nation in need.</p>
+            <p>
+                <img src="~/Content/projects/ambulance-services/emergency-ambulance-2.jpg" style="width:100%;" />
+            </p>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+    @* Start Section description*@
+
+    @* Start Section providing bread*@
+    <div class="container-fluid">
+        <div class="col-md-3"></div>
+        <div class="col-md-6 " style="text-align:justify;font-size:18px;">
+            <h1 style="font-weight:bold;font-size:2em">
+                What Islam say about live saving
+            </h1>
+            <p>In Islam, saving a life is considered a noble and highly esteemed act. The Quran teaches that saving a single life is akin to saving all of humanity (Quran 5:32).</p>
+            <p>The preservation of life is a fundamental principle in Islamic teachings, emphasizing the importance of compassion, mercy, and responsibility towards others.</p>
+            <p>Prophet Muhammad (peace be upon him) also emphasized the significance of saving lives, stating that whoever saves a life, it is as if they have saved all of mankind. This hadith highlights the immense value placed on human life in Islam and encourages believers to prioritize the well-being and safety of others.</p>
+            <p>Therefore, in the Islamic faith, efforts to save lives, including through ambulance services and medical interventions, are highly encouraged and considered a virtuous deed. Supporting initiatives that aim to provide emergency medical care and save lives aligns with the teachings of Islam and reflects the core values of compassion and humanity upheld by the religion.</p>
+
+            @* Start Qoute Section 2 *@
+            <div class="" style="padding-bottom:50px;margin-top:30px;">
+
+                <div class="quote-container col-md-12" style="background-color: #660199; color: #fff; box-shadow: none;">
+                    <span class="" style="font-size:4em;font-weight:bold;color:#fff;">&lsquo;&lsquo;</span>
+                    <p class="quote">He who does not show mercy to the people, Allah also does not show mercy to him.</p>
+                    <p class="">Hadith | Sahih Bukhari</p>
+                </div>
+
+            </div>
+            @* End Qoute Section 2 *@
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+    @* END Section providing bread*@
+
+
+
+    <img src="~/assets/FR-logo/FR_Fundraising-Badge_white_150ppi.png" style="display:none;" />
+    @*BEGIN DONATE FOR EDUCATION*@
+    <div class="container-fluid" style="background-color: #660199 !important; height: auto; color: #fff;margin-top:50px;">
+        <div class="col-md-6" style="padding:30px;">
+            <h1 style="font-size:2em;">Emergency Ambulance Service</h1>
+            <p style="font-size:16px;">
+                At Human Relief Mission, we are dedicated to providing vital ambulance services that are essential for saving lives and ensuring the well-being of our community members. Our team of trained professionals works tirelessly to respond to emergencies swiftly, offering critical care and medical assistance when every second counts.
+            </p>
+            <div class="col-md-2 header-fundraising-logos">
+                <img src="~/assets/FR-logo/FR_Fundraising-Badge_white_150ppi.png" style="width:150px; margin-right: 10px;" />
+                <img src="~/assets/FR-logo/direct-debit-logo.png" style="width:150px;" />
+                <img src="~/assets/FR-logo/visa-6850402_1280.png" style="width:100px;" />
+                <img src="~/assets/FR-logo/mastercard.png" style="width: 80px;" />
+            </div>
+        </div>
+        <div class="col-md-6" style="padding-bottom:30px;">
+
+            <div class="news-title" style="width:100%;padding:30px;">
+                <div style="float: left; padding-top: 4px;">Monthly </div>
+                <div id="donate-switch" onclick="innerDonateSwitch()" style="width: 60px; height: 28px; background-color: #fff; border-radius: 20px; position: absolute; float: left; margin-left: 63px;">
+                    <div id="inner-circle-bullet" style="width:20px;height:20px;background-color:#000;border-radius:10px;position:relative;left:5px;top:4px;"></div>
+                </div>
+                <div style="margin-left:130px;padding-top:4px;">One-Off</div>
+            </div>
+            <div style="padding:0 30px 0 30px;">
+                <input type="hidden" id="inner-amount" />
+                <button class="btn inner-btn-amount" id="inner-amount-1" onmouseover="innerChangeColorWithMouseOver(1)" onmouseout="innerChangeColorWithMouseOut(1)" onclick="innerAmountClicked(1);">$20</button>
+                <button class="btn inner-btn-amount" id="inner-amount-2" onmouseover="innerChangeColorWithMouseOver(2)" onmouseout="innerChangeColorWithMouseOut(2)" onclick="innerAmountClicked(2);">$40</button>
+                <button class="btn inner-btn-amount" id="inner-amount-3" onmouseover="innerChangeColorWithMouseOver(3)" onmouseout="innerChangeColorWithMouseOut(3)" onclick="innerAmountClicked(3);">$100</button>
+                <input type="number" class="form-control no-arrows white-placeholder" id="inner-amount-4" onclick="innerOtherClicked();" value="" style="display:inline;border:2px solid #fff;width:100px;height:60px;background-color:#660199;color:#fff;font-size:1.3em;font-weight:bold;position:relative;top:3px;" placeholder="Other" />
+            </div>
+            <div style="padding:10px 30px 0 30px;">
+                <span id="inner-donation-message" style="color:#fff;"></span>
+            </div>
+            <div>
+                <button class="btn btn-donate-red" onclick="innerDonateNow()" style="width: 180px; height: 60px; background-color: red; border: none; position: relative; left: 30px; top: 10px; color: #fff; font-size: 1.3em; font-weight: bold; "> Donate now <i class="fa fa-arrow-right"></i></button>
+            </div>
+
+        </div>
+    </div>
+    <div class="" style="margin:0 auto;">
+        <div class="col-md-3" style=""></div>
+        <div class="col-md-6 text-center text-justify" style="padding:50px 10px;font-size:18px;">
+            <p style="font-size:16px;font-style:italic;">Please note: Donations made on this page will be allocated to our Emergency Ambulance Service fund. This programme will be catered to the local community in Afghanistan with the aim to save and transform lives.</p>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+
+    @*END DONATE FOR EDUCATION*@
+
+    <script src="~/assets/Home/custom.js"></script>
+    <script src="~/assets/donation-script/ambulance/ambulance.js"></script>
+    <script src="~/assets/donation-script/ambulance/inner-ambulance.js"></script>
+
+    <script>
+        const faqItems = document.querySelectorAll('.faq-item');
+
+        faqItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const answer = item.querySelector('.faq-answer');
+                const expandIcon = item.querySelector('.expand-icon');
+
+                if (answer.style.display === 'none' || answer.style.display === '') {
+                    answer.style.display = 'block';
+                    expandIcon.classList.add('open');
+                } else {
+                    answer.style.display = 'none';
+                    expandIcon.classList.remove('open');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+
+
+

@@ -1,0 +1,487 @@
+﻿<!DOCTYPE html>
+@{
+    if (Session["user_108310113658"] != null)
+    {
+        if (Session["user_108310113658"].ToString() == "authenticated")
+        {
+            Layout = "~/Views/Shared/_AdminLayout.cshtml";
+        }
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_EndUserLayout.cshtml";
+    }
+
+
+    ViewBag.Title = "Hunger Charity - Feed a Family Today | Human Relief Mission UK";
+    ViewBag.Description = "Millions of people have no food and are hungry every day around the world. Find out more about how we’re tackling hunger and feeding the poor.";
+    ViewBag.Keywords = "food security, food packages, hot meals, bread distribution, hunger relief, community support, nutritious meals, food assistance";
+    ViewBag.OGandTwitterTitle = "Food | Human Relief Mission UK";
+
+}
+
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RXXJLDEKC3"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); } gtag('js', new Date()); gtag('config', 'G-RXXJLDEKC3');
+    </script>
+
+    <link href="~/assets/news/css/custom.css" rel="stylesheet" />
+    <link href="~/assets/Home/custom.css" rel="stylesheet" />
+    <style>
+        #donate-switch:hover {
+            cursor: pointer;
+        }
+
+        #inner-donate-switch:hover {
+            cursor: pointer;
+        }
+
+        #circle-bullet {
+            position: relative;
+            transition: left 0.3s;
+        }
+
+        #inner-circle-bullet {
+            position: relative;
+            transition: left 0.3s;
+        }
+
+        .btn-amount {
+            background-color: #660199;
+            color: #fff;
+            font-size: 1.3em;
+            font-weight: bold;
+            border: 2px solid #fff;
+            width: 80px;
+            height: 60px;
+        }
+
+        .inner-btn-amount {
+            background-color: #660199;
+            color: #fff;
+            font-size: 1.3em;
+            font-weight: bold;
+            border: 2px solid #fff;
+            width: 80px;
+            height: 60px;
+        }
+
+        .btn-amount:hover {
+            background-color: #fff;
+            color: #000;
+        }
+
+        .inner-btn-amount:hover {
+            background-color: #fff;
+            color: #000;
+        }
+
+        .btn-donate-red:hover > i.fa-arrow-right {
+            position: relative;
+            left: 4px;
+        }
+
+        .inner-btn-donate-red:hover > i.fa-arrow-right {
+            position: relative;
+            left: 4px;
+        }
+
+
+
+        .orphan-hope-image {
+        }
+
+        .orphan-hope-pragraph {
+            padding: 30px;
+            color: #fff;
+        }
+
+        .orphan-hope-image {
+            display: flex;
+            align-items: center; /* Vertically center the content */
+        }
+
+        .align-center {
+            display: flex;
+            justify-content: center; /* Horizontally center the content */
+            align-items: center; /* Vertically center the content */
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 50px auto;
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .faq-item {
+            border-bottom: 1px solid #e0e0e0;
+            padding: 30px 0;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: bold;
+            color: #660199;
+        }
+
+        .faq-answer {
+            display: none;
+            padding: 10px;
+            margin-top: 30px;
+            border-top: 1px solid #e0e0e0;
+            font-size: 18px;
+            font-weight: normal;
+            line-height: 1.5;
+            color: #000;
+        }
+
+        .expand-icon {
+            float: right;
+            transform: rotate(-90deg);
+            transition: transform 0.3s;
+        }
+
+            .expand-icon.open {
+                transform: rotate(90deg);
+            }
+
+        h1 {
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid image-title-container" style="padding:0;">
+        <div class="news-image col-md-8 pull-right">
+            <div>
+                <video class="autoplay-video" autoplay muted loop style="width:100%;height:570px;">
+                    <source src="~/Content/projects/videos/food-packages/food-packages.mp4" type="video/mp4" />
+                </video>
+            </div>
+        </div>
+        <div class="news-title-box col-sm-12 pull-left" style="margin-bottom: 5px;">
+            <div class="news-title" style="width:100%;color:#fff;padding:30px;">
+                <h1 style="font-size:2em;">Food Security</h1>
+                <div style="float: left; padding-top: 4px;">Monthly </div>
+                <div id="donate-switch" onclick="donateSwitch()" style="width: 60px; height: 28px; background-color: #fff; border-radius: 20px; position: absolute; float: left; margin-left: 63px;">
+                    <div id="circle-bullet" style="width:20px;height:20px;background-color:#000;border-radius:10px;position:relative;left:5px;top:4px;"></div>
+                </div>
+                <div style="margin-left:130px;padding-top:4px;">One-Off</div>
+            </div>
+            <div style="padding:0 30px 0 30px;">
+                <input type="hidden" id="amount" />
+                <button class="btn btn-amount" id="amount-1" onmouseover="changeColorWithMouseOver(1)" onmouseout="changeColorWithMouseOut(1)" onclick="amountClicked(1);">$10</button>
+                <button class="btn btn-amount" id="amount-2" onmouseover="changeColorWithMouseOver(2)" onmouseout="changeColorWithMouseOut(2)" onclick="amountClicked(2);">$20</button>
+                <button class="btn btn-amount" id="amount-3" onmouseover="changeColorWithMouseOver(3)" onmouseout="changeColorWithMouseOut(3)" onclick="amountClicked(3);">$60</button>
+                <input type="number" class="form-control no-arrows white-placeholder" id="amount-4" onclick="otherClicked();" value="" style="display:inline;border:2px solid #fff;width:100px;height:60px;background-color:#660199;color:#fff;font-size:1.3em;font-weight:bold;position:relative;top:3px;" placeholder="Other" />
+            </div>
+            <div style="padding:10px 30px 0 30px;">
+                <span id="donation-message" style="color:#fff;"></span>
+            </div>
+            <div>
+                <button class="btn btn-donate-red" onclick="donateNow()" style="width: 180px; height: 60px; background-color: red; border: none; position: relative; left: 30px; top: 10px; color: #fff; font-size: 1.3em; font-weight: bold; "> Donate now <i class="fa fa-arrow-right"></i></button>
+            </div>
+            <div class="col-md-2 header-fundraising-logos">
+                <img src="~/assets/FR-logo/FR_Fundraising-Badge_white_150ppi.png" style="width:150px; margin-right: 10px;" />
+                <img src="~/assets/FR-logo/direct-debit-logo.png" style="width:150px;" />
+                <img src="~/assets/FR-logo/visa-6850402_1280.png" style="width:100px;" />
+                <img src="~/assets/FR-logo/mastercard.png" style="width: 80px;" />
+            </div>
+        </div>
+    </div>
+
+    @* Start Section The reality of hunger*@
+    <div class="container-fluid">
+        <div class="col-md-3"></div>
+        <div class="col-md-6 " style="text-align:justify;font-size:18px;">
+            <h1 style="font-weight:bold;font-size:2em">
+                Food Security Fund
+            </h1>
+            <p>
+                In a world riddled with staggering challenges, Human Relief Mission stands at the forefront, addressing the pressing issue of global hunger. A disheartening reality is that millions of individuals face the uncertainty of not knowing where their next meal will come from. The soaring costs of essential food staples cast a shadow across the globe, and for those in the ummah whose homes and livelihoods have been ravaged by the cruel forces of war, displacement, disease, and climate change, survival itself becomes a daily struggle.
+            </p>
+            @* Start Qoute Section*@
+            <div class="" style="padding-bottom:50px;margin-top:30px;">
+
+                <div class="quote-container col-md-12">
+                    <span class="" style="font-size:4em;font-weight:bold">&lsquo;&lsquo;</span>
+                    <p class="quote">
+                        He is not a believer who fills his stomach while his neighbour goes hungry.
+                    </p>
+                    <p class="">Hadith | Sahih al-Bukhari</p>
+                </div>
+
+            </div>
+            @* End Qoute Section*@
+            <p>&nbsp;</p>
+            <p>
+                <img src="~/Content/projects/food-security/food package 6.jpg" style="width:100%;" />
+            </p>
+            <p>
+                Amidst the dire circumstances around the world, the plight of children takes centre stage.
+            </p>
+            <p>
+                More young lives succumb to the silent agony of undernutrition each year with a staggering 45% of all deaths among children under 5 are attributed to the insidious grip of malnutrition. <b>Donate now.</b>
+            </p>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+
+    @*BEGIN SECTION SUCCESS STORY*@
+    @*Food package success story*@
+    <div class="container-fluid height-auto">
+       @* <img src="~/assets/custom-image/Um-Taha-1.jpg" id="successStoryImage" class="col-sm-12 col-md-6  orphan-hope-image align-center" style="margin-top:10px;" />
+        <div class="col-md-6 background-purple">
+            <div class="orphan-hope-pragraph col-md-11" style="text-align:justify; font-size:22px;">
+                <h1 style="font-weight:bold;">Provide food to families like Um Taha's</h1>
+                <p>Um Taha lives in Syria. When her husband was killed during the conflict, she had no way to provide for herself and her children. Al-Mouwasat now provides her with much-needed bread so she can eat and feed her family.</p>
+                <p>"You are risking your lives to bring us bread; any minute, an airstrike can happen." - Um Taha</p>
+                <p>You can provide life-saving food to those who need it most.</p>
+                <p>Um Taha lives in Syria. When her husband was killed during the conflict, she had no way to provide for herself and her children. Al-Mouwasat now provides her with much-needed bread so she can eat and feed her family.</p>
+            </div>
+        </div>*@
+    </div>
+    @*END SECTION SUCCESS STORY*@
+
+    @* BEGIN SECTION Challenges people are facing around the world*@
+    <div class="container-fluid latest-news" style="margin-top:30px;">
+
+        <div class="col-md-12 ">
+            <div class="portlet light portlet-fit ">
+                <div class="portlet-title latest-news" style="padding: 50px 0;">
+                    <div class="caption ">
+
+                        <span class="caption-subject bold  " style="color:black;font-size:1.4em;font-weight:bold;">Challenges faced world wide</span>
+                    </div>
+                </div>
+                <div class="portlet-body latest-news" style="margin-top:-11px;">
+                    <div class="mt-element-card mt-element-overlay">
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                <div class="mt-card-item" style=" background-color: #fed21c; color: #000; border-radius: 50px 2px; ">
+                                    <div style="text-align:center;padding:50px 0;">
+                                        <img src="~/assets/custom-image/bread_food_4690 (1).png" width="150" />
+
+                                    </div>
+                                    <div class="mt-card-content">
+                                        <h2 class="bold"> 828 million people </h2>
+
+                                        <h4 class="mt-card-name" style="font-size:1.2em;padding:8px;">
+                                            go hungry each and every day in some of the world’s poorest communities.
+                                        </h4>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                <div class="mt-card-item">
+                                    <div style="text-align:center;padding:50px 0;">
+                                        <img src="~/assets/custom-image/world_icon_125099.png" width="150" />
+                                    </div>
+                                    <div class="mt-card-content">
+                                        <h2 class="bold"> 50 million people </h2>
+                                        <h4 class="mt-card-name" style="font-size:1.2em;padding:8px;">
+                                            across 45 countries were on the brink of famine in 2022 (World Food Programme).
+                                        </h4>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                <div class="mt-card-item">
+                                    <div style="text-align:center;padding:50px 0;">
+                                        <img src="~/assets/custom-image/child.png" width="150" />
+                                    </div>
+                                    <div class="mt-card-content">
+                                        <h2 class="bold"> 69 million children </h2>
+                                        <h4 class="mt-card-name" style="font-size:1.2em;padding:8px;">
+                                            worldwide suffer from malnutrition (World Bank).
+                                        </h4>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    @* END SECTION Challenges people are facing around the world*@
+
+    @* BEGIN Section The reality of hunger*@
+    <div class="container-fluid">
+        <div class="col-md-3"></div>
+        <div class="col-md-6 " style="text-align:justify;font-size:18px;">
+            <h1 style="font-weight:bold;font-size:2em">
+                Our Food Security Programs
+            </h1>
+            <p>At Human Relief Mission, our commitment spans over 15 years of collaborative efforts with communities worldwide. Recognising the vital significance of a nourishing diet, we are dedicated to the cause of ensuring that no child or adult experiences hunger. The act of providing sustenance to a family in need holds the power to be truly transformative.</p>
+            <p>
+                Our mission revolves around delivering sustainable, long-term food solutions to communities facing hardship. Additionally, we extend our support through short-term, lifesaving interventions in response to global emergencies, aiming to alleviate immediate food crises. Join us in this journey to make a lasting impact on the lives of those in need, as we strive to create a world where families are empowered through the gift of sustenance.
+            </p>
+            <div class="col-md-4 col-sm-12" style="text-align:center;">
+                <div class="vertical-align-center" style="height: 150px; background-color: #eff3f6; border-radius: 4px;">
+                    <img src="~/assets/custom-image/careshippingservicehandlingpackage_109799 (1).png" style="width: 100px; vertical-align: central;" />
+                </div>
+                <div style="margin-top:30px;margin-bottom:30px;font-size:13px;font-weight:bold;color:#660199;">
+                    <span>Food Package</span>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-12" style="text-align:center;">
+                <div class="vertical-align-center" style="height: 150px; background-color: #eff3f6; border-radius: 4px;">
+                    <img src="~/assets/custom-image/iconfinder-no-plastic-food-package-4454721_119738 (1).png" style="width:100px;padding:10px;" />
+                </div>
+                <div style="margin-top:30px;margin-bottom:30px;font-size:13px;font-weight:bold;color:#660199;">
+                    <span>Hot Meals</span>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-12" style="text-align:center;">
+                <div class="vertical-align-center" style="height: 150px; background-color: #eff3f6; border-radius: 4px;">
+                    <img src="~/assets/custom-image/bread_food_4690 (1).png" style="width:100px;padding:10px;" />
+                </div>
+                <div style="margin-top:30px;margin-bottom:30px;font-size:13px;font-weight:bold;color:#660199;">
+                    <span>Bread Distribution</span>
+                </div>
+            </div>
+
+            <p>When you donate food packages, hot meals or naan breads to families in need you are helping save lives. Our teams on the ground perform necessary checks to scout for eligible beneficiaries to whom aid can be given. If an individual is eligible for zakat, they automatically become eligible for our food security programs. Once a list of beneficiaries has been selected, they are added to our beneficiaries’ records so they can be listed for our many other food security programs. </p>
+            <p>
+                Join hands with us by contributing to our food security projects, so Human Relief Mission can extend a lifeline to those facing malnutrition and hunger. Your donation will empower us to provide nourishment, a source of hope, whenever and wherever it is needed most. Together, let us forge a path towards a world where no one goes to bed hungry, and the echoes of compassion resonate louder than the cries of an empty stomach.
+            </p>
+            <p>
+                <img src="~/assets/custom-image/4.jpg" style="width:100%;" />
+            </p>
+            <p style="font-size:14px;">Image: hot meals being cooked for displaced people in Afghanistan.</p>
+
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+
+
+    @* BEGIN QURAN SAYS ABOUT HELPING ORPHAN*@
+    <div class="container-fluid">
+        <div class="col-md-3"></div>
+        <div class="col-md-6 " style="text-align:justify;font-size:18px;padding-left:0;padding-right:0;">
+            <h1 style="font-weight:bold;font-size:2em;">
+                What does Islam teach about hunger?
+            </h1>
+            <p>In Islam, feeding the hungry is a highly-rewarded act of worship. The significance of feeding the hungry is emphasised in the following Hadith: </p>
+
+
+            @* BEGIN Qoute Section 2 *@
+            <div class="" style="padding-bottom:50px;margin-top:30px;">
+
+                <div class="quote-container col-md-12">
+                    <span class="" style="font-size:4em;font-weight:bold;color:#fff;">&lsquo;&lsquo;</span>
+                    <p class="quote">Free the captives, feed the hungry and pay a visit to the sick.</p>
+                    <p class="">Hadith | Sahih al-Bukhari</p>
+                </div>
+
+            </div>
+            <p>&nbsp;&nbsp;</p>
+            @* End Qoute Section 2 *@
+
+            <p>The Hadith above signify the importance of never thinking about oneself, but always those that are in need and how Allah will question us about our actions and wealth.</p>
+            <p>During Ramadan, as well as other significant days in the Islamic calendar, Muslims fast from dawn to dusk. This means abstaining from food, water and intimacy. By going hungry for up to 20 hours a day in some parts of the world, we are taught to have greater empathy for those in need, for whom going hungry is not a choice. Fasting also helps to teach patience, and self-restraint, and helps us to draw closer to Allah. </p>
+
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+    @* END QURAN SAYS ABOUT HELPING ORPHAN*@
+
+    @* BEGIN QURAN SAYS ABOUT HELPING ORPHAN*@
+    <div class="container-fluid">
+        <div class="col-md-3"></div>
+        <div class="col-md-6 " style="text-align:justify;font-size:18px;padding-left:0;padding-right:0;">
+            <h1 style="font-weight:bold;font-size:2em;">
+                Can you give food as Sadaqah?
+            </h1>
+            <p>Yes, you can give food as Sadaqah in Islam, if you do so for the sake of Allah. </p>
+
+            <p>The above Hadith illustrates the importance in purifying your intention when giving food. If done for the right reasons, you can earn great rewards for feeding yourself and others. </p>
+            <p>As well as giving food parcels to others, you can also help to gain the rewards of Sadaqah Jariyah by contributing to sustainable food sources which can benefit families for generations. </p>
+
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+    @* END QURAN SAYS ABOUT HELPING ORPHAN*@
+
+    <img src="~/assets/FR-logo/FR_Fundraising-Badge_white_150ppi.png" style="display:none;" />
+    @*BEGIN DONATE FOR FOOD SECURITY*@
+    <div class="container-fluid" style="background-color: #660199 !important; height: auto; color: #fff;">
+        <div class="col-md-6" style="padding:30px;">
+            <h1 style="font-size:3em;">Food Security Fund</h1>
+            <p style="font-size:16px;">Tragically, 828 million people go hungry each and every day in some of the world’s poorest communities. Each year brings on unprecedented hunger with many countries on the brink of famine. You can change this by feeding those in need. Donate now.</p>
+            <div class="col-md-2 header-fundraising-logos">
+                <img src="~/assets/FR-logo/FR_Fundraising-Badge_white_150ppi.png" style="width:150px; margin-right: 10px;" />
+                <img src="~/assets/FR-logo/direct-debit-logo.png" style="width:150px;" />
+                <img src="~/assets/FR-logo/visa-6850402_1280.png" style="width:100px;" />
+                <img src="~/assets/FR-logo/mastercard.png" style="width: 80px;" />
+            </div>
+        </div>
+        <div class="col-md-6" style="padding-bottom:30px;">
+
+            <div class="news-title" style="width:100%;padding:30px;">
+                <div style="float: left; padding-top: 4px;">Monthly </div>
+                <div id="inner-donate-switch" onclick="innerDonateSwitch()" style="width: 60px; height: 28px; background-color: #fff; border-radius: 20px; position: absolute; float: left; margin-left: 63px;">
+                    <div id="inner-circle-bullet" style="width:20px;height:20px;background-color:#000;border-radius:10px;position:relative;left:5px;top:4px;"></div>
+                </div>
+                <div style="margin-left:130px;padding-top:4px;">One-Off</div>
+            </div>
+            <div style="padding:0 30px 0 30px;">
+                <input type="hidden" id="inner-amount" />
+                <button class="btn inner-btn-amount" id="inner-amount-1" onmouseover="innerChangeColorWithMouseOver(1)" onmouseout="innerChangeColorWithMouseOut(1)" onclick="innerAmountClicked(1);">$10</button>
+                <button class="btn inner-btn-amount" id="inner-amount-2" onmouseover="innerChangeColorWithMouseOver(2)" onmouseout="innerChangeColorWithMouseOut(2)" onclick="innerAmountClicked(2);">$20</button>
+                <button class="btn inner-btn-amount" id="inner-amount-3" onmouseover="innerChangeColorWithMouseOver(3)" onmouseout="innerChangeColorWithMouseOut(3)" onclick="innerAmountClicked(3);">$60</button>
+                <input type="number" class="form-control no-arrows white-placeholder" id="inner-amount-4" onclick="innerOtherClicked();" value="" style="display:inline;border:2px solid #fff;width:100px;height:60px;background-color:#660199;color:#fff;font-size:1.3em;font-weight:bold;position:relative;top:3px;" placeholder="Other" />
+            </div>
+            <div style="padding:10px 30px 0 30px;">
+                <span id="inner-donation-message" style="color:#fff;"></span>
+            </div>
+            <div>
+                <button class="btn btn-donate-red" onclick="innerDonateNow()" style="width: 180px; height: 60px; background-color: red; border: none; position: relative; left: 30px; top: 10px; color: #fff; font-size: 1.3em; font-weight: bold; "> Donate now <i class="fa fa-arrow-right"></i></button>
+            </div>
+
+        </div>
+    </div>
+    <div class="" style="margin:0 auto;">
+        <div class="col-md-3" style=""></div>
+        <div class="col-md-6 text-center text-justify" style="padding:50px 10px;font-size:18px;">
+            <p style="font-size:16px;font-style:italic;">Please note: Donations made on this page will be allocated to our Food Security fund that is used to deliver a range of different food projects such as the examples showcased above. These programmes can and will be delivered in any of the countries where Human Relief Mission has a presence, and those projects are catered to the local community with the aim to save and transform lives.</p>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+    @*END DONATE FOR FOOD SECURITY*@
+
+    <script src="~/assets/Home/custom.js"></script>
+    <script src="~/assets/donation-script/food-security/food-security.js"></script>
+    <script src="~/assets/donation-script/food-security/inner-food-security.js"></script>
+
+    <script>
+        function adjustElementStyle() {
+            var width = window.innerWidth;
+            var element = document.getElementById('successStoryImage');
+
+            if (width < 480) {
+                element.style.marginTop = "15px"; // For widths < 480px
+            } else if (width < 992) {
+                element.style.marginTop = "15px"; // For widths < 992px but >= 480px
+            } else {
+                element.style.marginTop = "150px"; // For widths >= 992px
+            }
+        }
+
+        window.addEventListener('resize', adjustElementStyle);
+        window.addEventListener('load', adjustElementStyle);
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,103 @@
+﻿@model IEnumerable<HRM.Models.Appeal>
+@{
+    if (Session["user_108310113658"] != null)
+    {
+        if (Session["user_108310113658"].ToString() == "authenticated")
+        {
+            Layout = "~/Views/Shared/_AdminLayout.cshtml";
+        }
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_EndUserLayout.cshtml";
+    }
+
+    ViewBag.Title = "Appeals | Human Relief Mission Canada";
+    ViewBag.Description = "View a comprehensive list of all current and past appeals from Human Relief Mission Canada. Explore our fundraising campaigns, see how we've addressed various needs, and find ways to support our ongoing efforts.";
+    ViewBag.Keywords = "all appeals, fundraising campaigns, past appeals, current appeals, Human Relief Mission Canada, charitable efforts, campaign overview";
+    ViewBag.OGandTwitterTitle = "Appeals | Human Relief Mission Canada";
+
+
+}
+
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RXXJLDEKC3"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); } gtag('js', new Date()); gtag('config', 'G-RXXJLDEKC3');
+    </script>
+
+    <link href="~/assets/Home/custom.css" rel="stylesheet" />
+
+    <style type="text/css">
+    </style>
+</head>
+<body style="margin: 0; padding: 0;">
+
+    <div class="container-fluid slider" style="margin:0;padding:0;">
+        <div class="image-container">
+            <img class="image" src="~/Content/pic/GAZA Emergency Appeal Homepage 1920.jpg" />
+        </div>
+
+    </div>
+
+    @* Start Section appeals*@
+    <div class="container-fluid" style="margin-top:80px;">
+
+        <div class="">
+            <div class="col-md-12 ">
+                <div class="portlet light portlet-fit ">
+                    <div class="portlet-body ">
+                        <div class="row events-caption" style="padding:30px;">
+                            <h2 style="font-weight: bold;">Appeals</h2>
+                        </div>
+                        <div class="mt-element-card mt-element-overlay">
+                            <div class="row">
+                                @foreach (var appeal in Model)
+                                {
+                                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 ">
+                                        <div class="mt-card-item upcomming-event">
+
+                                            <div class="mt-card-avatar mt-overlay-1">
+                                                <a href="/Appeals/Appeal?id=@appeal.appeal_id&emergency_appeal=@appeal.title">
+                                                    <div class="new-project-label">
+                                                        Appeal
+                                                    </div>
+                                                    <img src="@appeal.header_picture_path" style="position: relative; z-index: 0;" />
+                                                </a>
+
+                                            </div>
+                                            <div class="mt-card-content">
+                                                <p class="mt-card-desc font-grey-mint"><i class="fa fa-calendar"></i> @appeal.publication_date.ToShortDateString()</p>
+                                                <a href="/Appeals/Appeal?id=@appeal.appeal_id&emergency_appeal=@appeal.title">
+                                                    <h3 class="mt-card-name" style="font-size:1.4em;padding:8px;color:black;min-height:70px;">
+                                                        @appeal.title
+                                                    </h3>
+                                                </a>
+                                                <div class="mt-card-social">
+                                                    <ul>
+                                                        <li>
+                                                            <a href="/Appeals/Appeal?id=@appeal.appeal_id&appeal=@appeal.title" class="btn  btn-outline bold" style="color: #fff;background-color:red;">
+                                                                Read more
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @* Start Section appeals*@
+
+    <script src="~/assets/Home/custom.js"></script>
+</body>
+</html>

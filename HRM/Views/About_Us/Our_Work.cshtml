@@ -1,0 +1,90 @@
+﻿@{
+    if (Session["user_108310113658"] != null)
+    {
+        if (Session["user_108310113658"].ToString() == "authenticated")
+        {
+            Layout = "~/Views/Shared/_AdminLayout.cshtml";
+        }
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_EndUserLayout.cshtml";
+    }
+
+        ViewBag.Title = "Our Work | Human Relief Mission Canada";
+        ViewBag.Description = "Explore the local community work of Human Relief Mission Canada, including our 2025 senior empowerment project, community engagement initiatives, and support programs for newcomers in Ottawa.";
+        ViewBag.Keywords = "our work, community work, HRM Canada projects, senior empowerment, newcomer support, Ottawa community programs, Human Relief Mission Canada";
+        ViewBag.OGandTwitterTitle = "Our Work | Human Relief Mission Canada";
+
+
+
+}
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <link href="~/assets/news/css/custom.css" rel="stylesheet" />
+    <link href="~/assets/Home/custom.css" rel="stylesheet" />
+    <link href="~/assets/about/our-work.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container our-work-page" style="width: 100%; font-size: 18px;margin:auto;">
+        <div class="row" style="width: 80%; margin: auto;">
+            <div class="col-12">
+                <h1 class="page-title bold" style="font-size:36px;margin-bottom:8px;margin-top: 70px; color: black;">Local Community Work</h1>
+                
+
+                <div class="body-content" style="line-height:1.6;text-align:justify;">
+                    <p>
+                        In 2025, Human Relief Mission (HRM) Canada successfully implemented a community-engagement project aimed at empowering newly arrived seniors to become active and confident citizens in Canada. From April to Dec 2025, HRM delivered 10 structured training sessions in Ottawa, focusing on civic participation, community integration, accessing public services, and understanding rights and responsibilities in Canada.
+                    </p>
+                    <div class="row image-grid" style="margin-top:20px; margin: auto;">
+
+                        <!-- Image 1 -->
+                        <div class="col-md-6 col-sm-12 image-col" style="margin-bottom:20px;margin:auto;">
+                            <div class="image-wrap" style="overflow:hidden;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,0.08);">
+                                <img src="~/Content/pic/our-work/Empowering Afghan Seniors (2).jpg"
+                                     alt="HRM community image 1"
+                                     class="our-work-img"
+                                     style="width:100%;height:300px;object-fit:cover;display:block;" />
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <p>
+                        More than 30 seniors benefited from the program, including 20+ men and over 10 women, all of whom gained valuable knowledge and practical skills to navigate life in their new environment. The sessions were facilitated by experienced HRM trainers, and participants reported increased confidence, improved community engagement, and a stronger sense of belonging in Canadian society.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row image-grid" style="margin-top:20px;width: 80%;margin: auto;">
+
+
+            <!-- Image 2 -->
+            <div class="col-md-6 col-sm-12 image-col" style="margin-bottom:20px;">
+                <div class="image-wrap" style="overflow:hidden;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,0.08);">
+                    <img src="~/Content/pic/our-work/Empowering Afghan Seniors (1).jpg"
+                         alt="HRM community image 2"
+                         class="our-work-img"
+                         style="width:100%;height:300px;object-fit:cover;display:block;" />
+                </div>
+            </div>
+
+            <!-- Image 3 (centered because odd count) -->
+            <div class="col-md-6 col-sm-12 image-col" style="margin-bottom:20px;">
+                <div class="image-wrap" style="overflow:hidden;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,0.08);">
+                    <img src="~/Content/pic/our-work/Empowering Afghan Seniors (3).jpg"
+                         alt="HRM community image 3"
+                         class="our-work-img"
+                         style="width:100%;height:300px;object-fit:cover;display:block;" />
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</body>
+</html>
+

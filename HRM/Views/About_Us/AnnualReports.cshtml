@@ -1,0 +1,71 @@
+﻿@model IEnumerable<HRM.Models.Annual_Report>
+@{
+    if (Session["user_108310113658"] != null)
+    {
+        if (Session["user_108310113658"].ToString() == "authenticated")
+        {
+            Layout = "~/Views/Shared/_AdminLayout.cshtml";
+        }
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_EndUserLayout.cshtml";
+    }
+
+    ViewBag.Title = "Annual Report | Human Relief Mission Canada";
+    ViewBag.Description = "Explore the Annual Report of Human Relief Mission Canada. Review our achievements, financials, and the impact we’ve made over the past year. Discover how your support has contributed to our mission.";
+    ViewBag.Keywords = "annual report, yearly overview, Human Relief Mission annual report organizational achievements, financial report, Human Relief Mission Canada, impact report, charity transparency";
+    ViewBag.OGandTwitterTitle = "Annual Report | Human Relief Mission Canada";
+
+
+}
+
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) --> <script async src="https://www.googletagmanager.com/gtag/js?id=G-RXXJLDEKC3"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-RXXJLDEKC3'); </script>
+
+    <link href="~/assets/Home/custom.css" rel="stylesheet" />
+
+    <style type="text/css">
+    </style>
+</head>
+<body onload="load()" style="margin: 0; padding: 0;">
+    <div class="container-fluid" id="annual-report-page-title">
+        <div class="col-md-3"></div>
+        <div class="col-md-6 " style="text-align:justify;font-size:18px;">
+            <h1 style="font-size:4em;font-weight:bold;">Annual Reports</h1>
+            <p>At Human Relief Mission, we are proud to publish our annual reports so that you know exactly where your generous support has gone during the year.</p>
+            <p>In 2010, we were awarded by the Institute of Chartered Accountants in England and Wales for the outstanding transparency and communication in our reporting.</p>
+            <p>Our audited annual reports, reflecting the UK based transactions, are available by clicking on the links below.</p>
+
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+    <div class="container report-cards">
+
+        @foreach (var report in Model)
+        {
+
+            <div class="col-md-4" style="padding:30px 0;">
+                <a href="@Url.Action("DownloadReport", "About_Us", new { report = report.fileName })">
+                    <div class="report-card-content">
+                        <img src="@Url.Action("DisplayReportImage","About_Us", new { id = report.annual_report_id })" class="col-md-6" alt="@report.year Annual Report" style="width:100%;" />
+                    </div>
+                </a>
+                <div class="row text-center" style="justify-content:center;padding:0 60px;">
+                    <h3 class="bold">
+                        Annual Report @report.year
+                    </h3>
+                </div>
+            </div>
+
+        }
+
+    </div>
+
+
+    <script src="~/assets/Home/custom.js"></script>
+    <script src="~/assets/Home/download-pdf.js"></script>
+</body>
+</html>
+

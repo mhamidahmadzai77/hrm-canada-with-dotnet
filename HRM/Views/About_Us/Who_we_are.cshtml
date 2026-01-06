@@ -1,0 +1,271 @@
+﻿@{
+    if (Session["user_108310113658"] != null)
+    {
+        if (Session["user_108310113658"].ToString() == "authenticated")
+        {
+            Layout = "~/Views/Shared/_AdminLayout.cshtml";
+        }
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_EndUserLayout.cshtml";
+    }
+
+    ViewBag.Title = "About Us | Human Relief Mission Canada";
+    ViewBag.Description = "Learn more about Human Relief Mission Canada. Discover our mission, values, history, and the team behind our efforts to combat global hunger and provide humanitarian aid.";
+    ViewBag.Keywords = "about us, Human Relief Mission Canada, our mission, charity history, organization values, team members";
+    ViewBag.OGandTwitterTitle = "About Us | Human Relief Mission Canada";
+
+
+}
+
+
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RXXJLDEKC3"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); } gtag('js', new Date()); gtag('config', 'G-RXXJLDEKC3');
+    </script>
+
+    <link href="~/assets/news/css/custom.css" rel="stylesheet" />
+    <link href="~/assets/Home/custom.css" rel="stylesheet" />
+    <style type="text/css">
+        #donate-switch:hover {
+            cursor: pointer;
+        }
+
+        #inner-donate-switch:hover {
+            cursor: pointer;
+        }
+
+        #circle-bullet {
+            position: relative;
+            transition: left 0.3s;
+        }
+
+        #inner-circle-bullet {
+            position: relative;
+            transition: left 0.3s;
+        }
+
+        .btn-amount {
+            background-color: #660199;
+            color: #fff;
+            font-size: 1.3em;
+            font-weight: bold;
+            border: 2px solid #fff;
+            width: 80px;
+            height: 60px;
+        }
+
+        .inner-btn-amount {
+            background-color: #660199;
+            color: #fff;
+            font-size: 1.3em;
+            font-weight: bold;
+            border: 2px solid #fff;
+            width: 80px;
+            height: 60px;
+        }
+
+        .btn-amount:hover {
+            background-color: #fff;
+            color: #000;
+        }
+
+        .inner-btn-amount:hover {
+            background-color: #fff;
+            color: #000;
+        }
+
+        .btn-donate-red:hover > i.fa-arrow-right {
+            position: relative;
+            left: 4px;
+        }
+
+        .inner-btn-donate-red:hover > i.fa-arrow-right {
+            position: relative;
+            left: 4px;
+        }
+
+
+
+        .orphan-hope-image {
+        }
+
+        .orphan-hope-pragraph {
+            background-color: #0778d4;
+            padding: 30px;
+            color: #fff;
+        }
+
+        .orphan-hope-image {
+            display: flex;
+            align-items: center; /* Vertically center the content */
+        }
+
+        .align-center {
+            display: flex;
+            justify-content: center; /* Horizontally center the content */
+            align-items: center; /* Vertically center the content */
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 50px auto;
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .faq-item {
+            border-bottom: 1px solid #e0e0e0;
+            padding: 30px 0;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: bold;
+            color: #660199;
+        }
+
+        .faq-answer {
+            display: none;
+            padding: 10px;
+            margin-top: 30px;
+            border-top: 1px solid #e0e0e0;
+            font-size: 18px;
+            font-weight: normal;
+            line-height: 1.5;
+            color: #000;
+        }
+
+        .expand-icon {
+            float: right;
+            transform: rotate(-90deg);
+            transition: transform 0.3s;
+        }
+
+            .expand-icon.open {
+                transform: rotate(90deg);
+            }
+
+        h1 {
+            text-align: left;
+        }
+
+        ul.change-bullet {
+            list-style-type: disc; /* Set the list style type */
+        }
+
+            ul.change-bullet li::marker {
+                color: #660199; /* Change the bullet color */
+                font-size: 30px;
+            }
+
+        ul.country li::marker {
+            color: #660199; /* Change the bullet color */
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid image-title-container" style="padding:0;">
+        <div class="news-image col-md-8 pull-right">
+            <div>
+                <img src="~/Content/pic/about-us-page-picture.jpg" style="width:100%;height:570px;margin-left:15px;" />
+            </div>
+        </div>
+        <div class="news-title-box col-sm-12 pull-left">
+            <div class="news-title" style="width:100%;color:#fff;padding:30px;">
+                <h1 style="font-size:3em;font-weight:bold">About Us</h1>
+                <p style="font-size:18px;">
+                    Founded in the UK in 2012 by a group of doctors and philanthropists, Human Relief Mission is an
+                    independent non-governmental organisation with no affiliation with any regional, ethnic or
+                    political groups  and we believe in helping humanity through welfare regardless of race, religion
+                    or gender. We ensure support is given to the right people, at the right time, every time.
+                </p>
+                <p style="font-size:18px;display:inline;font-weight:bold;">
+                    Share this page
+                </p>
+                <p style="padding-left:30px;">
+                    <a href="https://www.facebook.com/share/share.php?u=asfd" class="footer-social-link">
+                        <div class="classic-menu-dropdown" style="text-align:center;float:left;display:none;">
+                            <img src="~/assets/custom-image/facebook.png" width="32" />
+                        </div>
+                    </a>
+                    <a href="javascript:;" onclick="shareOnFacebook()" class="footer-social-link" title="Share to facebook">
+                        <div class="classic-menu-dropdown" style="text-align:center;float:left;">
+                            <img src="~/assets/custom-image/facebook.png" width="32" />
+                        </div>
+                    </a>
+                    <a href="javascript:;" onclick="shareOnX()" class="footer-social-link" title="Share to x(Twitter)">
+                        <div class="classic-menu-dropdown" style="width: 22px; height: 22px; border-radius: 4px; text-align: center;margin-left: -12px; float: left; margin-left: -5px; margin-top: -7px; ">
+                            <img src="~/assets/custom-image/x.png" width="63" />
+                        </div>
+                    </a>
+                    <a href="javascript:;" class="footer-social-link" title="Copy to clipboard">
+                        <div class="classic-menu-dropdown" onclick="copyCurrentURL()" style="width: 22px; height: 22px; border-radius: 4px; text-align: center; float: left; margin-left: 33px; margin-top: 0px; ">
+                            <img src="~/assets/custom-image/copy.png" width="32" />
+                        </div>
+                    </a>
+
+                </p>
+            </div>
+
+        </div>
+    </div>
+
+    @* Start Section who we are*@
+    <div class="container-fluid">
+        <div class="col-md-3"></div>
+        <div class="col-md-6 " style="text-align:justify;font-size:22px;padding-top:22px;">
+            <h1 style="font-weight:bold;font-size:2.5em">Who we are</h1>
+            <p>Founded in the UK in 2012 by a group of philanthropists and a doctor, Human Relief Mission is an independent non-governmental organisation (NGO) with no affiliation with any regional, ethnic or political organisations and we believe in helping humanity through welfare regardless of race, religion or gender. We ensure support is given to the right people, at the right time, every time.</p>
+            <p>Human Relief Mission is a UK registered charity with the Charity Commission of England and Wales holding registration number 1160380.</p>
+            <p>&nbsp;</p>
+            <h1 style="font-weight:bold;font-size:1.5em">Donation Policy</h1>
+            <p>Human Relief Mission is aware of the significance of Amanah as well as the accountability and responsibility it entails. We take great satisfaction in being totally open and honest, and on request we can provide you with any updates of projects that you have donated towards </p>
+            <p>Human Relief Mission operates on a 100% Donation Policy. We operate under the direction of the Charity Commission and religious teachings to make sure that donations are made in accordance with both Islamic and UK charitable regulations. All donations received are spent solely for what they were intended for.</p>
+            <p>Gift Aid, designated donations for administration and funds received through recycling clothes are excluded.</p>
+            <div style="width:100%;height:2px;background-color:#660199;"></div>
+            <div style="margin-top:30px;">
+                <h5 style="text-align:center;">If you have any questions, then please do not hesitate to contact us.</h5>
+            </div>
+            <div style="text-align:center;padding-bottom:30px;">
+                <a class="btn" style="width:120px;color:#fff;background-color:#660199;" href="tel:0093787082624"> <i class="fa fa-phone"></i>&nbsp;&nbsp;&nbsp; PHONE</a>
+                <a class="btn" style="width:120px;color:#fff;background-color:#660199;" href="mailTo:info@humanreliefmission.com"> <i class="fa fa-envelope"></i>&nbsp;&nbsp;&nbsp; Email</a>
+
+            </div>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+    @* Start Section who we are*@
+
+    <script src="~/assets/Home/custom.js"></script>
+    <script src="~/assets/donate.js"></script>
+    <script src="~/assets/inner-donate.js"></script>
+    <script>
+        const faqItems = document.querySelectorAll('.faq-item');
+
+        faqItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const answer = item.querySelector('.faq-answer');
+                const expandIcon = item.querySelector('.expand-icon');
+
+                if (answer.style.display === 'none' || answer.style.display === '') {
+                    answer.style.display = 'block';
+                    expandIcon.classList.add('open');
+                } else {
+                    answer.style.display = 'none';
+                    expandIcon.classList.remove('open');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+
+
+

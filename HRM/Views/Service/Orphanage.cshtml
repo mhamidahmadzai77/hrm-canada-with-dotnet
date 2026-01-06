@@ -1,0 +1,344 @@
+﻿
+@{
+    if (Session["user_108310113658"] != null)
+    {
+        if (Session["user_108310113658"].ToString() == "authenticated")
+        {
+            Layout = "~/Views/Shared/_AdminLayout.cshtml";
+        }
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_EndUserLayout.cshtml";
+    }
+
+    ViewBag.Title = "Orphanage - Supporting Orphans | Human Relief Mission UK";
+    ViewBag.Description = "Dedicated to providing holistic support for orphans, ensuring access to essential needs, education, and emotional care for a brighter future.";
+    ViewBag.Keywords = "orphanage, support orphans, child care, education, healthcare, life skills, humanitarian aid, social support, emotional well-being, almouwasat orphanage";
+    ViewBag.OGandTwitterTitle = "Orphanage";
+
+
+}
+
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RXXJLDEKC3"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); } gtag('js', new Date()); gtag('config', 'G-RXXJLDEKC3');
+    </script>
+
+    <link href="~/assets/news/css/custom.css" rel="stylesheet" />
+    <link href="~/assets/Home/custom.css" rel="stylesheet" />
+    <style type="text/css">
+        #donate-switch:hover {
+            cursor: pointer;
+        }
+
+        #inner-donate-switch:hover {
+            cursor: pointer;
+        }
+
+        #circle-bullet {
+            position: relative;
+            transition: left 0.3s;
+        }
+
+        #inner-circle-bullet {
+            position: relative;
+            transition: left 0.3s;
+        }
+
+        .btn-amount {
+            background-color: #660199;
+            color: #fff;
+            font-size: 1.3em;
+            font-weight: bold;
+            border: 2px solid #fff;
+            width: 80px;
+            height: 60px;
+        }
+
+        .inner-btn-amount {
+            background-color: #660199;
+            color: #fff;
+            font-size: 1.3em;
+            font-weight: bold;
+            border: 2px solid #fff;
+            width: 80px;
+            height: 60px;
+        }
+
+        .btn-amount:hover {
+            background-color: #fff;
+            color: #000;
+        }
+
+        .inner-btn-amount:hover {
+            background-color: #fff;
+            color: #000;
+        }
+
+        .btn-donate-red:hover > i.fa-arrow-right {
+            position: relative;
+            left: 4px;
+        }
+
+        .inner-btn-donate-red:hover > i.fa-arrow-right {
+            position: relative;
+            left: 4px;
+        }
+
+
+
+        .orphan-hope-image {
+        }
+
+        .orphan-hope-pragraph {
+            padding: 30px;
+            color: #fff;
+        }
+
+        .orphan-hope-image {
+            display: flex;
+            align-items: center; /* Vertically center the content */
+        }
+
+        .align-center {
+            display: flex;
+            justify-content: center; /* Horizontally center the content */
+            align-items: center; /* Vertically center the content */
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 50px auto;
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .faq-item {
+            border-bottom: 1px solid #e0e0e0;
+            padding: 30px 0;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: bold;
+            color: #660199;
+            text-align: left;
+        }
+
+        .faq-answer {
+            display: none;
+            padding: 10px;
+            margin-top: 30px;
+            border-top: 1px solid #e0e0e0;
+            font-size: 18px;
+            font-weight: normal;
+            line-height: 1.5;
+            color: #000;
+        }
+
+
+        .expand-icon {
+            float: right;
+            transform: rotate(0deg);
+            transition: transform 0.5s;
+        }
+
+            .expand-icon.open {
+                transform: rotate(180deg);
+            }
+
+        h1 {
+            text-align: left;
+        }
+
+        ul.change-bullet {
+            list-style-type: disc; /* Set the list style type */
+        }
+
+            ul.change-bullet li::marker {
+                color: #660199; /* Change the bullet color */
+                font-size: 30px;
+            }
+
+        ul.country li::marker {
+            color: #660199; /* Change the bullet color */
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid image-title-container" style="padding:0;">
+        <div class="news-image col-md-8 pull-right">
+            <div>
+                <video class="autoplay-video" autoplay muted loop style="width:100%;height:570px;">
+                    <source src="~/Content/projects/videos/orphanage/orphanage.mp4" type="video/mp4" />
+                </video>
+            </div>
+        </div>
+        <div class="news-title-box col-sm-12 pull-left" style="margin-bottom: 5px;">
+            <div class="news-title" style="width:100%;color:#fff;padding:30px;">
+                <h1 style="font-size:3em;">Al-Mouwasat Orphanage</h1>
+            </div>
+            <div class="col-md-2 header-fundraising-logos">
+                <img src="~/assets/FR-logo/FR_Fundraising-Badge_white_150ppi.png" style="width:150px; margin-right: 10px;" />
+                <img src="~/assets/FR-logo/direct-debit-logo.png" style="width:150px;" />
+                <img src="~/assets/FR-logo/visa-6850402_1280.png" style="width:100px;" />
+                <img src="~/assets/FR-logo/mastercard.png" style="width: 80px;" />
+            </div>
+        </div>
+    </div>
+
+    @*BEGIN SECTION Sponsor an orphan*@
+    <div class="container-fluid" style="background-color:#660199;height:auto;margin:50px 0;width:100%;">
+
+        <div class="col-md-2"></div>
+        <div class="col-md-8" style="background-color:#fff;height:auto;margin:50px 0;">
+            <div class="row">
+                <div style="padding:20px;">
+                    <h3 class="bold">Sponsor an Orphan in Afghanistan - $60 per month</h3>
+                    <div class="col-md-4" style="font-size:18px;">
+                        Help transform the lives of children in Afghanistan by sponsoring an orphan.
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label></label>
+                            <input type="number" id="no-of-orphans" onclick="donateNow()" class="form-control input-lg" placeholder="No of orphans">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label></label>
+                            <div class="input-group input-group-lg">
+                                <span class="input-group-addon" id="sizing-addon1">$</span>
+                                <input type="number" id="total-donation" disabled class="form-control" aria-describedby="sizing-addon1">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <hr />
+            <div class="row" style="min-height:100px;">
+                <div class="pull-right" ;>
+                    <button class="btn btn-donate-red" onclick="donateNow()" style="width: 180px; height: 60px; background-color: red; border: none; position: relative; left: -30px; top: 10px; color: #fff; font-size: 1.3em; font-weight: bold; "> Donate now <i class="fa fa-arrow-right"></i></button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+    @*END SECTION Sponsor an orphan*@
+
+    <div class="container-fluid">
+        <div class="" style="margin:0 auto;">
+            <div class="col-md-3" style=""></div>
+            <div class="col-md-6 text-center text-justify" style="padding:50px 10px;font-size:18px;">
+                <h1 style="font-weight:bold;font-size:2em">Al-Mouwasat Orphanage</h1>
+                <h1 style="font-weight:bold;font-size:1em">Is there a need for an orphanage in Afghanistan?</h1>
+                <p>The ongoing conflicts in Afghanistan have left numerous children without the care and protection of their parents. Whether due to the direct consequences of war, health-related issues, or economic struggles, these children face a situation that demands immediate attention. An orphanage would offer a safe and supportive environment where children can find stability, emotional well-being, and a chance for a brighter future.</p>
+                <p>One of the primary functions of an orphanage in Afghanistan is to ensure the basic needs of these children are met. From providing nutritious meals to offering a secure place to sleep, these programs act as a foundation for the well-being of orphaned children. Moreover, they prioritise both local and Islamic education, breaking the cycle of poverty and empowering children with the skills necessary for a more promising tomorrow.</p>
+                <p>
+                    <img src="~/Content/projects/orphanage/orphanage-1.jpg" style="width:100%" />
+                </p>
+                <p>In a country where the psychosocial impact of conflict is palpable, orphan programs offer essential support. Through counselling services and activities that promote mental health, these programs address the emotional resilience of children who have experienced loss and upheaval. This focus on holistic well-being contributes to the overall development of the children and helps them navigate the challenges they may face. </p>
+                <p>While orphan programs play a crucial role, there is a broader goal of community integration. These initiatives work towards creating pathways for children to eventually transition into the community or, when suitable, find permanent homes through adoption or foster care. The aim is to restore a sense of belonging and familial connection for every child.</p>
+            </div>
+        </div>
+
+        @*BEGIN SECTION SUCCESS STORY*@
+        @*Orphan sponsorship success story*@
+        <div class="container-fluid height-auto">
+            <img src="~/Content/pic/Almas.jpg" id="successStoryImage" class="col-sm-12 col-md-6  orphan-hope-image align-center" style="margin-top:10px;" />
+            <div class="col-md-6 background-purple">
+                <div class="orphan-hope-pragraph col-md-11" style="text-align:justify; font-size:22px;">
+                    <h1 style="font-weight:bold;">Overcoming Hardship: A Journey from Loss to Hope</h1>
+                    <p>"After losing my father, life became unbearably difficult. I had to leave school to support my family, selling handmade plastic items in the market just to make ends meet. Each day felt like an uphill battle, with no hope in sight.</p>
+                    <p>Then, someone told Human Relief Mission about my situation, and everything changed. They welcomed me into their orphan sponsorship program, and Alhamdulillah, our hardships have eased significantly. I can now focus on building a brighter future, knowing that my basic needs are taken care of."</p>
+                    <p>This is just one of the countless lives transformed through orphan sponsorship. Join us at Human Relief Mission to provide hope and opportunity to children in need.</p>
+                </div>
+            </div>
+        </div>
+        @*END SECTION SUCCESS STORY*@
+
+        <div class="" style="margin:0 auto;">
+            <div class="col-md-3" style=""></div>
+            <div class="col-md-6 text-center text-justify" style="padding:50px 10px;font-size:18px;">
+                <p>The success of orphan programs in Afghanistan is also bolstered by global support and advocacy efforts. These initiatives raise awareness about the unique needs of Afghan orphans and garner resources to ensure the quality of care provided. International collaboration contributes to the strengthening of legal and regulatory frameworks that protect the rights of these children, fostering an environment of accountability and improved standards of care.</p>
+                <p>In the face of adversity, Afghanistan's orphan programs stand as testament to the resilience of a nation committed to securing a better future for its children. Through a comprehensive approach that addresses immediate needs while paving the way for long-term solutions, these programs empower orphaned children with the tools to overcome challenges and thrive in a society that values their well-being and potential.</p>
+                <p>
+                    <img src="~/Content/projects/orphanage/orphanage-2.jpg" style="width:100%" />
+                </p>
+            </div>
+            <div class="col-md-3"></div>
+        </div>
+    </div>
+
+
+    @* BEGIN ORPHAN IMPORTANCE OF SPONSORING *@
+    <div class="container-fluid">
+
+        <div class="col-md-3"></div>
+        <div class="col-md-6 " style="text-align:justify;font-size:18px;">
+            <h1 style="font-weight:bold;font-size:2em">
+                Importance of sponsoring an orphan child in Islam
+            </h1>
+            <p>Helping to care for orphans and vulnerable children is a duty for Muslims. Prophet Muhammad (SAW) emphasised the status of orphans, and the importance of fulfilling their needs. </p>
+            <p>We are inspired by the status Islam place on vulnerable orphans, it stands as the perfect means for carrying out the Prophetic guidance.</p>
+
+            <p>Children are a gift from Allah, and a trust, or Amanah – to be cared for and nurtured in the best possible way.</p>
+
+            @* Start Qoute Section*@
+            <div class="" style="padding-bottom:50px;margin-top:30px;">
+
+                <div class="quote-container col-md-12">
+                    <span class="" style="font-size:4em;font-weight:bold">&lsquo;&lsquo;</span>
+                    <p class="quote">…the person who looks after an orphan and provides for him, will be in Paradise…</p>
+                    <p class="source">Hadith | Sahih al-Bukhari</p>
+                </div>
+
+            </div>
+            @* End Qoute Section*@
+            <p>&nbsp;</p>
+
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+
+    <div class="" style="margin:0 auto;">
+        <div class="col-md-3" style=""></div>
+        <div class="col-md-6 text-center text-justify" style="padding:50px 10px;font-size:18px;">
+            <p style="font-size:16px;font-style:italic;">Please note: Donations made on this page will be allocated to our Orphanage fund. This project is catered to the local community in Afghanistan with the aim to save and transform lives.</p>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+    @* END ORPHAN IMPORTANCE OF SPONSORING*@
+
+
+    <script src="~/assets/Home/custom.js"></script>
+    <script src="~/assets/donate.js"></script>
+    <script src="~/assets/inner-donate.js"></script>
+    <script src="~/assets/sponsor-an-orphan.js"></script>
+
+    <script>
+        function adjustElementStyle() {
+            var width = window.innerWidth;
+            var element = document.getElementById('successStoryImage');
+
+            if (width < 480) {
+                element.style.marginTop = "15px"; // For widths < 480px
+            } else if (width < 992) {
+                element.style.marginTop = "15px"; // For widths < 992px but >= 480px
+            } else {
+                element.style.marginTop = "210px"; // For widths >= 992px
+            }
+        }
+
+        window.addEventListener('resize', adjustElementStyle);
+        window.addEventListener('load', adjustElementStyle);
+    </script>
+</body>
+</html>

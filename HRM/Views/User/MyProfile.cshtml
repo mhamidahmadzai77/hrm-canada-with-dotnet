@@ -1,0 +1,597 @@
+﻿
+@{
+    if (Session["user_108310113658"] != null)
+    {
+        if (Session["user_108310113658"].ToString() == "authenticated")
+        {
+            Layout = "~/Views/Shared/_AdminLayout.cshtml";
+        }
+    }
+    else
+    {
+        <script>
+            window.location.href = "/Home/Index";
+        </script>
+    }
+
+    ViewBag.Title = "My Profile | Human Relief Mission Canada";
+    ViewBag.Description = "View and manage your account profile information.";
+    ViewBag.Keywords = "my profile, account details, user profile, human relief mission Canada, nonprofit organization";
+    ViewBag.OGandTwitterTitle = "My Profile | Human Relief Mission Canada";
+
+
+}
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RXXJLDEKC3"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); } gtag('js', new Date()); gtag('config', 'G-RXXJLDEKC3');
+    </script>
+
+
+    <!-- BEGIN PAGE LEVEL STYLES -->
+    <link href="~/assets/Home/custom.css" rel="stylesheet" />
+    <link href="~/assets/pages/css/profile.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.css" rel="stylesheet" type="text/css" />
+
+    <!-- END PAGE LEVEL STYLES -->
+    <style type="text/css">
+
+
+        .image-container {
+            position: relative;
+            display: inline-block;
+        }
+
+            .image-container img {
+                display: block;
+            }
+
+            .image-container div {
+                @*position: absolute;
+                top: 33%;
+                left: 66%;*@
+                transform: translate(-50%,-50%);
+                font-size: 24px;
+                color: aqua;
+                background-color: #660199 !important;
+                border: 2px solid #ffffff;
+                width: 35px;
+                height: 35px;
+                border-radius: 18px;
+            }
+
+                .image-container div:hover {
+                    cursor: pointer;
+                }
+
+            .image-container i {
+                position: relative;
+                top: -0.5px;
+                left: 4px;
+                color: #fff !important;
+                font-size: 18px;
+                margin-right: 30%;
+            }
+
+        .profile-usertitle {
+            margin-top: -220px;
+        }
+
+        .purple {
+            background-color: #660199 !important;
+        }
+
+            .purple:hover {
+                background-color: #864ba4 !important;
+            }
+
+        .img-responsive {
+            border: 2px solid #fed21c !important;
+            outline: 3px solid #660199 !important;
+            box-shadow: 4px 4px 5px rgba(270,19,81,0.2);
+        }
+
+
+
+    </style>
+</head>
+<body>
+    <div style="min-height:1261px">
+        <!-- BEGIN PAGE HEADER-->
+        <!-- BEGIN PAGE TITLE-->
+        <!-- profile-usertitle class for h1 is only used to align center-->
+        <h1 class="page-title profile-usertitle" style="margin-top: 80px;font-weight:bold">
+            My Account
+
+        </h1>
+        <!-- END PAGE TITLE-->
+        <!-- END PAGE HEADER-->
+        <div class="row">
+            <div class="col-md-12">
+                <!-- BEGIN PROFILE SIDEBAR -->
+                <div class="profile-sidebar">
+                    <!-- PORTLET MAIN -->
+                    <div class="portlet light profile-sidebar-portlet ">
+                        <!-- SIDEBAR USERPIC -->
+                        <div class="profile-userpic">
+                            <div class="image-container">
+                                @if (Session["image"] != null)
+                                {
+                                    <img src="@Url.Action("DisplayImage","User")" id="displayImageTag" class="img-responsive " />
+
+                                }
+                                @if (Session["image"] != null)
+                                {
+                                    <div id="deleteButton" onclick="deleteConfirmation()">
+
+                                        <i class="glyphicon glyphicon-trash"></i>
+
+                                    </div>
+                                }
+                                @if (Session["image"] == null)
+                                {
+                                    <img src="~/assets/custom-image/user-default-purple-image-without-bg.png" id="displayImageTag" class="img-responsive" />
+
+                                }
+                            </div>
+
+
+                        </div>
+                        <!-- END SIDEBAR USERPIC -->
+                        <!-- SIDEBAR USER TITLE -->
+                        <div class="profile-usertitle">
+                            <div class="profile-usertitle-name"> @Session["username"] </div>
+
+                        </div>
+                        <!-- END SIDEBAR USER TITLE -->
+
+                    </div>
+                    <!-- END PORTLET MAIN -->
+                    <!-- PORTLET MAIN -->
+                    <!--<div class="portlet light ">-->
+                    <!-- STAT -->
+                    <!--<div class="row list-separated profile-stat">
+                        <div class="col-md-4 col-sm-4 col-xs-6">
+                            <div class="uppercase profile-stat-title"> 37 </div>
+                            <div class="uppercase profile-stat-text"> Projects </div>
+                        </div>
+                        <div class="col-md-4 col-sm-4 col-xs-6">
+                            <div class="uppercase profile-stat-title"> 51 </div>
+                            <div class="uppercase profile-stat-text"> Tasks </div>
+                        </div>
+                        <div class="col-md-4 col-sm-4 col-xs-6">
+                            <div class="uppercase profile-stat-title"> 61 </div>
+                            <div class="uppercase profile-stat-text"> Uploads </div>
+                        </div>
+                    </div>-->
+                    <!-- END STAT -->
+                    <!--</div>-->
+                    <!-- END PORTLET MAIN -->
+                </div>
+                <!-- END BEGIN PROFILE SIDEBAR -->
+                <!-- BEGIN PROFILE CONTENT -->
+                <div class="profile-content">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="portlet light ">
+                                <div class="portlet-title tabbable-line">
+                                    <div class="caption caption-md">
+                                        <i class="icon-globe theme-font hide"></i>
+                                        <span class="caption-subject bold uppercase" style="color: #660199">Profile Account</span>
+                                    </div>
+                                    <ul class="nav nav-tabs">
+                                        <li class="active">
+                                            <a href="#tab_1_1" data-toggle="tab" aria-expanded="true">Personal Info</a>
+                                        </li>
+                                        <li class="">
+                                            <a href="#tab_1_2" data-toggle="tab" aria-expanded="false">Change Avatar</a>
+                                        </li>
+                                        <li class="">
+                                            <a href="#tab_1_3" data-toggle="tab" aria-expanded="false">Change Password</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="portlet-body">
+                                    <div class="tab-content">
+                                        <!-- PERSONAL INFO TAB -->
+                                        <div class="tab-pane active" id="tab_1_1">
+                                            <form role="form" id="EditPersonalInfoForm">
+                                                <div class="form-group">
+                                                    <label class="control-label">Username</label>
+                                                    <input type="text" placeholder="Username" class="form-control" value="@Session["username"]" id="username">
+                                                    <span style="color:red;padding-right:15px;" id="usernameError"></span>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="control-label">Email Address</label>
+                                                    <input type="text" placeholder="Email Address" class="form-control" value="@Session["email"]" id="email">
+                                                    <span style="color:red;padding-right:15px;" id="emailError"></span>
+                                                </div>
+
+                                                <div class="margiv-top-10">
+                                                    <button type="submit" class="btn purple" id="savePersonalDetailChanges"> &nbsp;&nbsp; Update &nbsp;&nbsp;</button>
+                                                    <a onclick="resetPersonalDetail()" class="btn default" id="resetPersonalDetail"> Cancel </a>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <!-- END PERSONAL INFO TAB -->
+                                        <!-- CHANGE AVATAR TAB -->
+                                        <div class="tab-pane" id="tab_1_2">
+                                            <p>
+
+                                            </p>
+                                            <form role="form" id="changeImageForm">
+                                                <div class="form-group">
+                                                    <div class="fileinput fileinput-new" data-provides="fileinput">
+                                                        <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
+                                                            <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image" alt="">
+                                                        </div>
+                                                        <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"> </div>
+                                                        <div>
+                                                            <span class="btn default btn-file">
+                                                                <span class="fileinput-new">Select Picture</span>
+                                                                <span class="fileinput-exists"> Change </span>
+                                                                <input type="file" name="..." id="image">
+                                                            </span>
+                                                            <a href="javascript:;" class="btn default fileinput-exists" data-dismiss="fileinput"> Remove </a>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <div class="margin-top-10">
+                                                    <button type="submit" href="javascript:;" class="btn purple" id="submitImage"> &nbsp;&nbsp;&nbsp;Save&nbsp;&nbsp;&nbsp; </button>
+
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <!-- END CHANGE AVATAR TAB -->
+                                        <!-- CHANGE PASSWORD TAB -->
+                                        <div class="tab-pane " id="tab_1_3">
+                                            <form role="form" id="changePasswordForm">
+                                                <div class="form-group">
+                                                    <label class="control-label">Current Password</label>
+                                                    <input type="password" class="form-control" id="currentPassword">
+                                                    <span style="color:red;padding-right:15px;" id="currentPasswordError"></span>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="control-label">New Password</label>
+                                                    <input type="password" class="form-control" id="newPassword">
+                                                    <span style="color:red;padding-right:15px;" id="newPasswordError"></span>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="control-label">Re-type New Password</label>
+                                                    <input type="password" class="form-control" id="confirmPassword">
+                                                    <span style="color:red;padding-right:15px;" id="confirmPasswordError"></span>
+                                                </div>
+                                                <div class="margin-top-10">
+                                                    <button type="submit" href="javascript:;" class="btn purple" id="changePassword"> Change password </button>
+                                                    <button onclick="clearPasswordForm()" href="javascript:;" class="btn default" id="cancel"> Cancel </button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <!-- END CHANGE PASSWORD TAB -->
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- END PROFILE CONTENT -->
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+    <script src="~/assets/global/plugins/jquery.min.js" type="text/javascript"></script>
+    <script src="~/assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="~/assets/global/plugins/js.cookie.min.js" type="text/javascript"></script>
+    <script src="~/assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+    <script src="~/assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
+    <script src="~/assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
+    <!-- BEGIN PAGE LEVEL PLUGINS -->
+    <script src="~/assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js" type="text/javascript"></script>
+    <script src="~/assets/global/plugins/jquery.min.js" type="text/javascript"></script>
+    <script src="~/assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="~/assets/global/plugins/js.cookie.min.js" type="text/javascript"></script>
+    <script src="~/assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+    <script src="~/assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
+    <script src="~/assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
+    <!-- END CORE PLUGINS -->
+    <!-- BEGIN THEME GLOBAL SCRIPTS -->
+    <script src="~/assets/global/scripts/app.min.js" type="text/javascript"></script>
+    <!-- END THEME GLOBAL SCRIPTS -->
+    <script src="~/assets/alert.js"></script>
+    <script src="~/assets/MyProfile.js"></script>
+
+
+
+    <script type="text/javascript">
+
+
+        // CHANGE PASSWORD FORM HANDLING WHILE SUBMITING
+        document.getElementById("changePasswordForm").addEventListener('submit', function (event) {
+            event.preventDefault();
+            var currentPassword = $('#currentPassword').val();
+            var newPassword = $('#newPassword').val();
+            var confirmPassword = $('#confirmPassword').val();
+
+            if (currentPassword.length > 5 && currentPassword.length < 26 && newPassword.length > 5 && newPassword.length < 26 && confirmPassword.length > 5 && confirmPassword.length < 26) {
+
+                if (newPassword != confirmPassword) {
+                    swal("Inconsistent password", "New password must be similar in both fields", {
+                        icon: "error", buttons: " Ok "
+                    });
+                }
+                else {
+                    var obj = {
+                        currentPassword: currentPassword,
+                        newPassword: newPassword
+                    };
+
+                    $.ajax({
+                        type: "POST",
+                        url: "/User/EditPassword",
+                        data: obj,
+                        success: function (response) {
+
+                            if (response == "password changed") {
+                                swal("Your password changed successfully", "", {
+                                    icon: "success", buttons: " Ok "
+                                });
+
+                            }
+                            else if (response == "incorrect password entered") {
+
+                                swal("You have entered incorrect current password", "", {
+                                    icon: "error", buttons: " Ok "
+                                });
+
+                            }
+                            else {
+                                swal("Exception Occurred", "" + response.responseText, {
+                                    icon: "info", buttons: " Ok "
+                                });
+                            }
+                            $('#currentPassword').val('');
+                            $('#newPassword').val('');
+                            $('#confirmPassword').val('');
+
+                        },
+                        error: function (xhr, status, error) {
+                            swal("Error Occurred", "" + error, {
+                                icon: "info", buttons: " Ok "
+                            });
+                        }
+                    });
+                }
+            }
+            else {
+                document.getElementById('currentPassword').style.border = "1px solid red";
+                document.getElementById('newPassword').style.border = "1px solid red";
+                document.getElementById('confirmPassword').style.border = "1px solid red";
+            }
+
+        });
+
+        //Change profile image
+
+
+        document.getElementById("changeImageForm").addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            var image = $('#image').get(0).files[0];
+
+            var formData = new FormData();
+            formData.append('image', image);
+
+            $.ajax({
+                type: 'POST',
+                url: '/User/ChangeImage',
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function (response) {
+
+                    if (response.redirectTo) {
+                        window.location.href = response.redirectTo;
+                    }
+                    else if (response == "file not selected") {
+                        swal("Please select a picture", "", {
+                            icon: "info", buttons: " Ok "
+                        });
+                    } else if (response == "image not changed") {
+                        swal("Something went wrong please try again", "", {
+                            icon: "info", buttons: " Ok "
+                        });
+                    }
+                    else {
+                        swal("Exception Occurred", "" + response.responseText, {
+                            icon: "info", buttons: " Ok "
+                        });
+                    }
+
+
+                },
+                error: function (error) {
+                    swal("Error Occurred", "" + error, {
+                        icon: "error", buttons: " Ok "
+                    });
+                }
+            });
+        });
+
+
+
+
+        // Current password textbox validation checking
+        $("#currentPassword").on("input", function () {
+
+            var currentPasswordText = $('#currentPassword').val();
+            if (currentPasswordText == "") {
+                document.getElementById('currentPassword').style.border = "1px solid red";
+                document.getElementById('currentPasswordError').innerHTML = "Current password";
+
+            }
+            else {
+                document.getElementById('currentPassword').style.border = "";
+                if (currentPasswordText.length > 25 || currentPasswordText.length < 6) {
+                    document.getElementById('currentPasswordError').innerHTML = "Password must be less than 26 and greater than 5 ltters and digits.";
+                }
+                else {
+                    document.getElementById('currentPasswordError').innerHTML = "";
+                }
+            }
+        });
+
+        // New password textbox validation checking
+        $("#newPassword").on("input", function () {
+
+            var newPasswordText = $('#newPassword').val();
+            if (newPasswordText == "") {
+                document.getElementById('newPassword').style.border = "1px solid red";
+                document.getElementById('newPasswordError').innerHTML = "New password.";
+
+            }
+            else {
+                document.getElementById('newPassword').style.border = "";
+                if (newPasswordText.length > 25 || newPasswordText.length < 6) {
+                    document.getElementById('newPasswordError').innerHTML = "Password must be less than 26 and greater than 5 ltters and digits.";
+                }
+                else {
+                    document.getElementById('newPasswordError').innerHTML = "";
+                }
+            }
+        });
+
+        // Confirm password textbox validation checking
+        $("#confirmPassword").on("input", function () {
+
+            var confirmPasswordText = $('#confirmPassword').val();
+            if (confirmPasswordText == "") {
+                document.getElementById('confirmPassword').style.border = "1px solid red";
+                document.getElementById('confirmPasswordError').innerHTML = "Re-type new password.";
+
+            }
+            else {
+                document.getElementById('confirmPassword').style.border = "";
+                if (confirmPasswordText.length > 25 || confirmPasswordText.length < 6) {
+                    document.getElementById('confirmPasswordError').innerHTML = "Password must be less than 26 and greater than 5 ltters and digits.";
+                }
+                else {
+                    document.getElementById('confirmPasswordError').innerHTML = "";
+                }
+            }
+        });
+
+
+
+        var username = $('#username').val();
+        var email = $('#email').val();
+
+        function resetPersonalDetail() {
+
+            document.getElementById('username').style.border = "";
+            document.getElementById('usernameError').innerHTML = "";
+            document.getElementById('email').style.border = "";
+            document.getElementById('emailError').innerHTML = "";
+            $('#username').val(username);
+            $('#email').val(email);
+        }
+
+        function clearPasswordForm() {
+            $('#currentPassword').val('');
+            $('#newPassword').val('');
+            $('#confirmPassword').val('');
+            document.getElementById('currentPassword').style.border = "";
+            document.getElementById('currentPasswordError').innerHTML = "";
+            document.getElementById('newPassword').style.border = "";
+            document.getElementById('newPasswordError').innerHTML = "";
+            document.getElementById('confirmPassword').style.border = "";
+            document.getElementById('confirmPasswordError').innerHTML = "";
+            document.getElementById('confirmPassword').style.border = "";
+        }
+
+
+        function deleteConfirmation() {
+
+            swal({
+                title: "Are you sure",
+                text: "Your picture will be deleted permanantly!",
+                icon: "warning",
+                buttons: ["No", "Yes"]
+                ,
+                dangerMode: true,
+            })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        // If user clicked yes button
+
+                        $.ajax({
+                            type: 'POST',
+                            url: '/User/DeleteImage',
+                            data: null,
+                            success: function (response) {
+                                if (response.redirectTo) {
+                                    window.location.href = response.redirectTo;
+
+                                }
+                                else if (response == false) {
+                                    swal("Something went wrong, Please try again", "", {
+                                        icon: "error", buttons: "Ok"
+                                    });
+                                }
+                                else {
+                                    swal("Exception Occurred", "" + response.responseText, {
+                                        icon: "error", buttons: " Ok "
+                                    });
+                                }
+
+
+                            },
+                            error: function (error) {
+                                swal("Error Occurred", "" + error.responseText, {
+                                    icon: "error", buttons: " Ok "
+                                });
+
+                            }
+                        });
+                    }
+                });
+        }
+
+    </script>
+
+    @{
+
+        if (Session["imageState"] != null)
+        {
+
+
+            if (Session["imageState"].ToString() == "deleted")
+            {
+                // If image was deleted than set the session to false and show an alert
+                Session["imageState"] = "";
+                <script type="text/javascript">
+                    swal("You delete your profile picture", "", {
+                        icon: "info",
+                        buttons: " Ok "
+                    });
+
+                </script>
+
+            }
+
+        }
+    }
+
+
+
+</body>
+</html>

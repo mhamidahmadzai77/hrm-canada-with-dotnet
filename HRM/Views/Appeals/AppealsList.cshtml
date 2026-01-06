@@ -1,0 +1,143 @@
+﻿@model IEnumerable<HRM.Models.Appeal>
+@{
+    if (Session["user_108310113658"] != null)
+    {
+        if (Session["user_108310113658"].ToString() == "authenticated")
+        {
+            Layout = "~/Views/Shared/_AdminLayout.cshtml";
+        }
+    }
+    else
+    {
+        <script>
+            window.location.href = "/Home/Index";
+        </script>
+    }
+
+    ViewBag.Title = "Emergency Appeals Management | Human Relief Mission Canada";
+    ViewBag.Description = "Admin access only: Manage and oversee emergency appeals for Human Relief Mission Canada. Track urgent fundraising campaigns, update details, and ensure swift response to critical needs.";
+    ViewBag.Keywords = "emergency appeals, manage appeals, urgent fundraising, admin access, Human Relief Mission Canada, appeal oversight, crisis response";
+    ViewBag.OGandTwitterTitle = "Emergency Appeals Management | Human Relief Mission Canada";
+
+
+}
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RXXJLDEKC3"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); } gtag('js', new Date()); gtag('config', 'G-RXXJLDEKC3');
+    </script>
+
+
+    <style>
+        .purple {
+            background-color: #660199;
+        }
+
+        tbody tr:last-child {
+            height: 140px; /* Reset height for the last row */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="row" style="margin-top:120px;">
+        <div class="col-md-12">
+            <!-- BEGIN EXAMPLE TABLE PORTLET-->
+            <div class="portlet box default">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <b><i class="icon-settings"></i> Emergency Appeals</b>
+                    </div>
+                    <div class="tools"> </div>
+                </div>
+                <div class="portlet-body">
+                    <table class="table table-striped table-bordered table-hover" id="sample_2">
+                        <thead>
+                            <tr>
+                                <th> No </th>
+                                <th style="width:150px;"> Appeal's Title </th>
+                                <th> Author </th>
+                                <th> County </th>
+                                <th> Publication Date </th>
+                                <th> Status </th>
+                                <th style="width:150px;"> Actions </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{
+                                int number = 1;
+                                foreach (var appeal in Model)
+                                {
+
+                                    <tr id="@appeal.appeal_id">
+                                        <td> @number </td>
+                                        <td> @appeal.title </td>
+                                        <td> @appeal.author </td>
+                                        <td> @appeal.country </td>
+                                        <td> @appeal.publication_date.ToShortDateString() </td>
+                                        <td> @appeal.status </td>
+                                        <td>
+                                            <div class="btn-group">
+                                                <button class="btn btn-xs purple dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
+                                                    Actions
+                                                    <i class="fa fa-angle-down"></i>
+                                                </button>
+                                                <ul class="dropdown-menu" role="menu">
+                                                    <li>
+                                                        <a href="/Appeals/Appeal?id=@appeal.appeal_id&emergency_appeal=@appeal.title">
+                                                            <i class="icon-book-open"></i> Read
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="/Appeals/UpdateAppeal?id=@appeal.appeal_id&appeal=@appeal.title">
+                                                            <i class="fa fa-edit"></i> Update
+                                                        </a>
+                                                    </li>
+                                                    <li onclick="deleteAppeal(@appeal.appeal_id)">
+                                                        <a href="javascript:;">
+                                                            <i class="icon-trash"></i> Delete
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    number++;
+                                }
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- END EXAMPLE TABLE PORTLET-->
+        </div>
+    </div>
+
+    <script src="~/assets/appeal/js/appeal.js"></script>
+    <script src="~/assets/alert.js"></script>
+
+</body>
+</html>
+
+@{
+    if (Session["appeal-updated"] != null)
+    {
+        if (Session["appeal-updated"].ToString() == "true")
+        {
+
+<script>
+    
+    swal("Appeal updated successfully", "", {
+        icon: "success",
+        buttons: " Ok "
+    });
+</script>
+            Session["appeal-updated"] = null;
+
+        }
+    }
+}

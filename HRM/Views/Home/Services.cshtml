@@ -1,0 +1,278 @@
+﻿@model IEnumerable<HRM.Models.Appeal>
+@{
+    if (Session["user_108310113658"] != null)
+    {
+        if (Session["user_108310113658"].ToString() == "authenticated")
+        {
+            Layout = "~/Views/Shared/_AdminLayout.cshtml";
+        }
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_EndUserLayout.cshtml";
+    }
+
+    ViewBag.Title = "Our Projects - Services | Human Relief Mission Canada";
+    ViewBag.Description = "Explore the diverse projects and services offered by Human Relief Mission Canada. From food packages and hot meals to building masjids, providing ambulances, and supporting education and healthcare, learn how we’re making a difference in communities around the world.";
+    ViewBag.Keywords = "food packages, hot meals, masjid construction, ambulance services, health care, education programs, bread distribution, water aid, sponsorship programs, orphanage support, charity website";
+    ViewBag.OGandTwitterTitle = "Charity | Human Relief Mission Canada";
+
+}
+
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RXXJLDEKC3"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); } gtag('js', new Date()); gtag('config', 'G-RXXJLDEKC3');
+    </script>
+
+    <link href="~/assets/Home/custom.css" rel="stylesheet" />
+</head>
+<body style="margin: 0; padding: 0;">
+
+    @* Start Section Support our livesaving work*@
+    <div class="container-fluid hrm-service" style="background-color: #f8f8f8;">
+        <div class="live-saving-header">
+            <h1 style="font-weight:bold;padding-bottom:30px;">Human Relief Mission Services</h1>
+        </div>
+        <div class="row container-support-lifesaving">
+
+            <a href="/Service/FoodSecurity" style="color:#000;">
+                <div class="col-12 col-md-6 col-lg-4 support-lifesaving-card animated-element" onmouseenter="addAnimation(this)" onmouseleave="removeAnimation(this)">
+                    <!-- Card 1 -->
+                    <div class="card mb-3 card-color">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <img src="~/Content/projects/food-security/food package 2.jpg" class="image-support-live" alt="Responsive image">
+                                    <div class="mt-3 yellow-card">
+                                        <h5 class="card-title bold" style="font-size:1.5em;">Food Security</h5>
+                                        <i class="fa fa-arrow-right pull-right " style="padding-bottom:10px;"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="/Service/WaterAid" style="color:#000;">
+                <div class="col-12 col-md-6 col-lg-4 support-lifesaving-card animated-element" onmouseenter="addAnimation(this)" onmouseleave="removeAnimation(this)">
+                    <!-- Card 1 -->
+                    <div class="card mb-3 card-color">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <img src="~/Content/projects/water-aid/Watar Aid 5.jpg" class="image-support-live" alt="Responsive image">
+                                    <div class="mt-3 yellow-card">
+                                        <h5 class="card-title bold" style="font-size:1.5em;">Water Aid</h5>
+
+                                        <i class="fa fa-arrow-right pull-right " style="padding-bottom:10px;"></i>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="/Service/Health" style="color:#000;">
+                <div class="col-12 col-md-6 col-lg-4 support-lifesaving-card animated-element" onmouseenter="addAnimation(this)" onmouseleave="removeAnimation(this)">
+                    <!-- Card 1 -->
+                    <div class="card mb-3 card-color">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <img src="~/Content/projects/health-services/Health Services 4.jpg" class="image-support-live" alt="Responsive image">
+                                    <div class="mt-3 yellow-card">
+                                        <h5 class="card-title bold" style="font-size:1.5em;">Health Services</h5>
+
+                                        <i class="fa fa-arrow-right pull-right " style="padding-bottom:10px;"></i>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="/Service/BuildingMasjid" style="color:#000;">
+                <div class="col-12 col-md-6 col-lg-4 support-lifesaving-card animated-element" onmouseenter="addAnimation(this)" onmouseleave="removeAnimation(this)">
+                    <!-- Card 1 -->
+                    <div class="card mb-3 card-color">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <img src="~/Content/projects/construction/HRM-building-masjid 2.jpg" class="image-support-live" alt="Responsive image">
+                                    <div class="mt-3 yellow-card">
+                                        <h5 class="card-title bold" style="font-size:1.5em;">Construction Projects</h5>
+
+                                        <i class="fa fa-arrow-right pull-right " style="padding-bottom:10px;"></i>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="/Service/SponsorshipProgramme" style="color:#000;">
+                <div class="col-12 col-md-6 col-lg-4 support-lifesaving-card animated-element" onmouseenter="addAnimation(this)" onmouseleave="removeAnimation(this)">
+                    <!-- Card 1 -->
+                    <div class="card mb-3 card-color">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <img src="~/Content/projects/sponsorship-programme/sponsorship-programme.jpg" class="image-support-live" alt="Responsive image">
+                                    <div class="mt-3 yellow-card">
+                                        <h5 class="card-title bold" style="font-size:1.5em;">Sponsorship programme</h5>
+
+                                        <i class="fa fa-arrow-right pull-right " style="padding-bottom:10px;"></i>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="/Service/Ambulance" style="color:#000;">
+                <div class="col-12 col-md-6 col-lg-4 support-lifesaving-card animated-element" onmouseenter="addAnimation(this)" onmouseleave="removeAnimation(this)">
+                    <!-- Card 1 -->
+                    <div class="card mb-3 card-color">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <img src="~/Content/projects/ambulance-services/human-relief-mission-ambulance 1.jpg" class="image-support-live" alt="Responsive image">
+                                    <div class="mt-3 yellow-card">
+                                        <h5 class="card-title bold" style="font-size:1.5em;">Emergency Ambulance Services</h5>
+
+                                        <i class="fa fa-arrow-right pull-right " style="padding-bottom:10px;"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="/Service/TechnicalSchool" style="color:#000;">
+                <div class="col-12 col-md-6 col-lg-4 support-lifesaving-card animated-element" onmouseenter="addAnimation(this)" onmouseleave="removeAnimation(this)">
+                    <!-- Card 1 -->
+                    <div class="card mb-3 card-color">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <img src="~/Content/projects/techical-school/technical-school-1.jpg" class="image-support-live" alt="Responsive image">
+                                    <div class="mt-3 yellow-card">
+                                        <h5 class="card-title bold" style="font-size:1.5em;">Technical School</h5>
+
+                                        <i class="fa fa-arrow-right pull-right " style="padding-bottom:10px;"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="/Service/Orphanage" style="color:#000;">
+                <div class="col-12 col-md-6 col-lg-4 support-lifesaving-card animated-element" onmouseenter="addAnimation(this)" onmouseleave="removeAnimation(this)">
+                    <!-- Card 1 -->
+                    <div class="card mb-3 card-color">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <img src="~/Content/projects/sponsorship-programme/al-mouwasat-orphange-1.jpg" class="image-support-live" alt="Responsive image">
+                                    <div class="mt-3 yellow-card">
+                                        <h5 class="card-title bold" style="font-size:1.5em;">Al-Mouwasat Orphanage</h5>
+
+                                        <i class="fa fa-arrow-right pull-right " style="padding-bottom:10px;"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="/Service/Bakery" style="color:#000;">
+                <div class="col-12 col-md-6 col-lg-4 support-lifesaving-card animated-element" onmouseenter="addAnimation(this)" onmouseleave="removeAnimation(this)">
+                    <!-- Card 1 -->
+                    <div class="card mb-3 card-color">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <img src="~/Content/projects/bakery/bakery-1.jpg" class="image-support-live" alt="Responsive image">
+                                    <div class="mt-3 yellow-card">
+                                        <h5 class="card-title bold" style="font-size:1.5em;">The Bakery Project</h5>
+
+                                        <i class="fa fa-arrow-right pull-right " style="padding-bottom:10px;"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="/Service/GreenAfghanistan" style="color:#000;">
+                <div class="col-12 col-md-6 col-lg-4 support-lifesaving-card animated-element" onmouseenter="addAnimation(this)" onmouseleave="removeAnimation(this)">
+                    <!-- Card 1 -->
+                    <div class="card mb-3 card-color">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <img src="~/Content/projects/green-afghanistan/green-afghanistan-4.jpg" class="image-support-live" alt="Responsive image">
+                                    <div class="mt-3 yellow-card">
+                                        <h5 class="card-title bold" style="font-size:1.5em;">Green Afghanistan</h5>
+
+                                        <i class="fa fa-arrow-right pull-right " style="padding-bottom:10px;"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="row text-center">
+            <a href="/Home/Services" class="btn purple btn-outline see-more-link " style="padding:10px;background-color:#660199;color:#fff;">See more services <i class="fa fa-long-arrow-right"></i></a>
+        </div>
+    </div>
+    @* Start Section Support our livesaving work*@
+
+    <script src="~/assets/Home/custom.js"></script>
+</body>
+</html>

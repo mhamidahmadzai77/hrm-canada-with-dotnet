@@ -1,0 +1,534 @@
+﻿@model HRM.Models.Appeal
+@{
+    if (Session["user_108310113658"] != null)
+    {
+        if (Session["user_108310113658"].ToString() == "authenticated")
+        {
+            Layout = "~/Views/Shared/_AdminLayout.cshtml";
+        }
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_EndUserLayout.cshtml";
+    }
+
+    ViewBag.Title = Model.country + " Appeal | Human Relief Mission Canada";
+    ViewBag.Description = "Support our latest appeal at Human Relief Mission Canada. Learn about our current fundraising campaign, its goals, and how your contribution can make a difference in addressing urgent needs and supporting our mission.";
+    ViewBag.Keywords = Model.country + " Appeal, fundraising appeal, support our cause, charitable appeal, Human Relief Mission Canada, donate now, urgent support";
+    ViewBag.OGandTwitterTitle = Model.country + " | Human Relief Mission Canada";
+
+
+}
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RXXJLDEKC3"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); } gtag('js', new Date()); gtag('config', 'G-RXXJLDEKC3');
+    </script>
+
+    <link href="~/assets/news/css/custom.css" rel="stylesheet" />
+    <link href="~/assets/Home/custom.css" rel="stylesheet" />
+    <style type="text/css">
+        #donate-switch:hover {
+            cursor: pointer;
+        }
+
+        #inner-donate-switch:hover {
+            cursor: pointer;
+        }
+
+        #circle-bullet {
+            position: relative;
+            transition: left 0.3s;
+        }
+
+        #inner-circle-bullet {
+            position: relative;
+            transition: left 0.3s;
+        }
+
+        .btn-amount {
+            background-color: #660199;
+            color: #fff;
+            font-size: 1.3em;
+            font-weight: bold;
+            border: 2px solid #fff;
+            width: 80px;
+            height: 60px;
+        }
+
+        .inner-btn-amount {
+            background-color: #660199;
+            color: #fff;
+            font-size: 1.3em;
+            font-weight: bold;
+            border: 2px solid #fff;
+            width: 80px;
+            height: 60px;
+        }
+
+        .btn-amount:hover {
+            background-color: #fff;
+            color: #000;
+        }
+
+        .inner-btn-amount:hover {
+            background-color: #fff;
+            color: #000;
+        }
+
+        .btn-donate-red:hover > i.fa-arrow-right {
+            position: relative;
+            left: 4px;
+        }
+
+        .inner-btn-donate-red:hover > i.fa-arrow-right {
+            position: relative;
+            left: 4px;
+        }
+
+
+
+        .orphan-hope-image {
+        }
+
+        .orphan-hope-pragraph {
+            padding: 30px;
+            color: #fff;
+        }
+
+        .orphan-hope-image {
+            display: flex;
+            align-items: center; /* Vertically center the content */
+        }
+
+        .align-center {
+            display: flex;
+            justify-content: center; /* Horizontally center the content */
+            align-items: center; /* Vertically center the content */
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 50px auto;
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .faq-item {
+            border-bottom: 1px solid #e0e0e0;
+            padding: 30px 0;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: bold;
+            color: #660199;
+        }
+
+        .faq-answer {
+            display: none;
+            padding: 10px;
+            margin-top: 30px;
+            border-top: 1px solid #e0e0e0;
+            font-size: 18px;
+            font-weight: normal;
+            line-height: 1.5;
+            color: #000;
+        }
+
+        .expand-icon {
+            float: right;
+            transform: rotate(-90deg);
+            transition: transform 0.3s;
+        }
+
+            .expand-icon.open {
+                transform: rotate(90deg);
+            }
+
+        h1 {
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid image-title-container" style="padding:0;">
+        <div class="news-image col-md-8 pull-right">
+            <div>
+                <img src="@Model.header_picture_path" alt="@Model.country Appeal" id="appeal-header-picture" style="width:100%;" />
+            </div>
+        </div>
+        <div class="news-title-box col-sm-12 pull-left" id="header-donation-box" style="margin-bottom: 5px;">
+            <div class="news-title" style="width:100%;color:#fff;padding:30px;">
+                <h1 style="font-size:2.5em;">@Model.country Emergency Appeal</h1>
+
+            </div>
+            <div style="padding:0 30px 0 30px;">
+                <input type="hidden" id="amount" />
+                <button class="btn btn-amount" id="amount-1" onmouseover="changeColorWithMouseOver(1)" onmouseout="changeColorWithMouseOut(1)" onclick="amountClicked(1);">$@Model.amount1</button>
+                <button class="btn btn-amount" id="amount-2" onmouseover="changeColorWithMouseOver(2)" onmouseout="changeColorWithMouseOut(2)" onclick="amountClicked(2);">$@Model.amount2</button>
+                <button class="btn btn-amount" id="amount-3" onmouseover="changeColorWithMouseOver(3)" onmouseout="changeColorWithMouseOut(3)" onclick="amountClicked(3);">$@Model.amount3</button>
+                <input type="number" class="form-control" id="amount-4" onclick="otherClicked();" value="" style="display:inline;border:2px solid #fff;width:100px;height:60px;background-color:#660199;color:#fff;font-size:1.3em;font-weight:bold;position:relative;top:3px;" placeholder="Other" />
+            </div>
+            <div style="padding:10px 30px 0 30px;">
+                <span id="donation-message" style="color:#fff;"></span>
+            </div>
+            <div>
+                <button class="btn btn-donate-red" onclick='donateNow("@Model.country".replace(/ /g, "-") + "-Appeal")' style="width: 180px; height: 60px; background-color: red; border: none; position: relative; left: 30px; top: 10px; color: #fff; font-size: 1.3em; font-weight: bold; "> Donate now <i class="fa fa-arrow-right"></i></button>
+            </div>
+            <div class="col-md-2 header-fundraising-logos">
+                <img src="~/assets/FR-logo/FR_Fundraising-Badge_white_150ppi.png" style="width:150px; margin-right: 10px;" />
+                <img src="~/assets/FR-logo/direct-debit-logo.png" style="width:150px;" />
+                <img src="~/assets/FR-logo/visa-6850402_1280.png" style="width:100px;" />
+                <img src="~/assets/FR-logo/mastercard.png" style="width: 80px;" />
+            </div>
+        </div>
+    </div>
+
+    @* Start Section The reality of hunger*@
+    <div class="container-fluid">
+        <div class="col-md-3"></div>
+        <div class="col-md-6 " style="text-align:justify;font-size:18px;">
+            <h1 style="font-weight:bold;font-size:2em">
+                @Model.title
+            </h1>
+            <p>
+                <h3 style="word-wrap:break-word;">@Model.meta_data </h3>
+            </p>
+            @{
+                var content = Model.content; // Assuming Model.content contains your text
+            }
+
+            @if (!string.IsNullOrEmpty(content))
+            {
+                var sentences = content.Split(new[] { '.' }, StringSplitOptions.RemoveEmptyEntries)
+                                       .Select(s => s.Trim())
+                                       .Where(s => !string.IsNullOrEmpty(s)) // Make sure we filter out any empty sentences
+                                       .ToList();
+
+                // Loop through the sentences and display each pair in a single <p> tag
+                for (int i = 0; i < sentences.Count; i += 2)
+                {
+                    <p style="word-wrap: break-word;">
+                        @sentences[i] @(i + 1 < sentences.Count ? ". " + sentences[i + 1] : string.Empty) @* Add the next sentence if it exists*@
+                    </p>
+                }
+            }
+            <p style="width:100%;">
+                <img src="@Model.content_picture1_path" class="col-md-6" alt="@Model.country Appeal" style="width:100%;" />
+            </p>
+            <p style="line-height:0px;">&nbsp;</p>
+            @if (Model.contentImage1Note != null)
+            {
+                <p style="font-size:14px;">Image: @Model.contentImage1Note</p>
+            }
+            <p style="width:100%;">
+                <img src="@Model.content_picture2_path" class="col-md-6" alt="@Model.country Appeal" style="width:100%;" />
+            </p>
+            <p style="line-height:0px;">&nbsp;</p>
+            @if (Model.contentImage2Note != null)
+            {
+                <p style="font-size:14px;">Image: @Model.contentImage2Note</p>
+            }
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+
+    <img src="~/assets/FR-logo/FR_Fundraising-Badge_white_150ppi.png" style="display:none;" />
+    @*BEGIN DONATE FOR FOOD SECURITY*@
+    <div class="container-fluid" style="background-color: #660199 !important; height: auto; color: #fff;margin-top:50px;">
+        <div class="col-md-6" style="padding:30px;">
+            <h1 style="font-size:3em;">@Model.country Emergency Appeal</h1>
+            <p style="font-size:16px;">@Model.meta_data</p>
+            <div class="col-md-2 header-fundraising-logos" style="padding-top:30px;">
+                <img src="~/assets/FR-logo/FR_Fundraising-Badge_white_150ppi.png" style="width:150px; margin-right: 10px;" />
+                <img src="~/assets/FR-logo/direct-debit-logo.png" style="width:150px;" />
+                <img src="~/assets/FR-logo/visa-6850402_1280.png" style="width:100px;" />
+                <img src="~/assets/FR-logo/mastercard.png" style="width: 80px;" />
+            </div>
+
+        </div>
+        <div class="col-md-6" style="padding-bottom:30px;margin-top:60px;">
+
+            <div style="padding:0 30px 0 30px;">
+                <input type="hidden" id="inner-amount" />
+                <button class="btn inner-btn-amount" id="inner-amount-1" onmouseover="innerChangeColorWithMouseOver(1)" onmouseout="innerChangeColorWithMouseOut(1)" onclick="innerAmountClicked(1);">&pound;@Model.amount1</button>
+                <button class="btn inner-btn-amount" id="inner-amount-2" onmouseover="innerChangeColorWithMouseOver(2)" onmouseout="innerChangeColorWithMouseOut(2)" onclick="innerAmountClicked(2);">&pound;@Model.amount2</button>
+                <button class="btn inner-btn-amount" id="inner-amount-3" onmouseover="innerChangeColorWithMouseOver(3)" onmouseout="innerChangeColorWithMouseOut(3)" onclick="innerAmountClicked(3);">&pound;@Model.amount3</button>
+                <input type="number" class="form-control" id="inner-amount-4" onclick="innerOtherClicked();" value="" style="display:inline;border:2px solid #fff;width:100px;height:60px;background-color:#660199;color:#fff;font-size:1.3em;font-weight:bold;position:relative;top:3px;" placeholder="Other" />
+            </div>
+            <div style="padding:10px 30px 0 30px;">
+                <span id="inner-donation-message" style="color:#fff;"></span>
+            </div>
+            <div>
+                <button class="btn btn-donate-red" onclick='innerDonateNow("@Model.country".replace(/ /g, "-") + "-Appeal")' style="width: 180px; height: 60px; background-color: red; border: none; position: relative; left: 30px; top: 10px; color: #fff; font-size: 1.3em; font-weight: bold;"> Donate now <i class="fa fa-arrow-right"></i></button>
+            </div>
+
+        </div>
+    </div>
+    <div class="" style="margin:0 auto;">
+        <div class="col-md-3" style=""></div>
+        <div class="col-md-6 text-center text-justify" style="padding:50px 10px;font-size:18px;">
+            <p style="font-size:16px;font-style:italic;">Please note: Donations made on this page will be allocated to our Food fund that is used to deliver a range of different food projects such as the examples showcased here. These programmes can and will be delivered in any of the countries where Al-Mouwasat has a presence, and those projects are catered to the local community with the aim to save and transform lives.</p>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+    @*END DONATE FOR FOOD SECURITY*@
+
+    <script src="~/assets/Home/custom.js"></script>
+    <script src="~/assets/donation-script/appeal/appeal.js"></script>
+    <script src="~/assets/donation-script/appeal/inner-appeal.js"></script>
+    <script>
+
+       // Header Donation
+        var donationType = "one off";
+
+
+        document.getElementById('amount-2').style.backgroundColor = "#fff";
+        document.getElementById('amount-2').style.color = "#000";
+        document.getElementById('amount').value = '@Html.Raw(@Model.amount2)';;
+        document.getElementById('donation-message').innerHTML = '@Html.Raw(@Model.amount2Message)';
+
+        function amountClicked(amount) {
+            document.getElementById('amount-4').value = "";
+
+
+            if (amount == "1") {
+                amount = '@Html.Raw(@Model.amount1)';
+                document.getElementById('donation-message').innerHTML = '@Html.Raw(@Model.amount1Message)';
+            }
+            else if (amount == "2") {
+                amount = '@Html.Raw(@Model.amount2)';
+                document.getElementById('donation-message').innerHTML = '@Html.Raw(@Model.amount2Message)';
+            }
+            else if (amount == "3") {
+                amount = '@Html.Raw(@Model.amount3)';
+                document.getElementById('donation-message').innerHTML = '@Html.Raw(@Model.amount3Message)';
+            }
+
+            $('#amount').val(amount);
+            var amountButtons = document.getElementsByClassName('btn-amount');
+            for (var i = 0; i < amountButtons.length; i++) {
+                amountButtons[i].style.backgroundColor = '#660199';
+                amountButtons[i].style.color = '#fff';
+            }
+            if (amount == '@Html.Raw(@Model.amount1)') {
+                document.getElementById("amount-1").style.backgroundColor = "#fff";
+                document.getElementById("amount-1").style.color = "#000";
+            }
+            if (amount == '@Html.Raw(@Model.amount2)') {
+                document.getElementById("amount-2").style.backgroundColor = "#fff";
+                document.getElementById("amount-2").style.color = "#000";
+            }
+            if (amount == '@Html.Raw(@Model.amount3)') {
+                document.getElementById("amount-3").style.backgroundColor = "#fff";
+                document.getElementById("amount-3").style.color = "#000";
+            }
+        }
+
+        function changeColorWithMouseOver(num) {
+
+            var element = document.getElementById('amount-' + num);
+            element.style.backgroundColor = '#fff'; // Change 'white' to the desired background color
+            element.style.color = '#000'; // Change 'black' to the desired text color
+        }
+
+        function changeColorWithMouseOut(num) {
+            var currentAmount = "";
+
+            if (num == "1")
+                currentAmount = '@Html.Raw(@Model.amount1)';
+            else if (num == "2")
+                currentAmount = '@Html.Raw(@Model.amount2)';
+            else if (num == "3")
+                currentAmount = '@Html.Raw(@Model.amount3)';
+
+            var amountValue = document.getElementById('amount').value;
+
+            if (amountValue != currentAmount) {
+                var element = document.getElementById('amount-' + num);
+                element.style.backgroundColor = '#660199'; // Change 'purple' to the desired background color
+                element.style.color = '#fff'; // Change 'white' to the desired text color
+            }
+
+        }
+
+        function otherClicked() {
+            $('#amount').val('');
+            document.getElementById('donation-message').innerHTML = "Please enter the amount";
+            var amountButtons = document.getElementsByClassName('btn-amount');
+            for (var i = 0; i < amountButtons.length; i++) {
+                amountButtons[i].style.backgroundColor = '#660199';
+                amountButtons[i].style.color = '#fff';
+            }
+        }
+        document.getElementById('amount-4').oninput = function () {
+            otherAmountChanged(this.value);
+        };
+
+        function otherAmountChanged(value) {
+            $('#amount').val(value);
+
+            var amountButtons = document.getElementsByClassName('btn-amount');
+            for (var i = 0; i < amountButtons.length; i++) {
+                amountButtons[i].style.backgroundColor = '#660199';
+                amountButtons[i].style.color = '#fff';
+            }
+
+            var textVal = document.getElementById("amount-4").value;
+            if (textVal !== "") {
+                document.getElementById("amount-4").style.backgroundColor = "#fff";
+                document.getElementById("amount-4").style.color = "#000";
+            }
+        }
+
+
+        function donateNow(project_name) {
+            var otherValue = document.getElementById('amount-4').value;
+            if (otherValue !== "") {
+                var value = parseInt(otherValue);
+                if (!isNaN(value) && value > 0) {
+                    addAndRefreshBasket(11, project_name, value);
+                    showToast("Thank you!", "Your donation of $[" + value + "] has been added to the basket.", "success");
+                }
+            } else {
+                var value = parseInt(document.getElementById('amount').value);
+                if (!isNaN(value) && value > 0) {
+                    addAndRefreshBasket(11, project_name, value);
+                    showToast("Thank you!", "Your donation of $[" + value + "] has been added to the basket.", "success");
+                }
+            }
+        }
+
+
+
+
+
+        // Footer Donation
+        var donationType = "one off";
+
+
+        document.getElementById('inner-amount-2').style.backgroundColor = "#fff";
+        document.getElementById('inner-amount-2').style.color = "#000";
+        document.getElementById('inner-amount').value = '@Html.Raw(@Model.amount2)';;
+        document.getElementById('inner-donation-message').innerHTML = '@Html.Raw(@Model.amount2Message)';
+
+        function innerAmountClicked(amount) {
+            document.getElementById('inner-amount-4').value = "";
+
+
+            if (amount == "1") {
+                amount = '@Html.Raw(@Model.amount1)';
+                document.getElementById('inner-donation-message').innerHTML = '@Html.Raw(@Model.amount1Message)';
+            }
+            else if (amount == "2") {
+                amount = '@Html.Raw(@Model.amount2)';
+                document.getElementById('inner-donation-message').innerHTML = '@Html.Raw(@Model.amount2Message)';
+            }
+            else if (amount == "3") {
+                amount = '@Html.Raw(@Model.amount3)';
+                document.getElementById('inner-donation-message').innerHTML = '@Html.Raw(@Model.amount3Message)';
+            }
+
+            $('#inner-amount').val(amount);
+            var amountButtons = document.getElementsByClassName('inner-btn-amount');
+            for (var i = 0; i < amountButtons.length; i++) {
+                amountButtons[i].style.backgroundColor = '#660199';
+                amountButtons[i].style.color = '#fff';
+            }
+            if (amount == '@Html.Raw(@Model.amount1)') {
+                document.getElementById("inner-amount-1").style.backgroundColor = "#fff";
+                document.getElementById("inner-amount-1").style.color = "#000";
+            }
+            if (amount == '@Html.Raw(@Model.amount2)') {
+                document.getElementById("inner-amount-2").style.backgroundColor = "#fff";
+                document.getElementById("inner-amount-2").style.color = "#000";
+            }
+            if (amount == '@Html.Raw(@Model.amount3)') {
+                document.getElementById("inner-amount-3").style.backgroundColor = "#fff";
+                document.getElementById("inner-amount-3").style.color = "#000";
+            }
+        }
+
+        function innerChangeColorWithMouseOver(num) {
+
+            var element = document.getElementById('inner-amount-' + num);
+            element.style.backgroundColor = '#fff'; // Change 'white' to the desired background color
+            element.style.color = '#000'; // Change 'black' to the desired text color
+        }
+
+        function innerChangeColorWithMouseOut(num) {
+            var currentAmount = "";
+
+            if (num == "1")
+                currentAmount = '@Html.Raw(@Model.amount1)';
+            else if (num == "2")
+                currentAmount = '@Html.Raw(@Model.amount2)';
+            else if (num == "3")
+                currentAmount = '@Html.Raw(@Model.amount3)';
+
+            var amountValue = document.getElementById('inner-amount').value;
+
+            if (amountValue != currentAmount) {
+                var element = document.getElementById('inner-amount-' + num);
+                element.style.backgroundColor = '#660199'; // Change 'purple' to the desired background color
+                element.style.color = '#fff'; // Change 'white' to the desired text color
+            }
+
+        }
+
+        function innerOtherClicked() {
+            $('#amount').val('');
+            document.getElementById('inner-donation-message').innerHTML = "Please enter the amount";
+            var amountButtons = document.getElementsByClassName('inner-btn-amount');
+            for (var i = 0; i < amountButtons.length; i++) {
+                amountButtons[i].style.backgroundColor = '#660199';
+                amountButtons[i].style.color = '#fff';
+            }
+        }
+        document.getElementById('inner-amount-4').oninput = function () {
+            otherAmountChanged(this.value);
+        };
+
+        function innerOtherAmountChanged(value) {
+            $('#inner-amount').val(value);
+
+            var amountButtons = document.getElementsByClassName('inner-btn-amount');
+            for (var i = 0; i < amountButtons.length; i++) {
+                amountButtons[i].style.backgroundColor = '#660199';
+                amountButtons[i].style.color = '#fff';
+            }
+
+            var textVal = document.getElementById("inner-amount-4").value;
+            if (textVal !== "") {
+                document.getElementById("inner-amount-4").style.backgroundColor = "#fff";
+                document.getElementById("inner-amount-4").style.color = "#000";
+            }
+        }
+
+
+        function innerDonateNow(project_name) {
+
+            var otherValue = document.getElementById('inner-amount-4').value;
+            if (otherValue !== "") {
+                var value = parseInt(otherValue);
+                if (!isNaN(value) && value > 0) {
+                    addAndRefreshBasket(11, project_name, value);
+                    showToast("Thank you!", "Your donation of $[" + value + "] has been added to the basket.", "success");
+                }
+            } else {
+                var value = parseInt(document.getElementById('inner-amount').value);
+                if (!isNaN(value) && value > 0) {
+                    addAndRefreshBasket(11, project_name, value);
+                    showToast("Thank you!", "Your donation of $[" + value + "] has been added to the basket.", "success");
+                }
+            }
+        }
+
+
+    </script>
+</body>
+</html>

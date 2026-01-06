@@ -1,0 +1,951 @@
+﻿@model HRM.Models.Donation
+
+@using HRM.Models
+@using Newtonsoft.Json;
+
+@{
+
+    Layout = "~/Views/Shared/paymentLayout.cshtml";
+
+    ViewBag.Title = "Donate Now | Human Relief Mission Canada";
+    ViewBag.Description = "Make a difference today with your donation to Human Relief Mission Canada. Support our vital projects, including food aid, healthcare, and education, and help us provide essential relief to those in need.";
+    ViewBag.Keywords = "donate, charitable donation, donate today, humanitarian aid, support our mission, food relief, healthcare support, education funding, Human Relief Mission Canada";
+    ViewBag.OGandTwitterTitle = "Donate to Human Relief Mission Canada - Make an Impact";
+
+}
+
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RXXJLDEKC3"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); } gtag('js', new Date()); gtag('config', 'G-RXXJLDEKC3');
+    </script>
+
+
+    <link href="~/assets/payment/start-section.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdn.tailwindcss.com" rel="stylesheet">
+    <script async src="https://pay.google.com/gp/p/js/pay.js" onload="onGooglePayLoaded()"></script>
+    <style type="text/css">
+        /* Ensure the other amount div is hidden by default */
+        #other-amount {
+            display: none; /* Hidden by default */
+        }
+    </style>
+
+</head>
+<body style="background-color:#fff;">
+    <div class="container-fluid">
+        <div class="row" style="padding-top:25px;">
+            <div class="col-md-12">
+                <div class="portlet light bordered" id="form_wizard_1">
+                    <div class="portlet-title">
+                        <div class="caption">
+                            <i class=" icon-layers font-red"></i>
+                            <span class="caption-subject font-red bold uppercase">
+                                Donation Form -
+                                <span class="step-title"> Step 1 of 4 </span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="portlet-body form">
+                        <form class="form-horizontal" action="#" id="submit_form" method="POST" novalidate="novalidate">
+                            <div class="form-wizard">
+                                <div class="form-body">
+                                    <ul class="nav nav-pills nav-justified steps">
+                                        <li id="phase1" class="active">
+                                            <a href="#tab1" id="phase1Lisk" data-toggle="tab" class="step" aria-expanded="true">
+                                                <span class="number"> 1 </span>
+                                                <span class="desc">
+                                                    <i class="fa fa-check"></i> Start
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li id="phase2">
+                                            <a href="#tab2" id="phase2Lisk" data-toggle="tab" class="step tab2">
+                                                <span class="number"> 2 </span>
+                                                <span class="desc">
+                                                    <i class="fa fa-check"></i> Donation
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li id="phase3">
+                                            <a href="#tab3" id="phase3Lisk" data-toggle="tab" class="step">
+                                                <span class="number"> 3 </span>
+                                                <span class="desc">
+                                                    <i class="fa fa-check"></i> Gift Aid
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li id="phase4">
+                                            <a href="#tab4" id="phase4Lisk" data-toggle="tab" class="step">
+                                                <span class="number"> 4 </span>
+                                                <span class="desc">
+                                                    <i class="fa fa-check"></i> Your Details
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li id="phase5">
+                                            <a href="#tab5" id="phase5Lisk" data-toggle="tab" class="step">
+                                                <span class="number"> 5 </span>
+                                                <span class="desc">
+                                                    <i class="fa fa-check"></i> Payment
+                                                </span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                    <div id="bar" class="progress progress-striped" role="progressbar">
+                                        <div class="progress-bar progress-bar-success" style="width: 20%;"> </div>
+                                    </div>
+                                    <div class="tab-content">
+                                        <div class="alert alert-danger display-none">
+                                            <button class="close" data-dismiss="alert"></button> You have some form errors. Please check below.
+                                        </div>
+                                        <div class="alert alert-success display-none">
+                                            <button class="close" data-dismiss="alert"></button> Your form validation is successful!
+                                        </div>
+                                        <div class="tab-pane active" id="tab1">
+                                            <div class="container-fluid image-title-container" style="padding:0;">
+                                                <div class="news-image col-md-8 pull-right">
+                                                    <div>
+                                                        <img src="~/Content/pic/donate.jpg" alt="image" id="appeal-header-picture" style="width:100%;" />
+                                                    </div>
+                                                </div>
+                                                <div class="news-title-box col-sm-12 pull-left">
+                                                    <div class="news-title" style="width:100%;color:#fff;padding:30px;">
+                                                        <h1 style="font-size:2em;">Make a donation</h1>
+                                                        <p style="margin-top:30px;">Be a lifesaver. Make a donation to Human Relief Mission today.</p>
+                                                    </div>
+                                                    <div class="button-container">
+                                                        <a href="javascript:;" class="donation-type-button" id="one-off" onclick="selectDonationType('one-off')">One off <span class="arrow fa fa-arrow-right"></span></a>
+                                                        <a href="javascript:;" class="donation-type-button" id="monthly" onclick="selectDonationType('monthly')">Monthly <span class="arrow fa fa-arrow-right"></span></a>
+                                                        <input type="hidden" id="donation_type" name="donation_type" value="" />
+                                                    </div>
+                                                    <input type="hidden" name="donationType" id="donationType" value="" />
+                                                    <div class="col-md-4 header-fundraising-logos">
+                                                        <img src="~/assets/FR-logo/FR_Fundraising-Badge_white_150ppi.png" style="width:150px; margin-right: 10px;" />
+                                                        <img src="~/assets/FR-logo/direct-debit-logo.png" style="width:150px;" />
+                                                        <img src="~/assets/FR-logo/visa-6850402_1280.png" style="width:100px;" />
+                                                        <img src="~/assets/FR-logo/mastercard.png" style="width: 80px;" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane" id="tab2">
+
+                                            <div class="form-group funds-container">
+                                                @{
+                                                    int total = 0;
+                                                    string name = "";
+                                                    if (Model != null)
+                                                    {
+
+                                                        <input type="hidden" id="quick-amount" value="@Model.Amount" />
+                                                        <input type="hidden" id="quick-project-name" value="@Model.Name" />
+                                                        <input type="text" id="project" name="project" value="@Model.Name" disabled style="border:none;outline:none;color:#fff;background-color:#fff;" />
+
+                                                    }
+                                                    else if (ViewBag.basket != null && ((List<DonationItem>)ViewBag.basket).Any())
+                                                    {
+                                                        int count = 0;
+                                                        count = ViewBag.basket.Count;
+                                                        foreach (DonationItem item in (List<DonationItem>)ViewBag.basket)
+                                                        {
+                                                            total = total + Convert.ToInt32(item.Amount);
+                                                            count--;
+                                                            if (count == 1)
+                                                            {
+                                                                name = name + item.Name + " and ";
+
+                                                            }
+                                                            else if (count == 0)
+                                                            {
+                                                                name = name + item.Name;
+
+                                                            }
+                                                            else
+                                                            {
+                                                                name = name + item.Name + ", ";
+                                                            }
+
+                                                        }
+                                                        <input type="hidden" id="quick-amount" value="@total" />
+                                                        <input type="hidden" id="quick-project-name" value="@name" />
+                                                        <input type="text" id="project" name="project" value="@name" disabled style="border:none;outline:none;color:#fff;background-color:#fff;" />
+
+                                                    }
+                                                    else
+                                                    {
+                                                        <input type="text" id="project" name="project" value="" disabled style="border:none;outline:none;color:#fff;background-color:#fff;" />
+
+                                                    }
+                                                }
+
+                                                <div class="row">
+                                                    <div class="col-md-2"></div>
+
+                                                    <!-- Display the funds here... -->
+                                                </div>
+                                                <!-- Donation Amount Section -->
+                                                <div class="row" id="donatino-amount-part">
+                                                    <div class="col-md-2"></div>
+                                                    <div class="col-md-8 donation-amounts" style="padding:0;margin:0;">
+                                                        <!-- Montyly amount field when user want to donate monthly-->
+                                                        @{
+
+
+                                                            if (Model != null)
+                                                            {
+                                                                <input type="hidden" id="monthly-donation-amount" value="@Model.Amount" />
+                                                                <input type="hidden" id="monthly-donation-project-name" value="@Model.Name" />
+                                                            }
+                                                            else if (ViewBag.basket != null && ((List<DonationItem>)ViewBag.basket).Any())
+                                                            {
+                                                                int count = 0;
+                                                                total = 0;
+                                                                count = ViewBag.basket.Count;
+                                                                foreach (DonationItem item in (List<DonationItem>)ViewBag.basket)
+                                                                {
+                                                                    total = total + Convert.ToInt32(item.Amount);
+                                                                    count--;
+                                                                    if (count == 1)
+                                                                    {
+                                                                        name = name + item.Name + " and ";
+
+                                                                    }
+                                                                    else if (count == 0)
+                                                                    {
+                                                                        name = name + item.Name;
+
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        name = name + item.Name + ", ";
+                                                                    }
+
+                                                                }
+                                                                <input type="hidden" id="multiple-donation-amount" value="@total" />
+                                                                <input type="hidden" id="multiple-donation-project-name" value="@name" />
+                                                            }
+
+                                                        }
+                                                        <h1 style="margin-left:10px;">Donation Amount</h1>
+                                                        <div class="radio-button-amount">
+                                                            <input type="radio" id="amount1" name="amount" onclick="handleAmountMessageChange()" value="">
+                                                            <label for="amount1" id="amount1Label"></label>
+                                                        </div>
+                                                        <div class="radio-button-amount">
+                                                            <input type="radio" id="amount2" name="amount" onclick="handleAmountMessageChange()" value="">
+                                                            <label for="amount2" id="amount2Label"></label>
+                                                        </div>
+                                                        <div class="radio-button-amount">
+                                                            <input type="radio" id="amount3" name="amount" onclick="handleAmountMessageChange()" value="">
+                                                            <label for="amount3" id="amount3Label"></label>
+                                                        </div>
+                                                        <div class="radio-button-amount">
+                                                            <input type="radio" id="other" name="amount" onclick="handleAmountMessageChange()" value="other">
+                                                            <label for="other">Other</label>
+                                                        </div>
+                                                        <div class="form-group" id="other-amount">
+                                                            <div class="col-md-12">
+                                                                <input type="number" min="1" step="2" class="form-control" id="otherAmount" name="manualAmount" placeholder="Enter Amount" oninput="manualAmountInput()">
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="amount-message" id="amount-message" style="margin-left:10px"></div>
+                                                    </div>
+                                                    <div class="col-md-2"></div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane" id="tab3">
+
+                                            <div class="row">
+                                                <div class="col-md-2"></div>
+                                                <div class="col-md-8">
+                                                    <h1 style="font-size:4em;font-weight:bold;font-style: italic;">Gift Aid</h1>
+                                                    <div class="gift-aid-container" style="background-color: #f8f8f8; font-size: 20px;text-align:center;">
+                                                        <div class="col-md-12" style="display: flex; justify-content: center; align-items: center; margin-top: 30px;">
+                                                            <img src="~/Content/pic/gift-logo.png" alt="Gift Aid" style="max-width: 100%; height: auto;" />
+                                                        </div>
+                                                        <p style="line-height:20px;">&nbsp;</p>
+                                                        <p style="padding-top: 30px;">If you are a UK taxpayer the value of your gift can increase by 25% at no extra cost to you!</p>
+                                                        <p id="" style="font-size:2.3em;margin-top:20px;font-weight:bold;color:#660199;">
+                                                            $<span id="paying-amount"></span> <i class="fa fa-arrow-right" style="color: #71767d; font-size: 25px; padding-top: -10px;"></i> $<span id="paying-amount-with-gift-aid">12.50</span>
+                                                        </p>
+                                                        <div class="uk-taxpayer-checkbox-container" style="display: flex; align-items: center; margin-top: 20px;">
+                                                            <input type="checkbox" class="form-check-input" id="taxpayer" name="taxpayer" style="margin-right: 10px; accent-color: #660199;color:#660199; width: 20px; height: 20px;margin-top:-35px;">
+                                                            <label class="taxpayer-label form-check-label" for="taxpayer" style="font-weight: bold;">
+                                                                I am a UK taxpayer, donating as an individual and would like Human Relief Mission to claim Gift Aid on my donation*
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane" id="tab4">
+
+                                            <div class="row">
+                                                <div class="col-md-2"></div>
+                                                <div class="col-md-8" style="font-weight: bold;">
+                                                    <h1 style="font-size:4em;font-weight:bold;font-style: italic;">Your Details</h1>
+                                                    <h2 class="display-donation-type" style="font-size: 2.5em; font-weight: bold; font-style: italic; padding-top: 35px; padding-bottom: 8px; "></h2>
+                                                    <div class="col-md-12" style="height: 2px; background-color: #686868;padding-left:10px;padding-right:10px;"></div>
+                                                    @{
+                                                        if (ViewBag.basket != null && ((List<DonationItem>)ViewBag.basket).Any())
+                                                        {
+                                                            int count = 0;
+                                                            total = 0;
+                                                            count = ViewBag.basket.Count;
+                                                            foreach (DonationItem item in (List<DonationItem>)ViewBag.basket)
+                                                            {
+                                                                total = total + Convert.ToInt32(item.Amount);
+                                                                <div class="col-md-12" style="padding-top:10px;padding-bottom:10px;font-size:18px;">
+                                                                    <div class="pull-left" id="">
+                                                                        @item.Name
+                                                                    </div>
+                                                                    <div class="pull-right">
+                                                                        <i class="bold" id="">$@item.Amount</i>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-12 bottom-line-of-donation-item" style="height: 2px; background-color: #686868;padding-left:10px;padding-right:10px;"></div>
+
+                                                            }
+                                                            <div class="col-md-12" style="padding-top:10px;padding-bottom:10px;font-size:20px;">
+                                                                <div class="pull-left">
+                                                                    Total
+                                                                </div>
+                                                                <div class="pull-right">
+                                                                    <i class="bold" id="">$@total</i>
+                                                                </div>
+                                                            </div>
+                                                        }
+                                                        else
+                                                        {
+                                                            <div class="col-md-12" style="padding-top:10px;padding-bottom:10px;font-size:18px;">
+                                                                <div class="pull-left" id="projec-name-in-your-detail-page">
+
+                                                                </div>
+                                                                <div class="pull-right">
+                                                                    <i class="bold" id="payment-amount-in-your-detail-page">$</i>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-12 bottom-line-of-donation-item" style="height: 2px; background-color: #686868;padding-left:10px;padding-right:10px;"></div>
+                                                            <div class="col-md-12" style="padding-top:10px;padding-bottom:10px;font-size:20px;">
+                                                                <div class="pull-left">
+                                                                    Total
+                                                                </div>
+                                                                <div class="pull-right">
+                                                                    <i class="bold" id="total-payment-amount-in-your-detail-page">$</i>
+                                                                </div>
+                                                            </div>
+                                                        }
+
+                                                    }
+
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3">
+                                                    Firstname
+                                                    <span class="required" aria-required="true"> * </span>
+                                                </label>
+                                                <div class="col-md-4">
+                                                    <input type="text" class="form-control" id="firstname" name="donor_firstname" value="">
+                                                    <span class="help-block"> Provide your firstname </span>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3">
+                                                    Surname
+                                                    <span class="required" onchange="name()" aria-required="true"> * </span>
+                                                </label>
+                                                <div class="col-md-4">
+                                                    <input type="text" class="form-control" id="surname" name="donor_surname" value="">
+                                                    <span class="help-block"> Provide your surname </span>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3">
+                                                    Email
+                                                    <span class="required" aria-required="true"> * </span>
+                                                </label>
+                                                <div class="col-md-4">
+                                                    <input type="email" class="form-control" id="email" name="email" onchange="fillEmailField()" value="">
+                                                    <span class="help-block"> Provide your email </span>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3">
+                                                    Phone Number
+                                                </label>
+                                                <div class="col-md-4">
+                                                    <input type="text" class="form-control" name="phone" value="">
+                                                    <span class="help-block"> Provide your phone number </span>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3">
+                                                    Address
+                                                    <span class="required" aria-required="true"> * </span>
+                                                </label>
+                                                <div class="col-md-4">
+                                                    <input type="text" class="form-control" name="address" value="">
+                                                    <span class="help-block"> Provide your street address </span>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3">
+                                                    City/Town
+                                                    <span class="required" aria-required="true"> * </span>
+                                                </label>
+                                                <div class="col-md-4">
+                                                    <input type="text" class="form-control" name="city" value="">
+                                                    <span class="help-block"> Provide your city or town </span>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3">
+                                                    Country
+                                                    <span class="required" aria-required="true"> * </span>
+                                                </label>
+                                                <div class="col-md-4">
+                                                    <select name="country" id="country_list" class="form-control select2-hidden-accessible" tabindex="-1" aria-hidden="true">
+                                                        <option value=""></option>
+                                                        <option value="Afghanistan">Afghanistan</option>
+                                                        <option value="Albania">Albania</option>
+                                                        <option value="Algeria">Algeria</option>
+                                                        <option value="American Samoa">American Samoa</option>
+                                                        <option value="Andorra">Andorra</option>
+                                                        <option value="Angola">Angola</option>
+                                                        <option value="Anguilla">Anguilla</option>
+                                                        <option value="Argentina">Argentina</option>
+                                                        <option value="Armenia">Armenia</option>
+                                                        <option value="Aruba">Aruba</option>
+                                                        <option value="Australia">Australia</option>
+                                                        <option value="Austria">Austria</option>
+                                                        <option value="Azerbaijan">Azerbaijan</option>
+                                                        <option value="Bahamas">Bahamas</option>
+                                                        <option value="Bahrain">Bahrain</option>
+                                                        <option value="Bangladesh">Bangladesh</option>
+                                                        <option value="Barbados">Barbados</option>
+                                                        <option value="Belarus">Belarus</option>
+                                                        <option value="Belgium">Belgium</option>
+                                                        <option value="Belize">Belize</option>
+                                                        <option value="Benin">Benin</option>
+                                                        <option value="Bermuda">Bermuda</option>
+                                                        <option value="Bhutan">Bhutan</option>
+                                                        <option value="Bolivia">Bolivia</option>
+                                                        <option value="Bosnia and Herzegovina">Bosnia and Herzegovina</option>
+                                                        <option value="Botswana">Botswana</option>
+                                                        <option value="Bouvet Island">Bouvet Island</option>
+                                                        <option value="Brazil">Brazil</option>
+                                                        <option value="British Indian Ocean Territory">British Indian Ocean Territory</option>
+                                                        <option value="Brunei Darussalam">Brunei Darussalam</option>
+                                                        <option value="Bulgaria">Bulgaria</option>
+                                                        <option value="Burkina Faso">Burkina Faso</option>
+                                                        <option value="Burundi">Burundi</option>
+                                                        <option value="Cambodia">Cambodia</option>
+                                                        <option value="Cameroon">Cameroon</option>
+                                                        <option value="Canada">Canada</option>
+                                                        <option value="Cape Verde">Cape Verde</option>
+                                                        <option value="Cayman Islands">Cayman Islands</option>
+                                                        <option value="Central African Republic">Central African Republic</option>
+                                                        <option value="Chad">Chad</option>
+                                                        <option value="Chile">Chile</option>
+                                                        <option value="China">China</option>
+                                                        <option value="Christmas Island">Christmas Island</option>
+                                                        <option value="Cocos (Keeling) Islands">Cocos (Keeling) Islands</option>
+                                                        <option value="Colombia">Colombia</option>
+                                                        <option value="Comoros">Comoros</option>
+                                                        <option value="Congo">Congo</option>
+                                                        <option value="Congo, the Democratic Republic of the">Congo, the Democratic Republic of the</option>
+                                                        <option value="Cook Islands">Cook Islands</option>
+                                                        <option value="Costa Rica">Costa Rica</option>
+                                                        <option value="Cote d'Ivoire">Cote d'Ivoire</option>
+                                                        <option value="Croatia">Croatia</option>
+                                                        <option value="Cuba">Cuba</option>
+                                                        <option value="Cyprus">Cyprus</option>
+                                                        <option value="Czech Republic">Czech Republic</option>
+                                                        <option value="Denmark">Denmark</option>
+                                                        <option value="Djibouti">Djibouti</option>
+                                                        <option value="Dominica">Dominica</option>
+                                                        <option value="Dominican Republic">Dominican Republic</option>
+                                                        <option value="Ecuador">Ecuador</option>
+                                                        <option value="Egypt">Egypt</option>
+                                                        <option value="El Salvador">El Salvador</option>
+                                                        <option value="Equatorial Guinea">Equatorial Guinea</option>
+                                                        <option value="Eritrea">Eritrea</option>
+                                                        <option value="Estonia">Estonia</option>
+                                                        <option value="Ethiopia">Ethiopia</option>
+                                                        <option value="Falkland Islands (Malvinas)">Falkland Islands (Malvinas)</option>
+                                                        <option value="Faroe Islands">Faroe Islands</option>
+                                                        <option value="Fiji">Fiji</option>
+                                                        <option value="Finland">Finland</option>
+                                                        <option value="France">France</option>
+                                                        <option value="French Guiana">French Guiana</option>
+                                                        <option value="French Polynesia">French Polynesia</option>
+                                                        <option value="French Southern Territories">French Southern Territories</option>
+                                                        <option value="Gabon">Gabon</option>
+                                                        <option value="Gambia">Gambia</option>
+                                                        <option value="Georgia">Georgia</option>
+                                                        <option value="Germany">Germany</option>
+                                                        <option value="Ghana">Ghana</option>
+                                                        <option value="Gibraltar">Gibraltar</option>
+                                                        <option value="Greece">Greece</option>
+                                                        <option value="Greenland">Greenland</option>
+                                                        <option value="Grenada">Grenada</option>
+                                                        <option value="Guadeloupe">Guadeloupe</option>
+                                                        <option value="Guam">Guam</option>
+                                                        <option value="Guatemala">Guatemala</option>
+                                                        <option value="Guinea">Guinea</option>
+                                                        <option value="Guinea-Bissau">Guinea-Bissau</option>
+                                                        <option value="Guyana">Guyana</option>
+                                                        <option value="Haiti">Haiti</option>
+                                                        <option value="Heard and McDonald Islands">Heard and McDonald Islands</option>
+                                                        <option value="Holy See (Vatican City State)">Holy See (Vatican City State)</option>
+                                                        <option value="Honduras">Honduras</option>
+                                                        <option value="Hong Kong">Hong Kong</option>
+                                                        <option value="Hungary">Hungary</option>
+                                                        <option value="Iceland">Iceland</option>
+                                                        <option value="India">India</option>
+                                                        <option value="Indonesia">Indonesia</option>
+                                                        <option value="Iran">Iran (Islamic Republic of)</option>
+                                                        <option value="Iraq">Iraq</option>
+                                                        <option value="Ireland">Ireland</option>
+                                                        <option value="Israel">Israel</option>
+                                                        <option value="Italy">Italy</option>
+                                                        <option value="Jamaica">Jamaica</option>
+                                                        <option value="Japan">Japan</option>
+                                                        <option value="Jordan">Jordan</option>
+                                                        <option value="Kazakhstan">Kazakhstan</option>
+                                                        <option value="Kenya">Kenya</option>
+                                                        <option value="Kiribati">Kiribati</option>
+                                                        <option value="Korea, Democratic People's Republic of">Korea, Democratic People's Republic of</option>
+                                                        <option value="Korea, Republic of">Korea, Republic of</option>
+                                                        <option value="Kuwait">Kuwait</option>
+                                                        <option value="Kyrgyzstan">Kyrgyzstan</option>
+                                                        <option value="Lao People's Democratic Republic">Lao People's Democratic Republic</option>
+                                                        <option value="Latvia">Latvia</option>
+                                                        <option value="Lebanon">Lebanon</option>
+                                                        <option value="Lesotho">Lesotho</option>
+                                                        <option value="Liberia">Liberia</option>
+                                                        <option value="Libyan Arab Jamahiriya">Libyan Arab Jamahiriya</option>
+                                                        <option value="Liechtenstein">Liechtenstein</option>
+                                                        <option value="Lithuania">Lithuania</option>
+                                                        <option value="Luxembourg">Luxembourg</option>
+                                                        <option value="Macau">Macau</option>
+                                                        <option value="Macedonia">Macedonia, The Former Yugoslav Republic of</option>
+                                                        <option value="Madagascar">Madagascar</option>
+                                                        <option value="Malawi">Malawi</option>
+                                                        <option value="Malaysia">Malaysia</option>
+                                                        <option value="Maldives">Maldives</option>
+                                                        <option value="Mali">Mali</option>
+                                                        <option value="Malta">Malta</option>
+                                                        <option value="Marshall Islands">Marshall Islands</option>
+                                                        <option value="Martinique">Martinique</option>
+                                                        <option value="Mauritania">Mauritania</option>
+                                                        <option value="Mauritius">Mauritius</option>
+                                                        <option value="Mayotte">Mayotte</option>
+                                                        <option value="Mexico">Mexico</option>
+                                                        <option value="Micronesia">Micronesia, Federated States of</option>
+                                                        <option value="Moldova">Moldova, Republic of</option>
+                                                        <option value="Monaco">Monaco</option>
+                                                        <option value="Mongolia">Mongolia</option>
+                                                        <option value="Montserrat">Montserrat</option>
+                                                        <option value="Morocco">Morocco</option>
+                                                        <option value="Mozambique">Mozambique</option>
+                                                        <option value="Myanmar">Myanmar</option>
+                                                        <option value="Namibia">Namibia</option>
+                                                        <option value="Nauru">Nauru</option>
+                                                        <option value="Nepal">Nepal</option>
+                                                        <option value="Netherlands">Netherlands</option>
+                                                        <option value="Netherlands Antilles">Netherlands Antilles</option>
+                                                        <option value="New Caledonia">New Caledonia</option>
+                                                        <option value="New Zealand">New Zealand</option>
+                                                        <option value="Nicaragua">Nicaragua</option>
+                                                        <option value="Niger">Niger</option>
+                                                        <option value="Nigeria">Nigeria</option>
+                                                        <option value="Niue">Niue</option>
+                                                        <option value="Norfolk Island">Norfolk Island</option>
+                                                        <option value="Northern Mariana Islands">Northern Mariana Islands</option>
+                                                        <option value="Norway">Norway</option>
+                                                        <option value="Oman">Oman</option>
+                                                        <option value="Pakistan">Pakistan</option>
+                                                        <option value="Palau">Palau</option>
+                                                        <option value="Panama">Panama</option>
+                                                        <option value="Papua New Guinea">Papua New Guinea</option>
+                                                        <option value="Paraguay">Paraguay</option>
+                                                        <option value="Peru">Peru</option>
+                                                        <option value="Philippines">Philippines</option>
+                                                        <option value="Pitcairn">Pitcairn</option>
+                                                        <option value="Poland">Poland</option>
+                                                        <option value="Portugal">Portugal</option>
+                                                        <option value="Puerto Rico">Puerto Rico</option>
+                                                        <option value="Qatar">Qatar</option>
+                                                        <option value="Reunion">Reunion</option>
+                                                        <option value="Romania">Romania</option>
+                                                        <option value="Russian Federation">Russian Federation</option>
+                                                        <option value="Rwanda">Rwanda</option>
+                                                        <option value="Saint Kitts and Nevis">Saint Kitts and Nevis</option>
+                                                        <option value="Saint Lucia">Saint Lucia</option>
+                                                        <option value="Saint Vincent and the Grenadines">Saint Vincent and the Grenadines</option>
+                                                        <option value="Samoa">Samoa</option>
+                                                        <option value="San Marino">San Marino</option>
+                                                        <option value="Sao Tome and Principe">Sao Tome and Principe</option>
+                                                        <option value="Saudi Arabia">Saudi Arabia</option>
+                                                        <option value="Senegal">Senegal</option>
+                                                        <option value="Seychelles">Seychelles</option>
+                                                        <option value="Sierra Leone">Sierra Leone</option>
+                                                        <option value="Singapore">Singapore</option>
+                                                        <option value="Slovakia">Slovakia (Slovak Republic)</option>
+                                                        <option value="Slovenia">Slovenia</option>
+                                                        <option value="Solomon Islands">Solomon Islands</option>
+                                                        <option value="Somalia">Somalia</option>
+                                                        <option value="South Africa">South Africa</option>
+                                                        <option value="South Georgia and the South Sandwich Islands">South Georgia and the South Sandwich Islands</option>
+                                                        <option value="Spain">Spain</option>
+                                                        <option value="Sri Lanka">Sri Lanka</option>
+                                                        <option value="Sudan">Sudan</option>
+                                                        <option value="Suriname">Suriname</option>
+                                                        <option value="Svalbard and Jan Mayen">Svalbard and Jan Mayen</option>
+                                                        <option value="Sweden">Sweden</option>
+                                                        <option value="Switzerland">Switzerland</option>
+                                                        <option value="Syrian Arab Republic">Syrian Arab Republic</option>
+                                                        <option value="Taiwan">Taiwan, Province of China</option>
+                                                        <option value="Tajikistan">Tajikistan</option>
+                                                        <option value="Tanzania, United Republic of">Tanzania, United Republic of</option>
+                                                        <option value="Thailand">Thailand</option>
+                                                        <option value="Timor-Leste">Timor-Leste</option>
+                                                        <option value="Togo">Togo</option>
+                                                        <option value="Tokelau">Tokelau</option>
+                                                        <option value="Tonga">Tonga</option>
+                                                        <option value="Trinidad and Tobago">Trinidad and Tobago</option>
+                                                        <option value="Tunisia">Tunisia</option>
+                                                        <option value="Turkey">Turkey</option>
+                                                        <option value="Turkmenistan">Turkmenistan</option>
+                                                        <option value="Turks and Caicos Islands">Turks and Caicos Islands</option>
+                                                        <option value="Tuvalu">Tuvalu</option>
+                                                        <option value="Uganda">Uganda</option>
+                                                        <option value="Ukraine">Ukraine</option>
+                                                        <option value="United Arab Emirates">United Arab Emirates</option>
+                                                        <option value="United Kingdom">United Kingdom</option>
+                                                        <option value="United States">United States</option>
+                                                        <option value="United States Minor Outlying Islands">United States Minor Outlying Islands</option>
+                                                        <option value="Uruguay">Uruguay</option>
+                                                        <option value="Uzbekistan">Uzbekistan</option>
+                                                        <option value="Vanuatu">Vanuatu</option>
+                                                        <option value="Venezuela">Venezuela</option>
+                                                        <option value="Viet Nam">Viet Nam</option>
+                                                        <option value="Wallis and Futuna">Wallis and Futuna</option>
+                                                        <option value="Western Sahara">Western Sahara</option>
+                                                        <option value="Yemen">Yemen</option>
+                                                        <option value="Zambia">Zambia</option>
+                                                        <option value="Zimbabwe">Zimbabwe</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3">Remarks</label>
+                                                <div class="col-md-4">
+                                                    <textarea class="form-control" rows="3" name="remarks"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane" id="tab5">
+                                            <div class="row">
+                                                <div class="col-md-2"></div>
+                                                <div class="col-md-8" style="font-weight: bold;">
+                                                    <h1 style="font-size:4em;font-weight:bold;font-style: italic;">Payments</h1>
+                                                    <h2 class="display-donation-type" style="font-size: 2.5em; font-weight: bold; font-style: italic; padding-top: 35px; padding-bottom: 8px;"></h2>
+                                                    <div class="col-md-12" style="height: 2px; background-color: #686868;padding-left:10px;padding-right:10px;"></div>
+
+                                                    @{
+                                                        if (ViewBag.basket != null && ((List<DonationItem>)ViewBag.basket).Any())
+                                                        {
+                                                            int count = 0;
+                                                            total = 0;
+                                                            count = ViewBag.basket.Count;
+                                                            foreach (DonationItem item in (List<DonationItem>)ViewBag.basket)
+                                                            {
+                                                                total = total + Convert.ToInt32(item.Amount);
+                                                                <div class="col-md-12" style="padding-top:10px;padding-bottom:10px;font-size:18px;">
+                                                                    <div class="pull-left" id="">
+                                                                        @item.Name
+                                                                    </div>
+                                                                    <div class="pull-right">
+                                                                        <i class="bold" id="">$@item.Amount</i>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-12 bottom-line-of-donation-item" style="height: 2px; background-color: #686868;padding-left:10px;padding-right:10px;"></div>
+                                                            }
+                                                            <div class="col-md-12" style="padding-top:10px;padding-bottom:10px;font-size:20px;">
+                                                                <div class="pull-left">
+                                                                    Total
+                                                                </div>
+                                                                <div class="pull-right">
+                                                                    <i class="bold" id="">$@total</i>
+                                                                </div>
+                                                            </div>
+                                                        }
+                                                        else
+                                                        {
+                                                            <div class="col-md-12" style="padding-top:10px;padding-bottom:10px;font-size:18px;">
+                                                                <div class="pull-left" id="project-name-in-payment-detail-page">
+
+                                                                </div>
+                                                                <div class="pull-right">
+                                                                    <i class="bold" id="payment-amount-in-payment-detail-page">$ </i>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-12 bottom-line-of-donation-item" style="height: 2px; background-color: #686868;padding-left:10px;padding-right:10px;"></div>
+                                                            <div class="col-md-12" style="padding-top:10px;padding-bottom:10px;font-size:20px;">
+                                                                <div class="pull-left">
+                                                                    Total
+                                                                </div>
+                                                                <div class="pull-right">
+                                                                    <i class="bold" id="total-payment-amount-in-payment-detail-page">$ </i>
+                                                                </div>
+                                                            </div>
+                                                        }
+                                                    }
+
+                                                </div>
+                                            </div>
+
+                                            <div class="row" style="margin-top:40px;">
+                                                <div class="col-md-2"></div>
+                                                <div class="col-md-8 flex justify-center items-center" style="padding:0;margin:0;">
+                                                    <div class="col-md-5">
+                                                        @*Paypal payment button*@
+                                                        <a href="javascript:void(0);" onclick="submitPayment()" class="col-md-12" style="background-color: #ffc43a; display: flex; justify-content: center; align-items: center; height: 50px; border: none; border-radius: 5px; cursor: pointer; margin-bottom: 10px;">
+                                                            <img style="height: 25px;" src="~/Content/pic/paypal-icon.png" />
+                                                        </a>
+
+                                                        @*google pay button*@
+                                                        @*Uncomment the bellow statement to display google pay payment button*@
+                                                        @*<div id="google-pay-button" style="margin-top:5px;"></div>*@
+
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div id="credit-card-form-containter" class="row" style="margin-top:40px;">
+                                                <div class="col-md-2"></div>
+                                                <div class="col-md-8 donation-amounts flex justify-center items-center" style="padding:0;margin:0;">
+                                                    <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-lg">
+
+
+                                                        @using (Html.BeginForm("ProcessDonation", "Donation", FormMethod.Post))
+                                                        {
+                                                            @Html.AntiForgeryToken()
+
+                                                            if (!ViewData.ModelState.IsValid)
+                                                            {
+                                                                <div class="mb-4 text-red-600">
+                                                                    @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+                                                                    {
+                                                                        <p>@error.ErrorMessage</p>
+                                                                    }
+                                                                </div>
+                                                            }
+
+                                                            <div class="mb-4">
+                                                                @Html.HiddenFor(m => m.Name, new { @class = "mt-1 border border-gray-300 p-2 w-full rounded-md", id = "nameField" })
+                                                            </div>
+                                                            <div class="mb-4">
+                                                                @Html.HiddenFor(m => m.Email, new { @class = "mt-1 border border-gray-300 p-2 w-full rounded-md", id = "emailField" })
+                                                            </div>
+                                                            <div class="mb-4">
+                                                                @Html.HiddenFor(m => m.Amount, new { @class = "mt-1 border border-gray-300 p-2 w-full rounded-md", id = "amountField" })
+                                                            </div>
+                                                            <div class="mb-1 block text-gray-700">
+                                                                <label style="margin-bottom:3px;">Card Details</label>
+                                                            </div>
+                                                            <div id="card-element" class="mb-4 border border-gray-300 p-2 rounded-md"></div>
+                                                            <div id="card-errors" class="text-red-600 mb-4"></div>
+
+                                                            <button type="submit" id="submit-button" class="w-full bg-blue-600 text-white p-2 rounded-md hover:bg-blue-500 transition">Donate Now</button>
+
+                                                        }
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-actions">
+                                    <div class="row">
+                                        <div class="col-md-offset-3 col-md-9">
+                                            <a href="javascript:;" class="btn default button-previous disabled" style="display: none;">
+                                                <i class="fa fa-angle-left"></i> Back
+                                            </a>
+                                            <a href="javascript:;" id="continueButton" onclick="controlContinueButton()" class="btn btn-outline green button-next pull-right continueButton">
+                                                Continue
+                                                <i class="fa fa-angle-right"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <script src="https://js.stripe.com/v3/"></script>
+    <script src="~/assets/payment/apple-pay.js"></script>
+    <script src="~/assets/payment/payment.js"></script>
+    <script>
+        // PayPal Payment
+function submitPayment() {
+    const formData = new FormData(document.getElementById('submit_form'));
+    const data = {};
+    formData.forEach((value, key) => {
+        data[key] = value;
+    });
+    const queryString = new URLSearchParams(data).toString();
+    window.location.href = "https://humanreliefmission.com/Paypal/PaymentWithPaypal?" + queryString;
+}
+
+// Google Pay Setup
+function onGooglePayLoaded() {
+    const paymentsClient = new google.pay.api.PaymentsClient({ environment: 'PRODUCTION' });
+    const button = paymentsClient.createButton({
+        buttonColor: 'default',
+        buttonType: 'long',
+        onClick: onGooglePayButtonClicked
+    });
+    document.getElementById('google-pay-button').appendChild(button);
+}
+
+function onGooglePayButtonClicked(event) {
+    event.preventDefault();
+    const form = document.getElementById('submit_form');
+    const formData = new FormData(form);
+    const amount = formData.get('amount');
+
+    const paymentDataRequest = {
+        apiVersion: 2,
+        apiVersionMinor: 0,
+        merchantInfo: {
+            merchantId: 'BCR2DN4T2P45JTIZ',
+            merchantName: 'Human Relief Mission'
+        },
+        transactionInfo: {
+            totalPriceStatus: 'FINAL',
+            totalPrice: String(amount), // Amount from the form
+            currencyCode: 'CAD',
+            countryCode: 'CA'
+        },
+    };
+
+    const paymentsClient = new google.pay.api.PaymentsClient({ environment: 'PRODUCTION' });
+    paymentsClient.loadPaymentData(paymentDataRequest)
+        .then(paymentData => {
+            if (paymentData.paymentMethodData && paymentData.paymentMethodData.tokenizationData) {
+                $.ajax({
+                    url: '@Url.Action("ProcessPaymentWithGooglePay", "GooglePay")',
+                    type: 'POST',
+                    data: JSON.stringify({
+                        PaymentMethodData: paymentData.paymentMethodData.tokenizationData.token,
+                        TotalPrice: String(amount),
+                        CurrencyCode: paymentData.transactionInfo.currencyCode,
+                        donor: {
+                            donation_type: formData.get('donation_type'),
+                            project_name: formData.get('project_name'),
+                            amount: formData.get('amount'),
+                            donor_firstname: formData.get('donor_firstname'),
+                            donor_surname: formData.get('donor_surname'),
+                            email: formData.get('email'),
+                            phone: formData.get('phone'),
+                            address: formData.get('address'),
+                            city: formData.get('city'),
+                            country: formData.get('country'),
+                            taxpayer: formData.get('taxpayer'),
+                            remarks: formData.get('remarks')
+                        }
+                    }),
+                    contentType: 'application/json',
+                    success: response => {
+                        if (response.redirectTo) {
+                            window.location.href = response.redirectTo;
+                        }
+                    },
+                    error: (xhr, status, error) => console.error('Payment error:', xhr.responseText || error)
+                });
+            } else {
+                console.error('Payment method data is missing or incorrect.');
+            }
+        })
+        .catch(err => console.error('Error loading payment data:', err));
+}
+
+// Apple Pay Setup
+@*document.addEventListener("DOMContentLoaded", function () {
+    if (window.ApplePaySession && ApplePaySession.canMakePayments()) {
+        document.getElementById('apple-pay-button').style.display = 'block';
+        document.getElementById('apple-pay-button').addEventListener('click', () => startApplePaySession(false));
+    }
+});
+
+function startApplePaySession(isSubscription) {
+    const paymentRequest = {
+        countryCode: 'CA',
+        currencyCode: 'CAD',
+        total: {
+            label: 'Human Relief Mission',
+            amount: '1.00'
+        },
+        supportedNetworks: ['visa', 'masterCard', 'amex'],
+        merchantCapabilities: ['supports3DS']
+    };
+
+    const session = new ApplePaySession(3, paymentRequest);
+
+    session.onvalidatemerchant = async event => {
+        const validationData = await fetch('@Url.Action("ApplePayMerchantValidation", "ApplePay")', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ validationUrl: event.validationURL })
+        }).then(response => response.json());
+        session.completeMerchantValidation(validationData);
+    };
+
+    session.onpaymentauthorized = async event => {
+        const paymentMethod = {
+            token: event.payment.token.paymentData,
+            type: isSubscription ? 'subscription' : 'one-time'
+        };
+
+        const stripeResponse = await fetch('@Url.Action("ProcessPaymentWithApplePay", "ApplePay")', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(paymentMethod)
+        }).then(response => response.json());
+
+        if (stripeResponse.success) {
+            session.completePayment(ApplePaySession.STATUS_SUCCESS);
+        } else {
+            session.completePayment(ApplePaySession.STATUS_FAILURE);
+        }
+    };
+
+    session.begin();
+}
+*@
+
+    </script>
+
+
+</body>
+</html>

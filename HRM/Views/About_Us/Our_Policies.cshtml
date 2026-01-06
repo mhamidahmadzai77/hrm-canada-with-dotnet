@@ -1,0 +1,85 @@
+﻿@model IEnumerable<HRM.Models.Policy>
+@{
+    if (Session["user_108310113658"] != null)
+    {
+        if (Session["user_108310113658"].ToString() == "authenticated")
+        {
+            Layout = "~/Views/Shared/_AdminLayout.cshtml";
+        }
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_EndUserLayout.cshtml";
+    }
+
+    ViewBag.Title = "Our Policies | Human Relief Mission Canada";
+    ViewBag.Description = "Learn about the policies that guide Human Relief Mission Canada. Review our organizational policies on privacy, data protection, donations, and operational procedures to understand our commitment to transparency and integrity.";
+    ViewBag.Keywords = "organizational policies, privacy policy, data protection, donation policy, Human Relief Mission Canada, transparency, policy overview";
+    ViewBag.OGandTwitterTitle = "Our Policies | Human Relief Mission Canada";
+
+
+}
+
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RXXJLDEKC3"></script>
+    <script>
+ window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); } gtag('js', new Date()); gtag('config', 'G-RXXJLDEKC3');
+    </script>
+
+    <link href="~/assets/about/our-policies.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container-fluid" style="margin-top:130px;background-color:#660199;color:#fff;padding:80px 30px;">
+        <div style="text-align:center;">
+            <h1>Our Policies</h1>
+        </div>
+        <div class="col-md-3"></div>
+        <div class="col-md-6" style="text-align:center;font-size:16px;">
+            <p>Human Appeal is dedicated to protecting the rights of the people we support, and of those who support us. We’re completely transparent about the procedures that guide our work – you can find details on all of our policies here.</p>
+        </div>
+    </div>
+
+    <div class="container-fluid container-file">
+        <div>
+            <h2 style="color:#660199;font-weight:bold;">Latest Policies</h2>
+        </div>
+        <div class="col-md-12 file-content-container">
+            @foreach (var policy in Model)
+            {
+                <div class="col-md-6 file-content" style="">
+                    <div class="col-md-2">
+                        <i class="fa fa-file-pdf-o" style="font-size: 40px; color: #fed21c"></i>
+                    </div>
+                    <div class="col-md-10">
+                        <h3 class="file-name bold">@policy.policy_name</h3>
+                        <p class="file-info">
+                            @if (policy.file_type == "application/pdf")
+                            {<span>PDF</span>}  | @policy.file_size | @policy.pages Pages
+                        </p>
+                        <p class="file-download-link">
+                            <a href="/About_Us/DownloadPolicy/?policy=@policy.policy_name" style="color:#660199;">Download</a>
+                        </p>
+                    </div>
+                </div>
+
+            }
+        </div>
+    </div>
+
+    <div class="container">
+        <div style="width:100%;height:2px;background-color:#660199;"></div>
+        <div style="margin-top:30px;">
+            <h5 style="text-align:center;">If you have any questions, then please do not hesitate to contact us.</h5>
+        </div>
+        <div style="text-align:center;padding-bottom:30px;">
+            <a class="btn" style="width:120px;color:#fff;background-color:#660199;" href="tel:0093787082624"> <i class="fa fa-phone"></i>&nbsp;&nbsp;&nbsp; PHONE</a>
+            <a class="btn" style="width:120px;color:#fff;background-color:#660199;" href="mailTo:info@humanreliefmission.com"> <i class="fa fa-envelope"></i>&nbsp;&nbsp;&nbsp; Email</a>
+
+        </div>
+    </div>
+
+</body>
+</html>

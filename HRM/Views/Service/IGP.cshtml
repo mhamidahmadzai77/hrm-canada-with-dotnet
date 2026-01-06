@@ -1,0 +1,383 @@
+﻿
+@{
+    if (Session["user_108310113658"] != null)
+    {
+        if (Session["user_108310113658"].ToString() == "authenticated")
+        {
+            Layout = "~/Views/Shared/_AdminLayout.cshtml";
+        }
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_EndUserLayout.cshtml";
+    }
+
+    ViewBag.Title = "Income Generating Projects - Empowering Communities | Human Relief Mission UK";
+    ViewBag.Description = "We undertake various income-generating projects that include constructing mosques, homes, and vital infrastructure such as water pumps and wells, all aimed at fostering community development and improving quality of life.";
+    ViewBag.Keywords = "income generating projects, community construction, mosque building, home development, water pump installation, water well drilling, sustainable development, humanitarian support";
+    ViewBag.OGandTwitterTitle = "Income Generating Projects | Human Relief Mission UK";
+
+
+}
+
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RXXJLDEKC3"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); } gtag('js', new Date()); gtag('config', 'G-RXXJLDEKC3');
+    </script>
+
+    <link href="~/assets/news/css/custom.css" rel="stylesheet" />
+    <link href="~/assets/Home/custom.css" rel="stylesheet" />
+    <style type="text/css">
+        #donate-switch:hover {
+            cursor: pointer;
+        }
+
+        #inner-donate-switch:hover {
+            cursor: pointer;
+        }
+
+        #circle-bullet {
+            position: relative;
+            transition: left 0.3s;
+        }
+
+        #inner-circle-bullet {
+            position: relative;
+            transition: left 0.3s;
+        }
+
+        .btn-amount {
+            background-color: #660199;
+            color: #fff;
+            font-size: 1.3em;
+            font-weight: bold;
+            border: 2px solid #fff;
+            width: 80px;
+            height: 60px;
+        }
+
+        .inner-btn-amount {
+            background-color: #660199;
+            color: #fff;
+            font-size: 1.3em;
+            font-weight: bold;
+            border: 2px solid #fff;
+            width: 80px;
+            height: 60px;
+        }
+
+        .btn-amount:hover {
+            background-color: #fff;
+            color: #000;
+        }
+
+        .inner-btn-amount:hover {
+            background-color: #fff;
+            color: #000;
+        }
+
+        .btn-donate-red:hover > i.fa-arrow-right {
+            position: relative;
+            left: 4px;
+        }
+
+        .inner-btn-donate-red:hover > i.fa-arrow-right {
+            position: relative;
+            left: 4px;
+        }
+
+
+
+        .orphan-hope-image {
+        }
+
+        .orphan-hope-pragraph {
+            padding: 30px;
+            color: #fff;
+        }
+
+        .orphan-hope-image {
+            display: flex;
+            align-items: center; /* Vertically center the content */
+        }
+
+        .align-center {
+            display: flex;
+            justify-content: center; /* Horizontally center the content */
+            align-items: center; /* Vertically center the content */
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 50px auto;
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .faq-item {
+            border-bottom: 1px solid #e0e0e0;
+            padding: 30px 0;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: bold;
+            color: #660199;
+        }
+
+        .faq-answer {
+            display: none;
+            padding: 10px;
+            margin-top: 30px;
+            border-top: 1px solid #e0e0e0;
+            font-size: 18px;
+            font-weight: normal;
+            line-height: 1.5;
+            color: #000;
+        }
+
+        .expand-icon {
+            float: right;
+            transform: rotate(-90deg);
+            transition: transform 0.3s;
+        }
+
+            .expand-icon.open {
+                transform: rotate(90deg);
+            }
+
+        h1 {
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid image-title-container" style="padding:0;">
+        <div class="news-image col-md-8 pull-right">
+            <div>
+                <video class="autoplay-video" autoplay muted loop style="width:100%;min-height:570px;">
+                    <source src="~/Content/projects/videos/IGP/igp.mp4" type="video/mp4" />
+                </video>
+            </div>
+        </div>
+        <div class="news-title-box col-sm-12 pull-left" style="margin-bottom: 5px;">
+            <div class="news-title" style="width:100%;color:#fff;padding:30px;">
+                <h1 style="font-size:2em;">Income Generating Projects</h1>
+                <div style="float: left; padding-top: 4px;">Monthly </div>
+                <div id="donate-switch" onclick="donateSwitch()" style="width: 60px; height: 28px; background-color: #fff; border-radius: 20px; position: absolute; float: left; margin-left: 63px;">
+                    <div id="circle-bullet" style="width:20px;height:20px;background-color:#000;border-radius:10px;position:relative;left:5px;top:4px;"></div>
+                </div>
+                <div style="margin-left:130px;padding-top:4px;">One-Off</div>
+            </div>
+            <div style="padding:0 30px 0 30px;">
+                <input type="hidden" id="amount" />
+                <button class="btn btn-amount" id="amount-1" onmouseover="changeColorWithMouseOver(1)" onmouseout="changeColorWithMouseOut(1)" onclick="amountClicked(1);">$20</button>
+                <button class="btn btn-amount" id="amount-2" onmouseover="changeColorWithMouseOver(2)" onmouseout="changeColorWithMouseOut(2)" onclick="amountClicked(2);">$40</button>
+                <button class="btn btn-amount" id="amount-3" onmouseover="changeColorWithMouseOver(3)" onmouseout="changeColorWithMouseOut(3)" onclick="amountClicked(3);">$100</button>
+                <input type="number" class="form-control no-arrows white-placeholder" id="amount-4" onclick="otherClicked();" value="" style="display:inline;border:2px solid #fff;width:100px;height:60px;background-color:#660199;color:#fff;font-size:1.3em;font-weight:bold;position:relative;top:3px;" placeholder="Other" />
+            </div>
+            <div style="padding:10px 30px 0 30px;">
+                <span id="donation-message" style="color:#fff;"></span>
+            </div>
+            <div>
+                <button class="btn btn-donate-red" onclick="donateNow()" style="width: 180px; height: 60px; background-color: red; border: none; position: relative; left: 30px; top: 10px; color: #fff; font-size: 1.3em; font-weight: bold; "> Donate now <i class="fa fa-arrow-right"></i></button>
+            </div>
+            <div class="col-md-2 header-fundraising-logos">
+                <img src="~/assets/FR-logo/FR_Fundraising-Badge_white_150ppi.png" style="width:150px; margin-right: 10px;" />
+                <img src="~/assets/FR-logo/direct-debit-logo.png" style="width:150px;" />
+                <img src="~/assets/FR-logo/visa-6850402_1280.png" style="width:100px;" />
+                <img src="~/assets/FR-logo/mastercard.png" style="width: 80px;" />
+            </div>
+        </div>
+    </div>
+
+    @* Start Section Help Us Building Our Masjid*@
+    <div class="container-fluid">
+        <div class="col-md-3"></div>
+        <div class="col-md-6 " style="text-align:justify;font-size:18px;">
+
+            <h1 style="font-weight:bold;font-size:2em;text-align:center;">Income Generating Projects</h1>
+            <p>At Human Relief Mission, we are committed to empowering the most vulnerable communities in Afghanistan by helping them break the cycle of poverty. Through our carefully designed Income Generating Projects (IGP), we provide long-term, sustainable income opportunities that enable individuals to regain dignity, support their families, and foster a thriving community for generations to come. By offering a means to secure a stable income, we help lift families out of poverty, giving them the tools they need to build a brighter and more prosperous future.</p>
+
+
+            <h1 style="font-weight: bold; font-size: 1.5em; text-align: center;">Our IGP  Projects in Afghanistan</h1>
+            <h2 style="font-weight:bold;font-size:1em;">Chicken Carts</h2>
+            <p>
+                This project equips beneficiaries with a mobile chicken-selling cart, allowing them to start their own business in their local communities. The chicken cart offers a steady income stream by enabling individuals to sell fresh, locally sourced poultry, which is often in high demand. In addition to financial support, we provide guidance on halal business practices to ensure that their operations are both ethical and sustainable, benefiting both the vendors and the local population with access to fresh, affordable food.
+            </p>
+
+            <p>
+                <img src="~/Content/projects/IGP/checken-cart.jpg" style="width:100%;" />
+            </p>
+        </div>
+        <div class="col-md-3"></div>
+
+        @*BEGIN SECTION SUCCESS STORY*@
+        @*Food package success story*@
+        <div class="container-fluid height-auto">
+            @*<img src="~/assets/custom-image/Um-Taha-1.jpg" id="successStoryImage" class="col-sm-12 col-md-6  orphan-hope-image align-center" style="margin-top:10px;" />
+            <div class="col-md-6 background-purple">
+                <div class="orphan-hope-pragraph col-md-11" style="text-align:justify; font-size:22px;">
+                    <h1 style="font-weight:bold;">Provide food to families like Um Taha's</h1>
+                    <p>Um Taha lives in Syria. When her husband was killed during the conflict, she had no way to provide for herself and her children. Al-Mouwasat now provides her with much-needed bread so she can eat and feed her family.</p>
+                    <p>"You are risking your lives to bring us bread; any minute, an airstrike can happen." - Um Taha</p>
+                    <p>You can provide life-saving food to those who need it most.</p>
+                    <p>Um Taha lives in Syria. When her husband was killed during the conflict, she had no way to provide for herself and her children. Al-Mouwasat now provides her with much-needed bread so she can eat and feed her family.</p>
+                </div>
+            </div>*@
+        </div>
+        @*END SECTION SUCCESS STORY*@
+
+        <div class="col-md-3"></div>
+        <div class="col-md-6 " style="text-align:justify;font-size:18px;">
+
+            <h2 style="font-weight:bold;font-size:1em;">Fresh Fruit Juice Cart</h2>
+            <p>Through our fresh juice cart project, beneficiaries are provided with the equipment and training needed to prepare and sell fresh fruit juice in busy areas. This business not only helps generate income but also promotes healthier living within the community by offering fresh, natural juice options. By providing access to popular products that are affordable and nutritious, individuals can build a business that benefits the entire community while securing a reliable income.</p>
+            <p>
+                <img src="~/Content/projects/IGP/juice-vending-carts.jpg" style="width:100%;" />
+            </p>
+            <h2 style="font-weight:bold;font-size:1em;">Sugarcane Cart</h2>
+            <p>Sugarcane juice is a popular and refreshing drink in Afghanistan, and this project helps individuals tap into that demand. With a sugarcane cart, families are empowered to sell freshly squeezed sugarcane juice to local customers, creating a sustainable source of income. The simplicity of the business model, combined with the high demand for the product, makes this a valuable opportunity for individuals looking to start their own businesses and achieve self-sufficiency.</p>
+            <p>
+                <img src="~/Content/projects/IGP/sugarcane-vending-carts.jpg" style="width:100%;" />
+            </p>
+
+            <h2 style="font-weight:bold;font-size:1em;">Empowering Through Knowledge and Skills</h2>
+            <p>Beyond simply providing the equipment needed for these ventures, Human Relief Mission ensures that each beneficiary receives comprehensive training in business management, ethical entrepreneurship, and halal practices. Our training programs focus on teaching individuals essential skills such as financial management, sales techniques, and customer service. This support helps beneficiaries to run their businesses effectively, ensuring long-term success. We also work closely with local community leaders to identify the most vulnerable households, prioritising those in greatest need for support.</p>
+
+            <h2 style="font-weight:bold;font-size:1em;">Impact of Income Generating Projects</h2>
+            <p>
+                <ul>
+                    <li>
+                        <h3 style="font-weight:bold;font-size:0.9em;display:inline;">Providing Sustainable Income:</h3>
+                        Self-sustaining income generating projects offer families a stable source of income, enabling them to meet their essential needs such as food, shelter, and education. By providing reliable financial security, these projects help break the cycle of poverty and create a foundation for a better future.
+                    </li>
+                    <li>
+                        <h3 style="font-weight:bold;font-size:0.9em;display:inline;">Creating Employment Opportunities:</h3>
+                        Our projects help create employment opportunities for individuals who may otherwise struggle to find work. By encouraging entrepreneurship and small business ownership, we help reduce unemployment and contribute to the economic growth of the local community. In turn, these businesses can also provide jobs for others, further stimulating economic activity.
+                    </li>
+                    <li>
+                        <h3 style="font-weight:bold;font-size:0.9em;display:inline;">Building Skills and Knowledge:</h3>
+                        Our training programs are designed to equip individuals with the practical skills and knowledge needed to manage their businesses successfully. By developing skills in areas such as budgeting, marketing, and customer service, beneficiaries can achieve long-term self-sufficiency and pass on their knowledge to others, creating a ripple effect of positive change within the community.
+                    </li>
+                    <li>
+                        <h3 style="font-weight:bold;font-size:0.9em;display:inline;">Encouraging Entrepreneurship:</h3>
+                        Income generating projects foster a spirit of entrepreneurship, encouraging individuals to take control of their own destinies. By giving people the tools and support to start their own businesses, we help them become self-reliant and contribute to the economic development of their communities.
+                    </li>
+                </ul>
+            </p>
+
+            <h2 style="font-weight:bold;font-size:1em;">A Path to Dignity and Self-Sufficiency</h2>
+            @* Start Qoute Section*@
+            <div class="" style="padding-bottom:50px;margin-top:30px;">
+
+                <div class="quote-container col-md-12">
+                    <span class="" style="font-size:4em;font-weight:bold">&lsquo;&lsquo;</span>
+                    <p class="quote">
+                        The Prophet ﷺ said: “The upper hand is better than the lower hand. The upper hand is the one that gives, and the lower hand is the one that takes.”
+                    </p>
+                    <p class="">Hadith | Sahih Bukhari</p>
+                </div>
+
+            </div>
+            @* End Qoute Section*@
+            <p>&nbsp;</p>
+            <p>This hadith reminds us of the importance of giving people the means to support themselves and their families, allowing them to live with dignity and independence. At Human Relief Mission, we believe that empowering individuals with the tools to earn their own livelihood is one of the most impactful ways to uplift them out of poverty.</p>
+            <p>Through your generous support, we can continue to provide life-changing opportunities in Afghanistan. By investing in these income generating projects, you are helping to create a sustainable path to independence, hope, and a brighter future for countless families. Together, we can transform lives and build stronger, more resilient communities in Afghanistan.</p>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+    @* Start Section Help Us Building Our Masjid*@
+
+    @*START SECTION Your donations are saving lives*@
+    @*Case study*@
+    <div class="container-fluid height-auto">
+        @*    <img src="~/assets/custom-image/1717769519121.jpg" class="col-sm-12 col-md-6  orphan-hope-image align-center" style="margin-top:150px;" />
+
+            <div class="col-md-6 background-purple">
+                <div class="orphan-hope-pragraph col-md-11" style="text-align:justify; font-size:22px;">
+                    <h1 style="font-weight:bold;">Donate for Abu-Bakar masjid</h1>
+                    <p>Abu-Bakr Masjid, named after the esteemed companion of the Prophet Muhammad (peace be upon him), stands as a symbol of faith, unity, and community spirit. As a place of worship and spiritual nourishment, the masjid serves as a vital hub for Muslims to gather in prayer, reflection, and fellowship. </p>
+                    <p> By donating to the construction and maintenance of Abu-Bakr Masjid, you are not just contributing to a physical structure but investing in a sacred space that nurtures the souls and minds of believers.</p>
+                    <p>Your generous donation towards Abu-Bakr Masjid will help create a sanctified environment where individuals can seek solace, guidance, and strength in their faith. This masjid will serve as a refuge for the community, a place where hearts are uplifted, and spirits are renewed through prayer and remembrance of Allah.</p>
+                </div>
+            </div>*@
+    </div>
+    @*END SECTION Your donations are saving lives*@
+
+
+    <img src="~/assets/FR-logo/FR_Fundraising-Badge_white_150ppi.png" style="display:none;" />
+    @*BEGIN DONATE FOR FOOD SECURITY*@
+    <div class="container-fluid" style="background-color: #660199 !important; height: auto; color: #fff;">
+        <div class="col-md-6" style="padding:30px;">
+            <h1 style="font-size:3em;">Income Generating Projects</h1>
+            <div class="col-md-2 header-fundraising-logos">
+                <img src="~/assets/FR-logo/FR_Fundraising-Badge_white_150ppi.png" style="width:150px; margin-right: 10px;" />
+                <img src="~/assets/FR-logo/direct-debit-logo.png" style="width:150px;" />
+                <img src="~/assets/FR-logo/visa-6850402_1280.png" style="width:100px;" />
+                <img src="~/assets/FR-logo/mastercard.png" style="width: 80px;" />
+            </div>
+        </div>
+        <div class="col-md-6" style="padding-bottom:30px;">
+
+            <div class="news-title" style="width:100%;padding:30px;">
+                <div style="float: left; padding-top: 4px;">Monthly </div>
+                <div id="donate-switch" onclick="innerDonateSwitch()" style="width: 60px; height: 28px; background-color: #fff; border-radius: 20px; position: absolute; float: left; margin-left: 63px;">
+                    <div id="inner-circle-bullet" style="width:20px;height:20px;background-color:#000;border-radius:10px;position:relative;left:5px;top:4px;"></div>
+                </div>
+                <div style="margin-left:130px;padding-top:4px;">One-Off</div>
+            </div>
+            <div style="padding:0 30px 0 30px;">
+                <input type="hidden" id="inner-amount" />
+                <button class="btn inner-btn-amount" id="inner-amount-1" onmouseover="innerChangeColorWithMouseOver(1)" onmouseout="innerChangeColorWithMouseOut(1)" onclick="innerAmountClicked(1);">$20</button>
+                <button class="btn inner-btn-amount" id="inner-amount-2" onmouseover="innerChangeColorWithMouseOver(2)" onmouseout="innerChangeColorWithMouseOut(2)" onclick="innerAmountClicked(2);">$40</button>
+                <button class="btn inner-btn-amount" id="inner-amount-3" onmouseover="innerChangeColorWithMouseOver(3)" onmouseout="innerChangeColorWithMouseOut(3)" onclick="innerAmountClicked(3);">$100</button>
+                <input type="number" class="form-control no-arrows white-placeholder" id="inner-amount-4" onclick="innerOtherClicked();" value="" style="display:inline;border:2px solid #fff;width:100px;height:60px;background-color:#660199;color:#fff;font-size:1.3em;font-weight:bold;position:relative;top:3px;" placeholder="Other" />
+            </div>
+            <div style="padding:10px 30px 0 30px;">
+                <span id="inner-donation-message" style="color:#fff;"></span>
+            </div>
+            <div>
+                <button class="btn btn-donate-red" onclick="innerDonateNow()" style="width: 180px; height: 60px; background-color: red; border: none; position: relative; left: 30px; top: 10px; color: #fff; font-size: 1.3em; font-weight: bold; "> Donate now <i class="fa fa-arrow-right"></i></button>
+            </div>
+
+        </div>
+    </div>
+    <div class="" style="margin:0 auto;">
+        <div class="col-md-3" style=""></div>
+        <div class="col-md-6 text-center text-justify" style="padding:50px 10px;font-size:18px;">
+            <p style="font-size:16px;font-style:italic;">Please note: Donations made on this page will be allocated to our Income Generating Projects fund. This project is catered to the local community in Afghanistan with the aim to save and transform lives.</p>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+    @*END DONATE FOR FOOD SECURITY*@
+
+
+    <script src="~/assets/Home/custom.js"></script>
+    <script src="~/assets/donation-script/IGP/igp.js"></script>
+    <script src="~/assets/donation-script/IGP/igp-inner.js"></script>
+
+    <script>
+        function adjustElementStyle() {
+            var width = window.innerWidth;
+            var element = document.getElementById('successStoryImage');
+
+            if (width < 480) {
+                element.style.marginTop = "15px"; // For widths < 480px
+            } else if (width < 992) {
+                element.style.marginTop = "15px"; // For widths < 992px but >= 480px
+            } else {
+                element.style.marginTop = "150px"; // For widths >= 992px
+            }
+        }
+
+        window.addEventListener('resize', adjustElementStyle);
+        window.addEventListener('load', adjustElementStyle);
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,111 @@
+﻿@model IEnumerable<HRM.Models.SlideShow>
+@{
+    if (Session["user_108310113658"] != null)
+    {
+        if (Session["user_108310113658"].ToString() == "authenticated")
+        {
+            Layout = "~/Views/Shared/_AdminLayout.cshtml";
+        }
+    }
+    else
+    {
+        <script>
+            window.location.href = "/Home/Index";
+        </script>
+    }
+
+    ViewBag.Title = "Slideshow Management | Human Relief Mission Canada";
+    ViewBag.Description = "Admin interface for managing slideshow images.";
+    ViewBag.Keywords = "slideshow management, admin panel, image management, human relief mission Canada";
+    ViewBag.OGandTwitterTitle = "Slideshow Management | Human Relief Mission Canada";
+
+
+}
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RXXJLDEKC3"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); } gtag('js', new Date()); gtag('config', 'G-RXXJLDEKC3');
+    </script>
+
+
+    <style>
+        .purple {
+            background-color: #660199;
+        }
+
+        tbody tr:last-child {
+            height: 100px; /* Reset height for the last row */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="row" style="margin-top:120px;">
+        <div class="col-md-12">
+            <!-- BEGIN EXAMPLE TABLE PORTLET-->
+            <div class="portlet box default">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <b><i class="icon-settings"></i> Slideshow </b>
+                    </div>
+                    <div class="tools"> </div>
+                </div>
+                <div class="portlet-body">
+                    <table class="table table-striped table-bordered table-hover" id="sample_2">
+                        <thead>
+                            <tr>
+                                <th> Priority</th>
+                                <th> Appeal's URL </th>
+                                <th> Image </th>
+                                <th style="width:100px;"> Actions </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{
+                                foreach (var row in Model)
+                                {
+
+                                    <tr id="@row.id">
+                                        <td> @row.priority </td>
+                                        <td> @row.url</td>
+                                        <td style="text-align:center;"> <img style="height:100px;" src="@row.imagePath" alt="@row.url" /> </td>
+                                        <td>
+                                            <div class="btn-group">
+                                                <button class="btn btn-xs purple dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
+                                                    Actions
+                                                    <i class="fa fa-angle-down"></i>
+                                                </button>
+                                                <ul class="dropdown-menu" role="menu">
+                                                    <li>
+                                                        <a href="/SlideShow/UpdateSlideshowImage?id=@row.id">
+                                                            <i class="fa fa-edit"></i> Update
+                                                        </a>
+                                                    </li>
+                                                    <li onclick="deleteSlideshowImage(@row.id)">
+                                                        <a href="javascript:;">
+                                                            <i class="icon-trash"></i> Delete
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- END EXAMPLE TABLE PORTLET-->
+        </div>
+    </div>
+
+    <script src="~/assets/slide-show/js.js"></script>
+    <script src="~/assets/alert.js"></script>
+
+</body>
+</html>

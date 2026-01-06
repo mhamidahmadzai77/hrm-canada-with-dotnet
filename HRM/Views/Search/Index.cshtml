@@ -1,0 +1,394 @@
+﻿@using HRM.Models;
+@{
+    if (Session["user_108310113658"] != null)
+    {
+        if (Session["user_108310113658"].ToString() == "authenticated")
+        {
+            Layout = "~/Views/Shared/_AdminLayout.cshtml";
+        }
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_EndUserLayout.cshtml";
+    }
+
+    string searchedQuery = Request.QueryString["s"];
+
+    ViewBag.Title = "Search Results | Human Relief Mission Canada";
+    ViewBag.Description = "Explore the results from Human Relief Mission Canada. Find information about our hunger relief programs, food aid initiatives, and how you can get involved in supporting those in need.";
+    ViewBag.Keywords = "search results, hunger relief programs, food aid, charitable initiatives, humanitarian support, Human Relief Mission Canada";
+    ViewBag.OGandTwitterTitle = "Search Results | Human Relief Mission Canada";
+
+
+}
+
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RXXJLDEKC3"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); } gtag('js', new Date()); gtag('config', 'G-RXXJLDEKC3');
+    </script>
+
+
+    <link href="~/assets/Home/custom.css" rel="stylesheet" />
+    <link href="~/assets/search/search.css" rel="stylesheet" />
+    <style type="text/css">
+    </style>
+</head>
+<body style="margin: 0; padding: 0;">
+
+
+
+    <div class="search-box-container">
+        <h1 class="search-title">Search results for `@searchedQuery`</h1>
+        <div class="search-container">
+            <form action="/Search/Index" method="get">
+                <input type="text" id="search" name="s" placeholder="" class="search-box-in-page" value="@searchedQuery">
+                <button class="search-button">Search <i class="fa fa-arrow-right"></i></button>
+            </form>
+        </div>
+        <div class="results">
+            <p class="result-count">@ViewBag.numberOfResult result</p>
+            @if (ViewBag.numberOfResult == 0)
+            {
+                <p class="no-results" id="no-results">No results found</p>
+            }
+        </div>
+    </div>
+
+    @* BEGIN Section appeals*@
+    @if (ViewBag.searchedAppeals != null && ((List<Appeal>)ViewBag.searchedAppeals).Any())
+    {
+        <div class="container-fluid" style="margin-top:30px;">
+            <div class="">
+                <div class="col-md-12 ">
+                    <div class="portlet light portlet-fit ">
+                        <div class="portlet-body ">
+                            <div class="row events-caption" style="padding:30px;">
+                                <h2 style="font-weight: bold;">Appeals</h2>
+                            </div>
+                            <div class="mt-element-card mt-element-overlay">
+                                <div class="row">
+
+                                    @foreach (Appeal appeal in (List<Appeal>)ViewBag.searchedAppeals)
+                                    {
+                                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 ">
+                                            <div class="mt-card-item upcomming-event">
+                                                <div class="mt-card-avatar mt-overlay-1">
+                                                    <a href="/Appeals/Appeal?id=@appeal.appeal_id&emergency_appeal=@appeal.title">
+                                                        <div class="new-project-label">
+                                                            Appeal
+                                                        </div>
+                                                        <img src="@Url.Action("DisplayHeaderImage", "Appeals", new { id = appeal.appeal_id })" style="position: relative; z-index: 0;" />
+                                                    </a>
+                                                </div>
+                                                <div class="mt-card-content">
+                                                    <p class="mt-card-desc font-grey-mint"><i class="fa fa-calendar"></i> @appeal.publication_date.ToShortDateString()</p>
+                                                    <a href="/Appeals/Appeal?id=@appeal.appeal_id&emergency_appeal=@appeal.title">
+                                                        <h3 class="mt-card-name" style="font-size:1.4em;padding:8px;color:black;min-height:70px;">
+                                                            @appeal.title
+                                                        </h3>
+                                                    </a>
+                                                    <div class="mt-card-social">
+                                                        <ul>
+                                                            <li>
+                                                                <a href="javascript:;" class="btn btn-outline bold" style="color: #fff;background-color:red;">
+                                                                    Donate Now
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    @* END Section appeals*@
+
+
+    @* BEGIN PROJECTS*@
+    @if (ViewBag.searchedProjects != null && ((List<Project>)ViewBag.searchedProjects).Any())
+    {
+        <div class="container-fluid " style="background-color: #f8f8f8 ">
+            <div class="live-saving-header">
+                <h1 style="font-weight:bold;padding-bottom:30px;">Projects</h1>
+            </div>
+            <div class="row container-support-lifesaving">
+                @foreach (Project project in (List<Project>)ViewBag.searchedProjects)
+                {
+                    if (project.project_name == "Food Security")
+                    {
+                        <a href="/Service/FoodSecurity" style="color:#000;">
+                            <div class="col-12 col-md-6 col-lg-4 support-lifesaving-card animated-element" onmouseenter="addAnimation(this)" onmouseleave="removeAnimation(this)">
+                                <!-- Card 1 -->
+                                <div class="card mb-3 card-color">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <img src="~/Content/projects/food-security/food package 3.jpg" class="image-support-live" alt="Responsive image">
+                                                <div class="mt-3 yellow-card">
+                                                    <h5 class="card-title bold" style="font-size:1.5em;">Food Security</h5>
+                                                    <i class="fa fa-arrow-right pull-right " style="padding-bottom:10px;"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-footer">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    }
+                    if (project.project_name == "Water Aid")
+                    {
+                        <a href="/Service/WaterAid" style="color:#000;">
+                            <div class="col-12 col-md-6 col-lg-4 support-lifesaving-card animated-element" onmouseenter="addAnimation(this)" onmouseleave="removeAnimation(this)">
+                                <!-- Card 1 -->
+                                <div class="card mb-3 card-color">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <img src="~/Content/projects/water-aid/Watar Aid 2.jpg" class="image-support-live" alt="Responsive image">
+                                                <div class="mt-3 yellow-card">
+                                                    <h5 class="card-title bold" style="font-size:1.5em;">Water Aid</h5>
+
+                                                    <i class="fa fa-arrow-right pull-right " style="padding-bottom:10px;"></i>
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-footer">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    }
+                    if (project.project_name == "Health Services")
+                    {
+                        <a href="/Service/Health" style="color:#000;">
+                            <div class="col-12 col-md-6 col-lg-4 support-lifesaving-card animated-element" onmouseenter="addAnimation(this)" onmouseleave="removeAnimation(this)">
+                                <!-- Card 1 -->
+                                <div class="card mb-3 card-color">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <img src="~/Content/projects/health-services/Health Services 7.jpg" class="image-support-live" alt="Responsive image">
+                                                <div class="mt-3 yellow-card">
+                                                    <h5 class="card-title bold" style="font-size:1.5em;">Health Services</h5>
+
+                                                    <i class="fa fa-arrow-right pull-right " style="padding-bottom:10px;"></i>
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-footer">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    }
+                    if (project.project_name == "Construction, Building Masjid")
+                    {
+                        <a href="/Service/BuildingMasjid" style="color:#000;">
+                            <div class="col-12 col-md-6 col-lg-4 support-lifesaving-card animated-element" onmouseenter="addAnimation(this)" onmouseleave="removeAnimation(this)">
+                                <!-- Card 1 -->
+                                <div class="card mb-3 card-color">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <img src="~/Content/projects/construction/HRM-building-masjid 2.jpg" class="image-support-live" alt="Responsive image">
+                                                <div class="mt-3 yellow-card">
+                                                    <h5 class="card-title bold" style="font-size:1.5em;">Building Masjid</h5>
+
+                                                    <i class="fa fa-arrow-right pull-right " style="padding-bottom:10px;"></i>
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-footer">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    }
+                    if (project.project_name == "Sponsorship Programme")
+                    {
+                        <a href="/Service/SponsorshipProgramme" style="color:#000;">
+                            <div class="col-12 col-md-6 col-lg-4 support-lifesaving-card animated-element" onmouseenter="addAnimation(this)" onmouseleave="removeAnimation(this)">
+                                <!-- Card 1 -->
+                                <div class="card mb-3 card-color">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <img src="~/Content/projects/sponsorship-programme/HRM-sponsorship-programme-1.jpg" class="image-support-live" alt="Responsive image">
+                                                <div class="mt-3 yellow-card">
+                                                    <h5 class="card-title bold" style="font-size:1.5em;">Sponsorship programme</h5>
+
+                                                    <i class="fa fa-arrow-right pull-right " style="padding-bottom:10px;"></i>
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-footer">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    }
+                    if (project.project_name == "Emergency Ambulance Services")
+                    {
+                        <a href="/Service/Ambulance" style="color:#000;">
+                            <div class="col-12 col-md-6 col-lg-4 support-lifesaving-card animated-element" onmouseenter="addAnimation(this)" onmouseleave="removeAnimation(this)">
+                                <!-- Card 1 -->
+                                <div class="card mb-3 card-color">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <img src="~/Content/projects/ambulance-services/human-relief-mission-ambulance 1.jpg" class="image-support-live" alt="Responsive image">
+                                                <div class="mt-3 yellow-card">
+                                                    <h5 class="card-title bold" style="font-size:1.5em;">Emergency Ambulance Services</h5>
+
+                                                    <i class="fa fa-arrow-right pull-right " style="padding-bottom:10px;"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-footer">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    }
+                    if (project.project_name == "Technical School")
+                    {
+                        <a href="/Service/TechnicalSchool" style="color:#000;">
+                            <div class="col-12 col-md-6 col-lg-4 support-lifesaving-card animated-element" onmouseenter="addAnimation(this)" onmouseleave="removeAnimation(this)">
+                                <!-- Card 1 -->
+                                <div class="card mb-3 card-color">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <img src="~/Content/projects/techical-school/technical-school-1.jpg" class="image-support-live" alt="Responsive image">
+                                                <div class="mt-3 yellow-card">
+                                                    <h5 class="card-title bold" style="font-size:1.5em;">Technical School</h5>
+
+                                                    <i class="fa fa-arrow-right pull-right " style="padding-bottom:10px;"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-footer">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    }
+                    if (project.project_name == "Al-Mouwasat Orphanage")
+                    {
+                        <a href="/Service/Orphanage" style="color:#000;">
+                            <div class="col-12 col-md-6 col-lg-4 support-lifesaving-card animated-element" onmouseenter="addAnimation(this)" onmouseleave="removeAnimation(this)">
+                                <!-- Card 1 -->
+                                <div class="card mb-3 card-color">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <img src="~/Content/projects/sponsorship-programme/al-mouwasat-orphange-1.jpg" class="image-support-live" alt="Responsive image">
+                                                <div class="mt-3 yellow-card">
+                                                    <h5 class="card-title bold" style="font-size:1.5em;">Al-Mouwasat Orphanage</h5>
+
+                                                    <i class="fa fa-arrow-right pull-right " style="padding-bottom:10px;"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-footer">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    }
+                    if (project.project_name == "The Bakery Project")
+                    {
+                        <a href="/Service/Bakery" style="color:#000;">
+                            <div class="col-12 col-md-6 col-lg-4 support-lifesaving-card animated-element" onmouseenter="addAnimation(this)" onmouseleave="removeAnimation(this)">
+                                <!-- Card 1 -->
+                                <div class="card mb-3 card-color">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <img src="~/Content/projects/bakery/bakery-1.jpg" class="image-support-live" alt="Responsive image">
+                                                <div class="mt-3 yellow-card">
+                                                    <h5 class="card-title bold" style="font-size:1.5em;">The Bakery Project</h5>
+
+                                                    <i class="fa fa-arrow-right pull-right " style="padding-bottom:10px;"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-footer">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    }
+                    if (project.project_name == "Green Afghanistan")
+                    {
+                        <a href="/Service/GreenAfghanistan" style="color:#000;">
+                            <div class="col-12 col-md-6 col-lg-4 support-lifesaving-card animated-element" onmouseenter="addAnimation(this)" onmouseleave="removeAnimation(this)">
+                                <!-- Card 1 -->
+                                <div class="card mb-3 card-color">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <img src="~/Content/projects/green-afghanistan/green-afghanistan-4.jpg" class="image-support-live" alt="Responsive image">
+                                                <div class="mt-3 yellow-card">
+                                                    <h5 class="card-title bold" style="font-size:1.5em;">Green Afghanistan</h5>
+
+                                                    <i class="fa fa-arrow-right pull-right " style="padding-bottom:10px;"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-footer">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    }
+                }
+            </div>
+        </div>
+    }
+    @* END PROJECTS*@
+
+    <script src="~/assets/Home/custom.js"></script>
+
+</body>
+</html>

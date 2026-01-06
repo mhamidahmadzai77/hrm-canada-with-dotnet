@@ -1,0 +1,202 @@
+﻿@{
+    if (Session["user_108310113658"] != null)
+    {
+        if (Session["user_108310113658"].ToString() == "authenticated")
+        {
+            Layout = "~/Views/Shared/_AdminLayout.cshtml";
+        }
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_EndUserLayout.cshtml";
+    }
+
+    ViewBag.Title = "Get Involved | Human Relief Mission Canada";
+    ViewBag.Description = "Learn how you can contribute to our mission at Human Relief Mission Canada. Explore ways to get involved as a volunteer, candidate, or supporter and help us combat global hunger and provide essential aid.";
+    ViewBag.Keywords = "get involved, volunteer opportunities, candidate roles, support our mission, humanitarian efforts, community engagement, Human Relief Mission Canada";
+    ViewBag.OGandTwitterTitle = "Get Involved with Us | Human Relief Mission Canada";
+
+}
+
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RXXJLDEKC3"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); } gtag('js', new Date()); gtag('config', 'G-RXXJLDEKC3');
+    </script>
+
+    <link href="~/assets/Home/custom.css" rel="stylesheet" />
+
+    <style type="text/css">
+
+        /* Hide error messages by default */
+        span.error {
+            color: red;
+            font-size: 12px;
+            display: none;
+        }
+    </style>
+</head>
+<body style="margin: 0; padding: 0;">
+
+    <div class="container-fluid slider" style="margin:0;padding:0;">
+        <div class="image-container">
+            <img class="image" src="~/Content/pic/get-involed.jpg" />
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="col-md-3"></div>
+        <div class="col-md-6 " style="text-align:justify;font-size:18px;">
+            <h1 style="font-weight:bold;font-size:2em">
+                Volunteer with Us
+            </h1>
+            <h2>How to Get Started</h2>
+            <p>Becoming a volunteer with Human Relief Mission is easy! Follow these simple steps:</p>
+            <ul style="list-style-type:decimal;">
+                <li><b style="font-size:15px;">Apply Online:</b> Complete our volunteer application form below.</li>
+                <li><b style="font-size:15px;">Get added to our group chat:</b> Join our whatsapp group chat to learn more about our mission, values, and the various ways you can contribute.</li>
+                <li><b style="font-size:15px;">Look out for volunteering opportunities:</b> We’ll match you with a volunteer role that aligns with your interests and skills, you can also look out for any volunteering opportunities in our group chat.</li>
+                <li><b style="font-size:15px;">Start Volunteering:</b> Begin your journey of making a positive impact!</li>
+
+            </ul>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+
+    <div style="background-color: #faf9f9; min-height: 300px;padding:30px;font-size:18px;margin-top:50px;">
+
+        <form id="VolunteerForm">
+            <div class="row">
+                <div class="row" style="margin:40px 0;">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-6">
+                        <h2 style="font-weight:bold">Volunteering Form</h2>
+                    </div>
+                    <div class="col-md-3"></div>
+                </div>
+                <div class="col-md-3"></div>
+                <div class="form-group col-md-3">
+                    <label for="firstname">Firstname <span style="color:red;font-size:14px;font-weight:normal">(Required)</span></label>
+                    <input type="text" class="form-control" id="firstname" oninput="validateFirstname()" placeholder="Firstname">
+                    <span class="error" id="firstname-error">Firstname must be between 3 and 30 characters</span>
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="surname">Surname <span style="color:red;font-size:14px;font-weight:normal">(Required)</span></label>
+                    <input type="text" class="form-control" id="surname" oninput="validateSurname()" placeholder="Surname">
+                    <span class="error" id="surname-error">Surname must be between 3 and 30 characters</span>
+
+                </div>
+                <div class="col-md-3"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-6">
+                    <label>Gender <span style="color: red; font-size: 14px; font-weight: normal">(Required)</span></label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="Gender" id="male" value="Male" checked style="width:20px;height:20px;">
+                        <label class="form-check-label" for="male">
+                            Male
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="Gender" id="female" value="Female" style="width:20px;height:20px;">
+                        <label class="form-check-label" for="female">
+                            Female
+                        </label>
+                    </div>
+                </div>
+                <div class="col-md-3"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="form-group col-md-6">
+                    <label for="birthday">Birthday <span style="color: red; font-size: 14px; font-weight: normal">(Required)</span></label>
+                    <input type="date" class="form-control" id="birthday" oninput="validateBirthday()" placeholder="Birth Day">
+                    <span class="error" id="birthday-error">Birth day is required</span>
+                </div>
+                <div class="col-md-3"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="form-group col-md-6">
+                    <label for="address">Address <span style="color: red; font-size: 14px; font-weight: normal">(Required)</span></label>
+                    <input type="text" class="form-control" id="address" oninput="validateAddress()" placeholder="Address">
+                    <span class="error" id="address-error">Address is required</span>
+                </div>
+                <div class="col-md-3"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="form-group col-md-6">
+                    <label for="email">Email <span style="color: red; font-size: 14px; font-weight: normal">(Required)</span></label>
+                    <input type="email" class="form-control" id="email" oninput="validateMail()" placeholder="Email">
+                    <span class="error" id="email-error">Email is required</span>
+                </div>
+                <div class="col-md-3"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="form-group col-md-6">
+                    <label for="emergencyContactName">Emergency Contact Name <span style="color: red; font-size: 14px; font-weight: normal">(Required)</span></label>
+                    <input type="text" class="form-control" id="emergencyContactName" oninput="validateEmergencyContactName()" placeholder="Emergency Contact Name">
+                    <span class="error" id="emergency-contact-name-error">This field is required</span>
+                </div>
+                <div class="col-md-3"></div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="form-group col-md-6">
+                    <label for="contactNumber">Contact Number<span style="font-size: 14px; font-weight: normal">(Optional)</span></label>
+                    <input type="text" class="form-control" id="contactNumber" onkeypress="return isNumberKey(event)" oninput="validateContactNumber()" placeholder="Contact number">
+                </div>
+                <div class="col-md-3"></div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="form-check col-md-6">
+                    <button type="button" onclick="sendData()" class="btn purple" style="background-color:#660199;color:#fff;width:130px;font-weight:bold;"> Send </button>
+                </div>
+                <div class="col-md-3"></div>
+            </div>
+        </form>
+
+    </div>
+
+    <div class="container-fluid">
+        <div class="col-md-3"></div>
+        <div class="col-md-6 " style="text-align:justify;font-size:18px;">
+
+            <h1 style="font-weight:bold;font-size:2em">Make a Difference Today</h1>
+            <p>At Human Relief Mission, we believe that together, we can create a world where everyone has access to the basic necessities of life. Our mission is to provide relief to those in need through various humanitarian efforts, and we rely on the generosity and dedication of volunteers like you to make this possible.</p>
+
+            <h2>Why Volunteer?</h2>
+            <p>Volunteering with us is a unique opportunity to:</p>
+            <ul style="list-style-type:decimal;">
+                <li><b style="font-size:15px;">Impact Lives:</b> Your time and effort can make a significant difference in the lives of individuals and communities in need.</li>
+                <li><b style="font-size:15px;">Develop Skills:</b> Gain valuable skills and experiences that can enhance your personal and professional growth.</li>
+                <li><b style="font-size:15px;">Build Connections:</b> Join a community of compassionate individuals who share your commitment to making the world a better place.</li>
+                <li><b style="font-size:15px;">Experience Fulfilment:</b> Find a deep sense of satisfaction and purpose by helping those who need it most. </li>
+            </ul>
+            <p>&nbsp;</p>
+            <p><h4>For more information about volunteering, please contact us at:</h4></p>
+            <div style="width:100%;height:2px;background-color:#660199;"></div>
+            <div style="margin-top:30px;">
+                <h5 style="text-align:center;">If you have any questions, then please do not hesitate to contact us.</h5>
+            </div>
+            <div style="text-align:center;padding-bottom:30px;">
+                <a class="btn" style="width:120px;color:#fff;background-color:#660199;" href="tel:0093787082624"> <i class="fa fa-phone"></i>&nbsp;&nbsp;&nbsp; PHONE</a>
+                <a class="btn" style="width:120px;color:#fff;background-color:#660199;" href="mailTo:info@humanreliefmission.com"> <i class="fa fa-envelope"></i>&nbsp;&nbsp;&nbsp; Email</a>
+
+            </div>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+
+    <script src="~/assets/Home/get-involved.js"></script>
+
+</body>
+</html>

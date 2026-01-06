@@ -1,0 +1,955 @@
+﻿
+@using HRM.Models;
+@{
+    var facebookLink = "https://www.facebook.com/humanreliefmission";
+    var instegramLink = "https://www.instagram.com/humanreliefmission?igsh=MTh4bjh3ODAyZTE1NQ==";
+    var xtwitterLink = "https://x.com/humanreliefmuk?s=11";
+    var tiktokLink = "https://www.tiktok.com/@humanreliefmission?_t=8oLfgvHyyo4&_r=1";
+    var youtubeLink = "https://www.youtube.com/@HumanReliefMission";
+
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <title>@ViewBag.Title</title>
+
+    <meta name="description" content="@ViewBag.Description">
+    <meta name="keywords" content="@ViewBag.Keywords">
+    <meta name="author" content="Human Relief Mission UK">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph Meta Tags for Social Media Sharing -->
+    <meta property="og:title" content="@ViewBag.OGandTwitterTitle" />
+    <meta property="og:description" content="@ViewBag.Description" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="Human Relief Mission UK" />
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="@ViewBag.OGandTwitterTitle" />
+    <meta name="twitter:description" content="@ViewBag.Description" />
+
+
+    <!-- BEGIN GLOBAL MANDATORY STYLES -->
+    <link href="~/assets/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" type="text/css" />
+    <!-- END GLOBAL MANDATORY STYLES -->
+    <!-- BEGIN PAGE LEVEL PLUGINS -->
+    <link href="~/assets/global/plugins/socicon/socicon.css" rel="stylesheet" type="text/css">
+    <!-- END PAGE LEVEL PLUGINS -->
+    <!-- BEGIN THEME GLOBAL STYLES -->
+    <link href="~/assets/global/css/components-rounded.min.css" rel="stylesheet" id="style_components" type="text/css" />
+    <link href="~/assets/global/css/plugins.min.css" rel="stylesheet" type="text/css" />
+    <!-- END THEME GLOBAL STYLES -->
+    <!-- BEGIN THEME LAYOUT STYLES -->
+    <link href="~/assets/layouts/layout/css/layout.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/layouts/layout/css/themes/darkblue.min.css" rel="stylesheet" type="text/css" id="style_color" />
+    <link href="~/assets/layouts/layout/css/custom.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/my files/mystyle.css" rel="stylesheet" />
+    <link href="~/assets/toaster.css" rel="stylesheet" />
+    <link href="~/assets/search/search.css" rel="stylesheet" />
+
+    <script src="~/assets/ajax/pdf/pdf.min.js"></script>
+    <script src="~/assets/ajax/pdf/jquery.min.js"></script>
+
+    <!-- END THEME LAYOUT STYLES -->
+
+    <link rel="shortcut icon" href="~/assets/layouts/layout/img/CANADA-website-tab-logo.png" />
+
+
+    <style type="text/css">
+        #dropdown-menu > li {
+            width: 300px;
+        }
+
+        #sub-menu > li {
+            border-top: 1px solid rgb(54,65,80);
+            padding: 8px 0;
+        }
+
+
+        .page-wrapper, .navbar, .clearfix {
+            background-color: #ffffff;
+        }
+
+        .hor-menu, .top-menu, .page-header-inner {
+            background-color: #660199;
+        }
+
+        #search-bar {
+            color: #fff;
+            background-color: #660199;
+        }
+
+            #search-bar:hover {
+                color: #23527c;
+                background-color: #9966cc;
+            }
+
+        div.nav-social div:hover {
+            cursor: pointer;
+            transform: scale(1.1);
+        }
+
+        div.nav-social a div {
+            margin-right: 5px;
+            float: left;
+        }
+
+        div.social-bar div {
+            position: relative;
+            left: 70px;
+        }
+
+
+        ul.page-sidebar-menu li a {
+            background-color: #fff;
+        }
+
+        .nav-item {
+            background-color: #fff;
+        }
+
+        #myIcon {
+            filter: grayscale();
+        }
+
+        .basket-donate-button {
+            width: 90%;
+            display: inline-flex;
+            align-items: center;
+            background-color: red;
+            color: white;
+            text-decoration: none;
+            padding: 10px 32px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            font-size: 16px;
+        }
+
+            .basket-donate-button:hover {
+                background-color: darkred;
+                transform: translateY(-2px);
+                color: #fff;
+                text-decoration: none;
+            }
+
+        .arrow {
+            margin-left: 8px; /* Space between text and arrow */
+            font-size: 18px; /* Adjust the size of the arrow */
+        }
+
+        .footer-social-link:hover > div > img {
+            transform: scale(1.1);
+        }
+
+        /* CSS to hide the arrows */
+        .no-arrows::-webkit-outer-spin-button,
+        .no-arrows::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        .no-arrows {
+            -moz-appearance: textfield; /* Firefox */
+        }
+
+        /* CSS to make the placeholder text white */
+        .white-placeholder::placeholder {
+            color: white;
+            opacity: 1; /* Ensure full opacity for placeholder */
+        }
+    </style>
+
+    <script>
+        function toggleSearchBar() {
+            const searchBarId = "top-search-bar";
+            const searchBarExists = document.getElementById(searchBarId);
+            const beforeElement = document.getElementById("before-top-search-bar");
+            var searchIcon = document.getElementById('search-icon');
+
+            if (window.innerWidth < 992) {
+                if (searchBarExists) {
+                    searchBarExists.remove(); // Remove the search bar if it exists
+                    searchIcon.className = "icon-magnifier"; // Change icon
+                }
+            } else {
+                // If search bar does not exist, create it
+                if (!searchBarExists) {
+                    const searchBar = document.createElement("div");
+                    searchBar.className = "overlay";
+                    searchBar.id = searchBarId;
+
+                    searchBar.innerHTML = `
+                                                            <form action="/Search/Index" method="get">
+                                                                <input type="text" class="search-box" id="search" name="s" placeholder="Start Typing...">
+                                                                <button class="search-button">Search <i class="fa fa-arrow-right"></i></button>
+                                                            </form>
+                                                        `;
+
+                    // Insert the search bar after <p id="before-top-search-bar"></p>
+                    beforeElement.insertAdjacentElement("afterend", searchBar);
+                } else {
+                    searchBarExists.style.display = "block"; // Show the search bar if it already exists
+                }
+            }
+        }
+
+        // Initial check on page load
+        window.onload = toggleSearchBar;
+
+        // Check on window resize
+        window.onresize = toggleSearchBar;
+    </script>
+</head>
+<!-- END HEAD -->
+
+<body onload="adjustElementStyle()" class="page-header-fixed page-sidebar-closed-hide-logo page-content-white page-full-width">
+    <div class="page-wrapper">
+        <!-- BEGIN HEADER -->
+        <div class="page-header navbar navbar-fixed-top" style="background-color:#660199;z-index:10000;">
+            <div class="social-bar" style="height: 30px;background-color:#fff;">
+                <div class="nav navbar-nav nav-social" style="margin-top:4px;">
+                    <a href="@facebookLink" target="_blank">
+                        <div class="classic-menu-dropdown" style="text-align:center;">
+                            <img src="~/assets/custom-image/facebook.png" width="22" />
+                        </div>
+                    </a>
+                    <a href="@instegramLink" target="_blank">
+                        <div class="classic-menu-dropdown" style="width:22px;height:22px;border-radius:4px;text-align:center;">
+                            <img src="~/assets/custom-image/instagram.png" width="22" />
+                        </div>
+                    </a>
+                    <a href="@xtwitterLink" target="_blank">
+                        <div class="classic-menu-dropdown" style="width:22px;height:22px;border-radius:4px;text-align:center;margin-top:-5px;margin-left:-12px;">
+                            <img src="~/assets/custom-image/x.png" width="43" />
+                        </div>
+                    </a>
+                    <a href="@tiktokLink" target="_blank">
+                        <div class="classic-menu-dropdown" style="width:22px;height:22px;border-radius:4px;text-align:center;margin-top:-5px;margin-left:5px;">
+                            <img src="~/assets/custom-image/tiktok.png" width="32" />
+                        </div>
+                    </a>
+                    <a href="@youtubeLink" target="_blank">
+                        <div class="classic-menu-dropdown" style="width:22px;height:22px;border-radius:4px;text-align:center;margin-top:-5px;">
+                            <img src="~/assets/custom-image/youtube.png" width="32" />
+                        </div>
+                    </a>
+                </div>
+                <span class="pull-right" style="color:#660199;font-weight:bold;margin-top:5px;margin-right:40px;">
+                    <i class="fa fa-phone"></i>
+                    <a style="text-decoration:none;color:#660199;" href="tel:+16137100432">+1(613) 710 0432</a> |
+                    <a style="text-decoration:none;color:#660199;" href="tel:+16138791722">+1(613) 879 1722</a>
+                </span>
+            </div>
+            <!-- BEGIN HEADER INNER -->
+            <div class="page-header-inner " style="height:50px;">
+                <!-- BEGIN LOGO -->
+                <div class="page-logo">
+                    <div style="width: 85px; height: 110px; background-color: #fff; text-align: center; border-radius: 0 0 15px 15px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);">
+                        <a href="/Home/Index">
+                            <img src="~/assets/layouts/layout/img/logo.png" alt="logo" class="logo-default" style="width:75px;margin-top:8px;">
+                        </a>
+                    </div>
+                </div>
+                <!-- END LOGO -->
+                <!-- BEGIN MEGA MENU -->
+                <!-- DOC: Remove "hor-menu-light" class to have a horizontal menu with theme background instead of white background -->
+                <!-- DOC: This is desktop version of the horizontal menu. The mobile version is defined(duplicated) in the responsive menu below along with sidebar menu. So the horizontal menu has 2 seperate versions -->
+                <div class="hor-menu  hor-menu-light hidden-sm hidden-xs">
+                    <ul class="nav navbar-nav" style="margin-left:-100px;">
+                        <!-- DOC: Remove data-hover="megamenu-dropdown" and data-close-others="true" attributes below to disable the horizontal opening on mouse hover -->
+
+                        <li class="classic-menu-dropdown">
+                            <a href="javascript:;" style="color: #fff;font-weight:bold;" data-hover="megamenu-dropdown" data-close-others="true">
+                                Services
+                                <i class="fa fa-angle-down" style="font-weight:bold;color:#fff"></i>
+                            </a>
+                            <ul class="dropdown-menu pull-left" id="dropdown-menu">
+                                <li>
+                                    <a href="/Service/FoodSecurity" style="font-weight:bold;">
+                                        Food Security
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/Service/WaterAid" style="font-weight:bold;">
+                                        Water Aid
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/Service/Health" style="font-weight:bold;">
+                                        Health Services
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/Service/BuildingMasjid" style="font-weight:bold;">
+                                        Construction Projects
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/Service/SponsorshipProgramme" style="font-weight:bold;">
+                                        Sponsorship Programmes
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/Service/Ambulance" style="font-weight:bold;">
+                                        Emergency Ambulance Service
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/Service/TechnicalSchool" style="font-weight:bold;">
+                                        Technical School
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/Service/Orphanage" style="font-weight:bold;">
+                                        Al-Mouwasat Orphanage
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/Service/Bakery" style="font-weight:bold;">
+                                        The Bakery Project
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/Service/IGP" style="font-weight:bold;">
+                                        Income Generating Projects
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/Service/Qurbani" style="font-weight:bold;">
+                                        Qurbani
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="classic-menu-dropdown">
+                            <a href="/Appeals/Index" style="color: #fff; font-weight: bold;" data-hover="megamenu-dropdown" data-close-others="true">
+                                Emergency Appeal
+                                <i class="fa fa-angle-down" style="font-weight: bold; color: #fff"></i>
+                            </a>
+                            <ul class="dropdown-menu pull-left" id="dropdown-menu">
+                                @if (ViewBag.appeals != null && ((List<Appeal>)ViewBag.appeals).Any())
+                                {
+                                    foreach (Appeal appeal in (List<Appeal>)ViewBag.appeals)
+                                    {
+                                        <li>
+                                            <a href="/Appeals/Appeal?id=@appeal.appeal_id&emergency_appeal=@appeal.title" style="font-weight:bold;">
+                                                @appeal.title
+                                            </a>
+                                        </li>
+                                    }
+                                }
+                            </ul>
+                        </li>
+                        @*<li class="classic-menu-dropdown">
+                                <a href="/Home/Ramadan" style="color: #fff; font-weight: bold;" data-hover="megamenu-dropdown" data-close-others="true">
+                                    Ramadan
+                                </a>
+                            </li>*@
+                        <li class="classic-menu-dropdown">
+                            <a href="/Home/GetInvolved" style="color: #fff; font-weight: bold;" data-hover="megamenu-dropdown" data-close-others="true">
+                                Get Involved
+                            </a>
+                        </li>
+                        <li class="classic-menu-dropdown">
+                            <a href="javascript:;" style="color: #fff; font-weight: bold;" data-hover="megamenu-dropdown" data-close-others="true">
+                                About Us
+                                <i class="fa fa-angle-down" style="font-weight:bold;color:#fff"></i>
+                            </a>
+                            <ul class="dropdown-menu pull-left" id="dropdown-menu">
+                                <li>
+                                    <a href="/About_Us/Who_we_are" style="font-weight:bold;">
+                                        Who we are
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/About_Us/AnnualReports" style="font-weight:bold;">
+                                        Annual Reports
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/About_Us/Our_Policies" style="font-weight:bold;">
+                                        Our Policies
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/About_Us/FrequentlyAskedQuestion" style="font-weight:bold;">
+                                        FAQs
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/About_Us/Our_Work" style="font-weight:bold;">
+                                        Our Work
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="classic-menu-dropdown">
+                            <a href="/Contact/Index" style="color: #fff; font-weight: bold;" data-hover="megamenu-dropdown" data-close-others="true">
+                                Contact Us
+                            </a>
+
+                        </li>
+                        <li class="classic-menu-dropdown" id="search-list-item" onclick="displaySearchBox()">
+                            <a href="javascript:;" data-hover="megamenu-dropdown" data-close-others="true">
+                                &nbsp;&nbsp;<i class="icon-magnifier" id="search-icon" style="color: #fff; font-size:15px;font-weight: bold;"></i>&nbsp;&nbsp;
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- END MEGA MENU -->
+                <!-- BEGIN RESPONSIVE MENU TOGGLER -->
+                <a href="javascript:;" id="toggle-button" style="color:#fff;font-weight:bold;" class="menu-toggler responsive-toggler" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span></span>
+                </a>
+                <!-- END RESPONSIVE MENU TOGGLER -->
+                <!-- BEGIN TOP NAVIGATION MENU -->
+                <div class="top-menu">
+                    <ul class="nav navbar-nav pull-right">
+                        <li class="dropdown dropdown-extended dropdown-tasks basket-container" id="basket-container">
+                            <a href="javascript:;" onclick="ChangeColorIfListIsBlock()" onmouseover="changeIconColor('gray')" onmouseout="changeIconColor('#fff')" onfocus="changeIconColor('gray')" class="dropdown-toggle" id="basket-link" style="margin-top:1px;" data-toggle="dropdown" data-hover="dropdown" data-close-others="true" aria-expanded="false">
+                                <i class="fa fa-cart-plus basket-icon" id="basket-icon" style="font-size:22px;color:#fff;"></i>
+                                @if (ViewBag.basket != null && ViewBag.basket.Count > 0)
+                                {
+                                    <span class="badge badge-danger total-items">@ViewBag.basket.Count</span>
+                                }
+                                else
+                                {
+                                    <span class="badge badge-danger hide total-items"></span>
+                                }
+                            </a>
+                            <ul class="dropdown-menu extended tasks" id="basket-item-list">
+                                <li class="external">
+                                    <h3 style="font-size:15px;">
+                                        You have
+                                        @if (ViewBag.basket != null && ViewBag.basket.Count > 0)
+                                        {
+                                            <span class="bold total-items">@ViewBag.basket.Count </span>
+                                        }
+                                        else
+                                        {
+                                            <span class="bold total-items"> 0 </span>
+                                        }
+                                        <span class="bold"> items</span> in your basket
+                                    </h3>
+                                </li>
+                                <li>
+                                    <div class="slimScrollDiv" style="position: relative; overflow: visible; width: auto; height:150px;">
+                                        <ul class="dropdown-menu-list scroller basket-list" style="height: 150px; overflow:visible; width: auto;" data-handle-color="#637283" data-initialized="1">
+                                            @{
+                                                int total = 0;
+                                                if (ViewBag.basket != null && ((List<DonationItem>)ViewBag.basket).Any())
+                                                {
+                                                    foreach (DonationItem item in (List<DonationItem>)ViewBag.basket)
+                                                    {
+                                                        total = total + Convert.ToInt32(item.Amount);
+                                                        string amountId = item.Name + "-amount-id";
+                                                        <li id="@item.Name">
+                                                            <span class="task">
+                                                                <span class="desc"> @item.Name</span>
+                                                                <span class="percent">$<span id="@amountId">@item.Amount</span><i class="fa fa-close basket-item-close-button" onclick="removeBasketItem(@item.Amount , '@item.Name')"></i></span>
+                                                            </span>
+                                                        </li>
+
+                                                    }
+                                                }
+                                                <li id="total-list-item">
+                                                    <span class="task">
+                                                        <span class="desc bold"> Total: </span>
+                                                        <span class="percent bold">$<span id="total-amount">@total</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+                                                    </span>
+                                                </li>
+                                            }
+                                            <li style="border-bottom:none;">
+                                                <div class="col-md-12" style="margin:10px;">
+                                                    <a href="/Donation/Donate_Start" class="basket-donate-button">
+                                                        Donate Now
+                                                        <span class="arrow fa fa-arrow-right"></span> <!-- Right arrow -->
+                                                    </a>
+                                                </div>
+                                            </li>
+                                        </ul><div class="slimScrollBar" style="background: rgb(99, 114, 131); width: 7px; position: absolute; top: 0px; opacity: 0.4; display: none; border-radius: 7px; z-index: 99; right: 1px; height: 148.576px;"></div><div class="slimScrollRail" style="width: 7px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(234, 234, 234); opacity: 0.2; z-index: 90; right: 1px;"></div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <button class="btn btn-danger bold" style="margin-top:10px;background-color:red;" onclick="window.location='/Donation/Donate_Start';"> Donate Now </button>
+                        </li>
+                    </ul>
+                </div>
+                <!-- END TOP NAVIGATION MENU -->
+            </div>
+            <!-- END HEADER INNER -->
+        </div>
+        <!-- END HEADER -->
+        <!-- BEGIN HEADER & CONTENT DIVIDER -->
+        <div class="clearfix"> </div>
+        <!-- END HEADER & CONTENT DIVIDER -->
+        <!-- BEGIN SEARCH BOX -->
+        <p id="before-top-search-bar"></p>
+        <div class="overlay" id="top-search-bar">
+            <form action="/Search/Index" method="get" id="top-search-form">
+                <input type="text" class="search-box" id="search" name="s" placeholder="Start Typing...">
+                <button class="search-button">Search <i class="fa fa-arrow-right"></i></button>
+            </form>
+        </div>
+        <!-- END SEARCH BOX -->
+        <!-- BEGIN CONTAINER -->
+        <div class="page-container" style="padding:0;margin:0;">
+            <!-- BEGIN SIDEBAR -->
+            <div class="page-sidebar-wrapper" style="padding:0;margin:0;width:100%;">
+                <!-- BEGIN SIDEBAR -->
+                <!-- DOC: Set data-auto-scroll="false" to disable the sidebar from auto scrolling/focusing -->
+                <!-- DOC: Change data-auto-speed="200" to adjust the sub menu slide up/down speed -->
+                <div class="page-sidebar navbar-collapse collapse " aria-expanded="true" style="background-color:#fff;">
+                    <!-- BEGIN SIDEBAR MENU -->
+                    <!-- DOC: Apply "page-sidebar-menu-light" class right after "page-sidebar-menu" to enable light sidebar menu style(without borders) -->
+                    <!-- DOC: Apply "page-sidebar-menu-hover-submenu" class right after "page-sidebar-menu" to enable hoverable(hover vs accordion) sub menu mode -->
+                    <!-- DOC: Apply "page-sidebar-menu-closed" class right after "page-sidebar-menu" to collapse("page-sidebar-closed" class must be applied to the body element) the sidebar sub menu mode -->
+                    <!-- DOC: Set data-auto-scroll="false" to disable the sidebar from auto scrolling/focusing -->
+                    <!-- DOC: Set data-keep-expand="true" to keep the submenues expanded -->
+                    <!-- DOC: Set data-auto-speed="200" to adjust the sub menu slide up/down speed -->
+                    <ul class="page-sidebar-menu  page-header-fixed " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200" style="padding-top: 20px;background-color:#fff;">
+                        <!-- DOC: To remove the sidebar toggler from the sidebar you just need to completely remove the below "sidebar-toggler-wrapper" LI element -->
+                        <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+                        <li class="sidebar-toggler-wrapper hide">
+                            <div class="sidebar-toggler">
+                                <span></span>
+                            </div>
+                        </li>
+                        <!-- END SIDEBAR TOGGLER BUTTON -->
+                        <!-- DOC: To remove the search box from the sidebar you just need to completely remove the below "sidebar-search-wrapper" LI element -->
+                        <li class="sidebar-search-wrapper">
+                            <!-- BEGIN RESPONSIVE QUICK SEARCH FORM -->
+                            <!-- DOC: Apply "sidebar-search-bordered" class the below search form to have bordered search box -->
+                            <!-- DOC: Apply "sidebar-search-bordered sidebar-search-solid" class the below search form to have bordered & solid search box -->
+                            <form class="sidebar-search  " action="/Search/Index" method="get">
+                                <a href="javascript:;" class="remove" style="background-color:#fff;">
+                                    <i class="icon-close"></i>
+                                </a>
+                                <div class="input-group" style="box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);padding:8px;">
+                                    <input type="text" name="s" style="background-color: white !important; color: black; font-weight: bold;" class="form-control" placeholder="Search...">
+                                    <span class="input-group-btn">
+                                        <a href="javascript:;" class="btn submit">
+                                            <i class="icon-magnifier"></i>
+                                        </a>
+                                    </span>
+                                </div>
+                            </form>
+                            <!-- END RESPONSIVE QUICK SEARCH FORM -->
+                        </li>
+                        <li class="nav-item" style="background-color:#fff;">
+                            <a href="javascript:;" class="nav-link nav-toggle" style="background-color:#fff;font-weight:bold;">
+                                <span class="title">Services</span>
+                                <span class="arrow"></span>
+                            </a>
+                            <ul class="sub-menu" style="background-color:#fff;">
+                                <li class="nav-item" style="background-color: #fff; margin-bottom: -1px;">
+                                    <a href="/Service/FoodSecurity" class="nav-link " style="background-color: #fff; color: #000;font-weight:bold;">
+                                        <span class="title">Food Security</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item" style="background-color: #fff; margin-bottom: -1px;">
+                                    <a href="/Service/WaterAid" class="nav-link " style="background-color: #fff; color: #000;font-weight:bold;">
+                                        <span class="title">Water Aid</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item" style="background-color: #fff; margin-bottom: -1px;">
+                                    <a href="/Service/Health" class="nav-link " style="background-color: #fff; color: #000;font-weight:bold;">
+                                        <span class="title">Health Services</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item" style="background-color: #fff; margin-bottom: -1px;">
+                                    <a href="/Service/BuildingMasjid" class="nav-link " style="background-color: #fff; color: #000;font-weight:bold;">
+                                        <span class="title">Construction Projects</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item" style="background-color: #fff; margin-bottom: -1px;">
+                                    <a href="/Service/SponsorshipProgramme" class="nav-link " style="background-color: #fff; color: #000;font-weight:bold;">
+                                        <span class="title">Sponsorship Programmes</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item" style="background-color: #fff; margin-bottom: -1px;">
+                                    <a href="/Service/Ambulance" class="nav-link " style="background-color: #fff; color: #000;font-weight:bold;">
+                                        <span class="title">Emergency Ambulance Service</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item" style="background-color: #fff; margin-bottom: -1px;">
+                                    <a href="/Service/TechnicalSchool" class="nav-link " style="background-color: #fff; color: #000;font-weight:bold;">
+                                        <span class="title">Technical School</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item" style="background-color: #fff; margin-bottom: -1px;">
+                                    <a href="/Service/Orphanage" class="nav-link " style="background-color: #fff; color: #000;font-weight:bold;">
+                                        <span class="title">Al-Mouwasat Orphanage</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item" style="background-color: #fff; margin-bottom: -1px;">
+                                    <a href="/Service/Bakery" class="nav-link " style="background-color: #fff; color: #000;font-weight:bold;">
+                                        <span class="title">The Bakery Project</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item" style="background-color: #fff; margin-bottom: -1px;">
+                                    <a href="/Service/IGP" class="nav-link " style="background-color: #fff; color: #000;font-weight:bold;">
+                                        <span class="title">Income Generating Projects</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item" style="background-color: #fff; margin-bottom: -1px;">
+                                    <a href="/Service/GreenAfghanistan" class="nav-link " style="background-color: #fff; color: #000;font-weight:bold;">
+                                        <span class="title">Green Afghanistan</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item" style="background-color: #fff; margin-bottom: -1px;">
+                                    <a href="/Service/Qurbani" class="nav-link " style="background-color: #fff; color: #000;font-weight:bold;">
+                                        <span class="title">Qurbani</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item" style="background-color:#fff;">
+                            <a href="javascript:;" class="nav-link nav-toggle" style="background-color:#fff;font-weight:bold;">
+                                <span class="title">Emergency Appeal</span>
+                                <span class="arrow"></span>
+                            </a>
+                            <ul class="sub-menu" style="background-color:#fff;">
+                                @if (ViewBag.appeals != null && ((List<Appeal>)ViewBag.appeals).Any())
+                                {
+                                    foreach (Appeal appeal in (List<Appeal>)ViewBag.appeals)
+                                    {
+                                        <li class="nav-item" style="background-color: #fff; margin-bottom: -1px;">
+                                            <a href="/Appeals/Appeal?id=@appeal.appeal_id&emergency_appeal=@appeal.title" class="nav-link " style="background-color: #fff; color: #000;font-weight:bold;">
+                                                <span class="title">@appeal.title</span>
+                                            </a>
+                                        </li>
+                                    }
+                                }
+                            </ul>
+                        </li>
+                        @*<li class="nav-item" style="background-color:#fff;">
+                                <a href="/Home/Ramadan" class="nav-link nav-toggle" style="background-color:#fff;font-weight:bold;">
+                                    <span class="title">Ramadan</span>
+                                </a>
+                            </li>*@
+                        <li class="nav-item" style="background-color:#fff;">
+                            <a href="/Home/GetInvolved" class="nav-link nav-toggle" style="background-color:#fff;font-weight:bold;">
+                                <span class="title">Get Involved</span>
+                            </a>
+                        </li>
+                        <li class="nav-item" style="background-color:#fff;">
+                            <a href="javascript:;" class="nav-link nav-toggle" style="background-color:#fff;font-weight:bold;">
+                                <span class="title">About Us</span>
+                                <span class="arrow"></span>
+                            </a>
+                            <ul class="sub-menu" style="background-color:#fff;">
+                                <li class="nav-item" style="background-color: #fff; margin-bottom: -1px;">
+                                    <a href="/About_Us/Who_we_are" class="nav-link " style="background-color: #fff; color: #000;font-weight:bold;">
+                                        <span class="title">Who we are</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item" style="background-color: #fff; margin-bottom: -1px;">
+                                    <a href="/About_Us/AnnualReports" class="nav-link " style="background-color: #fff; color: #000;font-weight:bold;">
+                                        <span class="title">Annual Reports</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item" style="background-color: #fff; margin-bottom: -1px;">
+                                    <a href="/About_Us/Our_policies" class="nav-link " style="background-color: #fff; color: #000;font-weight:bold;">
+                                        <span class="title">Our Policies</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item" style="background-color: #fff; margin-bottom: -1px;">
+                                    <a href="/About_Us/FrequentlyAskedQuestion" class="nav-link " style="background-color: #fff; color: #000;font-weight:bold;">
+                                        <span class="title">FAQs</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item" style="background-color: #fff; margin-bottom: -1px;">
+                                    <a href="/About_Us/Our_Work" class="nav-link " style="background-color: #fff; color: #000;font-weight:bold;">
+                                        <span class="title">Our Work</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item" style="background-color:#fff;">
+                            <a href="/Contact/Index" class="nav-link nav-toggle" style="background-color:#fff;font-weight:bold;">
+                                <span class="title">Contact Us</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- END SIDEBAR MENU -->
+                    <!-- END SIDEBAR MENU -->
+                </div>
+                <!-- END SIDEBAR -->
+            </div>
+            <!-- END SIDEBAR -->
+            <!-- BEGIN CONTENT -->
+
+            <div class="page-content-wrapper" style="padding:0;margin:0;">
+                <!-- BEGIN CONTENT BODY -->
+                <div class="page-content" style="min-height:657px;margin:0 !important;padding:0 !important;border:none;">
+                    <div id="toast-container"></div>
+                    @RenderBody()
+
+
+                </div>
+                <!-- END CONTENT BODY -->
+            </div>
+            <!-- END CONTENT -->
+
+        </div>
+        <!-- END CONTAINER -->
+        <!-- BEGIN FOOTER -->
+        <footer id="footer" class="footer">
+            <div class="footer-top">
+                <div class="container">
+                    <div class="row" style="border-bottom:2px solid #b8b5b5;padding-bottom:50px;">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-4" style="padding-bottom:50px;text-align: center;">
+                            <div>
+                                <img src="~/assets/FR-logo/HRM Logo white (Transparent).png" style="width:120px;" /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <img src="~/assets/FR-logo/direct-debit-logo.png" style="width:150px;margin-left:-30px;" /> &nbsp;&nbsp;
+                            </div>
+                            <div style="margin-top:50px;">
+                                <img src="~/assets/FR-logo/visa-6850402_1280.png" style="width:150px;" />
+                                <img src="~/assets/FR-logo/mastercard.png" style="width:150px;" />
+                            </div>
+                        </div>
+                        <div class="col-md-1"></div>
+                        <div class="col-md-6">
+                            <h2 style="padding-left:14px;color:#fff;font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif">Join our mailing list</h2>
+                            <p style="padding-left:14px;color:#fff;">Get updates about our life-saving work around the world.</p>
+                            <form id="subscriptionForm">
+                                <div class="form-group col-md-10">
+                                    <input type="email" class="form-control" id="joinMail" oninput="controlEmailErrorMessage()" placeholder="Email Address" required>
+                                    <span id="emailError" style="display:none; color:red;"></span>
+                                </div>
+                                <div class="form-check col-md-10">
+                                    <div style="display: flex; align-items: flex-start;">
+                                        <input type="checkbox" class="form-check-input" id="joinMailCheckbox" style="margin-right: 10px; margin-top: 4px;">
+                                        <label class="form-check-label" for="joinMailCheckbox">
+                                            I am happy to receive updates from Human Relief Mission by email
+                                        </label>
+                                    </div>
+                                    <button type="button" class="btn btn-warning" id="subscribeButton" style="color:#000;width:130px;font-weight:bold;"> Subscribe </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="row" style="padding-top:50px;color:#fff;">
+                        <div class="col-lg-3 col-md-6 footer-links" style="text-align:left;">
+                            <h4 style="font-weight:bold;">Services</h4>
+                            <ul style="margin-left:-38px;">
+                                <li><a href="/Service/FoodSecurity">Food Security</a></li>
+                                <li><a href="/Service/WaterAid">Water Aid</a></li>
+                                <li><a href="/Service/Health">Health Services</a></li>
+                                <li><a href="/Service/BuildingMasjid">Construction Projects</a></li>
+                                <li><a href="/Service/SponsorshipProgramme">Sponsorship Programmes</a></li>
+                                <li><a href="/Service/Ambulance">Emergency Ambulance Service</a></li>
+                                <li><a href="/Service/TechnicalSchool">Technical School</a></li>
+                                <li><a href="/Service/Orphanage">Al-Mouwasat Orphanage</a></li>
+                                <li><a href="/Service/Bakery">The Bakery Project</a></li>
+                                <li><a href="/Service/IGP">Income Generating Projects</a></li>
+                                <li><a href="/Service/GreenAfghanistan">Green Afghanistan</a></li>
+                                <li><a href="/Service/Qurbani">Qurbani</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="col-lg-3 col-md-6 footer-links">
+                            <a href="/Appeals/Index" style="text-decoration: none; color: #fff;"><h4 style="font-weight:bold;">Emergency Appeal</h4></a>
+                            <ul style="margin-left:-38px;">
+                                @if (ViewBag.appeals != null && ((List<Appeal>)ViewBag.appeals).Any())
+                                {
+                                    foreach (Appeal appeal in (List<Appeal>)ViewBag.appeals)
+                                    {
+                                        <li><a href="/Appeals/Appeal?id=@appeal.appeal_id&emergency_appeal=@appeal.title">@appeal.title</a></li>
+                                    }
+                                }
+                                @*<li style="margin-top:40px;"><a href="/Home/Ramadan">Ramadan</a></li>*@
+                                <li style="margin-top:40px;"><a href="/Home/GetInvolved">Get Involved</a></li>
+                                <li><a href="/Contact/Index">Contact Us</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="col-lg-2 col-md-6 footer-newsletter">
+                            <h4 style="font-weight:bold;">About Us</h4>
+                            <ul style="margin-left:-38px;">
+                                <li><a href="/About_Us/Who_we_are">Who we are</a></li>
+                                <li><a href="/About_Us/AnnualReports">Annual Reports</a></li>
+                                <li><a href="/About_Us/Our_Policies">Our Policies</a></li>
+                                <li><a href="/About_Us/FrequentlyAskedQuestion">FAQs</a></li>
+                                <li><a href="/About_Us/Our_Work">Our Work</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-3 col-md-6" style="padding-top:-10px;">
+                            <div class="footer-info">
+                                <h4 style="font-weight:bold;">Human Relief Mission</h4>
+                                <p>
+                                    6745 RUSSELL ROAD<br />
+                                    VARS, ON, K0A 3H0<br />
+                                    CANADA  <br>
+                                    <br><br>
+                                    <strong>Phone:</strong> <a style="color:#fff;text-decoration:none;" href="tel:+16137100432">+1(613) 710 0432</a> | <a style="color:#fff;text-decoration:none;" href="tel:+16138791722">+1(613) 879 1722</a> <br>
+                                    <strong>Email Address :</strong> <a style="color:#fff;text-decoration:none;" href="mailTo:info@humanreliefmission.com">info@humanreliefmission.com</a><br>
+                                </p>
+                                <div class="social-links mt-3 ">
+                                    <div class="portlet">
+                                        <h4 style="font-weight:bold;">Follow us on socials!</h4>
+                                        <div class="portlet-body util-btn-margin-bottom-5" style="margin-right:16%;margin-top:30px;padding-bottom:20px;">
+
+                                            <a href="@facebookLink" target="_blank" class="footer-social-link">
+                                                <div class="classic-menu-dropdown" style="text-align:center;float:left;">
+                                                    <img src="~/assets/custom-image/facebook.png" width="32" />
+                                                </div>
+                                            </a>
+                                            <a href="@instegramLink" target="_blank" class="footer-social-link">
+                                                <div class="classic-menu-dropdown" style="width: 22px; height: 22px; border-radius: 4px; text-align: center; float: left;margin-left:10px;">
+                                                    <img src="~/assets/custom-image/instagram.png" width="32" />
+                                                </div>
+                                            </a>
+                                            <a href="@xtwitterLink" target="_blank" class="footer-social-link">
+                                                <div class="classic-menu-dropdown" style="width: 22px; height: 22px; border-radius: 4px; text-align: center;margin-left: -12px; float: left; margin-left: 4px; margin-top: -7px; ">
+                                                    <img src="~/assets/custom-image/x.png" width="63" />
+                                                </div>
+                                            </a>
+                                            <a href="@tiktokLink" target="_blank" class="footer-social-link">
+                                                <div class="classic-menu-dropdown" style="width: 22px; height: 22px; border-radius: 4px; text-align: center; float: left; margin-left: 28px; margin-top: -7px; ">
+                                                    <img src="~/assets/custom-image/tiktok.png" width="49" />
+                                                </div>
+                                            </a>
+                                            <a href="@youtubeLink" target="_blank" class="footer-social-link">
+                                                <div class="classic-menu-dropdown" style="width: 22px; height: 22px; border-radius: 4px; text-align: center; float: left; margin-left: 22px; margin-top: -7px; ">
+                                                    <img src="~/assets/custom-image/youtube.png" width="49" />
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="scroll-to-top" style="display: block;">
+                <i class="icon-arrow-up " style="color: #660199;text-shadow:2px 2px 2px rgb(255,255,255);"></i>
+            </div>
+
+            <div class="container" style="padding-top:120px;">
+
+            </div>
+
+
+        </footer>
+        <!-- END FOOTER -->
+        <div class="fixed-footer-donation-button">
+            <p style=""><a href="/Donation/Donate_Start" style="color:#fff;">Donate now <i class="fa fa-arrow-right"></i></a></p>
+        </div>
+    </div>
+    <!--[if lt IE 9]>
+    <script src="~/assets/global/plugins/respond.min.js"></script>
+    <script src="~/assets/global/plugins/excanvas.min.js"></script>
+    <![endif]-->
+    <!-- BEGIN CORE PLUGINS -->
+    <script src="~/assets/global/plugins/jquery.min.js" type="text/javascript"></script>
+    <script src="~/assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="~/assets/global/plugins/js.cookie.min.js" type="text/javascript"></script>
+    <script src="~/assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+    <script src="~/assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
+    <script src="~/assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
+    <!-- END CORE PLUGINS -->
+    <!-- BEGIN THEME GLOBAL SCRIPTS -->
+    <script src="~/assets/global/scripts/app.min.js" type="text/javascript"></script>
+    <!-- END THEME GLOBAL SCRIPTS -->
+    <!-- BEGIN THEME LAYOUT SCRIPTS -->
+    <script src="~/assets/layouts/layout/scripts/layout.min.js" type="text/javascript"></script>
+    <script src="~/assets/layouts/layout/scripts/demo.min.js" type="text/javascript"></script>
+    <script src="~/assets/layouts/global/scripts/quick-sidebar.min.js" type="text/javascript"></script>
+    <!-- END THEME LAYOUT SCRIPTS -->
+    <script src="~/assets/layouts/layout/scripts/myscript.js"></script>
+    <script src="~/assets/toaster.js"></script>
+    <script src="~/assets/Home/subscribe.js"></script>
+    <script src="~/assets/alert.js"></script>
+    <script src="~/assets/search/search.js"></script>
+    <script src="~/assets/payment/basket.js"></script>
+    <script type="text/javascript">
+
+        function changeIconColor(color) {
+            const element = document.getElementById("basket-item-list");
+
+            // Get the computed style of the element
+            const displayValue = window.getComputedStyle(element).display;
+
+            if (color == "#fff") {
+
+                if (displayValue == "none") {
+                    document.getElementById('basket-icon').style.color = "#fff";
+                }
+                else if (displayValue == "block") {
+                    document.getElementById('basket-icon').style.color = "gray";
+                }
+            }
+            else {
+                document.getElementById('basket-icon').style.color = "gray";
+            }
+
+
+            adjustElementStyle();
+        }
+
+        // Function to call when clicking outside the basket-container element
+        function ClickedOutSideOfBasketArea() {
+            document.getElementById('basket-icon').style.color = "#fff";
+            adjustElementStyle();
+        }
+        // Select the <li> element
+        const basketContainerElement = document.getElementById("basket-container");
+
+        // Add an event listener to the document
+        document.addEventListener("click", function (event) {
+            // Check if the clicked element is not the <li> or any of its descendants
+            if (!basketContainerElement.contains(event.target)) {
+                ClickedOutSideOfBasketArea();
+            }
+        });
+
+
+
+        const myIcon = document.getElementById("myIcon");
+
+        myIcon.addEventListener("mouseover", () => {
+            myIcon.style.filter = "grayscale(0)";
+        });
+
+        myIcon.addEventListener("mouseout", () => {
+            myIcon.style.filter = "grayscale(1)";
+        });
+
+
+
+        // Change basket color if page loaded in mobile device
+        function adjustElementStyle() {
+            var width = window.innerWidth;
+            var element = document.getElementById('basket-icon');
+
+            if (width <= 480) {
+                document.getElementById('basket-icon').style.color = "gray";
+            } else {
+                document.getElementById('basket-icon').style.color = "#fff";
+            }
+        }
+
+        window.addEventListener('resize', adjustElementStyle);
+        window.addEventListener('load', adjustElementStyle);
+        adjustElementStyle();
+    </script>
+
+   
+</body>
+</html>

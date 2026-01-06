@@ -1,0 +1,445 @@
+﻿
+@{
+    if (Session["user_108310113658"] != null)
+    {
+        if (Session["user_108310113658"].ToString() == "authenticated")
+        {
+            Layout = "~/Views/Shared/_AdminLayout.cshtml";
+        }
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_EndUserLayout.cshtml";
+    }
+
+    ViewBag.Title = "Sponsor a Family or Hafiz | Human Relief Mission UK";
+    ViewBag.Description = "Join us in our mission to uplift poor families and widows through sponsorship programs, providing essential support and opportunities for a better life.";
+    ViewBag.Keywords = "sponsorship, support poor families, help widows, Hafiz sponsorship, humanitarian aid, community support, poverty alleviation, financial assistance, social responsibility, nonprofit organization";
+    ViewBag.OGandTwitterTitle = "Sponsorship | Human Relief Mission UK";
+
+
+}
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RXXJLDEKC3"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); } gtag('js', new Date()); gtag('config', 'G-RXXJLDEKC3');
+    </script>
+
+    <link href="~/assets/news/css/custom.css" rel="stylesheet" />
+    <link href="~/assets/Home/custom.css" rel="stylesheet" />
+    <style type="text/css">
+        #donate-switch:hover {
+            cursor: pointer;
+        }
+
+        #inner-donate-switch:hover {
+            cursor: pointer;
+        }
+
+        #circle-bullet {
+            position: relative;
+            transition: left 0.3s;
+        }
+
+        #inner-circle-bullet {
+            position: relative;
+            transition: left 0.3s;
+        }
+
+        .btn-amount {
+            background-color: #660199;
+            color: #fff;
+            font-size: 1.3em;
+            font-weight: bold;
+            border: 2px solid #fff;
+            width: 80px;
+            height: 60px;
+        }
+
+        .inner-btn-amount {
+            background-color: #660199;
+            color: #fff;
+            font-size: 1.3em;
+            font-weight: bold;
+            border: 2px solid #fff;
+            width: 80px;
+            height: 60px;
+        }
+
+        .btn-amount:hover {
+            background-color: #fff;
+            color: #000;
+        }
+
+        .inner-btn-amount:hover {
+            background-color: #fff;
+            color: #000;
+        }
+
+        .btn-donate-red:hover > i.fa-arrow-right {
+            position: relative;
+            left: 4px;
+        }
+
+        .inner-btn-donate-red:hover > i.fa-arrow-right {
+            position: relative;
+            left: 4px;
+        }
+
+
+
+        .orphan-hope-image {
+        }
+
+        .orphan-hope-pragraph {
+            padding: 30px;
+            color: #fff;
+        }
+
+        .orphan-hope-image {
+            display: flex;
+            align-items: center; /* Vertically center the content */
+        }
+
+        .align-center {
+            display: flex;
+            justify-content: center; /* Horizontally center the content */
+            align-items: center; /* Vertically center the content */
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 50px auto;
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .faq-item {
+            border-bottom: 1px solid #e0e0e0;
+            padding: 30px 0;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: bold;
+            color: #660199;
+        }
+
+        .faq-answer {
+            display: none;
+            padding: 10px;
+            margin-top: 30px;
+            border-top: 1px solid #e0e0e0;
+            font-size: 18px;
+            font-weight: normal;
+            line-height: 1.5;
+            color: #000;
+        }
+
+        .expand-icon {
+            float: right;
+            transform: rotate(0deg);
+            transition: transform 0.5s;
+        }
+
+            .expand-icon.open {
+                transform: rotate(180deg);
+            }
+
+        h1 {
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid image-title-container" style="padding:0;">
+        <div class="news-image col-md-8 pull-right">
+            <div>
+                <video class="autoplay-video" autoplay muted loop style="width:100%;height:570px;">
+                    <source src="~/Content/projects/videos/orphans/orphans.mp4" type="video/mp4" />
+                </video>
+            </div>
+        </div>
+        <div class="news-title-box col-sm-12 pull-left" style="margin-bottom: 5px;">
+            <div class="news-title" style="width:100%;color:#fff;padding:30px;">
+                <h1 style="font-size:2em;">Sponsorship Programme</h1>
+                <div style="float: left; padding-top: 4px;">Monthly </div>
+                <div id="donate-switch" onclick="donateSwitch()" style="width: 60px; height: 28px; background-color: #fff; border-radius: 20px; position: absolute; float: left; margin-left: 63px;">
+                    <div id="circle-bullet" style="width:20px;height:20px;background-color:#000;border-radius:10px;position:relative;left:5px;top:4px;"></div>
+                </div>
+                <div style="margin-left:130px;padding-top:4px;">One-Off</div>
+            </div>
+            <div style="padding:0 30px 0 30px;">
+                <input type="hidden" id="amount" />
+                <button class="btn btn-amount" id="amount-1" onmouseover="changeColorWithMouseOver(1)" onmouseout="changeColorWithMouseOut(1)" onclick="amountClicked(1);">$20</button>
+                <button class="btn btn-amount" id="amount-2" onmouseover="changeColorWithMouseOver(2)" onmouseout="changeColorWithMouseOut(2)" onclick="amountClicked(2);">$80</button>
+                <button class="btn btn-amount" id="amount-3" onmouseover="changeColorWithMouseOver(3)" onmouseout="changeColorWithMouseOut(3)" onclick="amountClicked(3);">$120</button>
+                <input type="number" class="form-control no-arrows white-placeholder" id="amount-4" onclick="otherClicked();" value="" style="display:inline;border:2px solid #fff;width:100px;height:60px;background-color:#660199;color:#fff;font-size:1.3em;font-weight:bold;position:relative;top:3px;" placeholder="Other" />
+            </div>
+            <div style="padding:10px 30px 0 30px;">
+                <span id="donation-message" style="color:#fff;"></span>
+            </div>
+            <div>
+                <button class="btn btn-donate-red" onclick="donateNow()" style="width: 180px; height: 60px; background-color: red; border: none; position: relative; left: 30px; top: 10px; color: #fff; font-size: 1.3em; font-weight: bold; "> Donate now <i class="fa fa-arrow-right"></i></button>
+            </div>
+            <div class="col-md-2 header-fundraising-logos">
+                <img src="~/assets/FR-logo/direct-debit-logo.png" style="width:150px;margin-left:-15px;" />
+                <img src="~/assets/FR-logo/visa-6850402_1280.png" style="width:100px;" />
+                <img src="~/assets/FR-logo/mastercard.png" style="width: 80px;" />
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+
+        <div class="" style="margin:0 auto;">
+            <div class="col-md-3" style=""></div>
+            <div class="col-md-6 text-center text-justify" style="padding:50px 10px;font-size:18px;">
+                <h1 style="font-weight:bold;font-size:2em">Orphan Sponsorship Programs</h1>
+                <p>Our Orphan Sponsorship Program plays a vital role in transforming the lives of vulnerable children and contributing to the overall well-being of communities in countries all over the world. In many of these regions, children often face the harsh realities of poverty, lacking access to necessities and educational opportunities. The Orphan Sponsorship Program seeks to address these challenges by providing essential support to orphaned children.</p>
+                <p>
+                    <img src="~/Content/projects/sponsorship-programme/orphan-sponsorship.jpg" style="width:100%" />
+                </p>
+                <p>By sponsoring an orphan through Human Relief Mission, donors make a direct impact on a child's life, ensuring access to proper nutrition, education, healthcare, and a nurturing environment. The program not only meets the immediate needs of these children but also empowers them with the tools to break the cycle of poverty. Education becomes a key focus, offering orphans the chance to build a brighter future for themselves and their communities.</p>
+                <p>Beyond individual impact, the Orphan Sponsorship Program contributes to the broader development of societies. It fosters community resilience by investing in the well-being and education of its youth. The program acts as a catalyst for positive change, demonstrating how targeted support can uplift not only individual lives but entire communities. </p>
+                <h1 style="font-weight:bold;font-size:2em">Hafiz Sponsorship</h1>
+                <p>The aim of our Hafiz Sponsorship Program is to support the spiritual and educational pursuits of children who want to become Hafiz. In many Muslim-majority countries, financial challenges often create barriers to individuals who want to memorise the Quran. This program addresses these challenges by helping students committed to this most rewarding and honourable cause.</p>
+
+            </div>
+            <div class="col-md-3"></div>
+        </div>
+
+    </div>
+
+    @*START SECTION SUPPORT ORPHANS AND CHILDREN*@
+    @*Case study*@
+    <div class="container-fluid height-auto">
+        @*    <img src="~/assets/custom-image/DSC_0111.JPG" class="col-sm-12 col-md-6  orphan-hope-image align-center" style="margin-top:150px;" />
+
+            <div class="col-md-6 background-purple">
+                <div class="orphan-hope-pragraph col-md-11" style="text-align:justify; font-size:22px;">
+                    <h1 style="font-weight:bold;">Give hope to children like Haris</h1>
+                    <p>Living under blockade, hope is essential to the people of Gaza. Haris's home floods in the winter and is too hot to stay inside during the summer. Thanks to Human Relief Mission, not only is Haris provided for, but she is now receiving an education in the hope that one day, she can help rebuild her country.</p>
+                    <p>"I try not to miss a single day of school. I have a big hope that education can change Gaza for the better." - Haris</p>
+                    <p>Alhamdulillah, Haris loves her studies, especially technology which is her favorite subject. You can give hope to a child like Haris.</p>
+                </div>
+            </div>*@
+    </div>
+    @*END SECTION SUPPORT ORPHANS AND CHILDREN*@
+
+
+    <div class="container-fluid">
+        <div class="col-md-3"></div>
+        <div class="col-md-6 " style="text-align:justify;font-size:18px;">
+            <p>
+                <img src="~/Content/projects/sponsorship-programme/hafiz-sponsorship.jpg" style="width:100%" />
+            </p>
+            <p>Beyond individual impact, supporting the Hafiz Sponsorship Program contributes to the cultural and spiritual enrichment of Muslim communities. These dedicated memorizers of the Quran become ambassadors of Islamic knowledge, playing a significant role in fostering a deeper understanding of the faith within their societies. The program, therefore, becomes a catalyst for the dissemination of Quranic wisdom and spirituality.</p>
+            <p class="bold">Sponsoring a Hafiz is not only a noble charity but an investment into the Muslim Ummah. </p>
+        </div>
+        <div class="col-md-3"></div>
+
+    </div>
+
+    @* BEGIN ORPHAN NEEDS *@
+    <div class="col-md-3"></div>
+    <div class="col-md-6 " style="text-align:justify;font-size:18px;">
+        <h1 style="font-weight:bold;font-size:2em">Widow Sponsorship Program</h1>
+        <p>Human Relief Mission Widow Sponsorship Program – a beacon of hope and empowerment for vulnerable widows in need. At Human Relief Mission, we firmly believe that no widow should ever have to face the challenges of life alone. That's why we have started working on projects to provide support and financial assistance to those who have lost their partners and find themselves in difficult circumstances.</p>
+        <p>Our Widow Sponsorship Program aims to uplift and empower these women by offering them a lifeline during their time of need. Your support will not only provide them with much-needed financial assistance but also offer them hope for the future.</p>
+        <p>
+            <img src="~/Content/projects/sponsorship-programme/widow-sponsorship.jpg" style="width:100%" />
+        </p>
+        <p>By sponsoring a widow, you are helping break down barriers and ensuring that no widow has to struggle to survive. Together, we can create a world where every widow has access to resources and opportunities that enable them to rebuild their lives with dignity.</p>
+
+        <h1 style="font-weight:bold;font-size:2em">Our Current Sponsorship Projects</h1>
+        <p>Explore more of our sponsorship projects in Afghanistan.</p>
+        <p>&nbsp;</p>
+        <div class="row container-support-lifesaving">
+
+            <a href="/Service/Orphanage" style="color:#000;">
+                <div class="col-12 col-md-6  support-lifesaving-card animated-element" onmouseenter="addAnimation(this)" onmouseleave="removeAnimation(this)">
+                    <!-- Card 1 -->
+                    <div class="card mb-3 card-color">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <img src="~/Content/projects/sponsorship-programme/al-mouwasat-orphange-1.jpg" class="image-support-live" alt="Responsive image">
+                                    <div class="mt-3" style="transform-origin: center bottom; transition: transform 0.3s ease; padding: 15px;">
+                                        <h5 class="card-title bold" style="font-size:1em;">Al-Mouwasat Orphanage</h5>
+                                        <i class="fa fa-arrow-right pull-right " style="padding-bottom:10px;margin-top:-30px;"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="/Service/TechnicalSchool" style="color:#000;">
+                <div class="col-12 col-md-6 support-lifesaving-card animated-element" onmouseenter="addAnimation(this)" onmouseleave="removeAnimation(this)">
+                    <!-- Card 1 -->
+                    <div class="card mb-3 card-color">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <img src="~/Content/projects/techical-school/technical-school-1.jpg" class="image-support-live" alt="Responsive image">
+                                    <div class="mt-3" style="transform-origin: center bottom; transition: transform 0.3s ease; padding: 15px;">
+                                        <h5 class="card-title bold" style="font-size:1em;">Technical School</h5>
+                                        <i class="fa fa-arrow-right pull-right " style="padding-bottom: 10px; margin-top: -30px;"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="col-md-3"></div>
+    @* END ORPHAN NEEDS *@
+
+
+  
+    @*BEGIN SECTION SUCCESS STORY*@
+    @*Food package success story*@
+    <div class="container-fluid height-auto">
+       @* <img src="~/assets/custom-image/Um-Taha-1.jpg" id="successStoryImage" class="col-sm-12 col-md-6  orphan-hope-image align-center" style="margin-top:10px;" />
+        <div class="col-md-6 background-purple">
+            <div class="orphan-hope-pragraph col-md-11" style="text-align:justify; font-size:22px;">
+                <h1 style="font-weight:bold;">Provide food to families like Um Taha's</h1>
+                <p>Um Taha lives in Syria. When her husband was killed during the conflict, she had no way to provide for herself and her children. Al-Mouwasat now provides her with much-needed bread so she can eat and feed her family.</p>
+                <p>"You are risking your lives to bring us bread; any minute, an airstrike can happen." - Um Taha</p>
+                <p>You can provide life-saving food to those who need it most.</p>
+                <p>Um Taha lives in Syria. When her husband was killed during the conflict, she had no way to provide for herself and her children. Al-Mouwasat now provides her with much-needed bread so she can eat and feed her family.</p>
+            </div>
+        </div>*@
+    </div>
+    @*END SECTION SUCCESS STORY*@
+
+    <img src="~/assets/FR-logo/FR_Fundraising-Badge_white_150ppi.png" style="display:none;" />
+    @*BEGIN DONATE FOR ORPHAN*@
+    <div class="container-fluid" style="background-color: #660199 !important; height: auto; color: #fff;margin-top:30px;">
+        <div class="col-md-6" style="padding:30px;">
+            <h1 style="font-size:2em;">Sponsorship Programme</h1>
+            <p style="font-size:16px;">For 1 in 5 children worldwide living in extreme poverty, simple necessities and rights are out of reach. Instead, their life is incredibly challenging, with the risk of illiteracy, disease, child labour, lifelong poverty and even death. You can change this, donate now.</p>
+            <div class="col-md-2 header-fundraising-logos">
+                <img src="~/assets/FR-logo/FR_Fundraising-Badge_white_150ppi.png" style="width:150px; margin-right: 10px;" />
+                <img src="~/assets/FR-logo/direct-debit-logo.png" style="width:150px;" />
+                <img src="~/assets/FR-logo/visa-6850402_1280.png" style="width:100px;" />
+                <img src="~/assets/FR-logo/mastercard.png" style="width: 80px;" />
+            </div>
+        </div>
+        <div class="col-md-6" style="padding-bottom:30px;">
+
+            <div class="news-title" style="width:100%;padding:30px;">
+                <div style="float: left; padding-top: 4px;">Monthly </div>
+                <div id="donate-switch" onclick="innerDonateSwitch()" style="width: 60px; height: 28px; background-color: #fff; border-radius: 20px; position: absolute; float: left; margin-left: 63px;">
+                    <div id="inner-circle-bullet" style="width:20px;height:20px;background-color:#000;border-radius:10px;position:relative;left:5px;top:4px;"></div>
+                </div>
+                <div style="margin-left:130px;padding-top:4px;">One-Off</div>
+            </div>
+            <div style="padding:0 30px 0 30px;">
+                <input type="hidden" id="inner-amount" />
+                <button class="btn inner-btn-amount" id="inner-amount-1" onmouseover="innerChangeColorWithMouseOver(1)" onmouseout="innerChangeColorWithMouseOut(1)" onclick="innerAmountClicked(1);">$20</button>
+                <button class="btn inner-btn-amount" id="inner-amount-2" onmouseover="innerChangeColorWithMouseOver(2)" onmouseout="innerChangeColorWithMouseOut(2)" onclick="innerAmountClicked(2);">$80</button>
+                <button class="btn inner-btn-amount" id="inner-amount-3" onmouseover="innerChangeColorWithMouseOver(3)" onmouseout="innerChangeColorWithMouseOut(3)" onclick="innerAmountClicked(3);">$120</button>
+                <input type="number" class="form-control no-arrows white-placeholder" id="inner-amount-4" onclick="innerOtherClicked();" value="" style="display:inline;border:2px solid #fff;width:100px;height:60px;background-color:#660199;color:#fff;font-size:1.3em;font-weight:bold;position:relative;top:3px;" placeholder="Other" />
+            </div>
+            <div style="padding:10px 30px 0 30px;">
+                <span id="inner-donation-message" style="color:#fff;"></span>
+            </div>
+            <div>
+                <button class="btn btn-donate-red" onclick="innerDonateNow()" style="width: 180px; height: 60px; background-color: red; border: none; position: relative; left: 30px; top: 10px; color: #fff; font-size: 1.3em; font-weight: bold; "> Donate now <i class="fa fa-arrow-right"></i></button>
+            </div>
+
+        </div>
+    </div>
+    @*END DONATE FOR ORPHAN*@
+    <div class="" style="margin:0 auto;">
+        <div class="col-md-3" style=""></div>
+        <div class="col-md-6 text-center text-justify" style="padding:50px 10px;font-size:18px;">
+            <p style="font-size:16px;font-style:italic;">Please note: Donations made on this page will be allocated to our Sponsorship Programme fund that is used to deliver a range of different sponsorships such as the examples showcased above. These programmes can and will be delivered in any of the countries where Human Relief Mission has a presence, and those projects are catered to the local community with the aim to save and transform lives.</p>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="col-md-3"></div>
+        <div class="col-md-6 " style="text-align:justify;font-size:18px;">
+            <h1 style="font-weight:bold;font-size:2em; margin-top:80px;">
+                Frequently Asked Questions
+            </h1>
+            <div class="faq-container">
+                <div class="faq-item">
+                    How are my donations used?
+                    <span class="expand-icon"><i class="fa fa-chevron-up"></i></span>
+                    <div class="faq-answer">
+                        <p>At Human Relief Mission, we follow a 100% donation policy, ensuring every penny of your donation directly aids those in need. Your contributions fund emergency relief appeals as well as food security projects, water aid projects, health services and sponsorship programs. </p>
+                        <p>We also support community development with our income generation projects and other programs. We ensure transparency through regular audits, media feedback, and open communication with donors.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    What projects is Human Relief Mission currently sponsoring?
+                    <span class="expand-icon"><i class="fa fa-chevron-up"></i></span>
+                    <div class="faq-answer">
+                        <p>We provide emergency relief worldwide, including food, water, shelter, and medical care in crisis zones. We support educational programs by sponsoring students in schools and giving them the right equipment they need. We build wells and water filtration systems to ensure safe drinking water.</p>
+                        <p>Livelihood development projects offer skills training and income generating projects such as vending carts. We also construct community infrastructure such as masjids, homes, bakeries and orphanages. Additionally, we run advocacy campaigns promoting human rights, health, and education awareness, aiming for lasting, positive impacts.</p>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+
+    <script src="~/assets/Home/custom.js"></script>
+    <script src="~/assets/donation-script/sponsorship/sponsorship.js"></script>
+    <script src="~/assets/donation-script/sponsorship/inner-sponsorship.js"></script>
+
+    <script>
+        function adjustElementStyle() {
+            var width = window.innerWidth;
+            var element = document.getElementById('successStoryImage');
+
+            if (width < 480) {
+                element.style.marginTop = "15px"; // For widths < 480px
+            } else if (width < 992) {
+                element.style.marginTop = "15px"; // For widths < 992px but >= 480px
+            } else {
+                element.style.marginTop = "150px"; // For widths >= 992px
+            }
+        }
+
+        window.addEventListener('resize', adjustElementStyle);
+        window.addEventListener('load', adjustElementStyle);
+    </script>
+    <script>
+        const faqItems = document.querySelectorAll('.faq-item');
+
+        faqItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const answer = item.querySelector('.faq-answer');
+                const expandIcon = item.querySelector('.expand-icon');
+
+                if (answer.style.display === 'none' || answer.style.display === '') {
+                    answer.style.display = 'block';
+                    expandIcon.classList.add('open');
+                } else {
+                    answer.style.display = 'none';
+                    expandIcon.classList.remove('open');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

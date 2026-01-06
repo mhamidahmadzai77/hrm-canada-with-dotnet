@@ -1,0 +1,447 @@
+﻿
+@{
+    if (Session["user_108310113658"] != null)
+    {
+        if (Session["user_108310113658"].ToString() == "authenticated")
+        {
+            Layout = "~/Views/Shared/_AdminLayout.cshtml";
+        }
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_EndUserLayout.cshtml";
+    }
+
+    ViewBag.Title = "Green Afghanistan - Planting Hope | Human Relief Mission UK";
+    ViewBag.Description = "Join us in our mission to promote environmental sustainability in Afghanistan through tree planting and community-led initiatives that restore hope and protect natural resources.";
+    ViewBag.Keywords = "Green Afghanistan, planting hope, sustainability, tree planting, environmental initiatives, community projects, climate action";
+    ViewBag.OGandTwitterTitle = "Green Afghanistan | Human Relief Mission UK";
+
+
+}
+
+<html>
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RXXJLDEKC3"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); } gtag('js', new Date()); gtag('config', 'G-RXXJLDEKC3');
+    </script>
+
+    <link href="~/assets/news/css/custom.css" rel="stylesheet" />
+    <link href="~/assets/Home/custom.css" rel="stylesheet" />
+    <style type="text/css">
+        #donate-switch:hover {
+            cursor: pointer;
+        }
+
+        #inner-donate-switch:hover {
+            cursor: pointer;
+        }
+
+        #circle-bullet {
+            position: relative;
+            transition: left 0.3s;
+        }
+
+        #inner-circle-bullet {
+            position: relative;
+            transition: left 0.3s;
+        }
+
+        .btn-amount {
+            background-color: #660199;
+            color: #fff;
+            font-size: 1.3em;
+            font-weight: bold;
+            border: 2px solid #fff;
+            width: 80px;
+            height: 60px;
+        }
+
+        .inner-btn-amount {
+            background-color: #660199;
+            color: #fff;
+            font-size: 1.3em;
+            font-weight: bold;
+            border: 2px solid #fff;
+            width: 80px;
+            height: 60px;
+        }
+
+        .btn-amount:hover {
+            background-color: #fff;
+            color: #000;
+        }
+
+        .inner-btn-amount:hover {
+            background-color: #fff;
+            color: #000;
+        }
+
+        .btn-donate-red:hover > i.fa-arrow-right {
+            position: relative;
+            left: 4px;
+        }
+
+        .inner-btn-donate-red:hover > i.fa-arrow-right {
+            position: relative;
+            left: 4px;
+        }
+
+
+
+        .orphan-hope-image {
+        }
+
+        .orphan-hope-pragraph {
+            padding: 30px;
+            color: #fff;
+        }
+
+        .orphan-hope-image {
+            display: flex;
+            align-items: center; /* Vertically center the content */
+        }
+
+        .align-center {
+            display: flex;
+            justify-content: center; /* Horizontally center the content */
+            align-items: center; /* Vertically center the content */
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 50px auto;
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .faq-item {
+            border-bottom: 1px solid #e0e0e0;
+            padding: 30px 0;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: bold;
+            color: #660199;
+        }
+
+        .faq-answer {
+            display: none;
+            padding: 10px;
+            margin-top: 30px;
+            border-top: 1px solid #e0e0e0;
+            font-size: 18px;
+            font-weight: normal;
+            line-height: 1.5;
+            color: #000;
+        }
+
+        .expand-icon {
+            float: right;
+            transform: rotate(-90deg);
+            transition: transform 0.3s;
+        }
+
+            .expand-icon.open {
+                transform: rotate(90deg);
+            }
+
+        h1 {
+            text-align: left;
+        }
+
+        ul.change-bullet {
+            list-style-type: disc; /* Set the list style type */
+        }
+
+            ul.change-bullet li::marker {
+                color: #660199; /* Change the bullet color */
+                font-size: 30px;
+            }
+
+        ul.country li::marker {
+            color: #660199; /* Change the bullet color */
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid image-title-container" style="padding:0;">
+        <div class="news-image col-md-8 pull-right">
+            <div>
+                <video class="autoplay-video" autoplay muted loop style="width:100%;height:570px;">
+                    <source src="~/Content/projects/videos/green-afghanistan/green-afghanistan.mp4" type="video/mp4" />
+                </video>
+            </div>
+        </div>
+        <div class="news-title-box col-sm-12 pull-left" style="margin-bottom: 5px;">
+            <div class="news-title" style="width:100%;color:#fff;padding:30px;">
+                <h1 style="font-size:2em;">Green Afghanistan</h1>
+                <div style="float: left; padding-top: 4px;">Monthly </div>
+                <div id="donate-switch" onclick="donateSwitch()" style="width: 60px; height: 28px; background-color: #fff; border-radius: 20px; position: absolute; float: left; margin-left: 63px;">
+                    <div id="circle-bullet" style="width:20px;height:20px;background-color:#000;border-radius:10px;position:relative;left:5px;top:4px;"></div>
+                </div>
+                <div style="margin-left:130px;padding-top:4px;">One-Off</div>
+            </div>
+            <div style="padding:0 30px 0 30px;">
+                <input type="hidden" id="amount" />
+                <button class="btn btn-amount" id="amount-1" onmouseover="changeColorWithMouseOver(1)" onmouseout="changeColorWithMouseOut(1)" onclick="amountClicked(1);">$6</button>
+                <button class="btn btn-amount" id="amount-2" onmouseover="changeColorWithMouseOver(2)" onmouseout="changeColorWithMouseOut(2)" onclick="amountClicked(2);">$30</button>
+                <button class="btn btn-amount" id="amount-3" onmouseover="changeColorWithMouseOver(3)" onmouseout="changeColorWithMouseOut(3)" onclick="amountClicked(3);">$60</button>
+                <input type="number" class="form-control no-arrows white-placeholder" id="amount-4" onclick="otherClicked();" value="" style="display:inline;border:2px solid #fff;width:100px;height:60px;background-color:#660199;color:#fff;font-size:1.3em;font-weight:bold;position:relative;top:3px;" placeholder="Other" />
+            </div>
+            <div style="padding:10px 30px 0 30px;">
+                <span id="donation-message" style="color:#fff;"></span>
+            </div>
+            <div>
+                <button class="btn btn-donate-red" onclick="donateNow()" style="width: 180px; height: 60px; background-color: red; border: none; position: relative; left: 30px; top: 10px; color: #fff; font-size: 1.3em; font-weight: bold; "> Donate now <i class="fa fa-arrow-right"></i></button>
+            </div>
+            <div class="col-md-2 header-fundraising-logos">
+                <img src="~/assets/FR-logo/FR_Fundraising-Badge_white_150ppi.png" style="width:150px; margin-right: 10px;" />
+                <img src="~/assets/FR-logo/direct-debit-logo.png" style="width:150px;" />
+                <img src="~/assets/FR-logo/visa-6850402_1280.png" style="width:100px;" />
+                <img src="~/assets/FR-logo/mastercard.png" style="width: 80px;" />
+            </div>
+        </div>
+    </div>
+
+    @* Start Section description*@
+    <div class="container-fluid">
+        <div class="col-md-3"></div>
+        <div class="col-md-6 " style="text-align:justify;font-size:18px;">
+            <h1 style="font-weight:bold;font-size:2em">Green Afghanistan</h1>
+            <h1 style="font-weight:bold;font-size:1em">Planting Hope and Sustainability</h1>
+            <p>Green Afghanistan, an initiative dedicated to planting trees across Afghanistan. This endeavour combats deforestation, addresses soil erosion, enhances air quality, and fosters biodiversity, creating a more resilient environment for Afghan communities.</p>
+            <p>
+                <img src="~/Content/projects/green-afghanistan/green-afghanistan-1.jpg" style="width:100%" />
+            </p>
+            <p>In addition to environmental benefits, the programme offers significant socio-economic impacts. It creates job opportunities for locals, providing income and skill development. Trees also boost agricultural productivity and provide resources like fruit and firewood, improving food security and livelihoods. Supporting this programme through donations is a powerful way to contribute to a greener, healthier, and more sustainable future for Afghanistan. Your contributions enable Human Relief Mission to plant more trees, expand their environmental efforts, and ensure Afghan communities thrive in a balanced ecosystem.</p>
+
+            @* Start Qoute Section*@
+            <div class="" style="padding-bottom:50px;margin-top:30px;">
+
+                <div class="quote-container col-md-12">
+                    <span class="" style="font-size:4em;font-weight:bold">&lsquo;&lsquo;</span>
+                    <p class="quote">
+                        The Prophet ﷺ said: “There is none amongst the Muslims who plants a tree or sows seeds, and then a bird, or a person or an animal eats from it, but is regarded as a charitable gift for him”
+                    </p>
+                    <p class="">Hadith | Sahih al-Bukhari</p>
+                </div>
+
+            </div>
+            @* End Qoute Section*@
+            <p>&nbsp;</p>
+
+            <h1 style="font-weight:bold;font-size:1em">Combating Deforestation and Soil Erosion</h1>
+            <p>Deforestation in Afghanistan has led to significant soil erosion, reducing the land's fertility and increasing the risk of landslides and flooding. By planting trees, Green Afghanistan directly combats these challenges. Trees anchor the soil with their roots, reducing erosion and promoting healthier, more stable land. This foundational work is essential for restoring Afghanistan's natural landscapes and ensuring long-term environmental health.</p>
+
+            <h1 style="font-weight:bold;font-size:1em">Enhancing Air Quality and Biodiversity</h1>
+            <p>Trees are vital for enhancing air quality as they absorb carbon dioxide and release oxygen, helping to mitigate the effects of pollution. Additionally, they provide habitats for various species, fostering biodiversity. This increased biodiversity supports ecosystem resilience, ensuring that Afghan communities benefit from a balanced and healthy environment.</p>
+
+            <h1 style="font-weight:bold;font-size:1em">Socio-Economic Benefits</h1>
+            <p>Beyond environmental impacts, Green Afghanistan has profound socio-economic benefits. The program creates job opportunities for local residents, providing stable incomes and fostering skill development in areas such as forestry and environmental management. This employment not only supports families but also empowers communities with the skills needed for sustainable land management. </p>
+
+            <p>
+                <img src="~/assets/custom-image/11.jpg" style="width:100%;" />
+            </p>
+            <p style="font-size:14px;">
+                Image: Human Relief Mission service for green Afghanistan
+            </p>
+
+            <h1 style="font-weight:bold;font-size:1em">Boosting Agricultural Productivity and Resources</h1>
+            <p>Trees play a crucial role in boosting agricultural productivity. They improve soil health, enhance water retention, and provide shade for crops, leading to better yields. Additionally, many of the trees planted bear fruit, offering a valuable food source, and provide firewood, which is essential for cooking and heating. These resources directly contribute to improved food security and livelihoods for Afghan families.</p>
+            
+            <h1 style="font-weight:bold;font-size:1em">The Impact of Your Contributions</h1>
+            <p>Supporting Green Afghanistan through donations is a powerful way to contribute to a greener, healthier, and more sustainable future for Afghanistan. Your contributions enable the Human Relief Mission to plant more trees, expand environmental efforts, and ensure Afghan communities thrive in a balanced ecosystem. Each tree planted is a step towards combating climate change, supporting biodiversity, and enhancing the socio-economic stability of Afghan communities.</p>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+    @* End Section description*@
+
+
+    @* START SECTION Challenges people are facing around the world*@
+    <div class="container-fluid latest-news" style="margin-top:30px;">
+
+        <div class="col-md-12 ">
+            <div class="portlet light portlet-fit ">
+                <div class="portlet-title latest-news" style="padding:50px 0;">
+                    <div class="caption">
+
+                        <span class="caption-subject bold  " style="color:black;font-size:1.4em;font-weight:bold;">Challenges faced from lack of green plants</span>
+                    </div>
+                </div>
+                <div class="portlet-body latest-news" style="margin-top:-11px;">
+                    <div class="mt-element-card mt-element-overlay">
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                <div class="mt-card-item" style="min-height:430px;">
+                                    <div style="text-align:center;padding:50px 0;">
+                                        <img src="~/assets/custom-image/world_icon_125099.png" width="150" />
+
+                                    </div>
+                                    <div class="mt-card-content">
+                                        <h2 class="bold"> 4.6 million </h2>
+
+                                        <h4 class="mt-card-name" style="font-size:1.2em;padding:8px;">
+                                            premature deaths globally are attributed to air pollution-related diseases each year
+                                        </h4>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                <div class="mt-card-item" style="min-height:430px;">
+                                    <div style="text-align:center;padding:50px 0;">
+                                        <img src="~/assets/custom-image/tree_nature_environment_forest_natural_wood_icon_128614.png" width="150" />
+                                    </div>
+                                    <div class="mt-card-content">
+                                        <h2 class="bold"> absence of green plants </h2>
+                                        <h4 class="mt-card-name" style="font-size:1.2em;padding:8px;">
+                                            can lead to increased air pollution, environmental degradation, and compromised food security
+                                        </h4>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                <div class="mt-card-item" style="min-height:430px;">
+                                    <div style="text-align:center;padding:50px 0;">
+                                        <img src="~/assets/custom-image/home_house_icon-icons.com_49851.png" width="150" />
+                                    </div>
+                                    <div class="mt-card-content">
+                                        <h2 class="bold"> decline in green plant biodiversity </h2>
+
+                                        <h4 class="mt-card-name" style="font-size:1.2em;padding:8px;">
+                                            can lead to disrupted ecosystems and reduced pollination services
+                                        </h4>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    @* END SECTION Challenges people are facing around the world*@
+
+    @* Start Section providing clean water*@
+    <div class="container-fluid">
+        <div class="col-md-3"></div>
+        <div class="col-md-6 " style="text-align:justify;font-size:18px;">
+            <h1 style="font-weight:bold;font-size:2em">
+                What Islam teach about green plants
+            </h1>
+            <p>In Islam, the importance of green plants and trees is emphasized as signs of God's creation and symbols of sustenance and blessings.</p>
+            <p>Muslims are encouraged to plant trees, protect the environment, and avoid wasteful consumption.</p>
+            <p>Additionally, the Prophet Muhammad is reported to have said, "If a Muslim plants a tree or sows seeds, and then a bird, or a person, or an animal eats from it, it is regarded as a charitable gift (sadaqah) for him."</p>
+
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+    @* END Section providing clean water*@
+
+
+
+    @*BEGIN SECTION IMPACT OF DONATION*@
+<div class="container-fluid">
+    <div class="col-md-3"></div>
+    <div class="col-md-6 " style="text-align:justify;font-size:18px;">
+        <h1 style="font-weight:bold;font-size:2em">
+            The impact of your donations for green Afghanistan
+        </h1>
+        <p>Donations for green initiatives in Afghanistan can have a significant impact on environmental sustainability, biodiversity conservation, and community livelihoods.</p>
+        <p>These donations can support reforestation efforts, water conservation projects, sustainable agriculture practices, and the creation of green spaces, ultimately contributing to a healthier environment, improved quality of life, and long-term resilience for the people of Afghanistan.</p>
+    
+        <h1 style="font-weight:bold;font-size:1em">Join Us in Making a Difference.</h1>
+
+    </div>
+    <div class="col-md-3"></div>
+</div>
+
+    @*END SECTION IMPACT OF DONATION*@
+
+
+
+    <img src="~/assets/FR-logo/FR_Fundraising-Badge_white_150ppi.png" style="display:none;" />
+    @*BEGIN DONATE FOR EDUCATION*@
+    <div class="container-fluid" style="background-color: #660199 !important; height: auto; color: #fff;margin-top:50px;">
+        <div class="col-md-6" style="padding:30px;">
+            <h1 style="font-size:2em;">Green Afghanistan</h1>
+            <p style="font-size:16px;">
+                Your plant donation is a vital means of sustainability for so many who lack access to green spaces and beneficial vegetation. Donate to our plant appeal and contribute to saving lives and improving the environment.
+            </p>
+            <div class="col-md-2 header-fundraising-logos">
+                <img src="~/assets/FR-logo/FR_Fundraising-Badge_white_150ppi.png" style="width:150px; margin-right: 10px;" />
+                <img src="~/assets/FR-logo/direct-debit-logo.png" style="width:150px;" />
+                <img src="~/assets/FR-logo/visa-6850402_1280.png" style="width:100px;" />
+                <img src="~/assets/FR-logo/mastercard.png" style="width: 80px;" />
+            </div>
+        </div>
+        <div class="col-md-6" style="padding-bottom:30px;">
+
+            <div class="news-title" style="width:100%;padding:30px;">
+                <div style="float: left; padding-top: 4px;">Monthly </div>
+                <div id="donate-switch" onclick="innerDonateSwitch()" style="width: 60px; height: 28px; background-color: #fff; border-radius: 20px; position: absolute; float: left; margin-left: 63px;">
+                    <div id="inner-circle-bullet" style="width:20px;height:20px;background-color:#000;border-radius:10px;position:relative;left:5px;top:4px;"></div>
+                </div>
+                <div style="margin-left:130px;padding-top:4px;">One-Off</div>
+            </div>
+            <div style="padding:0 30px 0 30px;">
+                <input type="hidden" id="inner-amount" />
+                <button class="btn inner-btn-amount" id="inner-amount-1" onmouseover="innerChangeColorWithMouseOver(1)" onmouseout="innerChangeColorWithMouseOut(1)" onclick="innerAmountClicked(1);">$6</button>
+                <button class="btn inner-btn-amount" id="inner-amount-2" onmouseover="innerChangeColorWithMouseOver(2)" onmouseout="innerChangeColorWithMouseOut(2)" onclick="innerAmountClicked(2);">$30</button>
+                <button class="btn inner-btn-amount" id="inner-amount-3" onmouseover="innerChangeColorWithMouseOver(3)" onmouseout="innerChangeColorWithMouseOut(3)" onclick="innerAmountClicked(3);">$60</button>
+                <input type="number" class="form-control no-arrows white-placeholder" id="inner-amount-4" onclick="innerOtherClicked();" value="" style="display:inline;border:2px solid #fff;width:100px;height:60px;background-color:#660199;color:#fff;font-size:1.3em;font-weight:bold;position:relative;top:3px;" placeholder="Other" />
+            </div>
+            <div style="padding:10px 30px 0 30px;">
+                <span id="inner-donation-message" style="color:#fff;"></span>
+            </div>
+            <div>
+                <button class="btn btn-donate-red" onclick="innerDonateNow()" style="width: 180px; height: 60px; background-color: red; border: none; position: relative; left: 30px; top: 10px; color: #fff; font-size: 1.3em; font-weight: bold; "> Donate now <i class="fa fa-arrow-right"></i></button>
+            </div>
+
+        </div>
+    </div>
+    <div class="" style="margin:0 auto;">
+        <div class="col-md-3" style=""></div>
+        <div class="col-md-6 text-center text-justify" style="padding:50px 10px;font-size:18px;">
+            <p style="font-size:16px;font-style:italic;">Please note: Donations made on this page will be allocated to our Green Afghanistan fund. This project is catered to the local community in Afghanistan with the aim to save and transform lives.</p>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+
+    @*END DONATE FOR EDUCATION*@
+
+
+    <script src="~/assets/Home/custom.js"></script>
+    <script src="~/assets/donation-script/green-afghanistan/green-afghanistan.js"></script>
+    <script src="~/assets/donation-script/green-afghanistan/inner-green-afghanistan.js"></script>
+
+    <script>
+        const faqItems = document.querySelectorAll('.faq-item');
+
+        faqItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const answer = item.querySelector('.faq-answer');
+                const expandIcon = item.querySelector('.expand-icon');
+
+                if (answer.style.display === 'none' || answer.style.display === '') {
+                    answer.style.display = 'block';
+                    expandIcon.classList.add('open');
+                } else {
+                    answer.style.display = 'none';
+                    expandIcon.classList.remove('open');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+

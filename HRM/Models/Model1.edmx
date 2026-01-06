@@ -1,0 +1,517 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="HRMModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Annual_Report">
+          <Key>
+            <PropertyRef Name="annual_report_id" />
+          </Key>
+          <Property Name="annual_report_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fileName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="year" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="cover_image" Type="image" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Appeal">
+          <Key>
+            <PropertyRef Name="appeal_id" />
+          </Key>
+          <Property Name="appeal_id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="title" Type="nvarchar" MaxLength="1000" Nullable="false" />
+          <Property Name="meta_data" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="content" Type="ntext" Nullable="false" />
+          <Property Name="author" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="country" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="publication_date" Type="date" Nullable="false" />
+          <Property Name="header_picture_path" Type="nvarchar(max)" />
+          <Property Name="content_picture1_path" Type="nvarchar(max)" />
+          <Property Name="content_picture2_path" Type="nvarchar(max)" />
+          <Property Name="status" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="amount1" Type="int" Nullable="false" />
+          <Property Name="amount2" Type="int" Nullable="false" />
+          <Property Name="amount3" Type="int" Nullable="false" />
+          <Property Name="amount1Message" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="amount2Message" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="amount3Message" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="contentImage1Note" Type="nvarchar(max)" />
+          <Property Name="contentImage2Note" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="CandidateVolunteers">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="firstname" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="surname" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="gender" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="birthday" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="address" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="emergencyContactName" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="contactNumber" Type="varchar" MaxLength="250" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Contact">
+          <Key>
+            <PropertyRef Name="contact_id" />
+          </Key>
+          <Property Name="contact_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="firstname" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="lastname" Type="nvarchar" MaxLength="250" />
+          <Property Name="email" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="country" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="subject" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="message" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="read" Type="ntext" Nullable="false" />
+          <Property Name="time" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Donor">
+          <Key>
+            <PropertyRef Name="donation_id" />
+          </Key>
+          <Property Name="donation_id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="donation_type" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="project_name" Type="varchar(max)" Nullable="false" />
+          <Property Name="amount" Type="bigint" Nullable="false" />
+          <Property Name="donor_firstname" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="donor_surname" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="phone" Type="varchar" MaxLength="20" />
+          <Property Name="address" Type="varchar(max)" Nullable="false" />
+          <Property Name="city" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="country" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="taxpayer" Type="varchar" MaxLength="250" />
+          <Property Name="customerID" Type="varchar" MaxLength="255" />
+          <Property Name="createdAt" Type="datetime" />
+          <Property Name="remarks" Type="ntext" />
+        </EntityType>
+        <EntityType Name="Policy">
+          <Key>
+            <PropertyRef Name="policy_id" />
+          </Key>
+          <Property Name="policy_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="policy_name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="fileName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="file_type" Type="varchar(max)" Nullable="false" />
+          <Property Name="file_size" Type="varchar(max)" Nullable="false" />
+          <Property Name="pages" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PriceAmount">
+          <Key>
+            <PropertyRef Name="priceNo" />
+          </Key>
+          <Property Name="priceNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="priceId" Type="varchar(max)" Nullable="false" />
+          <Property Name="priceAmount" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'HRMCA.dbo.Project' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Project">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="project_name" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="project_name" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SlideShow">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="priority" Type="int" Nullable="false" />
+          <Property Name="imagePath" Type="nvarchar(max)" />
+          <Property Name="url" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="StripeCustomerId">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="customerId" Type="varchar" MaxLength="250" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Subscriber">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="subscribe" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="user_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="email" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="username" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="password" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="image" Type="image" />
+        </EntityType>
+        <EntityContainer Name="HRMModelStoreContainer">
+          <EntitySet Name="Annual_Report" EntityType="Self.Annual_Report" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Appeal" EntityType="Self.Appeal" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CandidateVolunteers" EntityType="Self.CandidateVolunteers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Contact" EntityType="Self.Contact" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Donor" EntityType="Self.Donor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Policy" EntityType="Self.Policy" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PriceAmount" EntityType="Self.PriceAmount" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SlideShow" EntityType="Self.SlideShow" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StripeCustomerId" EntityType="Self.StripeCustomerId" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Subscriber" EntityType="Self.Subscriber" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Project" EntityType="Self.Project" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Project].[id] AS [id], 
+    [Project].[project_name] AS [project_name]
+    FROM [dbo].[Project] AS [Project]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="HRMModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Annual_Report">
+          <Key>
+            <PropertyRef Name="annual_report_id" />
+          </Key>
+          <Property Name="annual_report_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fileName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="year" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="cover_image" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Appeal">
+          <Key>
+            <PropertyRef Name="appeal_id" />
+          </Key>
+          <Property Name="appeal_id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="title" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="meta_data" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="author" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="country" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="publication_date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="header_picture_path" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="content_picture1_path" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="content_picture2_path" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="amount1" Type="Int32" Nullable="false" />
+          <Property Name="amount2" Type="Int32" Nullable="false" />
+          <Property Name="amount3" Type="Int32" Nullable="false" />
+          <Property Name="amount1Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="amount2Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="amount3Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="contentImage1Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="contentImage2Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="CandidateVolunteer">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="firstname" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="surname" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="gender" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="birthday" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="address" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="emergencyContactName" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="contactNumber" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Contact">
+          <Key>
+            <PropertyRef Name="contact_id" />
+          </Key>
+          <Property Name="contact_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="firstname" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="lastname" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="country" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="subject" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="message" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="read" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="time" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="Donor">
+          <Key>
+            <PropertyRef Name="donation_id" />
+          </Key>
+          <Property Name="donation_id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="donation_type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="project_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="amount" Type="Int64" Nullable="false" />
+          <Property Name="donor_firstname" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="donor_surname" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="phone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="city" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="country" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="taxpayer" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="customerID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="createdAt" Type="DateTime" Precision="3" />
+          <Property Name="remarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Policy">
+          <Key>
+            <PropertyRef Name="policy_id" />
+          </Key>
+          <Property Name="policy_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="policy_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="fileName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="file_type" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="file_size" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="pages" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PriceAmount">
+          <Key>
+            <PropertyRef Name="priceNo" />
+          </Key>
+          <Property Name="priceNo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="priceId" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="priceAmount1" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SlideShow">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="priority" Type="Int32" Nullable="false" />
+          <Property Name="imagePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="url" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="StripeCustomerId">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="email" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="customerId" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Subscriber">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="email" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="subscribe" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="user_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="email" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="username" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="image" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Project">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="project_name" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="project_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="HRMEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Annual_Report" EntityType="Self.Annual_Report" />
+          <EntitySet Name="Appeals" EntityType="Self.Appeal" />
+          <EntitySet Name="CandidateVolunteers" EntityType="Self.CandidateVolunteer" />
+          <EntitySet Name="Contacts" EntityType="Self.Contact" />
+          <EntitySet Name="Donors" EntityType="Self.Donor" />
+          <EntitySet Name="Policies" EntityType="Self.Policy" />
+          <EntitySet Name="PriceAmounts" EntityType="Self.PriceAmount" />
+          <EntitySet Name="SlideShows" EntityType="Self.SlideShow" />
+          <EntitySet Name="StripeCustomerIds" EntityType="Self.StripeCustomerId" />
+          <EntitySet Name="Subscribers" EntityType="Self.Subscriber" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <EntitySet Name="Projects" EntityType="Self.Project" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="HRMModelStoreContainer" CdmEntityContainer="HRMEntities">
+          <EntitySetMapping Name="Annual_Report">
+            <EntityTypeMapping TypeName="HRMModel.Annual_Report">
+              <MappingFragment StoreEntitySet="Annual_Report">
+                <ScalarProperty Name="annual_report_id" ColumnName="annual_report_id" />
+                <ScalarProperty Name="fileName" ColumnName="fileName" />
+                <ScalarProperty Name="year" ColumnName="year" />
+                <ScalarProperty Name="cover_image" ColumnName="cover_image" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Appeals">
+            <EntityTypeMapping TypeName="HRMModel.Appeal">
+              <MappingFragment StoreEntitySet="Appeal">
+                <ScalarProperty Name="appeal_id" ColumnName="appeal_id" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="meta_data" ColumnName="meta_data" />
+                <ScalarProperty Name="content" ColumnName="content" />
+                <ScalarProperty Name="author" ColumnName="author" />
+                <ScalarProperty Name="country" ColumnName="country" />
+                <ScalarProperty Name="publication_date" ColumnName="publication_date" />
+                <ScalarProperty Name="header_picture_path" ColumnName="header_picture_path" />
+                <ScalarProperty Name="content_picture1_path" ColumnName="content_picture1_path" />
+                <ScalarProperty Name="content_picture2_path" ColumnName="content_picture2_path" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="amount1" ColumnName="amount1" />
+                <ScalarProperty Name="amount2" ColumnName="amount2" />
+                <ScalarProperty Name="amount3" ColumnName="amount3" />
+                <ScalarProperty Name="amount1Message" ColumnName="amount1Message" />
+                <ScalarProperty Name="amount2Message" ColumnName="amount2Message" />
+                <ScalarProperty Name="amount3Message" ColumnName="amount3Message" />
+                <ScalarProperty Name="contentImage1Note" ColumnName="contentImage1Note" />
+                <ScalarProperty Name="contentImage2Note" ColumnName="contentImage2Note" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CandidateVolunteers">
+            <EntityTypeMapping TypeName="HRMModel.CandidateVolunteer">
+              <MappingFragment StoreEntitySet="CandidateVolunteers">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="firstname" ColumnName="firstname" />
+                <ScalarProperty Name="surname" ColumnName="surname" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="birthday" ColumnName="birthday" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="emergencyContactName" ColumnName="emergencyContactName" />
+                <ScalarProperty Name="contactNumber" ColumnName="contactNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Contacts">
+            <EntityTypeMapping TypeName="HRMModel.Contact">
+              <MappingFragment StoreEntitySet="Contact">
+                <ScalarProperty Name="contact_id" ColumnName="contact_id" />
+                <ScalarProperty Name="firstname" ColumnName="firstname" />
+                <ScalarProperty Name="lastname" ColumnName="lastname" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="country" ColumnName="country" />
+                <ScalarProperty Name="subject" ColumnName="subject" />
+                <ScalarProperty Name="message" ColumnName="message" />
+                <ScalarProperty Name="read" ColumnName="read" />
+                <ScalarProperty Name="time" ColumnName="time" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Donors">
+            <EntityTypeMapping TypeName="HRMModel.Donor">
+              <MappingFragment StoreEntitySet="Donor">
+                <ScalarProperty Name="donation_id" ColumnName="donation_id" />
+                <ScalarProperty Name="donation_type" ColumnName="donation_type" />
+                <ScalarProperty Name="project_name" ColumnName="project_name" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="donor_firstname" ColumnName="donor_firstname" />
+                <ScalarProperty Name="donor_surname" ColumnName="donor_surname" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="country" ColumnName="country" />
+                <ScalarProperty Name="taxpayer" ColumnName="taxpayer" />
+                <ScalarProperty Name="customerID" ColumnName="customerID" />
+                <ScalarProperty Name="createdAt" ColumnName="createdAt" />
+                <ScalarProperty Name="remarks" ColumnName="remarks" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Policies">
+            <EntityTypeMapping TypeName="HRMModel.Policy">
+              <MappingFragment StoreEntitySet="Policy">
+                <ScalarProperty Name="policy_id" ColumnName="policy_id" />
+                <ScalarProperty Name="policy_name" ColumnName="policy_name" />
+                <ScalarProperty Name="fileName" ColumnName="fileName" />
+                <ScalarProperty Name="file_type" ColumnName="file_type" />
+                <ScalarProperty Name="file_size" ColumnName="file_size" />
+                <ScalarProperty Name="pages" ColumnName="pages" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PriceAmounts">
+            <EntityTypeMapping TypeName="HRMModel.PriceAmount">
+              <MappingFragment StoreEntitySet="PriceAmount">
+                <ScalarProperty Name="priceNo" ColumnName="priceNo" />
+                <ScalarProperty Name="priceId" ColumnName="priceId" />
+                <ScalarProperty Name="priceAmount1" ColumnName="priceAmount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SlideShows">
+            <EntityTypeMapping TypeName="HRMModel.SlideShow">
+              <MappingFragment StoreEntitySet="SlideShow">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="priority" ColumnName="priority" />
+                <ScalarProperty Name="imagePath" ColumnName="imagePath" />
+                <ScalarProperty Name="url" ColumnName="url" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StripeCustomerIds">
+            <EntityTypeMapping TypeName="HRMModel.StripeCustomerId">
+              <MappingFragment StoreEntitySet="StripeCustomerId">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="customerId" ColumnName="customerId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Subscribers">
+            <EntityTypeMapping TypeName="HRMModel.Subscriber">
+              <MappingFragment StoreEntitySet="Subscriber">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="subscribe" ColumnName="subscribe" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="HRMModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="image" ColumnName="image" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Projects">
+            <EntityTypeMapping TypeName="HRMModel.Project">
+              <MappingFragment StoreEntitySet="Project">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="project_name" ColumnName="project_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

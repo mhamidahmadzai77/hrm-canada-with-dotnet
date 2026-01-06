@@ -1,0 +1,720 @@
+﻿
+@{
+    if (Session["user_108310113658"] != null)
+    {
+        if (Session["user_108310113658"].ToString() == "authenticated")
+        {
+            Layout = "~/Views/Shared/_AdminLayout.cshtml";
+        }
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_EndUserLayout.cshtml";
+    }
+
+    ViewBag.Title = "Qurbani - Share the Blessing of Eid | Human Relief Mission UK";
+    ViewBag.Description = "Fulfill your Qurbani obligation with Human Relief Mission. Provide fresh meat to the needy this Eid and spread happiness among vulnerable families worldwide.";
+    ViewBag.Keywords = "Qurbani donation, Eid sacrifice, Qurbani UK, share Qurbani, Eid al-Adha charity, Islamic giving, Qurbani for the poor, Qurbani shares";
+    ViewBag.OGandTwitterTitle = "Qurbani | Human Relief Mission UK";
+
+
+}
+
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RXXJLDEKC3"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); } gtag('js', new Date()); gtag('config', 'G-RXXJLDEKC3');
+    </script>
+
+    <link href="~/assets/news/css/custom.css" rel="stylesheet" />
+    <link href="~/assets/Home/custom.css" rel="stylesheet" />
+    <style type="text/css">
+        #donate-switch:hover {
+            cursor: pointer;
+        }
+
+        #inner-donate-switch:hover {
+            cursor: pointer;
+        }
+
+        #circle-bullet {
+            position: relative;
+            transition: left 0.3s;
+        }
+
+        #inner-circle-bullet {
+            position: relative;
+            transition: left 0.3s;
+        }
+
+        .btn-amount {
+            background-color: #660199;
+            color: #fff;
+            font-size: 1.3em;
+            font-weight: bold;
+            border: 2px solid #fff;
+            width: 80px;
+            height: 60px;
+        }
+
+        .inner-btn-amount {
+            background-color: #660199;
+            color: #fff;
+            font-size: 1.3em;
+            font-weight: bold;
+            border: 2px solid #fff;
+            width: 80px;
+            height: 60px;
+        }
+
+        .btn-amount:hover {
+            background-color: #fff;
+            color: #000;
+        }
+
+        .inner-btn-amount:hover {
+            background-color: #fff;
+            color: #000;
+        }
+
+        .btn-donate-red:hover > i.fa-arrow-right {
+            position: relative;
+            left: 4px;
+        }
+
+        .inner-btn-donate-red:hover > i.fa-arrow-right {
+            position: relative;
+            left: 4px;
+        }
+
+
+
+        .orphan-hope-image {
+        }
+
+        .orphan-hope-pragraph {
+            padding: 30px;
+            color: #fff;
+        }
+
+        .orphan-hope-image {
+            display: flex;
+            align-items: center; /* Vertically center the content */
+        }
+
+        .align-center {
+            display: flex;
+            justify-content: center; /* Horizontally center the content */
+            align-items: center; /* Vertically center the content */
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 50px auto;
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .faq-item {
+            border-bottom: 1px solid #e0e0e0;
+            padding: 30px 0;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: bold;
+            color: #660199;
+        }
+
+        .faq-answer {
+            display: none;
+            padding: 10px;
+            margin-top: 30px;
+            border-top: 1px solid #e0e0e0;
+            font-size: 18px;
+            font-weight: normal;
+            line-height: 1.5;
+            color: #000;
+        }
+
+        .expand-icon {
+            float: right;
+            transform: rotate(-90deg);
+            transition: transform 0.3s;
+        }
+
+            .expand-icon.open {
+                transform: rotate(90deg);
+            }
+
+        h1 {
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid image-title-container" style="padding:0;">
+        <div class="news-image col-md-8 pull-right">
+            <div>
+                <video class="autoplay-video" autoplay muted loop style="width:100%;height:570px;">
+                    <source src="~/Content/projects/videos/qurbani/qurbani.mp4" type="video/mp4" />
+                </video>
+            </div>
+            <script>
+                function imagePlacing() {
+                    var image = document.getElementById('appeal-header-picture');
+                    var title = document.getElementById('news-title-box');
+                    if (window.innerWidth < 492) {
+                        image.style.scale = 1.7;
+                        image.style.position = "relative";
+                        image.style.left = "-20px";
+                        image.style.top = "30px";
+                        title.style.marginTop = "100px";
+                    } else {
+                        image.style.scale = 1;
+                        image.style.position = "relative";
+                        image.style.left = "0";
+                        image.style.top = "0";
+                        title.style.marginTop = "30px";
+                    }
+                }
+                window.addEventListener('load', function () {
+                    imagePlacing();
+                });
+                window.addEventListener('resize', function () {
+                    imagePlacing();
+                });
+
+            </script>
+        </div>
+        <div class="news-title-box col-sm-12 pull-left" id="header-donation-box">
+            <div class="news-title" style="width:100%;color:#fff;padding:30px;">
+                <h1 style="font-size:2.5em;">Qurbani 1446-2025</h1>
+
+            </div>
+            <div class="form-group" style="margin-top:-20px;">
+                <label class="control-label col-md-3" style="color:white;margin-left:20px;font-weight:bold;">
+                    Select Country
+                </label>
+                <div class="col-md-4">
+
+                    <select name="country" id="country_list" style="font-weight:bold;" class="form-control select2-hidden-accessible" tabindex="-1" aria-hidden="true">
+                        <option class="bold" value="Afghanistan">Afghanistan</option>
+                        <option class="bold" value="Bangladesh">Bangladesh</option>
+                        <option class="bold" value="Pakistan">Pakistan</option>
+                        <option class="bold" value="Gaza">Gaza</option>
+                        <option class="bold" value="India">India</option>
+                        <option class="bold" value="Nigeria">Nigeria</option>
+                    </select>
+                </div>
+            </div><br />
+            <div style="padding:20px 30px 0 30px;">
+                <input type="hidden" id="amount" />
+                <button class="btn btn-amount" id="amount-1" onmouseover="changeColorWithMouseOver(1)" onmouseout="changeColorWithMouseOut(1)" onclick="amountClicked(1);" style="width:auto;height:auto;">Small <br />$240</button>
+                <button class="btn btn-amount" id="amount-2" onmouseover="changeColorWithMouseOver(2)" onmouseout="changeColorWithMouseOut(2)" onclick="amountClicked(2);" style="width:auto;height:auto;">Large <br />$970</button>
+                <button class="btn btn-amount" id="amount-3" onmouseover="changeColorWithMouseOver(3)" onmouseout="changeColorWithMouseOut(3)" onclick="amountClicked(3);" style="width:auto;height:auto;">1/7<sup>th </sup>Share <br />$140</button>
+                <button class="btn" id="quantity-button" onclick="document.getElementById('amount-4').focus()" style="width:auto;height:auto;padding:3px 10px;font-weight:bold;font-size:1.2em;background-color:#660199;border: 2px solid #fff;color:#fff;">Qty <br /><input type="number" value="1" class="form-control" id="amount-4" style="display:inline;border:none;width:60px;text-align:center;background-color:#660199;color:#fff;font-size:1em;position:relative;top:3px;" placeholder="" /></button>
+                
+            </div>
+            <div>
+                <button class="btn btn-donate-red" onclick='donateNow("Qurbani")' style="width: 170px; height: 60px; background-color: red; border: none; position: relative; left: 30px; top: 10px; color: #fff; font-size: 1.3em; font-weight: bold; "> Donate now <i class="fa fa-arrow-right"></i></button>
+                <button class="" onclick='donateEidGiftNow("Eid-Gift")' style="width: 170px; height: 60px; background-color: #f6cb21; border: none; position: relative; left: 36px; top: 12px; color: #fff; font-size: 1.3em; font-weight: bold; "> EID GIFTS $20 <i class="fa fa-gift"></i></button>
+            </div>
+            <div>
+
+            </div>
+            <div class="col-md-2 header-fundraising-logos">
+                <img src="~/assets/FR-logo/FR_Fundraising-Badge_white_150ppi.png" style="width:150px; margin-right: 10px;" />
+                <img src="~/assets/FR-logo/direct-debit-logo.png" style="width:150px;" />
+                <img src="~/assets/FR-logo/visa-6850402_1280.png" style="width:100px;" />
+                <img src="~/assets/FR-logo/mastercard.png" style="width: 80px;" />
+            </div>
+        </div>
+    </div>
+    @* Start Section Help Us Building Our Masjid*@
+    <div class="container-fluid">
+        <div class="col-md-3"></div>
+        <div class="col-md-6 " style="text-align:justify;font-size:18px;">
+
+            <h1 style="font-weight:bold;font-size:2em">Qurbani 1446-2025</h1>
+            <p>Qurbani, or Udhiyah, is a blessed act of worship, following the Sunnah of Prophet Ibrahim (AS), who was ready to sacrifice for the sake of Allah (SWT). It is a powerful reminder of submission, gratitude, and generosity.</p>
+            @* Start Qoute Section*@
+            <div class="" style="padding-bottom:50px;margin-top:30px;">
+
+                <div class="quote-container col-md-12">
+                    <span class="" style="font-size:4em;font-weight:bold">&lsquo;&lsquo;</span>
+                    <p class="quote">
+                        There is nothing dearer to Allah during the days of Eid al-Adha than the sacrificing of animals. The sacrificed animal will come on the Day of Judgment with its horns, hair, and hooves (to be weighed). The sacrifice is accepted by Allah before the blood reaches the ground, so sacrifice with an open and happy heart.
+                    </p>
+                    <p class="">Hadith | Tirmidhi</p>
+                </div>
+
+            </div>
+            @* End Qoute Section*@
+            <p>&nbsp;</p>
+            <p>
+                At Human Relief Mission, we believe Qurbani is not just a sacrifice, but a chance to feed the hungry, spread joy, and fulfil a sacred obligation. Your Qurbani donation can bring smiles and sustenance to families facing hardship, hunger, and poverty.
+            </p>
+
+            <h1 style="font-weight:bold;font-size:1em">
+                Why Give Your Qurbani with Human Relief Mission?
+            </h1>
+            <ol>
+                <li>
+                    <span class="bold" style="font-size:0.8em;">Following the Sunnah: </span>
+                    Re-enact the spirit of sacrifice shown by Prophet Ibrahim (AS) and carry forward the Sunnah of the Prophet Muhammad ﷺ.
+                </li>
+                <li>
+                    <span class="bold" style="font-size:0.8em;">Feeding the Needy: </span>
+                    Millions around the world cannot afford meat. Your sacrifice ensures that vulnerable families enjoy nutritious meals during Eid al-Adha.
+                </li>
+                <li>
+                    <span class="bold" style="font-size:0.8em;">Global Reach: </span>
+                    Your Qurbani reaches the most needy across disaster-stricken, conflict-affected, and impoverished communities.
+                </li>
+                <li>
+                    <span class="bold" style="font-size:0.8em;">Trusted Distribution: </span>
+                    We carefully perform the sacrifice and distribute fresh meat to those most in need, ensuring your Qurbani fulfils its religious requirements.
+                </li>
+                <li>
+                    <span class="bold" style="font-size:0.8em;">Ease & Convenience: </span>
+                    Simply donate, and we handle everything on your behalf — from sacrifice to distribution — according to Islamic guidelines.
+                </li>
+            </ol>
+            <h1 style="font-weight:bold;font-size:1em">
+                Our 2025 Qurbani Price List
+            </h1>
+            <p>
+                <img src="~/Content/projects/qurbani/Qurbani Canada price list.png" style="width:100%;" />
+            </p>
+            <h1 style="font-weight:bold;font-size:1em">
+                Who Must Perform Qurbani?
+            </h1>
+            <p>
+                Qurbani is obligatory for every sane, adult Muslim who possesses the financial means (possessing wealth above your basic needs), offering Qurbani is a great way to show gratitude to Allah (SWT) for His countless blessings.
+            </p>
+            <h1 style="font-weight:bold;font-size:1em">
+                Eid Gifts – Share Joy This Eid!
+            </h1>
+            <p>
+                Eid al-Adha is a time of celebration, joy, and gratitude. Yet for millions of orphaned, displaced, and impoverished children around the world, Eid can pass like any other day — with no new clothes, no special meals, and no gifts.
+            </p>
+            <p>
+                This Eid, you can change that.
+            </p>
+            <p>
+                For just $20, you can send an Eid Gift packed with love, smiles, and hope to a child in need.
+                Each Eid Gift includes new clothes, sweets and small toys.
+            </p>
+
+            <h1 style="font-weight:bold;font-size:1em">
+                Transparency & Feedback
+            </h1>
+            <p>We know your donations are a sign of trust and faith in us. That’s why we provide full transparency with our Projects, so you can see exactly how your contributions are making an impact through media feedback and reports. Call our head office on +1(613) 710 0432 or +1(613) 879 1722.</p>
+            <h1 style="font-weight:bold;font-size:1em">
+                Donate Now
+            </h1>
+            <p>
+                This Eid al-Adha, sacrifice with sincerity. Feed the hungry. Spread joy.
+                Make your Qurbani truly life-changing by donating with Human Relief Mission.
+            </p>
+            <h1 style="font-weight:bold;font-size:0.7em">
+                Give now and make a lasting impact.
+            </h1>
+
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+
+    <img src="~/assets/FR-logo/FR_Fundraising-Badge_white_150ppi.png" style="display:none;" />
+    @*BEGIN DONATE FOR FOOD SECURITY*@
+    <div class="container-fluid" style="background-color: #660199 !important; height: auto; color: #fff;">
+        <div class="col-md-6" style="padding:30px;">
+            <h1 style="font-size:3em;">Qurbani 1446-2025</h1>
+            <p style="font-size:16px;">This year, your Qurbani can reach some of the world’s most vulnerable communities, delivering hope and relief where it is needed most. Whether you choose to give locally or internationally, your contribution will be handled with care, following strict Islamic guidelines to ensure authenticity and impact. Together, we can make Eid a truly joyous occasion for thousands of families. Donate your Qurbani today and be a source of happiness and blessings for those who are waiting for your generosity.</p>
+            <div class="col-md-2 header-fundraising-logos">
+                <img src="~/assets/FR-logo/FR_Fundraising-Badge_white_150ppi.png" style="width:150px; margin-right: 10px;" />
+                <img src="~/assets/FR-logo/direct-debit-logo.png" style="width:150px;" />
+                <img src="~/assets/FR-logo/visa-6850402_1280.png" style="width:100px;" />
+                <img src="~/assets/FR-logo/mastercard.png" style="width: 80px;" />
+            </div>
+        </div>
+
+        <div class="col-md-6" style="padding-bottom:30px;margin-top:60px;">
+            <div class="form-group">
+                <label class="control-label col-md-3" style="color:white;margin-left:20px;font-weight:bold;">
+                    Select Country
+                </label>
+                <div class="col-md-4">
+
+                    <select name="country" style="font-weight:bold;" id="inner-country_list" class="form-control select2-hidden-accessible" tabindex="-1" aria-hidden="true">
+                        <option class="bold" value="Afghanistan">Afghanistan</option>
+                        <option class="bold" value="Bangladesh">Bangladesh</option>
+                        <option class="bold" value="Pakistan">Pakistan</option>
+                        <option class="bold" value="Gaza">Gaza</option>
+                        <option class="bold" value="India">India</option>
+                        <option class="bold" value="Nigeria">Nigeria</option>
+                    </select>
+                </div>
+            </div>
+            <br />
+            <div style="padding:20px 30px 0 30px;">
+                <input type="hidden" id="inner-amount" />
+                <button class="btn inner-btn-amount" id="inner-amount-1" onmouseover="innerChangeColorWithMouseOver(1)" onmouseout="innerChangeColorWithMouseOut(1)" onclick="innerAmountClicked(1);" style="width:auto;height:auto;">Small <br />$240</button>
+                <button class="btn inner-btn-amount" id="inner-amount-2" onmouseover="innerChangeColorWithMouseOver(2)" onmouseout="innerChangeColorWithMouseOut(2)" onclick="innerAmountClicked(2);" style="width:auto;height:auto;">Large <br />$970</button>
+                <button class="btn inner-btn-amount" id="inner-amount-3" onmouseover="innerChangeColorWithMouseOver(3)" onmouseout="innerChangeColorWithMouseOut(3)" onclick="innerAmountClicked(3);" style="width:auto;height:auto;">1/7<sup>th</sup> Share <br />$140</button>
+                <button class="btn" id="inner-quantity-button" onclick="document.getElementById('inner-amount-4').focus()" style="width:auto;height:auto;padding:3px 10px;font-weight:bold;font-size:1.2em;background-color:#660199;border: 2px solid #fff;color:#fff;">Qty <br /><input type="number" value="1" class="form-control" id="inner-amount-4" style="display:inline;border:none;width:60px;text-align:center;background-color:#660199;color:#fff;font-size:1em;position:relative;top:3px;" placeholder="" /></button>
+            </div>
+            <div>
+                <button class="btn btn-donate-red" onclick='innerDonateNow("Appeal")' style="width: 170px; height: 60px; background-color: red; border: none; position: relative; left: 30px; top: 10px; color: #fff; font-size: 1.3em; font-weight: bold;"> Donate now <i class="fa fa-arrow-right"></i></button>
+                <button class="" onclick='donateEidGiftNow("Eid-Gift")' style="width: 170px; height: 60px; background-color: #f6cb21; border: none; position: relative; left: 36px; top: 12px; color: #fff; font-size: 1.3em; font-weight: bold; "> EID GIFTS $20 <i class="fa fa-gift"></i></button>
+            </div>
+
+        </div>
+    </div>
+    <div class="" style="margin:0 auto;">
+        <div class="col-md-3" style=""></div>
+        <div class="col-md-6 text-center text-justify" style="padding:50px 10px;font-size:18px;">
+            <p style="font-size:16px;font-style:italic;">Please note: Donations made on this page will be allocated to our qurbani fund that is used to deliver a range of different projects such as the examples showcased above. These programmes can and will be delivered in any of the countries where Human Relief Mission has a presence, and those projects are catered to the local community with the aim to save and transform lives.</p>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+    @*END DONATE FOR FOOD SECURITY*@
+
+
+    <script src="~/assets/Home/custom.js"></script>
+    <script src="~/assets/donation-script/appeal/appeal.js"></script>
+    <script src="~/assets/donation-script/appeal/inner-appeal.js"></script>
+    <script>
+
+        var currentAmounts = [240, 970, 140]; // for outer donation
+        var currentInnerAmounts = [240, 970, 140]; // for inner donation (footer)
+
+        // Header Donation
+        var donationType = "one off";
+
+
+        document.getElementById('amount-2').style.backgroundColor = "#fff";
+        document.getElementById('amount-2').style.color = "#000";
+        document.getElementById('amount').value = '970';
+
+        function amountClicked(amount) {
+            var selectedAmount = 0;
+            if (amount == "1") {
+                selectedAmount = currentAmounts[0];
+            }
+            else if (amount == "2") {
+                selectedAmount = currentAmounts[1];
+            }
+            else if (amount == "3") {
+                selectedAmount = currentAmounts[2];
+            }
+
+            $('#amount').val(selectedAmount);
+
+            var amountButtons = document.getElementsByClassName('btn-amount');
+            for (var i = 0; i < amountButtons.length; i++) {
+                amountButtons[i].style.backgroundColor = '#660199';
+                amountButtons[i].style.color = '#fff';
+            }
+
+            if (selectedAmount == currentAmounts[0]) {
+                document.getElementById("amount-1").style.backgroundColor = "#fff";
+                document.getElementById("amount-1").style.color = "#000";
+            }
+            if (selectedAmount == currentAmounts[1]) {
+                document.getElementById("amount-2").style.backgroundColor = "#fff";
+                document.getElementById("amount-2").style.color = "#000";
+            }
+            if (selectedAmount == currentAmounts[2]) {
+                document.getElementById("amount-3").style.backgroundColor = "#fff";
+                document.getElementById("amount-3").style.color = "#000";
+            }
+        }
+
+
+        function changeColorWithMouseOver(num) {
+            var element = document.getElementById('amount-' + num);
+            element.style.backgroundColor = '#fff'; // Highlight on hover
+            element.style.color = '#000';
+        }
+
+        function changeColorWithMouseOut(num) {
+            var amountValue = document.getElementById('amount').value;
+            var buttonElement = document.getElementById('amount-' + num);
+
+            // Get the button text without HTML tags and extract the number
+            var buttonText = buttonElement.innerText.replace(/\s+/g, ' ').trim();
+            var match = buttonText.match(/£(\d+)/);
+
+            if (match) {
+                var buttonAmount = match[1];
+                if (amountValue != buttonAmount) {
+                    buttonElement.style.backgroundColor = '#660199'; // Default color if not selected
+                    buttonElement.style.color = '#fff';
+                }
+            }
+        }
+
+
+
+        function checkInputValue() {
+            const input = document.getElementById('amount-4');
+            if (input.value == "" || Number(input.value) <= 0) {
+                const qty = document.getElementById('quantity-button');
+                qty.classList.add('shake');
+                // Remove the class after animation ends so it can shake again next time
+                setTimeout(() => qty.classList.remove('shake'), 500);
+            }
+        }
+
+        function checkInnerInputValue() {
+            const input = document.getElementById('inner-amount-4');
+            if (input.value == "" || Number(input.value) <= 0) {
+                const innerQty = document.getElementById('inner-quantity-button');
+                innerQty.classList.add('shake');
+                // Remove the class after animation ends so it can shake again next time
+                setTimeout(() => innerQty.classList.remove('shake'), 500);
+            }
+        }
+
+        function donateNow(project_name) {
+            checkInputValue();
+            const input = document.getElementById('amount-4');
+            if (input.value !== "" && Number(input.value) > 0) {
+                project_name = document.getElementById("country_list").value // Get selected country dynamically
+
+
+                var value = 0;
+
+                value = parseInt(document.getElementById('amount').value);
+                var qty = parseInt(document.getElementById('amount-4').value);
+                value = value * qty;
+
+                if (!isNaN(value) && value > 0) {
+                    if (project_name == "Afghanistan") {
+                        project_name = "Afghanistan-Qurbani"
+                        addAndRefreshBasket(41, project_name, value);
+                    }
+                    else if (project_name == "Bangladesh") {
+                        project_name = "Bangladesh-Qurbani"
+                        addAndRefreshBasket(42, project_name, value);
+                    }
+                    else if (project_name == "Pakistan") {
+                        project_name = "Pakistan-Qurbani"
+                        addAndRefreshBasket(43, project_name, value);
+                    }
+                    else if (project_name == "Gaza") {
+                        project_name = "Gaza-Qurbani"
+                        addAndRefreshBasket(44, project_name, value);
+                    }
+                    else if (project_name == "India") {
+                        project_name = "India-Qurbani"
+                        addAndRefreshBasket(45, project_name, value);
+                    }
+                    else if (project_name == "Nigeria") {
+                        project_name = "Nigeria-Qurbani"
+                        addAndRefreshBasket(46, project_name, value);
+                    }
+                    showToast("Thank you!", "Your donation of $[" + value + "] has been added to the basket.", "success");
+                }
+            }
+            
+        }
+        function donateEidGiftNow(project_name) {
+            var value = 20;
+            addAndRefreshBasket(47, project_name, value);
+            showToast("Thank you!", "Your donation of $[" + value + "] has been added to the basket.", "success");
+
+        }
+
+
+
+        // Footer Donation
+        var donationType = "one off";
+
+
+        document.getElementById('inner-amount-2').style.backgroundColor = "#fff";
+        document.getElementById('inner-amount-2').style.color = "#000";
+        document.getElementById('inner-amount').value = '970';
+
+        function innerAmountClicked(amount) {
+
+
+            var selectedAmount = 0;
+            if (amount == "1") {
+                selectedAmount = currentInnerAmounts[0];
+            }
+            else if (amount == "2") {
+                selectedAmount = currentInnerAmounts[1];
+            }
+            else if (amount == "3") {
+                selectedAmount = currentInnerAmounts[2];
+            }
+
+            $('#inner-amount').val(selectedAmount);
+
+            var amountButtons = document.getElementsByClassName('inner-btn-amount');
+            for (var i = 0; i < amountButtons.length; i++) {
+                amountButtons[i].style.backgroundColor = '#660199';
+                amountButtons[i].style.color = '#fff';
+            }
+
+            if (selectedAmount == currentInnerAmounts[0]) {
+                document.getElementById("inner-amount-1").style.backgroundColor = "#fff";
+                document.getElementById("inner-amount-1").style.color = "#000";
+            }
+            if (selectedAmount == currentInnerAmounts[1]) {
+                document.getElementById("inner-amount-2").style.backgroundColor = "#fff";
+                document.getElementById("inner-amount-2").style.color = "#000";
+            }
+            if (selectedAmount == currentInnerAmounts[2]) {
+                document.getElementById("inner-amount-3").style.backgroundColor = "#fff";
+                document.getElementById("inner-amount-3").style.color = "#000";
+            }
+        }
+        function innerChangeColorWithMouseOver(num) {
+            var element = document.getElementById('inner-amount-' + num);
+            element.style.backgroundColor = '#fff'; // Highlight on hover
+            element.style.color = '#000';
+        }
+
+        function innerChangeColorWithMouseOut(num) {
+            var amountValue = document.getElementById('inner-amount').value;
+            var buttonElement = document.getElementById('inner-amount-' + num);
+
+            // Get button text and extract the number
+            var buttonText = buttonElement.innerText.replace(/\s+/g, ' ').trim();
+            var match = buttonText.match(/£(\d+)/);
+
+            if (match) {
+                var buttonAmount = match[1];
+                if (amountValue != buttonAmount) {
+                    buttonElement.style.backgroundColor = '#660199'; // Reset color if not selected
+                    buttonElement.style.color = '#fff';
+                }
+            }
+        }
+
+
+       
+        function innerDonateNow(project_name) {
+            checkInnerInputValue();
+            const input = document.getElementById('inner-amount-4');
+            if (input.value !== "" && Number(input.value) > 0) {
+                var project_name = document.getElementById("inner-country_list").value // Get selected country dynamically
+
+                var value = 0;
+
+                value = parseInt(document.getElementById('inner-amount').value);
+                var innerQty = parseInt(document.getElementById('inner-amount-4').value);
+                value = value * innerQty;
+                if (!isNaN(value) && value > 0) {
+                    if (project_name == "Afghanistan") {
+                        project_name = "Afghanistan-Qurbani"
+                        addAndRefreshBasket(41, project_name, value);
+                    }
+                    else if (project_name == "Bangladesh") {
+                        project_name = "Bangladesh-Qurbani"
+                        addAndRefreshBasket(42, project_name, value);
+                    }
+                    else if (project_name == "Pakistan") {
+                        project_name = "Pakistan-Qurbani"
+                        addAndRefreshBasket(43, project_name, value);
+                    }
+                    else if (project_name == "Gaza") {
+                        project_name = "Gaza-Qurbani"
+                        addAndRefreshBasket(44, project_name, value);
+                    }
+                    else if (project_name == "India") {
+                        project_name = "India-Qurbani"
+                        addAndRefreshBasket(45, project_name, value);
+                    }
+                    else if (project_name == "Nigeria") {
+                        project_name = "Nigeria-Qurbani"
+                        addAndRefreshBasket(46, project_name, value);
+                    }
+                    showToast("Thank you!", "Your donation of $[" + value + "] has been added to the basket.", "success");
+                }
+            }
+            
+        }
+
+
+        function updateButtonAmounts() {
+            var country = document.getElementById("country_list").value;
+            amountClicked(2);
+
+            var amounts = {
+                "Afghanistan": [240, 970, 140],
+                "Bangladesh": [180, 450, 66],
+                "Pakistan": [160, 490, 70],
+                "Gaza": [0, 5600, 0],
+                "India": [160, 190, 28],
+                "Nigeria": [288, 1520, 218]
+            };
+
+            currentAmounts = amounts[country] || [240, 970, 140];
+
+            if (country == "Gaza") {
+                document.getElementById("amount-1").style.display = 'none';
+                document.getElementById("amount-2").innerHTML = 'Small <br />$' + currentAmounts[1];
+                document.getElementById("amount-2").style.padding = '6px 10px';
+                document.getElementById("amount-3").style.display = 'none';
+
+            } else {
+                document.getElementById("amount-1").style.display = 'inline';
+                document.getElementById("amount-3").style.display = 'inline';
+                document.getElementById("amount-2").style.padding = '6px 10px';
+
+                document.getElementById("amount-1").innerHTML = 'Small <br />$' + currentAmounts[0];
+                document.getElementById("amount-2").innerHTML = 'Large <br />$' + currentAmounts[1];
+                document.getElementById("amount-3").innerHTML = '1/7<sup>th</sup> Share <br />$' + currentAmounts[2];
+            }
+            amountClicked(2);
+        }
+
+
+        function updateInnerButtonAmounts() {
+            var country = document.getElementById("inner-country_list").value;
+
+            var amounts = {
+                "Afghanistan": [240, 970, 140],
+                "Bangladesh": [180, 450, 66],
+                "Pakistan": [160, 490, 70],
+                "Gaza": [0, 5600, 0],
+                "India": [160, 190, 28],
+                "Nigeria": [288, 1520, 218]
+            };
+
+            currentInnerAmounts = amounts[country] || [240, 970, 140];
+
+            if (country == "Gaza") {
+                document.getElementById("inner-amount-1").style.display = 'none';
+                document.getElementById("inner-amount-2").innerHTML = 'Small <br />$' + currentInnerAmounts[1];
+                document.getElementById("inner-amount-2").style.padding = '6px 10px';
+                document.getElementById("inner-amount-3").style.display = 'none';
+
+            } else {
+                document.getElementById("inner-amount-1").style.display = 'inline';
+                document.getElementById("inner-amount-3").style.display = 'inline';
+                document.getElementById("inner-amount-2").style.padding = '6px 10px';
+
+                document.getElementById("inner-amount-1").innerHTML = 'Small <br />$' + currentInnerAmounts[0];
+                document.getElementById("inner-amount-2").innerHTML = 'Large <br />$' + currentInnerAmounts[1];
+                document.getElementById("inner-amount-3").innerHTML = '1/7<sup>th</sup> Share <br />$' + currentInnerAmounts[2];
+            }
+            innerAmountClicked(2);
+        }
+        // Attach event listener
+        document.addEventListener("DOMContentLoaded", function () {
+            document.getElementById("country_list").addEventListener("change", updateButtonAmounts);
+            document.getElementById("inner-country_list").addEventListener("change", updateInnerButtonAmounts);
+        });
+    </script>
+
+</body>
+</html>

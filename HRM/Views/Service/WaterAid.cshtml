@@ -1,0 +1,429 @@
+﻿
+@{
+    if (Session["user_108310113658"] != null)
+    {
+        if (Session["user_108310113658"].ToString() == "authenticated")
+        {
+            Layout = "~/Views/Shared/_AdminLayout.cshtml";
+        }
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_EndUserLayout.cshtml";
+    }
+
+    ViewBag.Title = "Water Aid | Human Relief Mission UK";
+    ViewBag.Description = "Providing sustainable access to clean water through water pumps, wells, and tanker services to support communities in need.";
+    ViewBag.Keywords = "water aid, clean water, water pumps, water wells, tanker services, humanitarian aid, community support, water access, water sanitation, nonprofit organization";
+    ViewBag.OGandTwitterTitle = "Water Aid | Human Relief Mission UK";
+
+
+}
+
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RXXJLDEKC3"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); } gtag('js', new Date()); gtag('config', 'G-RXXJLDEKC3');
+    </script>
+
+    <link href="~/assets/news/css/custom.css" rel="stylesheet" />
+    <link href="~/assets/Home/custom.css" rel="stylesheet" />
+    <style type="text/css">
+        #donate-switch:hover {
+            cursor: pointer;
+        }
+
+        #inner-donate-switch:hover {
+            cursor: pointer;
+        }
+
+        #circle-bullet {
+            position: relative;
+            transition: left 0.3s;
+        }
+
+        #inner-circle-bullet {
+            position: relative;
+            transition: left 0.3s;
+        }
+
+        .btn-amount {
+            background-color: #660199;
+            color: #fff;
+            font-size: 1.3em;
+            font-weight: bold;
+            border: 2px solid #fff;
+            width: 80px;
+            height: 60px;
+        }
+
+        .inner-btn-amount {
+            background-color: #660199;
+            color: #fff;
+            font-size: 1.3em;
+            font-weight: bold;
+            border: 2px solid #fff;
+            width: 80px;
+            height: 60px;
+        }
+
+        .btn-amount:hover {
+            background-color: #fff;
+            color: #000;
+        }
+
+        .inner-btn-amount:hover {
+            background-color: #fff;
+            color: #000;
+        }
+
+        .btn-donate-red:hover > i.fa-arrow-right {
+            position: relative;
+            left: 4px;
+        }
+
+        .inner-btn-donate-red:hover > i.fa-arrow-right {
+            position: relative;
+            left: 4px;
+        }
+
+
+
+        .orphan-hope-image {
+        }
+
+        .orphan-hope-pragraph {
+            padding: 30px;
+            color: #fff;
+        }
+
+        .orphan-hope-image {
+            display: flex;
+            align-items: center; /* Vertically center the content */
+        }
+
+        .align-center {
+            display: flex;
+            justify-content: center; /* Horizontally center the content */
+            align-items: center; /* Vertically center the content */
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 50px auto;
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .faq-item {
+            border-bottom: 1px solid #e0e0e0;
+            padding: 30px 0;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: bold;
+            color: #660199;
+        }
+
+        .faq-answer {
+            display: none;
+            padding: 10px;
+            margin-top: 30px;
+            border-top: 1px solid #e0e0e0;
+            font-size: 18px;
+            font-weight: normal;
+            line-height: 1.5;
+            color: #000;
+        }
+
+        .expand-icon {
+            float: right;
+            transform: rotate(-90deg);
+            transition: transform 0.3s;
+        }
+
+            .expand-icon.open {
+                transform: rotate(90deg);
+            }
+
+        h1 {
+            text-align: left;
+        }
+    </style>
+</head>
+<body style="">
+    <div class="container-fluid image-title-container" style="padding:0;">
+        <div class="news-image col-md-8 pull-right">
+            <div>
+                <video class="autoplay-video" autoplay muted loop style="width:100%;height:570px;">
+                    <source src="~/Content/projects/videos/water-aids/water-aid.mp4" type="video/mp4" />
+                </video>
+
+            </div>
+        </div>
+        <div class="news-title-box col-sm-12 pull-left" style="margin-bottom: 5px;">
+            <div class="news-title" style="width:100%;color:#fff;padding:30px;">
+                <h1 style="font-size:2em;">Water Aid</h1>
+                <div style="float: left; padding-top: 4px;">Monthly </div>
+                <div id="donate-switch" onclick="donateSwitch()" style="width: 60px; height: 28px; background-color: #fff; border-radius: 20px; position: absolute; float: left; margin-left: 63px;">
+                    <div id="circle-bullet" style="width:20px;height:20px;background-color:#000;border-radius:10px;position:relative;left:5px;top:4px;"></div>
+                </div>
+                <div style="margin-left:130px;padding-top:4px;">One-Off</div>
+            </div>
+            <div style="padding:0 30px 0 30px;">
+                <input type="hidden" id="amount" />
+                <button class="btn btn-amount" id="amount-1" onmouseover="changeColorWithMouseOver(1)" onmouseout="changeColorWithMouseOut(1)" onclick="amountClicked(1);">$10</button>
+                <button class="btn btn-amount" id="amount-2" onmouseover="changeColorWithMouseOver(2)" onmouseout="changeColorWithMouseOut(2)" onclick="amountClicked(2);">$20</button>
+                <button class="btn btn-amount" id="amount-3" onmouseover="changeColorWithMouseOver(3)" onmouseout="changeColorWithMouseOut(3)" onclick="amountClicked(3);">$40</button>
+                <input type="number" class="form-control no-arrows white-placeholder" id="amount-4" onclick="otherClicked();" value="" style="display:inline;border:2px solid #fff;width:100px;height:60px;background-color:#660199;color:#fff;font-size:1.3em;font-weight:bold;position:relative;top:3px;" placeholder="Other" />
+            </div>
+            <div style="padding:10px 30px 0 30px;">
+                <span id="donation-message" style="color:#fff;"></span>
+            </div>
+            <div>
+                <button class="btn btn-donate-red" onclick="donateNow()" style="width: 180px; height: 60px; background-color: red; border: none; position: relative; left: 30px; top: 10px; color: #fff; font-size: 1.3em; font-weight: bold; "> Donate now <i class="fa fa-arrow-right"></i></button>
+            </div>
+            <div class="col-md-2 header-fundraising-logos">
+                <img src="~/assets/FR-logo/FR_Fundraising-Badge_white_150ppi.png" style="width:150px; margin-right: 10px;" />
+                <img src="~/assets/FR-logo/direct-debit-logo.png" style="width:150px;" />
+                <img src="~/assets/FR-logo/visa-6850402_1280.png" style="width:100px;" />
+                <img src="~/assets/FR-logo/mastercard.png" style="width: 80px;" />
+            </div>
+        </div>
+    </div>
+
+    @* BEGIN Section description*@
+    <div class="container-fluid">
+        <div class="col-md-3"></div>
+        <div class="col-md-6 " style="text-align:justify;font-size:18px;">
+            <h1 style="font-weight:bold;font-size:2em">
+                Water Aid
+            </h1>
+            <p>Millions of individuals worldwide face the harsh reality of enduring thirst daily. Deprived of safe and clean water, these people confront the peril of dehydration, disease, and, in the worst cases, death. Water charity is the most rewarding of all as water is the key to all life.</p>
+            <p>
+                <img src="~/Content/projects/water-aid/water-aid-1.jpg" style="width:100%;" />
+            </p>
+            <p>Your contribution to our water aid programs will become a crucial lifeline for countless individuals lacking access to this essential human need. Join us in donating to our water initiative and play a pivotal role in saving lives.</p>
+
+            @* BEGIN Qoute Section*@
+            <div class="" style="padding-bottom:50px;margin-top:30px;">
+
+                <div class="quote-container col-md-12">
+                    <span class="" style="font-size:4em;font-weight:bold">&lsquo;&lsquo;</span>
+                    <p class="quote">
+                        The best charity is giving water to drink.
+                    </p>
+                    <p class="">Hadith | Ahmed</p>
+                </div>
+
+            </div>
+            @* End Qoute Section*@
+            <p>&nbsp;</p>
+            <p>People all over the world rely on safe, clean water for drinking, washing, cooking, taking care of animals, and growing crops. Sadly, for the countless individuals within these communities, access to clean water remains unattainable.</p>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+    @* END Section description*@
+
+    @*BEGIN SECTION SUCCESS STORY*@
+    @*Food package success story*@
+    <div class="container-fluid height-auto">
+        @*<img src="~/assets/custom-image/Um-Taha-1.jpg" id="successStoryImage" class="col-sm-12 col-md-6  orphan-hope-image align-center" style="margin-top:10px;" />
+        <div class="col-md-6 background-purple">
+            <div class="orphan-hope-pragraph col-md-11" style="text-align:justify; font-size:22px;">
+                <h1 style="font-weight:bold;">Provide food to families like Um Taha's</h1>
+                <p>Um Taha lives in Syria. When her husband was killed during the conflict, she had no way to provide for herself and her children. Al-Mouwasat now provides her with much-needed bread so she can eat and feed her family.</p>
+                <p>"You are risking your lives to bring us bread; any minute, an airstrike can happen." - Um Taha</p>
+                <p>You can provide life-saving food to those who need it most.</p>
+                <p>Um Taha lives in Syria. When her husband was killed during the conflict, she had no way to provide for herself and her children. Al-Mouwasat now provides her with much-needed bread so she can eat and feed her family.</p>
+            </div>
+        </div>*@
+    </div>
+    @*END SECTION SUCCESS STORY*@
+
+    @* BEGIN SECTION Challenges people are facing around the world*@
+    <div class="container-fluid latest-news" style="margin-top:30px;">
+
+        <div class="col-md-12 ">
+            <div class="portlet light portlet-fit ">
+                <div class="portlet-title latest-news">
+                    <div class="caption">
+
+                        <span class="caption-subject bold  " style="color:black;font-size:1.4em;font-weight:bold;">Challenges faced from lack of clean water</span>
+                    </div>
+                </div>
+                <div class="portlet-body latest-news" style="margin-top:-11px;">
+                    <div class="mt-element-card mt-element-overlay">
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                <div class="mt-card-item">
+                                    <div style="text-align:center;padding:50px 0;">
+                                        <img src="~/assets/custom-image/world_icon_125099.png" width="150" />
+
+                                    </div>
+                                    <div class="mt-card-content">
+                                        <h2 class="bold"> 2 billion people </h2>
+
+                                        <h4 class="mt-card-name" style="font-size:1.2em;padding:8px;">
+                                            across the world lack access to safe drinking water.
+                                        </h4>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                <div class="mt-card-item">
+                                    <div style="text-align:center;padding:50px 0;">
+                                        <img src="~/assets/custom-image/ecology_water_environment_icon_181692.png" width="150" />
+                                    </div>
+                                    <div class="mt-card-content">
+                                        <h2 class="bold"> 3.5 million </h2>
+                                        <h4 class="mt-card-name" style="font-size:1.2em;padding:8px;">
+                                            people die each year due to water-related diseases.
+                                        </h4>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                <div class="mt-card-item">
+                                    <div style="text-align:center;padding:50px 0;">
+                                        <img src="~/assets/custom-image/child.png" width="150" />
+                                    </div>
+                                    <div class="mt-card-content">
+                                        <h2 class="bold"> 1 in 5 </h2>
+                                        <h4 class="mt-card-name" style="font-size:1.2em;padding:8px;">
+                                            children across the globe do not have enough water.
+                                        </h4>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    @* END SECTION Challenges people are facing around the world*@
+
+    @*BEGIN SECTION IMPACT OF DONATION*@
+    <div class="container-fluid">
+        <div class="col-md-3"></div>
+        <div class="col-md-6 " style="text-align:justify;font-size:18px;">
+            <h1 style="font-weight:bold;font-size:2em">
+                How your donation makes an impact
+            </h1>
+            <p>When you contribute by donating a water pump or helping build a well for communities that struggle to access safe drinking water, you're making a life-changing impact.</p>
+            <p>Water is the essence of life, and when you support communities in constructing and restoring infrastructure for clean, safe drinking water and sanitation, you're not just providing the means for survival; you're also shielding them from numerous dangers associated with water scarcity.</p>
+            <p>Our initiatives not only bring clean water to communities for temporary use but also address food insecurity by watering crops and fields. The ripple effect of your donation goes beyond, making a significant and lasting difference.</p>
+
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+    @*END SECTION IMPACT OF DONATION*@
+
+
+    <div class="col-md-3"></div>
+    <div class="col-md-6 " style="text-align:justify;font-size:18px;">
+        <h1 style="font-weight:bold;font-size:2em">
+            Building water wells
+        </h1>
+        <p>
+            Communities around the world are deprived of readily available clean water. What this means is that people must travel long distances to get clean water for their day-to-day needs. To combat this issue, Human Relief Mission builds wells in communities where the struggle for clean water is most needed.
+        </p>
+        <p>By drilling wells, we aim to bring this essential resource closer to those who need it the most. This not only reduces the burden of long journeys but also ensures that communities have a reliable and nearby source of clean water for their daily necessities.  Your support in our water aid programs makes a great difference, transforming the lives of these communities and fostering a future where access to clean water is a fundamental right, not a distant dream.</p>
+
+        <h1 style="font-weight:bold;font-size:2em">
+            Water Tankers
+        </h1>
+        <p>In areas where there is an emergency need for water, building water wells can take some time. To combat the immediate need for water for some communities, Human Relief Mission dispatches water tankers. By doing so, we strive to bridge the gap between the communities and the vital resources they require. Sending water tankers not only helps the immediate struggle for water but also ensures that these areas have a consistent and accessible supply for their daily needs.</p>
+        <p>
+            <img src="~/Content/projects/water-aid/water-tanker.jpg" style="width:100%;" />
+        </p>
+    </div>
+    <div class="col-md-3"></div>
+    @*Case study*@
+    <div class="container-fluid height-auto">
+    </div>
+
+    <img src="~/assets/FR-logo/FR_Fundraising-Badge_white_150ppi.png" style="display:none;" />
+    @*BEGIN DONATE FOR EDUCATION*@
+    <div class="container-fluid" style="background-color: #660199 !important; height: auto; color: #fff;margin-top:50px;">
+        <div class="col-md-6" style="padding:30px;">
+            <h1 style="font-size:2em;">Water Aid Fund</h1>
+            <p style="font-size:16px;">Your water donation is a vital means of survival for so many who don’t have access to this basic human necessity. Donate to our water appeal and help save lives.</p>
+            <div class="col-md-2 header-fundraising-logos">
+                <img src="~/assets/FR-logo/FR_Fundraising-Badge_white_150ppi.png" style="width:150px; margin-right: 10px;" />
+                <img src="~/assets/FR-logo/direct-debit-logo.png" style="width:150px;" />
+                <img src="~/assets/FR-logo/visa-6850402_1280.png" style="width:100px;" />
+                <img src="~/assets/FR-logo/mastercard.png" style="width: 80px;" />
+            </div>
+
+        </div>
+        <div class="col-md-6" style="padding-bottom:30px;">
+
+            <div class="news-title" style="width:100%;padding:30px;">
+                <div style="float: left; padding-top: 4px;">Monthly </div>
+                <div id="donate-switch" onclick="innerDonateSwitch()" style="width: 60px; height: 28px; background-color: #fff; border-radius: 20px; position: absolute; float: left; margin-left: 63px;">
+                    <div id="inner-circle-bullet" style="width:20px;height:20px;background-color:#000;border-radius:10px;position:relative;left:5px;top:4px;"></div>
+                </div>
+                <div style="margin-left:130px;padding-top:4px;">One-Off</div>
+            </div>
+            <div style="padding:0 30px 0 30px;">
+                <input type="hidden" id="inner-amount" />
+                <button class="btn inner-btn-amount" id="inner-amount-1" onmouseover="innerChangeColorWithMouseOver(1)" onmouseout="innerChangeColorWithMouseOut(1)" onclick="innerAmountClicked(1);">$10</button>
+                <button class="btn inner-btn-amount" id="inner-amount-2" onmouseover="innerChangeColorWithMouseOver(2)" onmouseout="innerChangeColorWithMouseOut(2)" onclick="innerAmountClicked(2);">$20</button>
+                <button class="btn inner-btn-amount" id="inner-amount-3" onmouseover="innerChangeColorWithMouseOver(3)" onmouseout="innerChangeColorWithMouseOut(3)" onclick="innerAmountClicked(3);">$40</button>
+                <input type="number" class="form-control no-arrows white-placeholder" id="inner-amount-4" onclick="innerOtherClicked();" value="" style="display:inline;border:2px solid #fff;width:100px;height:60px;background-color:#660199;color:#fff;font-size:1.3em;font-weight:bold;position:relative;top:3px;" placeholder="Other" />
+            </div>
+            <div style="padding:10px 30px 0 30px;">
+                <span id="inner-donation-message" style="color:#fff;"></span>
+            </div>
+            <div>
+                <button class="btn btn-donate-red" onclick="innerDonateNow()" style="width: 180px; height: 60px; background-color: red; border: none; position: relative; left: 30px; top: 10px; color: #fff; font-size: 1.3em; font-weight: bold; "> Donate now <i class="fa fa-arrow-right"></i></button>
+            </div>
+
+        </div>
+    </div>
+    <div class="" style="margin:0 auto;">
+        <div class="col-md-3" style=""></div>
+        <div class="col-md-6 text-center text-justify" style="padding:50px 10px;font-size:18px;">
+            <p style="font-size:16px;font-style:italic;">Please note: Donations made on this page will be allocated to our Water Aid fund that is used to deliver a range of different water projects such as the examples showcased above. These programmes can and will be delivered in any of the countries where Human Relief Mission has a presence, and those projects are catered to the local community with the aim to save and transform lives.</p>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+
+    @*END DONATE FOR EDUCATION*@
+
+
+
+    <script src="~/assets/Home/custom.js"></script>
+    <script src="~/assets/donation-script/water-aid/water-aid.js"></script>
+    <script src="~/assets/donation-script/water-aid/inner-water-aid.js"></script>
+
+    <script>
+        function adjustElementStyle() {
+            var width = window.innerWidth;
+            var element = document.getElementById('successStoryImage');
+
+            if (width < 480) {
+                element.style.marginTop = "15px"; // For widths < 480px
+            } else if (width < 992) {
+                element.style.marginTop = "15px"; // For widths < 992px but >= 480px
+            } else {
+                element.style.marginTop = "150px"; // For widths >= 992px
+            }
+        }
+
+        window.addEventListener('resize', adjustElementStyle);
+        window.addEventListener('load', adjustElementStyle);
+    </script>
+</body>
+</html>

@@ -1,0 +1,93 @@
+﻿
+@{
+
+    if (Session["donation"] == null)
+    {
+        <script>
+            window.location.href = "/Donation/Donate_Start";
+        </script>
+    }
+
+    Layout = "~/Views/Shared/empty.cshtml";
+
+    ViewBag.Title = "Thank You for Your Donation | Human Relief Mission Canada";
+    ViewBag.Description = "Thank you for your generous donation to Human Relief Mission Canada. Your support is making a significant impact on our mission to provide food, healthcare, and education to those in need.";
+    ViewBag.Keywords = "thank you, donation success, charitable contribution, impact, Human Relief Mission Canada, donor appreciation";
+    ViewBag.OGandTwitterTitle = "Thank You for Your Support | Human Relief Mission Canada";
+
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RXXJLDEKC3"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); } gtag('js', new Date()); gtag('config', 'G-RXXJLDEKC3');
+    </script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="~/assets/payment/success-page-style.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="header">
+        <h1>Thank You for Your Generosity!</h1>
+        <div class="success-message">
+            <p>Your donation has been successfully processed!</p>
+
+        </div>
+        <div class="checkmark-container">
+            <span class="checkmark fas fa-check"></span> <!-- Font Awesome checkmark icon -->
+        </div>
+        <div class="impact-statement">
+            <h2>Your support makes a difference!</h2>
+            <p>Your contribution helps us provide essential resources to those in need.</p>
+        </div>
+        <a href="javascript:;" class="toast-button button">Donation Page Link</a>
+        <a href="/Home/Index" target="_blank" class="button">Continue Browsing</a>
+    </div>
+    <input type="hidden" id="donation-page-url" value="" />
+    <div class="toast" id="toast"></div>
+    <script>
+        document.querySelector('.toast-button').addEventListener('click', function (event) {
+            event.preventDefault(); // Prevent default action
+
+            // Store the previous page URL
+            const previousPageUrl = document.referrer;
+            localStorage.setItem('previousPageUrl', previousPageUrl);
+
+            // Later, you can retrieve it
+            const storedUrl = localStorage.getItem('previousPageUrl');
+
+            var toast = document.getElementById('toast');
+            toast.classList.add('show'); // Show the toast
+
+            // Check if there is a previous page URL
+            if (storedUrl) {
+                // Copy to clipboard
+                navigator.clipboard.writeText(storedUrl).then(() => {
+                    // Assign success message to the toast
+                    toast.innerHTML = "Copied to clipboard!";
+                    // Set the background color to success
+                    toast.style.backgroundColor = "#28a745";
+
+                }).catch(err => {
+                    // Assign error message to the toast
+                    toast.innerHTML = "Did not copy: " + err;
+                    toast.style.backgroundColor = "#DC3545";
+                });
+            } else {
+                // Assign empty url message to the toast
+                toast.innerHTML = "No page URL found.";
+                toast.style.backgroundColor = "#DC3545";
+            }
+            // Remove the toast after 3 seconds
+            setTimeout(function () {
+                toast.classList.remove('show');
+            }, 3000);
+
+        });
+    </script>
+</body>
+</html>

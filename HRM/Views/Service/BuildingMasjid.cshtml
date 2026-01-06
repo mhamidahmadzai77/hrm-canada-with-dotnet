@@ -1,0 +1,360 @@
+﻿
+@{
+    if (Session["user_108310113658"] != null)
+    {
+        if (Session["user_108310113658"].ToString() == "authenticated")
+        {
+            Layout = "~/Views/Shared/_AdminLayout.cshtml";
+        }
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_EndUserLayout.cshtml";
+    }
+
+    ViewBag.Title = "Construction - Building for the Community | Human Relief Mission UK";
+    ViewBag.Description = "We provide essential construction services, including building mosques, homes, water pumps, and water wells to support community development and enhance quality of life.";
+    ViewBag.Keywords = "construction services, build mosque, home construction, water pump installation, water well drilling, community development, humanitarian aid";
+    ViewBag.OGandTwitterTitle = "Construction | Human Relief Mission UK";
+
+
+}
+
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RXXJLDEKC3"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); } gtag('js', new Date()); gtag('config', 'G-RXXJLDEKC3');
+    </script>
+
+
+    <link href="~/assets/news/css/custom.css" rel="stylesheet" />
+    <link href="~/assets/Home/custom.css" rel="stylesheet" />
+    <style type="text/css">
+        #donate-switch:hover {
+            cursor: pointer;
+        }
+
+        #inner-donate-switch:hover {
+            cursor: pointer;
+        }
+
+        #circle-bullet {
+            position: relative;
+            transition: left 0.3s;
+        }
+
+        #inner-circle-bullet {
+            position: relative;
+            transition: left 0.3s;
+        }
+
+        .btn-amount {
+            background-color: #660199;
+            color: #fff;
+            font-size: 1.3em;
+            font-weight: bold;
+            border: 2px solid #fff;
+            width: 80px;
+            height: 60px;
+        }
+
+        .inner-btn-amount {
+            background-color: #660199;
+            color: #fff;
+            font-size: 1.3em;
+            font-weight: bold;
+            border: 2px solid #fff;
+            width: 80px;
+            height: 60px;
+        }
+
+        .btn-amount:hover {
+            background-color: #fff;
+            color: #000;
+        }
+
+        .inner-btn-amount:hover {
+            background-color: #fff;
+            color: #000;
+        }
+
+        .btn-donate-red:hover > i.fa-arrow-right {
+            position: relative;
+            left: 4px;
+        }
+
+        .inner-btn-donate-red:hover > i.fa-arrow-right {
+            position: relative;
+            left: 4px;
+        }
+
+
+
+        .orphan-hope-image {
+        }
+
+        .orphan-hope-pragraph {
+            padding: 30px;
+            color: #fff;
+        }
+
+        .orphan-hope-image {
+            display: flex;
+            align-items: center; /* Vertically center the content */
+        }
+
+        .align-center {
+            display: flex;
+            justify-content: center; /* Horizontally center the content */
+            align-items: center; /* Vertically center the content */
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 50px auto;
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .faq-item {
+            border-bottom: 1px solid #e0e0e0;
+            padding: 30px 0;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: bold;
+            color: #660199;
+        }
+
+        .faq-answer {
+            display: none;
+            padding: 10px;
+            margin-top: 30px;
+            border-top: 1px solid #e0e0e0;
+            font-size: 18px;
+            font-weight: normal;
+            line-height: 1.5;
+            color: #000;
+        }
+
+        .expand-icon {
+            float: right;
+            transform: rotate(-90deg);
+            transition: transform 0.3s;
+        }
+
+            .expand-icon.open {
+                transform: rotate(90deg);
+            }
+
+        h1 {
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid image-title-container" style="padding:0;">
+        <div class="news-image col-md-8 pull-right">
+            <div>
+                <video class="autoplay-video" autoplay muted loop style="width:100%;min-height:570px;">
+                    <source src="~/Content/projects/videos/masjid/masjid.mp4" type="video/mp4" />
+                </video>
+            </div>
+        </div>
+        <div class="news-title-box col-sm-12 pull-left" style="margin-bottom: 5px;">
+            <div class="news-title" style="width:100%;color:#fff;padding:30px;">
+                <h1 style="font-size:2em;">Construction Projects</h1>
+                <div style="float: left; padding-top: 4px;">Monthly </div>
+                <div id="donate-switch" onclick="donateSwitch()" style="width: 60px; height: 28px; background-color: #fff; border-radius: 20px; position: absolute; float: left; margin-left: 63px;">
+                    <div id="circle-bullet" style="width:20px;height:20px;background-color:#000;border-radius:10px;position:relative;left:5px;top:4px;"></div>
+                </div>
+                <div style="margin-left:130px;padding-top:4px;">One-Off</div>
+            </div>
+            <div style="padding:0 30px 0 30px;">
+                <input type="hidden" id="amount" />
+                <button class="btn btn-amount" id="amount-1" onmouseover="changeColorWithMouseOver(1)" onmouseout="changeColorWithMouseOut(1)" onclick="amountClicked(1);">$40</button>
+                <button class="btn btn-amount" id="amount-2" onmouseover="changeColorWithMouseOver(2)" onmouseout="changeColorWithMouseOut(2)" onclick="amountClicked(2);">$100</button>
+                <button class="btn btn-amount" id="amount-3" onmouseover="changeColorWithMouseOver(3)" onmouseout="changeColorWithMouseOut(3)" onclick="amountClicked(3);">$160</button>
+                <input type="number" class="form-control no-arrows white-placeholder" id="amount-4" onclick="otherClicked();" value="" style="display:inline;border:2px solid #fff;width:100px;height:60px;background-color:#660199;color:#fff;font-size:1.3em;font-weight:bold;position:relative;top:3px;" placeholder="Other" />
+            </div>
+            <div style="padding:10px 30px 0 30px;">
+                <span id="donation-message" style="color:#fff;"></span>
+            </div>
+            <div>
+                <button class="btn btn-donate-red" onclick="donateNow()" style="width: 180px; height: 60px; background-color: red; border: none; position: relative; left: 30px; top: 10px; color: #fff; font-size: 1.3em; font-weight: bold; "> Donate now <i class="fa fa-arrow-right"></i></button>
+            </div>
+            <div class="col-md-2 header-fundraising-logos">
+                <img src="~/assets/FR-logo/FR_Fundraising-Badge_white_150ppi.png" style="width:150px; margin-right: 10px;" />
+                <img src="~/assets/FR-logo/direct-debit-logo.png" style="width:150px;" />
+                <img src="~/assets/FR-logo/visa-6850402_1280.png" style="width:100px;" />
+                <img src="~/assets/FR-logo/mastercard.png" style="width: 80px;" />
+            </div>
+        </div>
+    </div>
+
+    @* Start Section Help Us Building Our Masjid*@
+    <div class="container-fluid">
+        <div class="col-md-3"></div>
+        <div class="col-md-6 " style="text-align:justify;font-size:18px;">
+
+            <h1 style="font-weight:bold;font-size:2em">Building Masjids</h1>
+            <p>In Islamic countries masjids are more than places of worship, they serve as vital community centres, offering a space for social support and strengthening the community. The construction of more masjids addresses not only the spiritual needs of the population but also contributes to the social fabric of these communities. Anybody that is at the masjid is in a safe environment. At HRM we build masjids in communities where there is a dire need for them, or areas where masjids have been left in ruins due to natural disasters or conflicts.</p>
+            @* Start Qoute Section*@
+            <div class="" style="padding-bottom:50px;margin-top:30px;">
+
+                <div class="quote-container col-md-12">
+                    <span class="" style="font-size:4em;font-weight:bold">&lsquo;&lsquo;</span>
+                    <p class="quote">
+                        Whoever builds a masjid, Allah will build for him something like it in Paradise
+                    </p>
+                    <p class="">Hadith | Muslim</p>
+                </div>
+
+            </div>
+            @* End Qoute Section*@
+            <p>&nbsp;</p>
+            <p>
+                <img src="~/Content/projects/construction/masjid-construction.jpg" style="width:100%;" />
+            </p>
+            <p>
+                In some areas around the world, not everyone has easy access to masjids, and some might have to travel long distances to attend prayers. By constructing more mosques, we're ensuring that individuals have accessible places for worship, fostering a stronger connection to their religious practices.
+            </p>
+
+            <h1 style="font-weight:bold;font-size:2em">Constructing Homes</h1>
+            <p>Building homes around the world is incredibly important because it addresses a fundamental need for shelter and security. Many people, especially in developing countries, face the challenge of not having a safe and stable place to live. By constructing more homes, we provide individuals and families with the foundation for a better life, offering protection from the elements and a sense of stability.</p>
+            <p>
+                <img src="~/Content/projects/construction/almouwasat-village-pic1.jpg" style="width:100%;" />
+            </p>
+            <p style="font-size:14px;">
+                Image: Human Relief Mission build homes in emergency cases to those affected by earthquake.
+            </p>
+            <p>Having a home goes beyond just having a roof over one's head; it contributes to overall well-being. It provides a space where individuals can feel a sense of belonging and build their lives. Stable housing is crucial for children's development, ensuring they have a secure environment to grow and learn. Additionally, it positively impacts communities, fostering a sense of stability and contributing to the overall improvement of living conditions.</p>
+            <p>Moreover, building homes creates economic opportunities by generating jobs in construction and related industries. It stimulates local economies and contributes to the growth and development of communities. In essence, building homes is not just about constructing physical structures; it's about building the foundation for better lives, stronger communities, and a more secure future for people around the world.</p>
+            <p>
+                <img src="~/Content/projects/construction/almouwasat-village-pic2.jpg" style="width:100%;" />
+            </p>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+    @* Start Section Help Us Building Our Masjid*@
+
+    @*START SECTION Your donations are saving lives*@
+    @*Case study*@
+    <div class="container-fluid height-auto">
+    @*    <img src="~/assets/custom-image/1717769519121.jpg" class="col-sm-12 col-md-6  orphan-hope-image align-center" style="margin-top:150px;" />
+
+        <div class="col-md-6 background-purple">
+            <div class="orphan-hope-pragraph col-md-11" style="text-align:justify; font-size:22px;">
+                <h1 style="font-weight:bold;">Donate for Abu-Bakar masjid</h1>
+                <p>Abu-Bakr Masjid, named after the esteemed companion of the Prophet Muhammad (peace be upon him), stands as a symbol of faith, unity, and community spirit. As a place of worship and spiritual nourishment, the masjid serves as a vital hub for Muslims to gather in prayer, reflection, and fellowship. </p>
+                <p> By donating to the construction and maintenance of Abu-Bakr Masjid, you are not just contributing to a physical structure but investing in a sacred space that nurtures the souls and minds of believers.</p>
+                <p>Your generous donation towards Abu-Bakr Masjid will help create a sanctified environment where individuals can seek solace, guidance, and strength in their faith. This masjid will serve as a refuge for the community, a place where hearts are uplifted, and spirits are renewed through prayer and remembrance of Allah.</p>
+            </div>
+        </div>*@
+    </div>
+    @*END SECTION Your donations are saving lives*@
+
+    @* BEGIN WHAT ISLAM TEACH ABOUT BUILDING MASJID*@
+    <div class="container-fluid">
+        <div class="col-md-3"></div>
+        <div class="col-md-6 " style="text-align:justify;font-size:18px;padding-left:0;padding-right:0;">
+            <h1 style="font-weight:bold;font-size:2em;">
+                What does Islam teach about building masjid?
+            </h1>
+            <p>Islam places great importance on building masjids, considering them a fundamental pillar of the Muslim community.</p>
+
+            @* Start Qoute Section 2 *@
+            
+            <div class="" style="padding-bottom:50px;margin-top:30px;">
+
+                <div class="quote-container col-md-12">
+                    <span class="" style="font-size:4em;font-weight:bold">&lsquo;&lsquo;</span>
+                    <p class="quote">Verily, the likeness of a house that Allah's name is mentioned in, and the house that Allah's name is not mentioned in, is like the living and the dead</p>
+                    <p class="">Hadith | Sunan Ibn Majah</p>
+                </div>
+
+            </div>
+            @* End Qoute Section 2 *@
+
+            <p>&nbsp;</p>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+    @* END WHAT ISLAM TEACH ABOUT BUILDING MASJID*@
+
+    <img src="~/assets/FR-logo/FR_Fundraising-Badge_white_150ppi.png" style="display:none;" />
+    @*BEGIN DONATE FOR FOOD SECURITY*@
+    <div class="container-fluid" style="background-color: #660199 !important; height: auto; color: #fff;">
+        <div class="col-md-6" style="padding:30px;">
+            <h1 style="font-size:3em;">Construction Projects</h1>
+            <p style="font-size:16px;">The image depicts a newly constructed mosque, a beacon of faith in the community. Your generous donation will contribute to its completion and help create a sacred space where Muslims can gather for prayer, reflection, and spiritual growth. Every contribution, no matter how small, will bring us closer to realizing the vision of a vibrant and welcoming house of worship for generations to come. Join us in making this dream a reality.</p>
+            <div class="col-md-2 header-fundraising-logos">
+                <img src="~/assets/FR-logo/FR_Fundraising-Badge_white_150ppi.png" style="width:150px; margin-right: 10px;" />
+                <img src="~/assets/FR-logo/direct-debit-logo.png" style="width:150px;" />
+                <img src="~/assets/FR-logo/visa-6850402_1280.png" style="width:100px;" />
+                <img src="~/assets/FR-logo/mastercard.png" style="width: 80px;" />
+            </div>
+        </div>
+        <div class="col-md-6" style="padding-bottom:30px;">
+
+            <div class="news-title" style="width:100%;padding:30px;">
+                <div style="float: left; padding-top: 4px;">Monthly </div>
+                <div id="donate-switch" onclick="innerDonateSwitch()" style="width: 60px; height: 28px; background-color: #fff; border-radius: 20px; position: absolute; float: left; margin-left: 63px;">
+                    <div id="inner-circle-bullet" style="width:20px;height:20px;background-color:#000;border-radius:10px;position:relative;left:5px;top:4px;"></div>
+                </div>
+                <div style="margin-left:130px;padding-top:4px;">One-Off</div>
+            </div>
+            <div style="padding:0 30px 0 30px;">
+                <input type="hidden" id="inner-amount" />
+                <button class="btn inner-btn-amount" id="inner-amount-1" onmouseover="innerChangeColorWithMouseOver(1)" onmouseout="innerChangeColorWithMouseOut(1)" onclick="innerAmountClicked(1);">$40</button>
+                <button class="btn inner-btn-amount" id="inner-amount-2" onmouseover="innerChangeColorWithMouseOver(2)" onmouseout="innerChangeColorWithMouseOut(2)" onclick="innerAmountClicked(2);">$100</button>
+                <button class="btn inner-btn-amount" id="inner-amount-3" onmouseover="innerChangeColorWithMouseOver(3)" onmouseout="innerChangeColorWithMouseOut(3)" onclick="innerAmountClicked(3);">$160</button>
+                <input type="number" class="form-control no-arrows white-placeholder" id="inner-amount-4" onclick="innerOtherClicked();" value="" style="display:inline;border:2px solid #fff;width:100px;height:60px;background-color:#660199;color:#fff;font-size:1.3em;font-weight:bold;position:relative;top:3px;" placeholder="Other" />
+            </div>
+            <div style="padding:10px 30px 0 30px;">
+                <span id="inner-donation-message" style="color:#fff;"></span>
+            </div>
+            <div>
+                <button class="btn btn-donate-red" onclick="innerDonateNow()" style="width: 180px; height: 60px; background-color: red; border: none; position: relative; left: 30px; top: 10px; color: #fff; font-size: 1.3em; font-weight: bold; "> Donate now <i class="fa fa-arrow-right"></i></button>
+            </div>
+
+        </div>
+    </div>
+    <div class="" style="margin:0 auto;">
+        <div class="col-md-3" style=""></div>
+        <div class="col-md-6 text-center text-justify" style="padding:50px 10px;font-size:18px;">
+            <p style="font-size:16px;font-style:italic;">Please note: Donations made on this page will be allocated to our Construction Projects fund that is used to deliver a range of different projects such as the examples showcased above. These programmes can and will be delivered in any of the countries where Human Relief Mission has a presence, and those projects are catered to the local community with the aim to save and transform lives.</p>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+    @*END DONATE FOR FOOD SECURITY*@
+
+
+    <script src="~/assets/Home/custom.js"></script>
+    <script src="~/assets/donation-script/construction/construction.js"></script>
+    <script src="~/assets/donation-script/construction/inner-construction.js"></script>
+
+    <script>
+        const faqItems = document.querySelectorAll('.faq-item');
+
+        faqItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const answer = item.querySelector('.faq-answer');
+                const expandIcon = item.querySelector('.expand-icon');
+
+                if (answer.style.display === 'none' || answer.style.display === '') {
+                    answer.style.display = 'block';
+                    expandIcon.classList.add('open');
+                } else {
+                    answer.style.display = 'none';
+                    expandIcon.classList.remove('open');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

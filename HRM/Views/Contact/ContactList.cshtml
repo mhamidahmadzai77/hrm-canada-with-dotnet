@@ -1,0 +1,116 @@
+﻿@using HRM.Models;
+@{
+    if (Session["user_108310113658"] != null)
+    {
+        if (Session["user_108310113658"].ToString() == "authenticated")
+        {
+            Layout = "~/Views/Shared/_AdminLayout.cshtml";
+        }
+    }
+    else
+    {
+        <script>
+            window.location.href = "/Home/Index";
+        </script>
+    }
+
+    ViewBag.Title = "Messages List | Human Relief Mission Canada";
+    ViewBag.Description = "Admin access only: View and manage all incoming messages and inquiries for Human Relief Mission Canada. Monitor communications and respond to queries efficiently.";
+    ViewBag.Keywords = "message management, admin access, message tracking, communication oversight, Human Relief Mission Canada, admin tools";
+    ViewBag.OGandTwitterTitle = "Messages List | Human Relief Mission Canada";
+
+
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RXXJLDEKC3"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); } gtag('js', new Date()); gtag('config', 'G-RXXJLDEKC3');
+    </script>
+
+    <link href="~/assets/contact/style.css" rel="stylesheet" />
+
+</head>
+<body>
+    <div class="container container-contact">
+
+        <aside class="sidebar" id="sidebar">
+            <ul>
+                @if (ViewBag.contacts != null && ((List<ContactViewModel>)ViewBag.contacts).Any())
+                {
+                    foreach (ContactViewModel contact in (List<ContactViewModel>)ViewBag.contacts)
+                    {
+
+                        <li onclick='displayContent("@contact.firstname  @contact.lastname", "@contact.email", "@contact.time.ToString()", "@contact.country", "@contact.subject", "@contact.message.ToString().Replace("\n"," ").Trim()", "@contact.contact_id")'>
+                            <div class="col1">
+                                <div class="cont">
+                                    <div class="cont-col1">
+                                        <div class="label label-sm" style="background-color:#660199;">
+                                            <i class="fa fa-comment-o"></i>
+                                        </div>
+                                    </div>
+                                    <div class="cont-col2">
+                                        <div class="desc">
+                                            <span style="color: #660199;font-weight:bold;font-size:16px;">@contact.firstname @contact.lastname </span>
+                                            @if (contact.read == "no")
+                                            {
+                                                string id = "icon" + contact.contact_id.ToString();
+                                                <span id="@id" class="label label-sm label-danger" style="font-size:10px;">New message</span>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col2">
+                                <div class="date">@contact.difference_time</div>
+                            </div>
+                        </li>
+
+                    }
+                }
+            </ul>
+        </aside>
+        <div class="content" id="contentArea">
+            @if (ViewBag.selectedContact != null)
+            {
+                <script>
+                    document.getElementById("sidebar").style.display = "none";
+                    document.getElementById("contentArea").style.display = "block";
+                </script>
+                foreach (Contact contact in (List<Contact>)ViewBag.selectedContact)
+                {
+                    <a href="javascript:;" onclick="goBack()" style="color:#660199;"><i class="fa fa-arrow-left"></i></a>
+                    <h1 class="uppercase bold" style="text-align:center;color:#660199;">@contact.firstname @contact.lastname</h1>
+                    <p><span class="bold">Contacted:</span> @contact.time</p>
+                    <p>
+                        <span class="bold">Email:</span>
+                        <a href="mailTo:@contact.email">@contact.email</a>
+                    </p>
+                    <p><span class="bold">From:</span> @contact.country</p>
+                    <p><span class="bold">Subject:</span> @contact.subject</p>
+                    <p styl="text-align:justify;">@contact.message</p>
+
+                    <button onclick="goBack()" class="btn" href="javascript:;" style="background-color:#660199;color:#fff;margin-top:30px;"><i class="fa fa-arrow-left"></i> back</button>
+                    ViewBag.selectedContact = null;
+                }
+            }
+            else
+            {
+                <h2 class="bold uppercase" style="margin-top:170px;text-align:center;color:#660199;">Contacts Content</h2>
+                <p style="text-align:center;">Select a message to view its content here.</p>
+            }
+
+        </div>
+    </div>
+
+    <script src="~/assets/contact/contact.js"></script>
+    <script>
+
+
+</script>
+</body>
+</html>
+
