@@ -1,0 +1,151 @@
+﻿body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(180deg, #e0f7ea, #ffffff);
+    text-align: center;
+    padding: 0;
+    margin: 0;
+    height: 100vh; /* Full height for vertical centering */
+    display: flex; /* Flexbox for centering */
+    flex-direction: column; /* Align items in a column */
+    justify-content: center; /* Vertically center */
+    align-items: center; /* Horizontally center */
+}
+
+h1 {
+    font-size: 23px;
+    animation: fadeIn 1s;
+    margin: 10px 0; /* Space around the heading */
+}
+
+.success-message {
+    animation: slideInUp 0.5s forwards;
+    font-size: 23px;
+    margin: 10px 0; /* Space around the message */
+}
+
+.checkmark-container {
+    font-size: 23px;
+}
+
+.impact-statement {
+    font-size: 23px;
+    animation: fadeIn 1s forwards 1s;
+    margin: 10px 0; /* Space around the statement */
+}
+
+.button {
+    display: inline-block;
+    background-color: gold;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    margin: 10px;
+    transition: transform 0.2s;
+}
+
+    .button:hover {
+        transform: scale(1.05);
+    }
+
+.checkmark-container {
+    display: flex; /* Flexbox for centering the checkmark */
+    justify-content: center;
+    align-items: center;
+    border: 5px solid #28a745; /* Green success color for the border */
+    border-radius: 50%; /* Rounded for a circle */
+    width: 80px; /* Width of the circle */
+    height: 80px; /* Height of the circle */
+    margin: 10px auto; /* Center align container */
+    box-shadow: 0 0 15px rgba(40, 167, 69, 0.5); /* Glowing effect */
+    animation: shake 0.5s forwards;
+}
+
+.checkmark {
+    color: #28a745; /* Green color for checkmark */
+    font-size: 3em; /* Larger checkmark size */
+    animation: rotateCheckmark 1s forwards; /* Animation for checkmark rotation */
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideInUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes shake {
+    0% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(5px);
+    }
+
+    50% {
+        transform: translateX(-5px);
+    }
+
+    75% {
+        transform: translateX(2px);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+@keyframes rotateCheckmark {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    25% {
+        transform: rotate(-35deg);
+    }
+    /* Rotate left */
+    50% {
+        transform: rotate(45deg);
+    }
+    /* Rotate right */
+    100% {
+        transform: rotate(0deg);
+    }
+    /* Back to original */
+}
+
+
+.toast {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #28a745; /* Green color */
+    color: white;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    transition: opacity 0.5s ease-in-out;
+    opacity: 0; /* Start hidden */
+    visibility: hidden; /* Start hidden */
+}
+
+    .toast.show {
+        opacity: 1; /* Show the toast */
+        visibility: visible; /* Make it visible */
+    }

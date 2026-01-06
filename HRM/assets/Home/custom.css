@@ -1,0 +1,744 @@
+﻿
+/* style.css */
+
+
+body {
+    margin: 0 !important;
+    padding: 0 !important;
+    font-family: Montserrat,sans-serif;
+}
+
+
+
+
+.fa-chevron-left {
+    color: #fff;
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 1);
+    font-size: 4em;
+    opacity: 0.8;
+    position: relative; /* Required for z-index to work */
+    z-index: 9999; /* Set a high z-index value to bring the tag to the top */
+}
+
+.fa-chevron-right {
+    color: #fff;
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 1);
+    font-size: 4em;
+    opacity: 0.8;
+    position: relative; /* Required for z-index to work */
+    z-index: 9999; /* Set a high z-index value to bring the tag to the top */
+}
+
+.fa-chevron-left:hover {
+    opacity: 1;
+}
+
+.fa-chevron-right:hover {
+    opacity: 1;
+}
+
+.image-container {
+    position: relative; /* To position images absolutely within */
+    overflow: hidden; /* Hide overflow to create sliding effect */
+    width: 100%; /* Width of the image container */
+}
+
+.slideshow-image {
+    position: absolute; /* Position images absolutely */
+    width: 100%; /* Full width of the container */
+    height: auto; /* Keep aspect ratio */
+    opacity: 0; /* Initially hidden */
+    transition: opacity 0.5s ease-in-out; /* Opacity transition for fade */
+}
+
+/* Keyframe animations */
+@keyframes slideInRight {
+    0% {
+        transform: translateX(100%); /* Start off-screen to right */
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateX(0);
+        opacity: 1; /* Fully visible */
+    }
+}
+
+@keyframes slideOutLeft {
+    0% {
+        transform: translateX(0);
+        opacity: 0; /* Fully visible */
+    }
+
+    100% {
+        transform: translateX(-100%); /* Slide off-screen to left */
+        opacity: 0; /* Fully hidden */
+    }
+}
+
+.slideshow-displayed-image.active {
+    opacity: 1;
+    animation: slideInRight 0.5s forwards; /* Slide in from right */
+}
+
+.slideshow-displayed-image.out {
+    animation: slideOutLeft 0.5s forwards; /* Slide out to left */
+}
+
+
+.quote-container {
+    padding: 30px;
+    color: #fff;
+    background-color: #660199;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Optional: Add a shadow */
+    text-align: left;
+    margin: 0 auto;
+}
+
+
+.quote {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+}
+
+.source {
+    font-style: italic;
+    font-size: 0.8em;
+}
+
+
+.latest-news {
+    background-color: #eff3f6;
+}
+
+
+.mt-card-item {
+    box-shadow: 2px 2px 4px rgba(102, 1, 153, 0.2);
+    background-color: #fed21c;
+    color: #000;
+    border-radius: 50px 2px;
+}
+
+.upcomming-event {
+    box-shadow: 2px 2px 4px rgba(80,80,80, 0.2);
+}
+
+.new-project-label {
+    width: 120px;
+    padding: 10px;
+    font-weight: bold;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    color: #000;
+    background-color: #fed21c;
+    opacity: 0.9;
+}
+
+.container-support-lifesaving {
+    margin-top: 100px;
+}
+
+.live-saving-header {
+    padding: 30px 0;
+}
+
+.yellow-card {
+    transform-origin: center bottom;
+    transition: transform 0.3s ease;
+    padding: 15px;
+}
+
+.card-color {
+    background-color: #fed21c;
+}
+
+.support-lifesaving-card:hover {
+    transition: transform 0.3s ease-in;
+}
+
+.support-lifesaving-card {
+    transition: transform 0.3s ease-out;
+}
+
+.scale-animation {
+    transform: scale(1.02);
+}
+
+.background-purple {
+    background-color: #660199;
+}
+
+.btn:hover {
+    transform: scale(1.05);
+}
+
+.support-lifesaving-card {
+    margin-bottom: 130px;
+}
+
+.image-support-live {
+    margin-top: -100px;
+    width: 92%;
+    margin-left: 15px;
+}
+
+.form-check-label, .form-check-input {
+    cursor: pointer;
+}
+
+
+#emergency-medical-equipment {
+    margin-left: 72px;
+}
+
+
+.report-cards {
+    padding: 30px 50px;
+}
+
+    .report-cards a {
+        text-decoration: none;
+    }
+
+.report-card-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 180px;
+    margin: 15px;
+    margin: 50px;
+    transition: all 0.5s ease;
+}
+
+    .report-card-content:hover {
+        cursor: pointer;
+        transform: scale(0.9);
+        transition: all 0.5s ease;
+    }
+
+.report-card-title {
+    text-align: center;
+}
+
+
+.vertical-align-center {
+    display: flex;
+    justify-content: center; /* Aligns horizontally */
+    align-items: center; /* Aligns vertically */
+    height: 100vh; /* Adjust height as needed */
+}
+
+#header-basket {
+    margin-top: 18px;
+    margin-right: 20px;
+    font-size: 27px;
+}
+
+.basket-icon {
+    font-size: 22px;
+}
+
+.basket-list li {
+    padding: 10px 15px;
+    border-bottom: 2px solid #686868;
+}
+
+.basket-item-close-button {
+    cursor: pointer;
+    color: red;
+}
+
+.task {
+    display: flex; /* Use flexbox for alignment */
+    flex-wrap: wrap; /* Allow wrapping to the next line */
+    align-items: center; /* Align items vertically */
+}
+
+.desc {
+    flex: 1; /* Allow the description to take available space */
+    min-width: 0; /* Prevent overflow */
+}
+
+.percent {
+    white-space: nowrap; /* Prevent the percent from wrapping */
+}
+
+.hide {
+    display: none;
+}
+
+
+@media (min-width:992px) {
+
+    #annual-report-page-title {
+        margin-top: 40px;
+    }
+
+    .page-logo > div {
+        margin-top: -30px;
+    }
+
+    .autoplay-video {
+        margin-left: 15px;
+        margin-top: -2px;
+    }
+
+    #frofile-image-background {
+        background-color: #660199;
+    }
+
+        #frofile-image-background:hover {
+            background-color: #9966cc;
+        }
+
+    #header_inbox_bar {
+        background-color: #660199;
+        color: #fff;
+    }
+
+
+    #header-basket {
+        color: #fff;
+    }
+
+    .basket-icon {
+        color: #fff;
+    }
+
+    div .image-container {
+        width: 100%;
+        min-height: 400px;
+        text-align: center;
+        position: relative;
+    }
+
+    .image {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+
+    .fa-chevron-left {
+        position: relative;
+        top: 310px;
+    }
+
+    .fa-chevron-right {
+        position: relative;
+        top: 310px;
+        left: 93%;
+    }
+
+    .image-slogan {
+        position: relative;
+        left: -100px;
+        top: 320px;
+    }
+
+        .image-slogan > span {
+            font-size: 2em;
+            font-weight: bold;
+            color: white;
+        }
+
+    .image {
+        position: relative;
+    }
+
+    .image-slogan {
+        position: absolute;
+        top: 60%;
+        left: 10%;
+        padding: 10px; /* Optional: Add padding for better visibility */
+        text-align: left;
+        line-height: 22px;
+        letter-spacing: 0px;
+    }
+
+        .image-slogan span {
+            text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5); /* Horizontal offset, vertical offset, blur radius, shadow color */
+        }
+
+        .image-slogan button {
+            background-color: red;
+            font-weight: bold;
+            font-size: 22px;
+        }
+
+            .image-slogan button:hover {
+                transform: scale(1.1);
+            }
+
+    .see-more-link {
+        font-size: 2em;
+    }
+
+
+
+    .latest-news-caption {
+        color: #000;
+        font-size: 2em;
+        font-weight: bold;
+        font-style: italic;
+        color: black;
+    }
+
+    .orphan-hope-image {
+        position: relative;
+        left: 30px;
+    }
+
+
+    .hrm-service {
+        padding-top: 45px;
+    }
+
+
+    .header-fundraising-logos {
+        padding-bottom: 70px;
+        padding-top: 50px;
+        margin-left: 15px;
+        display: flex;
+        align-items: center;
+    }
+
+    #footer-mastercard {
+        margin-left: -4px;
+    }
+}
+
+
+@media (max-width:991px) {
+
+    div.social-bar {
+        display: none;
+    }
+
+    .page-logo > div {
+        margin-top: -30px;
+    }
+
+    #frofile-image-background {
+        background-color: #660199;
+    }
+
+        #frofile-image-background:hover {
+            background-color: #9966cc;
+        }
+
+    #header_inbox_bar {
+        background-color: #660199;
+        color: #fff;
+    }
+
+
+    #header-basket {
+        color: #fff;
+    }
+
+
+    div.image-container {
+        min-height: 400px;
+        text-align: center;
+    }
+
+    .image {
+        width: 100%;
+        max-height: 500px;
+    }
+
+
+    .fa-chevron-left {
+        position: relative;
+        top: 210px;
+    }
+
+
+    .fa-chevron-right {
+        position: relative;
+        top: 210px;
+        left: 89%;
+    }
+
+    .image {
+        position: relative;
+    }
+
+    .image-slogan {
+        position: absolute;
+        margin-top: -140px;
+        margin-left: 40px;
+        padding: 10px; /* Optional: Add padding for better visibility */
+        text-align: left;
+        line-height: 22px;
+        letter-spacing: 0px;
+    }
+
+        .image-slogan span {
+            font-size: 2em;
+            font-weight: bold;
+            color: #fff;
+            text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.7); /* Horizontal offset, vertical offset, blur radius, shadow color */
+        }
+
+        .image-slogan button {
+            background-color: red;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+            .image-slogan button:hover {
+                transform: scale(1.1);
+            }
+
+    .see-more-link {
+        font-size: 2em;
+    }
+
+
+    .latest-news-caption {
+        color: #000;
+        font-size: 2em;
+        font-weight: bold;
+        font-style: italic;
+        color: black;
+    }
+
+    .events-caption {
+        padding: 10px;
+        font-weight: bold;
+        font-size: 2em;
+    }
+
+
+    .orphan-hope-image {
+        position: relative;
+        left: 30px;
+    }
+
+
+    .hrm-service {
+        padding-top: 45px;
+    }
+
+    .header-fundraising-logos {
+        padding-bottom: 70px;
+        padding-top: 50px;
+        margin-left: 15px;
+        display: flex;
+        align-items: center;
+    }
+
+
+
+    #footer-mastercard {
+        margin-left: -4px;
+    }
+}
+
+
+@media (max-width:992px) {
+
+    .header-fundraising-logos {
+        padding-bottom: 70px;
+        padding-top: 50px;
+        margin-left: 15px;
+        display: block;
+        align-items: center;
+    }
+
+        .header-fundraising-logos img {
+            padding-bottom: 10px;
+            padding-top: 10px;
+        }
+
+    #header-basket {
+        color: #fff;
+    }
+
+    .orphan-hope-image {
+        width: 100%;
+        position: relative;
+        left: 0;
+    }
+
+    .container-fluid {
+        padding: 0;
+    }
+}
+
+
+@media (max-width:480px) {
+
+    .container-fluid {
+        padding: 0;
+    }
+
+    div.social-bar {
+        display: none;
+    }
+
+    .page-logo > div {
+        margin-top: -30px;
+    }
+
+
+    .page-logo > div {
+        margin-top: 0px;
+    }
+
+    #frofile-image-background {
+        background-color: #fff;
+        margin-top: 1px;
+    }
+
+        #frofile-image-background:hover {
+            background-color: #f6f6f6;
+        }
+
+    #header_inbox_bar {
+        background-color: #fff;
+        color: #000;
+    }
+
+        #header_inbox_bar:hover {
+            background-color: #fff;
+            color: #000;
+        }
+
+    #header-basket {
+        color: #000;
+    }
+
+
+    .fixed-footer-donation-button {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: #660199;
+        color: #fff;
+        text-align: center;
+        padding: 10px 30px;
+        font-size: 28px;
+        font-weight: bold;
+        text-shadow: 2px 2px 5px rgba(255, 255, 0, 0.5);
+        z-index: 10000
+    }
+
+    div .image-container {
+        width: auto;
+        min-height: 250px;
+        text-align: center;
+        margin: 0 auto;
+    }
+
+    .image {
+        width: auto;
+        height: 370px;
+        margin-left: -220px;
+    }
+
+
+    .fa-chevron-left {
+        position: relative;
+        top: 220px;
+        font-size: 3em;
+    }
+
+    .fa-chevron-right {
+        position: relative;
+        top: 220px;
+        left: 82%;
+        font-size: 3em;
+    }
+
+    .image-slogan {
+        margin-top: -100px;
+    }
+
+        .image-slogan span {
+            color: #fff;
+            font-size: 32px;
+            text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.7); /* Horizontal offset, vertical offset, blur radius, shadow color */
+        }
+
+        .image-slogan button {
+            background-color: red;
+        }
+
+            .image-slogan button:hover {
+                transform: none; /* Remove hover scale effect for mobile */
+            }
+
+        .image-slogan span br {
+            display: none;
+        }
+
+    .see-more-link {
+        font-size: 1.2em;
+    }
+
+
+
+    .latest-news-caption {
+        font-size: 1em;
+    }
+
+
+    .image-support-live {
+        width: 90%;
+    }
+
+
+    .orphan-hope-image {
+        width: 100%;
+        position: relative;
+        left: 0;
+    }
+
+
+    #emergency-medical-equipment {
+        margin-left: 40px;
+    }
+
+    #toasterNotification {
+        width: 100%;
+        right: -370px;
+        transition: right 0.3s;
+    }
+
+    .report-cards {
+        padding: 30px 0px;
+    }
+
+    .report-card-content {
+        margin-top: 30px;
+        margin-bottom: 30px;
+    }
+
+    #appeal-header-picture, #header-donation-box {
+        margin-top: 200px;
+    }
+
+
+    .header-fundraising-logos {
+        padding-top: 50px;
+    }
+
+        .header-fundraising-logos img {
+            padding-bottom: 10px;
+            padding-top: 10px;
+        }
+
+    #footer-mastercard {
+        margin-left: 25px;
+    }
+
+    #header-donation-box {
+        margin-top: -30px;
+    }
+}

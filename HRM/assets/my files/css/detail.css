@@ -1,0 +1,17 @@
+﻿@media (min-width:768px){
+    .title {
+        text-align:right;
+    }
+}
+
+@media (max-width:768px){
+    .title {
+        text-align: left;
+    }
+}
+ 
+ @media (max-width:480px){
+    .title {
+        text-align: left;
+    }
+}

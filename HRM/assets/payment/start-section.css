@@ -1,0 +1,213 @@
+﻿
+textarea.form-control {
+    resize: vertical;
+}
+
+.button-container a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.disabled-continue-button {
+    pointer-events: none; /* Prevents any mouse events */
+    opacity: 0.5; /* Makes the button look disabled */
+} 
+
+
+
+@media (min-width:992px) {
+    .image-title-container {
+        position: relative;
+    }
+
+    .news-title-box {
+        background-color: #660199;
+        margin-top: 40px;
+        z-index: 1;
+        width: 640px;
+        height: 350px;
+        position: absolute;
+        bottom: 0;
+        z-index: 1
+    }
+
+    .news-image {
+        z-index: 0;
+    }
+
+    .news-title {
+        padding: 20px;
+        padding-left: 100px;
+        padding-top: 70px;
+    }
+
+
+    .button-container {
+        display: flex;
+        gap: 20px; /* Space between buttons */
+    }
+
+        .button-container a:hover {
+            text-decoration: none;
+            color: #fff;
+        }
+
+    .donation-type-button {
+        background-color: #a91f21; /* Red background */
+        color: white; /* White text */
+        padding: 25px 80px; /* Padding for button */
+        text-decoration: none; /* Remove underline */
+        font-weight: bold; /* Bold text */
+        font-size: 1.5em;
+        display: flex;
+        align-items: center; /* Center text vertically */
+        transition: background-color 0.3s; /* Smooth transition */
+        border: 2px solid #660199;
+    }
+
+        .donation-type-button:hover {
+            background-color: #8b251c; /* Darker red on hover */
+            border: 2px solid #fff;
+        }
+
+    .arrow {
+        margin-left: 10px; /* Space between text and arrow */
+    }
+
+}
+
+@media (max-width:991px) {
+
+
+
+    .news-title-box {
+        background-color: #660199;
+        margin-top: -90px;
+        padding-top: 100px;
+        width: 100%;
+        height: 650px;
+        position: unset;
+    }
+
+
+    .news-image {
+        margin-top:50px;
+        width:100%;
+        
+    }
+
+    .news-title {
+        padding: 20px;
+        padding-left: 100px;
+    }
+
+
+    .button-container {
+        display: flex;
+        gap: 20px; /* Space between buttons */
+    }
+
+        .button-container a:hover {
+            text-decoration: none;
+            color: #fff;
+        }
+
+    .donation-type-button {
+        background-color: #a91f21; /* Red background */
+        color: white; /* White text */
+        padding: 25px 80px; /* Padding for button */
+        text-decoration: none; /* Remove underline */
+        font-weight: bold; /* Bold text */
+        font-size: 1.5em;
+        display: flex;
+        align-items: center; /* Center text vertically */
+        transition: background-color 0.3s; /* Smooth transition */
+        border: 2px solid #660199;
+    }
+
+        .donation-type-button:hover {
+            background-color: #8b251c; /* Darker red on hover */
+            border: 2px solid #fff;
+        }
+
+    .arrow {
+        margin-left: 10px; /* Space between text and arrow */
+    }
+
+
+}
+
+
+
+@media (max-width:700px) {
+    .news-title-box {
+        background-color: #660199;
+        margin-top: -90px;
+        width: 100%;
+        height: 800px;
+        position: unset;
+    }
+
+    .button-container {
+        display: block;
+    }
+
+        .button-container a:hover {
+            text-decoration: none;
+            color: #fff;
+        }
+
+    .donation-type-button {
+        display: block;
+        margin-top: 20px;
+        text-align: center;
+        background-color: #a91f21; /* Red background */
+        color: white; /* White text */
+        width: 100%;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        padding: 20px 15px;
+        text-decoration: none; /* Remove underline */
+        font-weight: bold; /* Bold text */
+        font-size: 1.5em;
+        display: flex;
+        align-items: center; /* Center text vertically */
+        transition: background-color 0.3s; /* Smooth transition */
+        border: 2px solid #660199;
+    }
+
+        .donation-type-button:hover {
+            background-color: #8b251c; /* Darker red on hover */
+            border: 2px solid #fff;
+        }
+
+    .arrow {
+        margin-left: auto;
+    }
+}
+
+@media (max-width:480px) {
+
+    .image-title-container {
+        margin-top:0px;
+    }
+
+    .news-title-box {
+        background-color: #660199;
+        margin-top: -90px;
+        width: 100%;
+        height: 800px;
+        position: unset;
+    }
+
+    .news-image {
+        
+    }
+
+    .news-title {
+        padding: 20px;
+        padding-left: 20px;
+    }
+
+    
+}

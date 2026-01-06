@@ -1,0 +1,17 @@
+﻿/* Content/site.css */
+.payment-details {
+    margin-top: 20px;
+    padding: 15px;
+    border: 1px solid #e1e1e1;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+}
+
+    .payment-details p {
+        margin: 5px 0;
+        font-size: 1.1em;
+    }
+
+.btn-primary {
+    margin-top: 15px;
+}

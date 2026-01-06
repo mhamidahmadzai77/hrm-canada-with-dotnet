@@ -1,0 +1,375 @@
+﻿
+/* style.css */
+
+.bg-gray-800 {
+    background-color:#000;
+}
+
+.footer {
+    background-color: #1f2937;
+    color:#fff;
+}
+
+    .footer a:hover {
+        color: #fed21c;
+    }
+
+.funds {
+    background-color: #f5f5f5;
+    padding:30px;
+}
+
+    .funds h1 {
+        font-size: 2em;
+        font-weight: bold;
+        margin-top: 30px;
+        font-style: italic;
+    }
+
+
+.radio-button input[type="radio"] {
+    display: none;
+}
+
+
+.radio-button label {
+    width: 46%;
+    height: 40px;
+    background-color:#fff;
+    border: 3px solid #ccc;
+    float: left;
+    margin: 10px;
+    text-align: center;
+    line-height: 35px; /* Set line-height equal to height for vertical centering */
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+    height: 100%; /* Make the label fill the button height */
+    display: inline-block; /* Ensure label behaves like a block element */
+    vertical-align: middle; /* Align label vertically */
+}
+
+    .radio-button label:hover {
+        cursor: pointer;
+        border: 3px solid #660199;
+        color: #660199;
+    }
+
+.radio-button input[type="radio"]:checked + label {
+    background-color: #660199; /* Tailwind's blue-500 */
+    color: white;
+    border: 3px solid #660199;
+}
+
+
+.radio-button-amount input[type="radio"] {
+    display: none;
+}
+
+.radio-button-amount label {
+    width: 22%;
+    height: 40px;
+    background-color: #fff;
+    border: 3px solid #660199;
+    float: left;
+    margin: 10px;
+    text-align: center;
+    line-height: 35px; /* Set line-height equal to height for vertical centering */
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+    height: 100%; /* Make the label fill the button height */
+    display: inline-block; /* Ensure label behaves like a block element */
+    vertical-align: middle; /* Align label vertically */
+    font-weight: bold;
+    transition: color 0.1s, text-shadow 0.1s; /* Smooth transition */
+}
+
+    .radio-button-amount label:hover {
+        cursor: pointer;
+        color: #660199;
+        text-shadow: 0 0 1px rgba(102, 1, 153, 0.3), 0 0 3px rgba(102, 1, 153, 0.2); /* Shining effect */
+    }
+
+.radio-button-amount input[type="radio"]:checked + label {
+    background-color: #660199; 
+    color: white;
+    border: 3px solid #660199;
+}
+
+
+.donation-amounts h1 { 
+    font-size:2em;
+    font-weight: bold;
+    margin-top:30px;
+    font-style:italic;
+}
+
+
+/* Hide payment footer logos by default */
+#one-off-donation-footer-logos {
+    display:none;
+}
+
+#monthly-donation-footer-logos {
+    display:none;
+}
+
+.gift-aid-container {
+    padding:30px 90px;
+}
+
+#taxpayer:hover, .taxpayer-label:hover {
+    cursor: pointer;
+}
+
+
+#header-basket {
+    margin-top: 18px;
+    margin-right: 20px;
+    font-size: 27px;
+    color: #000;
+}
+
+.basket-icon {
+    font-size: 22px;
+}
+
+.basket-list li {
+    padding: 10px 15px;
+    border-bottom: 2px solid #686868;
+}
+
+.basket-item-close-button {
+    cursor: pointer;
+    color: red;
+}
+
+.task {
+    display: flex; /* Use flexbox for alignment */
+    flex-wrap: wrap; /* Allow wrapping to the next line */
+    align-items: center; /* Align items vertically */
+}
+
+.desc {
+    flex: 1; /* Allow the description to take available space */
+    min-width: 0; /* Prevent overflow */
+}
+
+.percent {
+    white-space: nowrap; /* Prevent the percent from wrapping */
+}
+
+
+@media (min-width:992px) {
+    .payment-header {
+        height: 90px;
+        background-color: #660199;
+        background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.3));
+        position: relative;
+    }
+
+        .payment-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 20%, transparent 20%);
+            animation: shine 1.5s infinite;
+            transform: translate(-50%, -50%);
+        }
+
+    @keyframes shine {
+        0% {
+            background-position: -200% 0;
+        }
+
+        100% {
+            background-position: 200% 0;
+        }
+    }
+    .page-logo > div {
+        margin-top: -10px;
+    }
+
+    .page-header-inner {
+        height: 50px;
+        margin-left: -190px;
+        z-index: 1000;
+    }
+
+    .page-logo div {
+        width: 85px;
+        height: 110px;
+        background-color: #fff;
+        display: flex;
+        justify-content: center;
+        border-radius: 0 0 15px 15px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    }
+
+        .page-logo div a img {
+            width: 75px;
+            margin-top: 15px;
+        }
+
+
+    .header-fundraising-logos {
+        padding-bottom: 70px;
+        padding-top: 50px;
+        margin-left: 15px;
+        display: flex;
+        align-items: center;
+    }
+
+
+
+    #other-amount {
+        padding-left:10px;
+        padding-right:30px;
+    }
+
+    
+    #other-amount div span {
+        padding-left:10px;
+    }
+
+
+    #continueButton {
+        margin-right:30%;
+    }
+
+    #submitButton {
+        margin-right:30%;
+    }
+
+    .footer-text {
+        display: flex; /* Use flexbox for layout */
+        justify-content: space-between; /* Space between elements */
+        align-items: center; /* Center vertically */
+        padding: 10px; /* Add padding if needed */
+    }
+
+    .copyright {
+        flex: 1; /* Allow copyright to take available space */
+    }
+
+    .policy-and-services {
+        text-align: right; /* Align text to the right */
+    }
+}
+
+@media (max-width:992px) {
+    .payment-header {
+        background-color: #660199;
+        background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.3));
+        position: relative;
+    }
+
+        .payment-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 20%, transparent 20%);
+            animation: shine 1.5s infinite;
+            transform: translate(-50%, -50%);
+        }
+
+    @keyframes shine {
+        0% {
+            background-position: -200% 0;
+        }
+
+        100% {
+            background-position: 200% 0;
+        }
+    }
+
+    .page-logo > div {
+        margin-top: -10px;
+    }
+
+    .page-header-inner {
+        height: 50px;
+        z-index: 1000;
+    }
+
+    .page-logo div {
+        width: 50px;
+        height: 70px;
+        background-color: #fff;
+        display: flex;
+        justify-content: center;
+        border-radius: 0 0 15px 15px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    }
+
+        .page-logo div a img {
+            width:45px;
+            margin-top: 15px;
+        }
+
+    .header-fundraising-logos {
+        padding-bottom: 70px;
+        padding-top: 50px;
+        margin-left: 15px;
+        display: block;
+        align-items: center;
+    }
+
+        .header-fundraising-logos img {
+            padding-bottom: 10px;
+            padding-top: 10px;
+        }
+
+    .fundraising-logo-container {
+        display:flex;
+        justify-content:center;
+    }
+
+
+    .funds {
+        background-color: white;
+    }
+
+
+
+    .gift-aid-container {
+        padding: 20px;
+    }
+
+    .bottom-line-of-donation-item { 
+        margin-top:25px;
+    }
+
+}
+
+
+@media (max-width:700px){
+
+    .funds {
+        background-color: white;
+    }
+
+    .radio-button label {
+        width: 100%;
+        height: 50px;
+        line-height: 45px; /* Set line-height equal to height for vertical centering */
+    }
+    
+    .radio-button-amount label {
+        width: 95%;
+        height: 50px;
+        line-height: 45px; /* Set line-height equal to height for vertical centering */
+    }
+
+
+}
+
+
+@media (max-width:492px) {
+    .gift-aid-container {
+        padding: 20px;
+    }
+}

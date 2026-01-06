@@ -1,0 +1,52 @@
+﻿
+
+#toast-container {
+    position: fixed;
+    top: 85px;
+    right: 20px;
+    z-index: 10000;
+}
+
+.toast {
+    background-color: #fed21c;
+    color: white;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    position: relative;
+    opacity: 1;
+    transform: translateX(100%); /* Initially hide the toast off-screen */
+    transition: opacity 0.5s ease, transform 0.5s ease; /* Add transition for opacity and transform */
+    font-size:14px;
+    width:320px;
+}
+
+    .toast.show {
+        transform: translateX(0); /* Move the toast into view */
+    }
+
+    .toast.hide {
+        opacity: 0; /* Fade out */
+        transform: translateX(100%); /* Move out of view */
+    }
+
+    .toast .close-btn {
+        position: absolute;
+        top: 5px;
+        right: 10px;
+        background: transparent;
+        border: none;
+        color: rgba(255,0,0,0.3);
+        cursor: pointer;
+        font-size: 16px; /* Adjust size of the icon */
+    }
+
+        .toast .close-btn:hover {
+            color: rgba(255,0,0,1);
+        }
+
+
+        .toast .close-btn i {
+            font-size: 1.2em; /* Size of the Font Awesome icon */
+            line-height: 0; /* Center align the icon */
+        }
